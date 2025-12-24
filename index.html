@@ -167,22 +167,29 @@
             background: black;
         }
 
+        /* --- ATUALIZAÇÃO PARA IMAGENS MAIORES --- */
+
+        /* Aumentamos o limite total da tela nesta seção */
         .perfis-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 30px;
-            max-width: 1100px;
+            gap: 40px; /* Mais espaço entre eles */
+            max-width: 1400px; /* ERA 1100px -> Agora ocupa mais a tela */
             margin: 0 auto;
         }
+
         .perfil-card {
             flex: 1;
-            min-width: 300px;
-            background: rgba(255,255,255,0.03);
+            min-width: 380px; /* ERA 300px -> Força o card a ficar mais largo */
+            background: rgba(255,255,255,0.05);
             backdrop-filter: blur(10px);
-            padding: 25px;
+            
+            /* REDUZIMOS O PADDING PARA A IMAGEM CRESCER */
+            padding: 15px; /* Era 25px */
+            
             border-radius: 24px;
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
             transition: transform 0.3s, background 0.3s;
         }
         .perfil-card:hover { 
@@ -202,10 +209,11 @@
             letter-spacing: 1px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
+        /* Ajuste para a imagem ocupar bem o espaço */
         .perfil-card img {
             width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            border-radius: 16px; /* Borda da imagem um pouco mais arredondada */
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5); /* Sombra mais forte para destacar */
             border: 1px solid rgba(255,255,255,0.1);
         }
         .perfil-desc { margin-top: 20px; font-size: 1rem; color: #AAB7C4; font-weight: 500;}
