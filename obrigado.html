@@ -7,256 +7,304 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
     
     <title>Pedido Confirmado | Metricora</title>
     
     <style>
+        /* --- CONFIGURAÇÕES GERAIS E CORES --- */
         :root {
-            --primary: #0A2540;
-            --accent: #00D47E;
-            --accent-hover: #00B068;
-            --danger: #EF5350;
-            --danger-bg: #FFEBEE;
+            --primary-blue: #0A2540; /* Azul Escuro do Topo/Footer */
+            --button-blue: #0D3E6B; /* Azul do Botão de Download */
+            --danger-red: #D32F2F; /* Vermelho de Ativação */
+            --danger-bg: #FEECEB; /* Fundo Vermelho Claro */
+            --warning-bg: #FFF8E1; /* Fundo Amarelo Aviso */
+            --warning-text: #856404;
             --text-dark: #1A1F36;
-            --text-light: #4F566B;
-            --bg-light: #F7F9FC;
+            --text-light: #697386;
+            --bg-page: #F7F9FC;
+            --green-accent: #00D47E; /* Verde da barra de progresso */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-light);
+            background-color: var(--bg-page);
             color: var(--text-dark);
-            line-height: 1.6;
-            min-height: 100vh;
+            line-height: 1.5;
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
         }
 
-        h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3, h4, .btn { font-family: 'Poppins', sans-serif; }
 
-        /* HEADER */
-        header {
-            background: 
-                linear-gradient(135deg, rgba(10, 37, 64, 0.95), rgba(21, 101, 192, 0.90)), 
-                url('https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?q=80&w=2070&auto=format&fit=crop'); 
+        /* --- CABEÇALHO (HEADER) --- */
+        .main-header {
+            background-color: var(--primary-blue);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header-logo {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 1rem;
+            /* Filtro para garantir que a logo fique branca, caso você use a colorida */
+            filter: brightness(0) invert(1); 
+        }
+
+        .header-title {
+            font-size: 2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+
+        /* --- HERO SECTION (Fundo Barbearia + Celular) --- */
+        .hero-section {
+            position: relative;
+            /* Imagem de fundo da barbearia */
+            background: linear-gradient(rgba(10, 37, 64, 0.7), rgba(10, 37, 64, 0.7)), url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=2074&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
-            padding: 3rem 1rem 6rem 1rem;
-            text-align: center;
-            color: white;
+            height: 350px; /* Altura da área da imagem */
+            display: flex;
+            justify-content: center;
+            align-items: flex-end; /* Alinha o celular na parte de baixo */
+            padding-bottom: 50px;
+            z-index: 1;
         }
 
-        .logo {
-            max-width: 180px;
-            filter: brightness(0) invert(1);
-            margin-bottom: 1rem;
+        .phone-mockup {
+            width: 280px; /* Largura do celular */
+            height: auto;
+            /* Sombra para destacar do fundo */
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+            position: relative;
+            bottom: -80px; /* Faz o celular "descer" e sobrepor o card branco */
+            z-index: 2;
         }
 
-        /* CARD PRINCIPAL */
+        /* --- CONTAINER PRINCIPAL (O Card Branco) --- */
+        .content-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            padding: 0 20px 60px 20px;
+            margin-top: -60px; /* Sobe para cima da Hero Section */
+            position: relative;
+            z-index: 3;
+        }
+
         .main-card {
             background: white;
-            max-width: 600px;
-            margin: -4rem auto 3rem auto;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            padding: 3rem 2rem;
-            position: relative;
-            z-index: 10;
+            width: 100%;
+            max-width: 650px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            padding: 100px 40px 40px 40px; /* Padding superior alto para compensar o celular */
+            text-align: left;
         }
 
-        /* ÍCONE SUCESSO */
-        .success-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--accent);
-            color: #06371E;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            margin: -70px auto 20px auto;
-            border: 5px solid white;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-
-        h1 { color: var(--accent-hover); font-size: 1.8rem; text-align: center; margin-bottom: 10px; }
-        .subtitle { text-align: center; color: var(--text-light); margin-bottom: 30px; font-size: 1.1rem; }
-
-        /* STEPS */
-        .step-box {
-            border: 1px solid #E0E6ED;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            background: #FAFBFC;
-        }
-
+        /* --- PASSO 1: DOWNLOAD --- */
         .step-header {
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .step-title-group { display: flex; align-items: center; }
+        .step-number {
+            background-color: var(--primary-blue);
+            color: white;
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; margin-right: 15px;
+        }
+        .step-title { font-size: 1.25rem; font-weight: 700; color: var(--primary-blue); }
+        
+        /* Barra de Progresso Visual */
+        .progress-bar {
+            height: 8px; width: 150px;
+            background-color: #E0E6ED; border-radius: 4px; overflow: hidden;
+        }
+        .progress-fill { height: 100%; width: 50%; background-color: var(--green-accent); }
+
+        .step-description { color: var(--text-light); margin-bottom: 25px; font-size: 1rem; }
+
+        /* Botão de Download Azul */
+        .btn-download {
+            display: flex; align-items: center; justify-content: center;
+            width: 100%;
+            padding: 16px;
+            background-color: var(--button-blue);
+            color: white;
+            text-decoration: none;
+            font-weight: 700; font-size: 1.1rem;
+            border-radius: 12px;
+            transition: background 0.2s;
+            margin-bottom: 20px;
+        }
+        .btn-download:hover { background-color: var(--primary-blue); }
+        .btn-icon { margin-right: 10px; font-size: 1.2rem; }
+
+        /* Caixa de Aviso Amarela */
+        .warning-box {
+            background-color: var(--warning-bg);
+            border: 1px solid #FFEEBA;
+            color: var(--warning-text);
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            display: flex; align-items: flex-start;
+        }
+        .warning-icon { margin-right: 10px; font-size: 1.1rem; }
+
+        /* --- PASSO 2: ATIVAÇÃO (Caixa Vermelha) --- */
+        .activation-section {
+            margin-top: 40px;
+            background-color: var(--danger-bg);
+            border: 2px dashed var(--danger-red);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+        }
+        .activation-header {
+            color: var(--danger-red);
+            font-weight: 800; font-size: 1.1rem;
+            text-transform: uppercase;
+            display: flex; align-items: center; justify-content: center;
             margin-bottom: 15px;
         }
-        .step-number {
-            background: var(--primary);
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin-right: 10px;
-            font-family: 'Poppins', sans-serif;
-        }
-        .step-title { font-weight: 700; color: var(--primary); font-size: 1.1rem; }
-
-        /* BOTÃO DOWNLOAD */
-        .btn-download {
-            display: block;
-            background-color: var(--primary);
-            color: white;
-            text-align: center;
-            padding: 15px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: transform 0.2s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-        .btn-download:hover { background-color: #153555; transform: translateY(-2px); }
-
-        .warning-note {
-            background: #FFF3CD;
-            color: #856404;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            margin-top: 15px;
-            text-align: center;
-            border: 1px solid #FFEEBA;
-        }
-
-        /* CARD ATIVAÇÃO (AJUSTADO) */
-        .activation-box {
-            background: var(--danger-bg);
-            border: 2px dashed var(--danger);
-            border-radius: 12px;
-            padding: 25px;
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .activation-title {
-            color: #C62828;
-            font-weight: 800;
-            text-transform: uppercase;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .email-display {
+        .lock-icon { margin-right: 10px; font-size: 1.2rem; }
+        
+        .activation-text { color: var(--text-dark); font-size: 0.95rem; margin-bottom: 20px; }
+        
+        /* Campo de E-mail Branco */
+        .email-field {
             background: white;
-            padding: 10px;
-            border-radius: 6px;
-            font-family: monospace;
-            font-size: 1.1rem;
-            color: var(--primary);
-            margin: 15px 0;
-            border: 1px solid rgba(0,0,0,0.1);
+            padding: 12px;
+            border-radius: 8px;
+            font-family: 'Inter', monospace; font-weight: 600; font-size: 1.1rem;
+            color: var(--primary-blue);
             display: inline-block;
-            font-weight: bold;
+            margin-bottom: 25px;
+            border: 1px solid #E0E6ED;
+            width: 100%; max-width: 350px;
         }
 
+        /* Botão de E-mail Vermelho */
         .btn-email {
-            display: inline-block;
-            background-color: var(--danger);
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 14px 30px;
+            background-color: var(--danger-red);
             color: white;
-            padding: 10px 25px;
-            border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 0.9rem;
+            font-weight: 700; font-size: 1rem;
+            border-radius: 50px;
             transition: background 0.2s;
         }
-        .btn-email:hover { background-color: #D32F2F; }
+        .btn-email:hover { background-color: #B71C1C; }
+        .btn-arrow { margin-left: 10px; }
 
-        /* FOOTER */
-        .footer-help {
+        /* --- RODAPÉ (FOOTER) --- */
+        .main-footer {
+            background-color: var(--primary-blue);
+            color: rgba(255,255,255,0.7);
             text-align: center;
-            margin-top: 30px;
-            font-size: 0.9rem;
-            color: var(--text-light);
+            padding: 20px;
+            font-size: 0.85rem;
+            margin-top: auto; /* Empurra para o final da página */
         }
-        .footer-help a { color: var(--primary); font-weight: bold; text-decoration: none; }
+        .footer-links {
+            display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
+        }
+        .footer-links span { display: flex; align-items: center; }
+        .footer-icon { margin-right: 5px; }
 
+        /* Responsividade para Celulares */
         @media (max-width: 600px) {
-            .main-card { margin-left: 20px; margin-right: 20px; padding: 2rem 1.5rem; }
-            h1 { font-size: 1.5rem; }
+            .header-title { font-size: 1.5rem; }
+            .hero-section { height: 250px; }
+            .phone-mockup { width: 200px; bottom: -50px; }
+            .main-card { padding: 70px 20px 30px 20px; }
+            .step-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .progress-bar { width: 100%; }
+            .btn-email { width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <img src="img/logo.png" alt="Metricora" class="logo">
+    <header class="main-header">
+        <img src="img/logo.png" alt="Metricora Logo" class="header-logo">
+        <h1 class="header-title">PEDIDO CONFIRMADO!</h1>
     </header>
 
-    <div class="main-card">
-        <div class="success-icon">✓</div>
-        
-        <h1>Pagamento Confirmado!</h1>
-        <p class="subtitle">Bem-vindo à elite. Siga os 2 passos abaixo para liberar seu acesso.</p>
+    <section class="hero-section">
+        <img src="https://placehold.co/280x560/0A2540/FFFFFF?text=Metricora+App+Mockup&font=poppins" alt="Celular Metricora" class="phone-mockup">
+    </section>
 
-        <div class="step-box">
-            <div class="step-header">
-                <div class="step-number">1</div>
-                <div class="step-title">Baixe o Aplicativo</div>
-            </div>
+    <main class="content-container">
+        <div class="main-card">
             
-            <p style="margin-bottom: 15px; font-size: 0.95rem; color: #555;">
-                Clique no botão para baixar e instalar no seu Android.
-            </p>
+            <div class="step-section">
+                <div class="step-header">
+                    <div class="step-title-group">
+                        <div class="step-number">1</div>
+                        <h2 class="step-title">Baixe o Aplicativo</h2>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                </div>
 
-            <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.0/app-release.apk.apk" class="btn-download" download>
-                ⬇ BAIXAR INSTALADOR (v1.0)
-            </a>
+                <p class="step-description">
+                    Clique no botão abaixo para baixar a versão mais recente do Metricora diretamente no seu Android.
+                </p>
 
-            <div class="warning-note">
-                ⚠️ <strong>Nota:</strong> Se o navegador bloquear, clique em "Mais detalhes" > <strong>"Instalar mesmo assim"</strong>.
+                <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.0/app-release.apk.apk" class="btn btn-download" download>
+                    <span class="btn-icon">⬇</span> BAIXAR INSTALADOR (v1.0)
+                </a>
+
+                <div class="warning-box">
+                    <span class="warning-icon">⚠️</span>
+                    <p><strong>Aviso:</strong> Se o navegador disser que "o arquivo pode ser nocivo", clique em <strong>"Manter mesmo assim"</strong>. Nosso app é seguro e verificado.</p>
+                </div>
             </div>
+
+            <div class="activation-section">
+                <div class="activation-header">
+                    <span class="lock-icon">🔒</span> ATIVAÇÃO OBRIGATÓRIA
+                </div>
+                
+                <p class="activation-text">
+                    Para liberar sua licença <strong>VITALÍCIA</strong>, precisamos validar seu pagamento manualmente no sistema.
+                    <br><br>
+                    Envie o comprovante e seu <strong>NOME DE USUÁRIO</strong> para:
+                </p>
+
+                <div class="email-field">suporte@vectorium.tec.br</div>
+
+                <a href="mailto:suporte@vectorium.tec.br?subject=Ativação PRO - Envio de Comprovante" class="btn btn-email">
+                    ENVIAR E-MAIL AGORA <span class="btn-arrow">➔</span>
+                </a>
+            </div>
+
         </div>
+    </main>
 
-        <div class="activation-box">
-            <div class="activation-title">
-                <span>🔒</span> Liberação da Chave
-            </div>
-            
-            <p style="color: #444; font-size: 0.95rem; margin-bottom: 15px; line-height: 1.5;">
-                Para gerar sua chave única, envie o <strong>Comprovante de Pagamento</strong> e o seu <strong>NOME DE USUÁRIO</strong> (que você criou no App) para:
-            </p>
-
-            <div class="email-display">suporte@vectorium.tec.br</div>
-            
-            <br>
-            <a href="mailto:suporte@vectorium.tec.br?subject=Ativação PRO - [Coloque seu Usuário Aqui]" class="btn-email">
-                ENVIAR DADOS AGORA ➔
-            </a>
+    <footer class="main-footer">
+        <div class="footer-links">
+            <span>🛡️ Pedido Seguro</span>
+            <span>📞 Suporte Vitalício</span>
+            <span>🇧🇷 Vectorium Systems</span>
         </div>
-
-        <p class="footer-help">
-            Dúvidas? <a href="mailto:suporte@vectorium.tec.br">Fale com o Suporte</a>
-        </p>
-    </div>
+    </footer>
 
 </body>
 </html>
