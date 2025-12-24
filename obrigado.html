@@ -14,16 +14,16 @@
     <style>
         /* --- CONFIGURAÇÕES GERAIS E CORES --- */
         :root {
-            --primary-blue: #0A2540; /* Azul Escuro do Topo/Footer */
-            --button-blue: #0D3E6B; /* Azul do Botão de Download */
-            --danger-red: #D32F2F; /* Vermelho de Ativação */
-            --danger-bg: #FEECEB; /* Fundo Vermelho Claro */
-            --warning-bg: #FFF8E1; /* Fundo Amarelo Aviso */
+            --primary-blue: #0A2540;
+            --button-blue: #0D3E6B;
+            --danger-red: #D32F2F;
+            --danger-bg: #FEECEB;
+            --warning-bg: #FFF8E1;
             --warning-text: #856404;
             --text-dark: #1A1F36;
             --text-light: #697386;
             --bg-page: #F7F9FC;
-            --green-accent: #00D47E; /* Verde da barra de progresso */
+            --green-accent: #00D47E;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -45,20 +45,19 @@
             background-color: var(--primary-blue);
             color: white;
             text-align: center;
-            padding: 1.5rem 1rem;
+            padding: 2rem 1rem; /* Aumentei um pouco o padding base */
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
         .header-logo {
-            max-width: 150px;
+            max-width: 160px; /* Um pouco maior */
             height: auto;
             margin-bottom: 1rem;
-            /* Filtro para garantir que a logo fique branca, caso você use a colorida */
-            filter: brightness(0) invert(1); 
+            filter: brightness(0) invert(1);
         }
 
         .header-title {
-            font-size: 2rem;
+            font-size: 2rem; /* Base para mobile */
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -67,27 +66,32 @@
 
         /* --- HERO SECTION (Fundo Barbearia + Celular) --- */
         .hero-section {
-    position: relative;
-    /* Agora puxa da sua pasta img */
-    background: linear-gradient(rgba(10, 37, 64, 0.7), rgba(10, 37, 64, 0.7)), url('img/barber_bg.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 350px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    padding-bottom: 50px;
-    z-index: 1;
-}
+            position: relative;
+            /* Use a sua imagem local */
+            background: linear-gradient(rgba(10, 37, 64, 0.7), rgba(10, 37, 64, 0.7)), url('img/barber_bg.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 350px; /* Altura base para mobile */
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding-bottom: 50px;
+            z-index: 1;
+        }
 
         .phone-mockup {
-            width: 280px; /* Largura do celular */
+            width: 280px; /* Largura base para mobile */
             height: auto;
-            /* Sombra para destacar do fundo */
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.4)); /* Sombra mais forte */
             position: relative;
-            bottom: -80px; /* Faz o celular "descer" e sobrepor o card branco */
+            bottom: -80px;
             z-index: 2;
+            transition: all 0.3s ease; /* Transição suave para o hover */
+        }
+        
+        /* Efeito legal: o celular sobe um pouco quando passa o mouse */
+        .phone-mockup:hover {
+            transform: translateY(-10px);
         }
 
         /* --- CONTAINER PRINCIPAL (O Card Branco) --- */
@@ -96,7 +100,7 @@
             display: flex;
             justify-content: center;
             padding: 0 20px 60px 20px;
-            margin-top: -60px; /* Sobe para cima da Hero Section */
+            margin-top: -60px;
             position: relative;
             z-index: 3;
         }
@@ -104,14 +108,50 @@
         .main-card {
             background: white;
             width: 100%;
-            max-width: 650px;
+            max-width: 650px; /* Largura base para mobile */
             border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-            padding: 100px 40px 40px 40px; /* Padding superior alto para compensar o celular */
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1); /* Sombra mais imponente */
+            padding: 100px 30px 40px 30px;
             text-align: left;
         }
 
-        /* --- PASSO 1: DOWNLOAD --- */
+        /* --- CSS ESPECÍFICO PARA DESKTOP (Telas maiores que 768px) --- */
+        /* AQUI ESTÁ A MÁGICA PARA FICAR GRANDE NO PC */
+        @media (min-width: 768px) {
+            .main-header {
+                padding: 3rem 1rem; /* Header mais alto */
+            }
+            .header-title {
+                font-size: 3rem; /* Título bem maior */
+            }
+            .hero-section {
+                height: 550px; /* Hero section MUITO mais alta */
+                padding-bottom: 60px;
+            }
+            .phone-mockup {
+                width: 380px; /* Celular BEM maior */
+                bottom: -100px; /* Ajuste da posição para o novo tamanho */
+            }
+            .content-container {
+                margin-top: -80px; /* Ajuste da sobreposição */
+            }
+            .main-card {
+                max-width: 850px; /* Cartão BEM mais largo */
+                padding: 130px 50px 50px 50px; /* Mais espaço interno */
+            }
+            .step-title {
+                font-size: 1.5rem; /* Títulos dos passos maiores */
+            }
+            .step-description, .activation-text {
+                font-size: 1.1rem; /* Texto de descrição maior */
+            }
+            .btn-download, .btn-email {
+                font-size: 1.2rem; /* Botões maiores */
+                padding: 18px;
+            }
+        }
+
+        /* --- RESTANTE DO CSS (Passos, Footer, etc.) - MANTIDO IGUAL --- */
         .step-header {
             display: flex;
             align-items: center;
@@ -129,7 +169,6 @@
         }
         .step-title { font-size: 1.25rem; font-weight: 700; color: var(--primary-blue); }
         
-        /* Barra de Progresso Visual */
         .progress-bar {
             height: 8px; width: 150px;
             background-color: #E0E6ED; border-radius: 4px; overflow: hidden;
@@ -138,7 +177,6 @@
 
         .step-description { color: var(--text-light); margin-bottom: 25px; font-size: 1rem; }
 
-        /* Botão de Download Azul */
         .btn-download {
             display: flex; align-items: center; justify-content: center;
             width: 100%;
@@ -148,13 +186,16 @@
             text-decoration: none;
             font-weight: 700; font-size: 1.1rem;
             border-radius: 12px;
-            transition: background 0.2s;
-            margin-bottom: 20px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        .btn-download:hover { background-color: var(--primary-blue); }
+        .btn-download:hover {
+            background-color: var(--primary-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
         .btn-icon { margin-right: 10px; font-size: 1.2rem; }
 
-        /* Caixa de Aviso Amarela */
         .warning-box {
             background-color: var(--warning-bg);
             border: 1px solid #FFEEBA;
@@ -166,7 +207,6 @@
         }
         .warning-icon { margin-right: 10px; font-size: 1.1rem; }
 
-        /* --- PASSO 2: ATIVAÇÃO (Caixa Vermelha) --- */
         .activation-section {
             margin-top: 40px;
             background-color: var(--danger-bg);
@@ -186,7 +226,6 @@
         
         .activation-text { color: var(--text-dark); font-size: 0.95rem; margin-bottom: 20px; }
         
-        /* Campo de E-mail Branco */
         .email-field {
             background: white;
             padding: 12px;
@@ -199,7 +238,6 @@
             width: 100%; max-width: 350px;
         }
 
-        /* Botão de E-mail Vermelho */
         .btn-email {
             display: inline-flex; align-items: center; justify-content: center;
             padding: 14px 30px;
@@ -208,35 +246,36 @@
             text-decoration: none;
             font-weight: 700; font-size: 1rem;
             border-radius: 50px;
-            transition: background 0.2s;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(211, 47, 47, 0.2);
         }
-        .btn-email:hover { background-color: #B71C1C; }
+        .btn-email:hover {
+            background-color: #B71C1C;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(211, 47, 47, 0.3);
+        }
         .btn-arrow { margin-left: 10px; }
 
-        /* --- RODAPÉ (FOOTER) --- */
         .main-footer {
             background-color: var(--primary-blue);
             color: rgba(255,255,255,0.7);
             text-align: center;
-            padding: 20px;
-            font-size: 0.85rem;
-            margin-top: auto; /* Empurra para o final da página */
+            padding: 30px 20px;
+            font-size: 0.9rem;
+            margin-top: auto;
         }
         .footer-links {
-            display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
+            display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;
         }
-        .footer-links span { display: flex; align-items: center; }
-        .footer-icon { margin-right: 5px; }
+        .footer-links span { display: flex; align-items: center; font-weight: 500; }
+        .footer-icon { margin-right: 8px; }
 
-        /* Responsividade para Celulares */
-        @media (max-width: 600px) {
-            .header-title { font-size: 1.5rem; }
-            .hero-section { height: 250px; }
-            .phone-mockup { width: 200px; bottom: -50px; }
-            .main-card { padding: 70px 20px 30px 20px; }
+        /* Responsividade para Celulares (Ajustes finais) */
+        @media (max-width: 767px) {
             .step-header { flex-direction: column; align-items: flex-start; gap: 10px; }
             .progress-bar { width: 100%; }
             .btn-email { width: 100%; }
+            .main-card { padding-left: 25px; padding-right: 25px; }
         }
     </style>
 </head>
