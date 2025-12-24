@@ -4,68 +4,262 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="img/favicon.png">
-    <title>Pedido Confirmado | Metricora </title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <title>Pedido Confirmado | Metricora</title>
+    
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding: 50px; background: #E3F2FD; color: #333; }
-        .box { background: white; max-width: 600px; margin: 0 auto; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        h1 { color: #2E7D32; margin-bottom: 10px; }
-        p { font-size: 1.1rem; line-height: 1.6; }
-        
-        /* Botão de Download */
-        .btn-download {
-            background-color: #1565C0; color: white; padding: 15px 30px; 
-            text-decoration: none; border-radius: 50px; font-weight: bold; 
-            display: inline-block; margin-top: 20px; font-size: 1.2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: all 0.2s;
+        :root {
+            /* Mesma paleta da Home */
+            --primary: #0A2540;
+            --accent: #00D47E;
+            --accent-hover: #00B068;
+            --danger: #EF5350;
+            --danger-bg: #FFEBEE;
+            --text-dark: #1A1F36;
+            --text-light: #4F566B;
+            --bg-light: #F7F9FC;
         }
-        .btn-download:hover { background-color: #0D47A1; transform: translateY(-2px); }
-        
-        /* Aviso Amarelo (Navegador) */
-        .warning { background: #fff3cd; color: #856404; padding: 15px; margin-top: 25px; border-radius: 8px; font-size: 0.95rem; border: 1px solid #ffeeba; }
-        
-        /* Aviso Vermelho (Ativação) */
-        .activation-box { background-color: #ffebee; border: 2px solid #ef5350; border-radius: 8px; padding: 25px; margin-top: 35px; text-align: center; }
-        .activation-title { color: #c62828; margin-top: 0; font-size: 20px; font-weight: 900; text-transform: uppercase; }
-        .activation-steps { background-color: white; padding: 15px; border-radius: 5px; border-left: 5px solid #c62828; text-align: left; margin: 15px 0; }
-        .email-link { font-size: 18px; font-weight: bold; color: #1565C0; margin: 5px 0; display: block; }
-        .btn-email { display: inline-block; margin-top: 10px; background-color: #c62828; color: white; padding: 12px 25px; text-decoration: none; font-weight: bold; border-radius: 50px; font-size: 14px; transition: all 0.2s; }
-        .btn-email:hover { background-color: #b71c1c; }
 
-        .footer-help { margin-top: 40px; font-size: 0.9rem; color: #777; border-top: 1px solid #eee; padding-top: 20px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+
+        /* HEADER REDUZIDO */
+        header {
+            background: 
+                linear-gradient(135deg, rgba(10, 37, 64, 0.95), rgba(21, 101, 192, 0.90)), 
+                url('https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?q=80&w=2070&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            padding: 3rem 1rem 6rem 1rem;
+            text-align: center;
+            color: white;
+        }
+
+        .logo {
+            max-width: 180px;
+            filter: brightness(0) invert(1);
+            margin-bottom: 1rem;
+        }
+
+        /* CARD PRINCIPAL */
+        .main-card {
+            background: white;
+            max-width: 600px;
+            margin: -4rem auto 3rem auto; /* Sobe por cima do header */
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 3rem 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* ÍCONE DE SUCESSO */
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            color: #06371E;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: -70px auto 20px auto; /* Sai um pouco pra fora do card */
+            border: 5px solid white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        h1 { color: var(--accent-hover); font-size: 1.8rem; text-align: center; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: var(--text-light); margin-bottom: 30px; font-size: 1.1rem; }
+
+        /* STEPS (Passo a Passo) */
+        .step-box {
+            border: 1px solid #E0E6ED;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #FAFBFC;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .step-title { font-weight: 700; color: var(--primary); font-size: 1.1rem; }
+
+        /* BOTÃO DOWNLOAD */
+        .btn-download {
+            display: block;
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .btn-download:hover { background-color: #153555; transform: translateY(-2px); }
+
+        .warning-note {
+            background: #FFF3CD;
+            color: #856404;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-top: 15px;
+            text-align: center;
+            border: 1px solid #FFEEBA;
+        }
+
+        /* CARD DE ATIVAÇÃO (VERMELHO) */
+        .activation-box {
+            background: var(--danger-bg);
+            border: 2px dashed var(--danger);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .activation-title {
+            color: #C62828;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .email-display {
+            background: white;
+            padding: 10px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin: 15px 0;
+            border: 1px solid rgba(0,0,0,0.1);
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .btn-email {
+            display: inline-block;
+            background-color: var(--danger);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        .btn-email:hover { background-color: #D32F2F; }
+
+        /* FOOTER */
+        .footer-help {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        .footer-help a { color: var(--primary); font-weight: bold; text-decoration: none; }
+
+        /* RESPONSIVO */
+        @media (max-width: 600px) {
+            .main-card { margin-left: 20px; margin-right: 20px; padding: 2rem 1.5rem; }
+            h1 { font-size: 1.5rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h1>✅ Pagamento Confirmado!</h1>
-        <p>Você tomou a decisão certa. Bem-vindo ao time Metricora.</p>
-        <p>Seu acesso vitalício foi gerado. Baixe o instalador oficial abaixo:</p>
-        
-        <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.0/app-release.apk.apk" class="btn-download" download>BAIXAR METRICORA (v1.0)</a>
 
-        <div class="warning">
-            ⚠️ <strong>Atenção:</strong> Se o navegador bloquear o download dizendo que o arquivo pode ser perigoso, clique em <strong>"Manter arquivo"</strong> ou "Mais informações > Manter mesmo assim". Nosso software é seguro.
+    <header>
+        <img src="img/logo.png" alt="Metricora" class="logo">
+    </header>
+
+    <div class="main-card">
+        <div class="success-icon">✓</div>
+        
+        <h1>Pagamento Confirmado!</h1>
+        <p class="subtitle">Bem-vindo à elite. Siga os 2 passos abaixo para começar a usar o Metricora.</p>
+
+        <div class="step-box">
+            <div class="step-header">
+                <div class="step-number">1</div>
+                <div class="step-title">Baixe o Aplicativo</div>
+            </div>
+            
+            <p style="margin-bottom: 15px; font-size: 0.95rem; color: #555;">
+                Clique no botão para baixar a versão mais recente do Metricora no seu Android.
+            </p>
+
+            <a href="https://github.com/SEU_USUARIO/SEU_REPOSITORIO/releases/download/v1.0.0/app-release.apk" class="btn-download" download>
+                ⬇ BAIXAR INSTALADOR (v1.0)
+            </a>
+
+            <div class="warning-note">
+                ⚠️ <strong>Aviso:</strong> Se o navegador disser que "o arquivo pode ser nocivo", clique em <strong>"Manter mesmo assim"</strong>. Nosso app é seguro e verificado.
+            </div>
         </div>
 
         <div class="activation-box">
-            <h2 class="activation-title">⚠️ Ativação Obrigatória</h2>
-            
-            <p style="color: #333; font-size: 16px; margin-bottom: 15px;">
-                Para liberar sua licença <strong>PRO VITALÍCIA</strong>, precisamos validar seu pagamento manualmente.
-            </p>
-        
-            <div class="activation-steps">
-                <p style="margin: 0; color: #555; font-size: 14px;">
-                    Envie o print do comprovante e seu <strong>NOME DO USUÁRIO NO APP</strong> para:
-                </p>
-                <span class="email-link">📧 suporte@vectorium.tec.br</span>
-                <small style="color: #666;">(Assunto: Ativação PRO)</small>
+            <div class="activation-title">
+                <span>🔒</span> Ativação Obrigatória
             </div>
-        
+            
+            <p style="color: #444; font-size: 0.95rem; margin-bottom: 10px;">
+                Para liberar sua licença <strong>VITALÍCIA</strong>, precisamos validar seu pagamento manualmente no sistema.
+            </p>
+
+            <p style="font-size: 0.9rem;">Envie o comprovante para:</p>
+            <div class="email-display">suporte@vectorium.tec.br</div>
+            
+            <br>
             <a href="mailto:suporte@vectorium.tec.br?subject=Ativação PRO - Comprovante" class="btn-email">
                 ENVIAR E-MAIL AGORA ➔
             </a>
         </div>
-        <p class="footer-help">Dúvidas? Responda o e-mail do recibo ou aguarde nosso contato.</p>
+
+        <p class="footer-help">
+            Precisa de ajuda? <a href="mailto:suporte@vectorium.tec.br">Fale com o Suporte</a>
+        </p>
     </div>
+
 </body>
 </html>
