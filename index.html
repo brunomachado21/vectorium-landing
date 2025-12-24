@@ -53,16 +53,22 @@
             clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
         }
 
-        /* ESTILO DO LOGO (NOVO) */
-        .header-logo {
-            max-width: 280px; /* Largura máxima para não estourar */
-            height: auto;
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); /* Sombra suave para destacar */
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        /* ESTILO DO LOGO (COM FILTRO MÁGICO) */
+.header-logo {
+    max-width: 280px;
+    height: auto;
+    margin-bottom: 1.5rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* O SEGREDO ESTÁ AQUI EMBAIXO: */
+    /* Isso transforma qualquer cor do logo em BRANCO PURO */
+    filter: brightness(0) invert(1); 
+    
+    /* Um brilho suave para destacar */
+    drop-shadow: (0 0 10px rgba(255,255,255,0.3));
+}
 
         h2 {
             font-weight: 500;
