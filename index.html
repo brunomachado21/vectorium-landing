@@ -13,16 +13,15 @@
     
     <style>
         :root {
-            /* Paleta de Cores Premium */
-            --primary: #0A2540; /* Azul Profundo */
-            --accent: #00D47E; /* Verde Neon Suave */
+            /* Paleta Premium */
+            --primary: #0A2540;
+            --accent: #00D47E;
             --accent-hover: #00B068;
             --text-dark: #1A1F36;
             --text-light: #4F566B;
             --bg-light: #F7F9FC;
             --white: #FFFFFF;
             --shadow: 0 20px 40px rgba(0,0,0,0.08);
-            --card-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,34 +36,32 @@
 
         h1, h2, h3, h4, .btn-buy { font-family: 'Poppins', sans-serif; }
 
-        /* HERO SECTION COM IMAGEM 'DARK NETWORK' */
+        /* HERO SECTION */
         header {
-            /* AQUI ESTÁ A MÁGICA:
-               1. Gradiente Azul Escuro (90% opacidade) para garantir leitura.
-               2. Imagem de fundo 'Network Lines' de alta qualidade.
-            */
             background: 
                 linear-gradient(135deg, rgba(10, 37, 64, 0.92), rgba(21, 101, 192, 0.88)), 
                 url('https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?q=80&w=2070&auto=format&fit=crop'); 
             
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Efeito Parallax (Fundo fixo) */
+            background-attachment: fixed;
             
             color: white;
-            padding: 8rem 2rem 10rem 2rem;
+            padding: 6rem 2rem 10rem 2rem; /* Ajustei o padding para o logo caber bem */
             text-align: center;
             position: relative;
             clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
         }
 
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 1rem;
-            line-height: 1.1;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Sombra para destacar do fundo */
+        /* ESTILO DO LOGO (NOVO) */
+        .header-logo {
+            max-width: 280px; /* Largura máxima para não estourar */
+            height: auto;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); /* Sombra suave para destacar */
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         h2 {
@@ -79,7 +76,7 @@
         /* PREÇO E OFERTA */
         .hero-price-tag {
             background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px); /* Efeito Vidro */
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.2);
             padding: 1.5rem 3rem;
             border-radius: 16px;
@@ -93,7 +90,7 @@
         .new-price { font-size: 2.5rem; font-weight: 700; color: var(--accent); letter-spacing: -1px; }
         .license-type { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: white; opacity: 0.9; margin-top: 5px; font-weight: 600; }
 
-        /* BOTÃO DE AÇÃO (CTA) */
+        /* BOTÃO DE AÇÃO */
         .btn-buy {
             background-color: var(--accent);
             color: #06371E;
@@ -102,7 +99,6 @@
             font-weight: 700;
             text-decoration: none;
             border-radius: 50px;
-            box-shadow: 0 0 0 0 rgba(0, 212, 126, 0.7);
             transition: all 0.3s ease;
             display: inline-block;
             text-transform: uppercase;
@@ -116,15 +112,15 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
 
-        /* CONTEÚDO PRINCIPAL */
+        /* CONTAINER */
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
         
-        /* CARDS DE BENEFÍCIOS (GRID) */
+        /* GRID BENEFÍCIOS */
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-top: -5rem; /* Sobe por cima do header */
+            margin-top: -5rem;
             position: relative;
             z-index: 10;
             margin-bottom: 5rem;
@@ -143,7 +139,7 @@
         .card p { color: var(--text-light); font-size: 0.95rem; }
         .icon-box { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
 
-        /* SEÇÃO DE DEMONSTRAÇÃO (DARK MODE) */
+        /* DEMONSTRAÇÃO (DARK) */
         #demonstracao {
             padding: 5rem 2rem;
             background-color: var(--primary); 
@@ -165,7 +161,6 @@
             background: black;
         }
 
-        /* GRID DE PRINTS (CELULARES) */
         .perfis-grid {
             display: flex;
             flex-wrap: wrap;
@@ -177,7 +172,7 @@
         .perfil-card {
             flex: 1;
             min-width: 300px;
-            background: rgba(255,255,255,0.03); /* Glassmorphism Fino */
+            background: rgba(255,255,255,0.03);
             backdrop-filter: blur(10px);
             padding: 25px;
             border-radius: 24px;
@@ -222,7 +217,7 @@
             overflow: hidden;
         }
 
-        /* RODAPÉ PREMIUM (DARK) */
+        /* RODAPÉ PREMIUM */
         footer {
             background-color: var(--primary);
             color: white;
@@ -264,11 +259,7 @@
             margin-bottom: 8px;
             transition: color 0.2s;
         }
-
-        .footer-col a:hover {
-            color: white;
-            padding-left: 5px;
-        }
+        .footer-col a:hover { color: white; padding-left: 5px; }
 
         .footer-bottom {
             border-top: 1px solid rgba(255,255,255,0.1);
@@ -292,7 +283,7 @@
 
         /* RESPONSIVO */
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
+            .header-logo { max-width: 220px; } /* Logo menor no celular */
             header { padding: 4rem 1.5rem 8rem 1.5rem; clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%); }
             .features { margin-top: -3rem; padding: 0 1rem;}
             .btn-buy { padding: 1rem 2rem; width: 100%; font-size: 1.1rem; }
@@ -305,7 +296,8 @@
 
     <header>
         <div class="container">
-            <h1>METRICORA</h1>
+            <img src="img/logo.png" alt="Metricora Logo" class="header-logo">
+            
             <h2>O fim das planilhas. O fim das mensalidades.<br>Gestão financeira de elite para quem não tem tempo a perder.</h2>
             
             <div class="hero-price-tag">
@@ -412,7 +404,7 @@
             <div class="footer-col">
                 <h4>Empresa</h4>
                 <p><strong>Vectorium Systems Ltda</strong></p>
-                <p>CNPJ: 062.439.855-20</p>
+                <p>CPF: 062.439.855-20</p>
                 <p>📧 suporte@vectorium.tec.br</p>
                 <p>📍 Bahia, Brasil</p>
             </div>
