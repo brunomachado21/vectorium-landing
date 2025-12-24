@@ -4,219 +4,337 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="img/favicon.png">
-    <title>Metricora | Gestão Financeira Vitalícia</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <title>Metricora | Gestão Inteligente</title>
+    
     <style>
         :root {
-            --primary: #1565C0; /* Azul Vectorium */
-            --dark: #0D47A1;
-            --accent: #00E676; /* Verde Venda */
-            --text: #333;
-            --bg: #F5F7FA;
+            /* Paleta de Cores Premium */
+            --primary: #0A2540; /* Azul Profundo (Trust) */
+            --accent: #00D47E; /* Verde Neon Suave (Money/Success) */
+            --accent-hover: #00B068;
+            --text-dark: #1A1F36;
+            --text-light: #4F566B;
+            --bg-light: #F7F9FC;
+            --white: #FFFFFF;
+            --shadow: 0 20px 40px rgba(0,0,0,0.08);
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg);
-            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
             line-height: 1.6;
+            overflow-x: hidden;
         }
+
+        h1, h2, h3, .btn-buy { font-family: 'Poppins', sans-serif; }
+
+        /* HERO SECTION (Topo) */
         header {
-            background: linear-gradient(135deg, var(--dark), var(--primary));
+            background: radial-gradient(circle at top right, #1a3a5a 0%, var(--primary) 100%);
             color: white;
-            padding: 4rem 2rem;
+            padding: 6rem 2rem 8rem 2rem; /* Mais espaçamento */
             text-align: center;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); /* Corte diagonal moderno */
         }
-        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-        h2 { font-weight: 300; font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem; }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-weight: 500;
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+            color: #AAB7C4;
+        }
         
-        .hero-price {
+        /* PREÇO E OFERTA */
+        .hero-price-tag {
             background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 1.5rem 3rem;
+            border-radius: 16px;
             display: inline-block;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            animation: float 6s ease-in-out infinite;
         }
-        .old-price { text-decoration: line-through; opacity: 0.7; font-size: 0.9rem; }
-        .new-price { font-size: 2rem; font-weight: bold; color: var(--accent); }
-        
+
+        .old-price { text-decoration: line-through; color: #AAB7C4; font-size: 1rem; display: block; margin-bottom: 5px; }
+        .new-price { font-size: 2.5rem; font-weight: 700; color: var(--accent); letter-spacing: -1px; }
+        .license-type { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: white; opacity: 0.8; margin-top: 5px; font-weight: 600; }
+
+        /* BOTÃO DE AÇÃO (CTA) */
         .btn-buy {
             background-color: var(--accent);
-            color: var(--dark);
-            padding: 1rem 3rem;
+            color: #06371E; /* Texto escuro no botão verde para contraste */
+            padding: 1.2rem 3.5rem;
             font-size: 1.2rem;
-            font-weight: bold;
+            font-weight: 700;
             text-decoration: none;
             border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(0,230,118,0.4);
-            transition: transform 0.2s;
+            box-shadow: 0 0 0 0 rgba(0, 212, 126, 0.7);
+            transition: all 0.3s ease;
             display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            animation: pulse-green 2s infinite;
         }
-        .btn-buy:hover { transform: scale(1.05); background-color: #00C853; }
         
-        .container { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem; }
+        .btn-buy:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* CONTEÚDO PRINCIPAL */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
         
-        /* CARDS DE BENEFÍCIOS */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-title h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        .section-title p { color: var(--text-light); }
+
+        /* CARDS DE BENEFÍCIOS (GRID) */
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
+            margin-top: -4rem; /* Sobe por cima do header */
+            position: relative;
+            z-index: 10;
+            margin-bottom: 5rem;
         }
         .card {
             background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
             text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.03);
         }
-        .card h3 { color: var(--primary); }
+        .card:hover { transform: translateY(-10px); }
+        .card h3 { color: var(--primary); margin-bottom: 1rem; font-size: 1.3rem; }
+        .card p { color: var(--text-light); font-size: 0.95rem; }
+        .icon-box { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
 
-        /* NOVA SEÇÃO DE DEMONSTRAÇÃO */
+        /* SEÇÃO DE DEMONSTRAÇÃO (DARK MODE) */
         #demonstracao {
-            padding: 60px 20px;
-            background-color: #f8f9fa;
+            padding: 5rem 2rem;
+            background-color: var(--primary); /* Fundo escuro para destacar as telas */
+            color: white;
             text-align: center;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-            margin-top: 40px;
+            border-radius: 0; /* Full width */
+            margin: 4rem 0;
         }
+
+        .video-wrapper {
+            max-width: 900px;
+            margin: 0 auto 4rem auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 4px solid rgba(255,255,255,0.1);
+        }
+
+        /* GRID DE PRINTS (CELULARES) */
         .perfis-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
-            max-width: 1000px;
+            gap: 30px;
+            max-width: 1100px;
             margin: 0 auto;
         }
         .perfil-card {
             flex: 1;
-            min-width: 280px;
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            min-width: 300px;
+            background: rgba(255,255,255,0.05); /* Glassmorphism */
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
             transition: transform 0.3s;
         }
-        .perfil-card:hover { transform: translateY(-5px); }
-        .perfil-card img { width: 100%; border-radius: 8px; border: 1px solid #eee; }
-
-        .guarantee {
-            text-align: center;
-            margin-top: 3rem;
-            padding: 2rem;
-            background: #e3f2fd;
-            border-radius: 10px;
+        .perfil-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.1); }
+        
+        .perfil-tag {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            display: inline-block;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
+        .perfil-card img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .perfil-desc { margin-top: 15px; font-size: 0.9rem; color: #AAB7C4; }
+
+        /* GARANTIA E RODAPÉ */
+        .guarantee {
+            background: white;
+            border: 2px dashed #CFD8DC;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 5rem auto;
+        }
+        
         footer {
             text-align: center;
-            padding: 2rem;
-            background: #333;
-            color: white;
-            font-size: 0.8rem;
-            margin-top: 3rem;
+            padding: 3rem;
+            background: white;
+            border-top: 1px solid #eee;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes pulse-green {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 212, 126, 0.7); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(0, 212, 126, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 212, 126, 0); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            header { padding-bottom: 4rem; clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); }
+            .features { margin-top: 2rem; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>METRICORA</h1>
-        <h2>O fim das planilhas complicadas. O fim das mensalidades.</h2>
-        
-        <div class="hero-price">
-            <span class="old-price">De R$ 297,90</span><br>
-            <span class="new-price">Por R$ 97,90</span>
-            <div style="font-size: 0.8rem; margin-top: 5px">Licença Vitalícia • Pagamento Único</div>
+        <div class="container">
+            <h1>METRICORA</h1>
+            <h2>O fim das planilhas. O fim das mensalidades.<br>Gestão financeira de elite para quem não tem tempo a perder.</h2>
+            
+            <div class="hero-price-tag">
+                <span class="old-price">De R$ 297,90</span>
+                <span class="new-price">R$ 97,90</span>
+                <div class="license-type">Vitalício • Pagamento Único</div>
+            </div>
+            <br>
+            <a href="https://buy.stripe.com/28E14f1OmeCC5lj3shgfu01" class="btn-buy">GARANTIR ACESSO AGORA</a>
+            <p style="font-size: 0.8rem; margin-top: 1.5rem; opacity: 0.7;">🔒 Checkout Seguro via Stripe | ⚡ Entrega Imediata</p>
         </div>
-        <br>
-        <a href="https://buy.stripe.com/28E14f1OmeCC5lj3shgfu01" class="btn-buy">COMPRAR AGORA</a>
-        <p style="font-size: 0.8rem; margin-top: 1rem">🔒 Pagamento seguro via Stripe</p>
     </header>
 
     <div class="container">
-        <h3 style="text-align: center; color: #555;">POR QUE O METRICORA É DIFERENTE?</h3>
-        
         <div class="features">
             <div class="card">
-                <h3>🚫 Sem Mensalidades</h3>
-                <p>Cansado de "alugar" software? Aqui você paga uma vez e o sistema é seu para sempre. Economize mais de R$ 1.000 por ano em assinaturas.</p>
+                <span class="icon-box">🚫</span>
+                <h3>Sem Mensalidades</h3>
+                <p>Pare de alugar seu próprio sucesso. Pague uma única vez e o sistema é seu para sempre. Economia real de R$ 1.000/ano.</p>
             </div>
             
             <div class="card">
-                <h3>🤖 Consultor IA Incluso</h3>
-                <p>Não entende de números? Nossa Inteligência Artificial analisa seu caixa e te diz exatamente onde cortar gastos e como lucrar mais.</p>
+                <span class="icon-box">🤖</span>
+                <h3>Consultor IA</h3>
+                <p>Nossa IA analisa suas vendas e sugere cortes de custos e metas de lucro. É como ter um gerente financeiro no bolso.</p>
             </div>
 
             <div class="card">
-                <h3>🔒 100% Offline e Seguro</h3>
-                <p>Seus dados ficam no SEU computador/celular. Nada de nuvem lenta ou risco de vazamento. Privacidade total para sua empresa.</p>
-            </div>
-
-            <div class="card">
-                <h3>📊 Relatórios Profissionais</h3>
-                <p>Gere PDFs detalhados de Lucro, ROI e Margem com um clique. Impressione sócios e bancos com a organização do seu negócio.</p>
+                <span class="icon-box">🔒</span>
+                <h3>100% Seguro</h3>
+                <p>Seus dados financeiros não vão para a nuvem. Tudo fica salvo criptografado no seu dispositivo. Privacidade absoluta.</p>
             </div>
         </div>
     </div>
 
     <section id="demonstracao">
-        
-        <div style="max-width: 800px; margin: 0 auto 40px auto;">
-            <h2 style="color: #333; font-size: 2.2rem; margin-bottom: 10px;">Um Sistema, Múltiplas Faces</h2>
-            <p style="color: #666; font-size: 1.1rem;">Veja como o Metricora muda de cor e função para se adaptar ao seu negócio.</p>
-        </div>
+        <div class="container">
+            <h2 style="color: white; font-size: 2.5rem; margin-bottom: 10px;">Um Cérebro. Múltiplas Faces.</h2>
+            <p style="color: #AAB7C4; margin-bottom: 40px; font-size: 1.1rem;">O design se adapta automaticamente ao nicho da sua empresa.</p>
 
-        <div style="max-width: 800px; margin: 0 auto 50px auto; box-shadow: 0 20px 40px rgba(0,0,0,0.2); border-radius: 15px; overflow: hidden; border: 4px solid white;">
-            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-                <iframe src="https://www.loom.com/embed/SEU_ID_DO_LOOM" 
-                        frameborder="0" 
-                        webkitallowfullscreen mozallowfullscreen allowfullscreen 
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                </iframe>
-            </div>
-        </div>
-
-        <div class="perfis-grid">
-            
-            <div class="perfil-card">
-                <div style="background-color: #000; color: #FFD700; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 0.8rem; display: inline-block; margin-bottom: 10px;">MODO BARBER</div>
-                <img src="img/print_barber.jpg" alt="Tela Barbearia">
-                <p style="margin-top: 10px; font-size: 0.9rem; color: #555;">Gestão rápida de cortes e comissões.</p>
+            <div class="video-wrapper">
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                    <iframe src="https://www.youtube.com/embed/SEU_ID_AQUI" 
+                            frameborder="0" 
+                            webkitallowfullscreen mozallowfullscreen allowfullscreen 
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                    </iframe>
+                </div>
             </div>
 
-            <div class="perfil-card">
-                <div style="background-color: #E91E63; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 0.8rem; display: inline-block; margin-bottom: 10px;">MODO CONFEITARIA</div>
-                <img src="img/print_confeitaria.jpg" alt="Tela Confeitaria">
-                <p style="margin-top: 10px; font-size: 0.9rem; color: #555;">Precificação técnica e encomendas.</p>
-            </div>
+            <div class="perfis-grid">
+                
+                <div class="perfil-card">
+                    <div class="perfil-tag" style="background: #000; color: #FFD700;">Modo Barber</div>
+                    <img src="img/print_barber.jpg" alt="Tela Barbearia">
+                    <p class="perfil-desc">Comissões automáticas e fluxo rápido.</p>
+                </div>
 
-            <div class="perfil-card">
-                <div style="background-color: #1565C0; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 0.8rem; display: inline-block; margin-bottom: 10px;">MODO LOJISTA</div>
-                <img src="img/print_loja.jpg" alt="Tela Loja">
-                <p style="margin-top: 10px; font-size: 0.9rem; color: #555;">Controle de estoque e vendas online.</p>
-            </div>
+                <div class="perfil-card">
+                    <div class="perfil-tag" style="background: #E91E63; color: white;">Modo Confeitaria</div>
+                    <img src="img/print_confeitaria.jpg" alt="Tela Confeitaria">
+                    <p class="perfil-desc">Precificação de ingredientes e encomendas.</p>
+                </div>
 
+                <div class="perfil-card">
+                    <div class="perfil-tag" style="background: #1565C0; color: white;">Modo Lojista</div>
+                    <img src="img/print_loja.jpg" alt="Tela Loja">
+                    <p class="perfil-desc">Controle de estoque e vendas online.</p>
+                </div>
+
+            </div>
         </div>
     </section>
 
     <div class="container">
         <div class="guarantee">
-            <h3>🛡️ Garantia de Satisfação</h3>
-            <p>Seu acesso ao download é liberado imediatamente após a confirmação do pagamento.</p>
-            <br>
-            <a href="https://buy.stripe.com/28E14f1OmeCC5lj3shgfu01" class="btn-buy" style="font-size: 1rem; padding: 0.8rem 2rem;">GARANTIR MINHA CÓPIA</a>
+            <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">🛡️ Risco Zero</h3>
+            <p style="color: #555; margin-bottom: 2rem;">
+                Baixe, instale e teste. Se não aumentar sua organização em 7 dias, devolvemos 100% do seu dinheiro. Sem perguntas.
+            </p>
+            <a href="https://buy.stripe.com/28E14f1OmeCC5lj3shgfu01" class="btn-buy" style="font-size: 1rem; padding: 1rem 3rem;">ATIVAR MINHA LICENÇA</a>
         </div>
     </div>
 
     <footer>
         <p>&copy; 2025 Vectorium Systems. Todos os direitos reservados.</p>
-        <p>Metricora é um produto da Vectorium Systems.</p>
-        <p>CPF: 062.439.855-20 | suporte@vectorium.tec.br</p>
+        <p>CNPJ: 06.243.985/0001-20 | suporte@vectorium.tec.br</p>
         
-        <p style="margin-top: 20px; font-size: 0.7rem;">
-            <a href="termos.html" style="color: #ccc; text-decoration: none; margin: 0 10px;">Termos de Uso</a> | 
-            <a href="privacidade.html" style="color: #ccc; text-decoration: none; margin: 0 10px;">Política de Privacidade</a>
+        <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.6;">
+            <a href="termos.html" style="color: inherit; margin: 0 10px;">Termos de Uso</a> • 
+            <a href="privacidade.html" style="color: inherit; margin: 0 10px;">Privacidade</a>
         </p>
     </footer>
 
