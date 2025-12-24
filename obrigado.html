@@ -13,7 +13,6 @@
     
     <style>
         :root {
-            /* Mesma paleta da Home */
             --primary: #0A2540;
             --accent: #00D47E;
             --accent-hover: #00B068;
@@ -38,7 +37,7 @@
 
         h1, h2, h3 { font-family: 'Poppins', sans-serif; }
 
-        /* HEADER REDUZIDO */
+        /* HEADER */
         header {
             background: 
                 linear-gradient(135deg, rgba(10, 37, 64, 0.95), rgba(21, 101, 192, 0.90)), 
@@ -60,7 +59,7 @@
         .main-card {
             background: white;
             max-width: 600px;
-            margin: -4rem auto 3rem auto; /* Sobe por cima do header */
+            margin: -4rem auto 3rem auto;
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             padding: 3rem 2rem;
@@ -68,7 +67,7 @@
             z-index: 10;
         }
 
-        /* ÍCONE DE SUCESSO */
+        /* ÍCONE SUCESSO */
         .success-icon {
             width: 80px;
             height: 80px;
@@ -79,7 +78,7 @@
             align-items: center;
             justify-content: center;
             font-size: 40px;
-            margin: -70px auto 20px auto; /* Sai um pouco pra fora do card */
+            margin: -70px auto 20px auto;
             border: 5px solid white;
             box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
@@ -87,7 +86,7 @@
         h1 { color: var(--accent-hover); font-size: 1.8rem; text-align: center; margin-bottom: 10px; }
         .subtitle { text-align: center; color: var(--text-light); margin-bottom: 30px; font-size: 1.1rem; }
 
-        /* STEPS (Passo a Passo) */
+        /* STEPS */
         .step-box {
             border: 1px solid #E0E6ED;
             border-radius: 12px;
@@ -143,7 +142,7 @@
             border: 1px solid #FFEEBA;
         }
 
-        /* CARD DE ATIVAÇÃO (VERMELHO) */
+        /* CARD ATIVAÇÃO (AJUSTADO) */
         .activation-box {
             background: var(--danger-bg);
             border: 2px dashed var(--danger);
@@ -200,7 +199,6 @@
         }
         .footer-help a { color: var(--primary); font-weight: bold; text-decoration: none; }
 
-        /* RESPONSIVO */
         @media (max-width: 600px) {
             .main-card { margin-left: 20px; margin-right: 20px; padding: 2rem 1.5rem; }
             h1 { font-size: 1.5rem; }
@@ -217,7 +215,7 @@
         <div class="success-icon">✓</div>
         
         <h1>Pagamento Confirmado!</h1>
-        <p class="subtitle">Bem-vindo à elite. Siga os 2 passos abaixo para começar a usar o Metricora.</p>
+        <p class="subtitle">Bem-vindo à elite. Siga os 2 passos abaixo para liberar seu acesso.</p>
 
         <div class="step-box">
             <div class="step-header">
@@ -226,7 +224,7 @@
             </div>
             
             <p style="margin-bottom: 15px; font-size: 0.95rem; color: #555;">
-                Clique no botão para baixar a versão mais recente do Metricora no seu Android.
+                Clique no botão para baixar e instalar no seu Android.
             </p>
 
             <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.0/app-release.apk.apk" class="btn-download" download>
@@ -234,30 +232,29 @@
             </a>
 
             <div class="warning-note">
-                ⚠️ <strong>Aviso:</strong> Se o navegador disser que "o arquivo pode ser nocivo", clique em <strong>"Manter mesmo assim"</strong>. Nosso app é seguro e verificado.
+                ⚠️ <strong>Nota:</strong> Se o navegador bloquear, clique em "Mais detalhes" > <strong>"Instalar mesmo assim"</strong>.
             </div>
         </div>
 
         <div class="activation-box">
             <div class="activation-title">
-                <span>🔒</span> Ativação Obrigatória
+                <span>🔒</span> Liberação da Chave
             </div>
             
-            <p style="color: #444; font-size: 0.95rem; margin-bottom: 10px;">
-                Para liberar sua licença <strong>VITALÍCIA</strong>, precisamos validar seu pagamento manualmente no sistema.
+            <p style="color: #444; font-size: 0.95rem; margin-bottom: 15px; line-height: 1.5;">
+                Para gerar sua chave única, envie o <strong>Comprovante de Pagamento</strong> e o seu <strong>NOME DE USUÁRIO</strong> (que você criou no App) para:
             </p>
 
-            <p style="font-size: 0.9rem;">Envie o comprovante para:</p>
             <div class="email-display">suporte@vectorium.tec.br</div>
             
             <br>
-            <a href="mailto:suporte@vectorium.tec.br?subject=Ativação PRO - Comprovante" class="btn-email">
-                ENVIAR E-MAIL AGORA ➔
+            <a href="mailto:suporte@vectorium.tec.br?subject=Ativação PRO - [Coloque seu Usuário Aqui]" class="btn-email">
+                ENVIAR DADOS AGORA ➔
             </a>
         </div>
 
         <p class="footer-help">
-            Precisa de ajuda? <a href="mailto:suporte@vectorium.tec.br">Fale com o Suporte</a>
+            Dúvidas? <a href="mailto:suporte@vectorium.tec.br">Fale com o Suporte</a>
         </p>
     </div>
 
