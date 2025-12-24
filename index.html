@@ -37,11 +37,19 @@
 
         h1, h2, h3, .btn-buy { font-family: 'Poppins', sans-serif; }
 
-        /* HERO SECTION (Topo) */
+        /* HERO SECTION COM IMAGEM DE FUNDO (PARALLAX) */
         header {
-            background: radial-gradient(circle at top right, #1a3a5a 0%, var(--primary) 100%);
+            /* Imagem de tecnologia azulada com sobreposição escura */
+            background: 
+                linear-gradient(135deg, rgba(10, 37, 64, 0.95), rgba(21, 101, 192, 0.85)), 
+                url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop'); 
+            
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* O fundo fica parado ao rolar */
+            
             color: white;
-            padding: 6rem 2rem 8rem 2rem; /* Mais espaçamento */
+            padding: 8rem 2rem 10rem 2rem; /* Mais espaçamento para respirar */
             text-align: center;
             position: relative;
             clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); /* Corte diagonal moderno */
@@ -53,15 +61,16 @@
             letter-spacing: -1px;
             margin-bottom: 1rem;
             line-height: 1.1;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
         h2 {
             font-weight: 500;
             font-size: 1.25rem;
             opacity: 0.9;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto 3rem auto;
-            color: #AAB7C4;
+            color: #E0E6ED;
         }
         
         /* PREÇO E OFERTA */
@@ -74,16 +83,17 @@
             display: inline-block;
             margin-bottom: 2.5rem;
             animation: float 6s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
         .old-price { text-decoration: line-through; color: #AAB7C4; font-size: 1rem; display: block; margin-bottom: 5px; }
         .new-price { font-size: 2.5rem; font-weight: 700; color: var(--accent); letter-spacing: -1px; }
-        .license-type { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: white; opacity: 0.8; margin-top: 5px; font-weight: 600; }
+        .license-type { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: white; opacity: 0.9; margin-top: 5px; font-weight: 600; }
 
         /* BOTÃO DE AÇÃO (CTA) */
         .btn-buy {
             background-color: var(--accent);
-            color: #06371E; /* Texto escuro no botão verde para contraste */
+            color: #06371E;
             padding: 1.2rem 3.5rem;
             font-size: 1.2rem;
             font-weight: 700;
@@ -100,29 +110,18 @@
         .btn-buy:hover {
             background-color: var(--accent-hover);
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
 
         /* CONTEÚDO PRINCIPAL */
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
         
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        .section-title h3 {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-        .section-title p { color: var(--text-light); }
-
         /* CARDS DE BENEFÍCIOS (GRID) */
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-top: -4rem; /* Sobe por cima do header */
+            margin-top: -5rem; /* Sobe por cima do header */
             position: relative;
             z-index: 10;
             margin-bottom: 5rem;
@@ -144,11 +143,13 @@
         /* SEÇÃO DE DEMONSTRAÇÃO (DARK MODE) */
         #demonstracao {
             padding: 5rem 2rem;
-            background-color: var(--primary); /* Fundo escuro para destacar as telas */
+            background-color: var(--primary); 
+            background-image: radial-gradient(circle at center, #152d45 0%, #0A2540 100%);
             color: white;
             text-align: center;
-            border-radius: 0; /* Full width */
             margin: 4rem 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
         .video-wrapper {
@@ -156,8 +157,9 @@
             margin: 0 auto 4rem auto;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            border: 4px solid rgba(255,255,255,0.1);
+            box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255,255,255,0.1);
+            background: black;
         }
 
         /* GRID DE PRINTS (CELULARES) */
@@ -172,32 +174,37 @@
         .perfil-card {
             flex: 1;
             min-width: 300px;
-            background: rgba(255,255,255,0.05); /* Glassmorphism */
+            background: rgba(255,255,255,0.03); /* Glassmorphism Fino */
             backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: transform 0.3s;
+            padding: 25px;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: transform 0.3s, background 0.3s;
         }
-        .perfil-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.1); }
+        .perfil-card:hover { 
+            transform: translateY(-8px); 
+            background: rgba(255,255,255,0.08); 
+            border-color: rgba(255,255,255,0.2);
+        }
         
         .perfil-tag {
-            padding: 6px 12px;
-            border-radius: 6px;
+            padding: 6px 14px;
+            border-radius: 50px;
             font-weight: 700;
             font-size: 0.75rem;
             display: inline-block;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
         .perfil-card img {
             width: 100%;
             border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
             border: 1px solid rgba(255,255,255,0.1);
         }
-        .perfil-desc { margin-top: 15px; font-size: 0.9rem; color: #AAB7C4; }
+        .perfil-desc { margin-top: 20px; font-size: 1rem; color: #AAB7C4; font-weight: 500;}
 
         /* GARANTIA E RODAPÉ */
         .guarantee {
@@ -208,11 +215,13 @@
             text-align: center;
             max-width: 800px;
             margin: 0 auto 5rem auto;
+            position: relative;
+            overflow: hidden;
         }
         
         footer {
             text-align: center;
-            padding: 3rem;
+            padding: 4rem 2rem;
             background: white;
             border-top: 1px solid #eee;
             color: var(--text-light);
@@ -233,9 +242,11 @@
 
         /* RESPONSIVO */
         @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; }
-            header { padding-bottom: 4rem; clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); }
-            .features { margin-top: 2rem; }
+            h1 { font-size: 2.5rem; }
+            header { padding: 4rem 1.5rem 8rem 1.5rem; clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%); }
+            .features { margin-top: -3rem; padding: 0 1rem;}
+            .btn-buy { padding: 1rem 2rem; width: 100%; font-size: 1.1rem; }
+            .perfil-card { margin-bottom: 20px; }
         }
     </style>
 </head>
@@ -253,7 +264,7 @@
             </div>
             <br>
             <a href="https://buy.stripe.com/28E14f1OmeCC5lj3shgfu01" class="btn-buy">GARANTIR ACESSO AGORA</a>
-            <p style="font-size: 0.8rem; margin-top: 1.5rem; opacity: 0.7;">🔒 Checkout Seguro via Stripe | ⚡ Entrega Imediata</p>
+            <p style="font-size: 0.8rem; margin-top: 1.5rem; opacity: 0.8; font-weight: 500;">🔒 Checkout Seguro via Stripe | ⚡ Entrega Imediata</p>
         </div>
     </header>
 
@@ -281,8 +292,10 @@
 
     <section id="demonstracao">
         <div class="container">
-            <h2 style="color: white; font-size: 2.5rem; margin-bottom: 10px;">Um Cérebro. Múltiplas Faces.</h2>
-            <p style="color: #AAB7C4; margin-bottom: 40px; font-size: 1.1rem;">O design se adapta automaticamente ao nicho da sua empresa.</p>
+            <h2 style="color: white; font-size: 2.5rem; margin-bottom: 15px;">Um Cérebro. Múltiplas Faces.</h2>
+            <p style="color: #AAB7C4; margin-bottom: 50px; font-size: 1.2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                O design se adapta automaticamente ao nicho da sua empresa. Veja o poder do Metricora em ação:
+            </p>
 
             <div class="video-wrapper">
                 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
@@ -320,21 +333,21 @@
 
     <div class="container">
         <div class="guarantee">
-            <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">🛡️ Risco Zero</h3>
-            <p style="color: #555; margin-bottom: 2rem;">
+            <h3 style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--primary);">🛡️ Risco Zero Absoluto</h3>
+            <p style="color: #555; margin-bottom: 2rem; font-size: 1.1rem;">
                 Baixe, instale e teste. Se não aumentar sua organização em 7 dias, devolvemos 100% do seu dinheiro. Sem perguntas.
             </p>
-            <a href="https://buy.stripe.com/28E14f1OmeCC5lj3shgfu01" class="btn-buy" style="font-size: 1rem; padding: 1rem 3rem;">ATIVAR MINHA LICENÇA</a>
+            <a href="https://buy.stripe.com/28E14f1OmeCC5lj3shgfu01" class="btn-buy" style="font-size: 1.1rem; padding: 1rem 3rem;">ATIVAR MINHA LICENÇA</a>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2025 Vectorium Systems. Todos os direitos reservados.</p>
-        <p>CPF: 062.439.855-20 | suporte@vectorium.tec.br</p>
+        <p style="font-weight: 700; color: var(--primary); margin-bottom: 10px;">VECTORIUM SYSTEMS</p>
+        <p>CNPJ: 06.243.985/0001-20 | suporte@vectorium.tec.br</p>
         
-        <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.6;">
-            <a href="termos.html" style="color: inherit; margin: 0 10px;">Termos de Uso</a> • 
-            <a href="privacidade.html" style="color: inherit; margin: 0 10px;">Privacidade</a>
+        <p style="margin-top: 30px; font-size: 0.8rem; opacity: 0.6;">
+            <a href="termos.html" style="color: inherit; margin: 0 15px;">Termos de Uso</a> • 
+            <a href="privacidade.html" style="color: inherit; margin: 0 15px;">Privacidade</a>
         </p>
     </footer>
 
