@@ -14,8 +14,8 @@
     <style>
         :root {
             /* Paleta de Cores Premium */
-            --primary: #0A2540; /* Azul Profundo (Trust) */
-            --accent: #00D47E; /* Verde Neon Suave (Money/Success) */
+            --primary: #0A2540; /* Azul Profundo */
+            --accent: #00D47E; /* Verde Neon Suave */
             --accent-hover: #00B068;
             --text-dark: #1A1F36;
             --text-light: #4F566B;
@@ -35,24 +35,27 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, .btn-buy { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3, h4, .btn-buy { font-family: 'Poppins', sans-serif; }
 
-        /* HERO SECTION COM IMAGEM DE FUNDO (PARALLAX) */
+        /* HERO SECTION COM IMAGEM 'DARK NETWORK' */
         header {
-            /* Imagem de tecnologia azulada com sobreposição escura */
+            /* AQUI ESTÁ A MÁGICA:
+               1. Gradiente Azul Escuro (90% opacidade) para garantir leitura.
+               2. Imagem de fundo 'Network Lines' de alta qualidade.
+            */
             background: 
-                linear-gradient(135deg, rgba(10, 37, 64, 0.95), rgba(21, 101, 192, 0.85)), 
-                url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop'); 
+                linear-gradient(135deg, rgba(10, 37, 64, 0.92), rgba(21, 101, 192, 0.88)), 
+                url('https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?q=80&w=2070&auto=format&fit=crop'); 
             
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* O fundo fica parado ao rolar */
+            background-attachment: fixed; /* Efeito Parallax (Fundo fixo) */
             
             color: white;
-            padding: 8rem 2rem 10rem 2rem; /* Mais espaçamento para respirar */
+            padding: 8rem 2rem 10rem 2rem;
             text-align: center;
             position: relative;
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); /* Corte diagonal moderno */
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
         }
 
         h1 {
@@ -61,7 +64,7 @@
             letter-spacing: -1px;
             margin-bottom: 1rem;
             line-height: 1.1;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Sombra para destacar do fundo */
         }
 
         h2 {
@@ -76,14 +79,14 @@
         /* PREÇO E OFERTA */
         .hero-price-tag {
             background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px); /* Efeito Vidro */
             border: 1px solid rgba(255,255,255,0.2);
             padding: 1.5rem 3rem;
             border-radius: 16px;
             display: inline-block;
             margin-bottom: 2.5rem;
             animation: float 6s ease-in-out infinite;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
 
         .old-price { text-decoration: line-through; color: #AAB7C4; font-size: 1rem; display: block; margin-bottom: 5px; }
@@ -206,7 +209,7 @@
         }
         .perfil-desc { margin-top: 20px; font-size: 1rem; color: #AAB7C4; font-weight: 500;}
 
-        /* GARANTIA E RODAPÉ */
+        /* GARANTIA */
         .guarantee {
             background: white;
             border: 2px dashed #CFD8DC;
@@ -218,66 +221,62 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         /* RODAPÉ PREMIUM (DARK) */
-footer {
-    background-color: var(--primary); /* Mesmo azul escuro do topo */
-    color: white;
-    padding: 4rem 2rem 2rem 2rem;
-    margin-top: 0;
-    border-top: 5px solid var(--accent); /* Uma linha verde fina no topo para estilo */
-}
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 4rem 2rem 2rem 2rem;
+            margin-top: 0;
+            border-top: 5px solid var(--accent);
+        }
 
-.footer-content {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 3rem;
-    text-align: left; /* Alinhado à esquerda fica mais chique */
-    margin-bottom: 3rem;
-}
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            text-align: left;
+            margin-bottom: 3rem;
+        }
 
-.footer-col h4 {
-    color: var(--accent); /* Títulos em Verde */
-    margin-bottom: 1.2rem;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+        .footer-col h4 {
+            color: var(--accent);
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
 
-.footer-col p {
-    color: #AAB7C4; /* Cinza azulado claro */
-    font-size: 0.95rem;
-    margin-bottom: 10px;
-    line-height: 1.8;
-}
+        .footer-col p {
+            color: #AAB7C4;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
 
-.footer-col a {
-    color: #AAB7C4;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 8px;
-    transition: color 0.2s;
-}
+        .footer-col a {
+            color: #AAB7C4;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            transition: color 0.2s;
+        }
 
-.footer-col a:hover {
-    color: white;
-    padding-left: 5px; /* Efeitinho de movimento */
-}
+        .footer-col a:hover {
+            color: white;
+            padding-left: 5px;
+        }
 
-.footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 2rem;
-    text-align: center;
-    font-size: 0.85rem;
-    color: #6d7f94;
-}
-
-/* Ajuste Mobile */
-@media (max-width: 768px) {
-    .footer-content { text-align: center; }
-}
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6d7f94;
+        }
 
         /* ANIMAÇÕES */
         @keyframes pulse-green {
@@ -298,6 +297,7 @@ footer {
             .features { margin-top: -3rem; padding: 0 1rem;}
             .btn-buy { padding: 1rem 2rem; width: 100%; font-size: 1.1rem; }
             .perfil-card { margin-bottom: 20px; }
+            .footer-content { text-align: center; }
         }
     </style>
 </head>
@@ -393,40 +393,40 @@ footer {
     </div>
 
     <footer>
-    <div class="footer-content">
-        
-        <div class="footer-col">
-            <h3 style="color: white; font-weight: 800; font-size: 1.5rem; margin-bottom: 15px;">VECTORIUM</h3>
-            <p>Desenvolvemos soluções financeiras inteligentes para pequenos negócios que pensam grande.</p>
-            <p><strong>Missão:</strong> Eliminar a complexidade e colocar o controle de volta na mão do empreendedor.</p>
+        <div class="footer-content">
+            
+            <div class="footer-col">
+                <h3 style="color: white; font-weight: 800; font-size: 1.5rem; margin-bottom: 15px;">VECTORIUM</h3>
+                <p>Desenvolvemos soluções financeiras inteligentes para pequenos negócios que pensam grande.</p>
+                <p><strong>Missão:</strong> Eliminar a complexidade e colocar o controle de volta na mão do empreendedor.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Produto</h4>
+                <a href="#">Metricora Pro</a>
+                <a href="#">Atualizações (Roadmap)</a>
+                <a href="#">Download Versão Piloto</a>
+                <a href="https://buy.stripe.com/28E14f1OmeCC5lj3shgfu01" style="color: var(--accent); font-weight: bold;">Comprar Licença ➔</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Empresa</h4>
+                <p><strong>Vectorium Systems Ltda</strong></p>
+                <p>CNPJ: 062.439.855-20</p>
+                <p>📧 suporte@vectorium.tec.br</p>
+                <p>📍 Bahia, Brasil</p>
+            </div>
+
         </div>
 
-        <div class="footer-col">
-            <h4>Produto</h4>
-            <a href="#">Metricora Pro</a>
-            <a href="#">Atualizações (Roadmap)</a>
-            <a href="#">Download Versão Piloto</a>
-            <a href="https://buy.stripe.com/28E14f1OmeCC5lj3shgfu01" style="color: var(--accent); font-weight: bold;">Comprar Licença ➔</a>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Vectorium Systems. Todos os direitos reservados.</p>
+            <div style="margin-top: 10px;">
+                <a href="termos.html" style="margin: 0 10px; display: inline;">Termos de Uso</a> | 
+                <a href="privacidade.html" style="margin: 0 10px; display: inline;">Política de Privacidade</a>
+            </div>
         </div>
-
-        <div class="footer-col">
-            <h4>Empresa</h4>
-            <p><strong>Vectorium Systems Ltda</strong></p>
-            <p>CPF: 062.439.855-20</p>
-            <p>📧 suporte@vectorium.tec.br</p>
-            <p>📍 Bahia, Brasil</p>
-        </div>
-
-    </div>
-
-    <div class="footer-bottom">
-        <p>&copy; 2025 Vectorium Systems. Todos os direitos reservados.</p>
-        <div style="margin-top: 10px;">
-            <a href="termos.html" style="margin: 0 10px; display: inline;">Termos de Uso</a> | 
-            <a href="privacidade.html" style="margin: 0 10px; display: inline;">Política de Privacidade</a>
-        </div>
-    </div>
-</footer>
+    </footer>
 
 </body>
 </html>
