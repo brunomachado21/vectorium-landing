@@ -63,11 +63,11 @@
         h1, h2, h3, .btn { font-family: 'Poppins', sans-serif; }
         code, .mono { font-family: 'Space Mono', monospace; }
 
-        /* LAYOUT PRINCIPAL */
+        /* LAYOUT PRINCIPAL (Alterado para Efeito Brave) */
         .hero-wrapper {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1.1fr 0.9fr; /* Mais espaço para texto */
+            gap: 2rem;
             align-items: center;
             min-height: 100vh;
             padding: 3rem 2rem;
@@ -75,6 +75,7 @@
             margin: 0 auto;
             position: relative;
             z-index: 2;
+            overflow: visible; /* Permite o celular vazar */
         }
 
         /* COLUNA ESQUERDA - CONTEÚDO */
@@ -82,6 +83,8 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            position: relative;
+            z-index: 5; /* Texto sempre acima */
         }
 
         .logo-header {
@@ -252,164 +255,34 @@
             line-height: 1.6;
         }
 
-        /* COLUNA DIREITA - MOCKUP */
-        .hero-mockup {
+        /* --- COLUNA DIREITA (EFEITO BRAVE) --- */
+        /* Substitui o antigo CSS do celular pela estrutura da imagem gigante */
+        .hero-mockup-container {
             position: relative;
             display: flex;
             justify-content: center;
-            align-items: center;
+            /* O Segredo do Efeito Brave: Margens negativas */
+            margin-left: -120px; 
+            margin-bottom: -100px;
+            pointer-events: none; /* Evita bloquear cliques */
         }
 
-        .phone-frame {
-            width: 100%;
-            max-width: 380px;
-            aspect-ratio: 9/20;
-            background: linear-gradient(145deg, var(--secondary-dark), var(--tertiary-dark));
-            border-radius: 40px;
-            padding: 12px;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-color);
-            position: relative;
-            overflow: hidden;
+        .hero-phone-image {
+            width: 140%; /* 40% maior que o container */
+            max-width: 900px;
+            height: auto;
+            filter: drop-shadow(0 40px 80px rgba(0,0,0,0.5));
+            transform: rotate(-2deg); /* Leve inclinação */
         }
 
-        .phone-frame::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 28px;
-            background: var(--primary-dark);
-            border-radius: 0 0 20px 20px;
-            z-index: 10;
-            border: 1px solid var(--border-color);
-        }
-
-        .phone-screen {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, #1a1f2e 100%);
-            border-radius: 32px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            padding: 2rem 1.5rem;
-            padding-top: 2.5rem;
-        }
-
-        .phone-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .phone-header .icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(0, 212, 126, 0.15);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            margin: 0 auto 1rem;
-        }
-
-        .wallet-amount {
-            font-family: 'Space Mono', monospace;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-        }
-
-        .wallet-label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-
-        .card-transactions {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .transaction-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem;
-            background: rgba(33, 38, 45, 0.4);
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            animation: slideIn 0.5s ease forwards;
-        }
-
-        .transaction-item:nth-child(2) { animation-delay: 0.1s; }
-        .transaction-item:nth-child(3) { animation-delay: 0.2s; }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .transaction-info {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .transaction-icon {
-            width: 40px;
-            height: 40px;
-            background: rgba(0, 212, 126, 0.1);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-
-        .transaction-text h5 {
-            font-size: 0.9rem;
-            color: var(--text-primary);
-            font-weight: 600;
-            margin-bottom: 0.2rem;
-        }
-
-        .transaction-text p {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-
-        .transaction-amount {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--accent-green);
-        }
-
-        .transaction-amount.negative {
-            color: #FF6B6B;
-        }
 
         /* STATS SECTION */
         .stats-section {
-            margin-top: 6rem;
+            margin-top: 8rem; /* Aumentado para compensar o celular gigante */
             padding: 3rem 0;
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
+            background: rgba(13, 17, 23, 0.5);
         }
 
         .stats-grid {
@@ -599,11 +472,12 @@
             line-height: 1.8;
         }
 
+        /* ORGANIZAÇÃO VERTICAL DO FOOTER */
         .footer-col a {
             color: var(--text-secondary);
             text-decoration: none;
-            display: inline-block;
-            margin-bottom: 0.5rem;
+            display: block; /* Força um link por linha */
+            margin-bottom: 0.8rem; /* Espaço entre eles */
             transition: color 0.2s;
         }
 
@@ -637,117 +511,46 @@
                 gap: 3rem;
                 min-height: auto;
                 padding: 2rem;
+                text-align: center;
+            }
+            .hero-mockup-container { 
+                margin: 0; 
+                order: 2; /* Joga imagem para baixo */
+            }
+            .hero-phone-image {
+                width: 100%;
+                max-width: 500px;
+                transform: none;
             }
 
-            .hero-content h1 {
-                font-size: 3rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .phone-frame {
-                max-width: 300px;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .profiles-grid {
-                grid-template-columns: 1fr;
-            }
+            .hero-content h1 { font-size: 3rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .profiles-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
-            .hero-wrapper {
-                gap: 2rem;
-                padding: 1.5rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .hero-content p {
-                font-size: 1rem;
-            }
-
-            .price-section {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .price-label {
-                margin-left: 0;
-                margin-top: 0.5rem;
-            }
-
-            .cta-group {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-                min-width: auto;
-            }
-
-            .phone-frame {
-                max-width: 250px;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .demo-header h2 {
-                font-size: 1.8rem;
-            }
-
-            .profiles-grid {
-                grid-template-columns: 1fr;
-            }
+            .hero-wrapper { gap: 2rem; padding: 1.5rem; }
+            .hero-content h1 { font-size: 2rem; }
+            .hero-content p { font-size: 1rem; }
+            .price-section { flex-direction: column; align-items: center; }
+            .price-label { margin-left: 0; margin-top: 0.5rem; }
+            .cta-group { flex-direction: column; width: 100%; }
+            .btn { width: 100%; }
+            .stats-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 480px) {
-            .hero-content h1 {
-                font-size: 1.6rem;
-            }
-
-            .price-new {
-                font-size: 1.8rem;
-            }
-
-            .phone-frame {
-                max-width: 100%;
-                max-width: 280px;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .feature-item {
-                padding: 1rem;
-            }
-
-            .feature-item h4 {
-                font-size: 0.85rem;
-            }
-
-            .feature-item p {
-                font-size: 0.75rem;
-            }
+            .hero-content h1 { font-size: 1.6rem; }
+            .price-new { font-size: 1.8rem; }
+            .features-grid { gap: 1rem; }
+            .feature-item { padding: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HERO PRINCIPAL -->
     <div class="hero-wrapper">
-        <!-- ESQUERDA: CONTEÚDO -->
         <div class="hero-content">
             <img src="img/logo.png" alt="Metricora" class="logo-header">
             
@@ -755,14 +558,12 @@
             
             <p>O Metricora elimina planilhas, mensalidades e burocracia. Controle total do seu negócio em um único dashboard inteligente, com sugestões de IA e privacidade absoluta.</p>
 
-            <!-- PREÇO -->
             <div class="price-section">
                 <span class="price-old">De R$ 297,90</span>
                 <span class="price-new">R$ 97,90</span>
                 <span class="price-label">Vitalício • Pagamento Único</span>
             </div>
 
-            <!-- BOTÕES -->
             <div class="cta-group">
                 <a href="https://buy.stripe.com/28E14f1OmeCC5lj3shgfu01" class="btn btn-primary">GARANTIR ACESSO AGORA</a>
                 <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.3/metricora_v1.0.3.apk" class="btn btn-secondary">DOWNLOAD PILOTO</a>
@@ -770,7 +571,6 @@
 
             <p style="font-size: 0.85rem; color: var(--text-muted);">🔒 Checkout Seguro via Stripe | ⚡ Entrega Imediata</p>
 
-            <!-- FEATURES -->
             <div class="features-grid">
                 <div class="feature-item">
                     <div class="icon">🚫</div>
@@ -795,56 +595,11 @@
             </div>
         </div>
 
-        <!-- DIREITA: MOCKUP DO APP -->
-        <div class="hero-mockup">
-            <div class="phone-frame">
-                <div class="phone-screen">
-                    <div class="phone-header">
-                        <div class="icon">💰</div>
-                        <div class="wallet-label">Saldo Total</div>
-                        <div class="wallet-amount">R$ 7.642,54</div>
-                    </div>
-
-                    <div class="card-transactions">
-                        <div class="transaction-item">
-                            <div class="transaction-info">
-                                <div class="transaction-icon">📈</div>
-                                <div class="transaction-text">
-                                    <h5>Venda - Serviço</h5>
-                                    <p>Hoje às 09:41</p>
-                                </div>
-                            </div>
-                            <div class="transaction-amount">+R$ 185,00</div>
-                        </div>
-
-                        <div class="transaction-item">
-                            <div class="transaction-info">
-                                <div class="transaction-icon">💳</div>
-                                <div class="transaction-text">
-                                    <h5>Pagamento Fornecedor</h5>
-                                    <p>Ontem às 14:22</p>
-                                </div>
-                            </div>
-                            <div class="transaction-amount negative">-R$ 450,00</div>
-                        </div>
-
-                        <div class="transaction-item">
-                            <div class="transaction-info">
-                                <div class="transaction-icon">🎯</div>
-                                <div class="transaction-text">
-                                    <h5>Meta Atingida</h5>
-                                    <p>Lucro mensal +18%</p>
-                                </div>
-                            </div>
-                            <div class="transaction-amount">🏆</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="hero-mockup-container">
+            <img src="img/hero_phone_mockup.png" alt="Dashboard Metricora" class="hero-phone-image">
         </div>
     </div>
 
-    <!-- STATS -->
     <div class="stats-section">
         <div class="stats-grid">
             <div class="stat-card">
@@ -866,7 +621,6 @@
         </div>
     </div>
 
-    <!-- DEMONSTRAÇÃO -->
     <div class="demo-section">
         <div class="demo-header">
             <h2>Um Cérebro. Múltiplas Faces.</h2>
@@ -880,7 +634,6 @@
             </video>
         </div>
 
-        <!-- PERFIS -->
         <div class="profiles-section">
             <div class="profiles-grid">
                 <div class="profile-card">
@@ -910,14 +663,12 @@
         </div>
     </div>
 
-    <!-- GARANTIA -->
     <div class="guarantee-section">
         <h3>🛡️ Risco Zero Absoluto</h3>
         <p>Baixe, instale e teste. Se não aumentar sua organização em 7 dias, devolvemos 100% do seu dinheiro. Sem perguntas, sem burocracia.</p>
         <a href="https://buy.stripe.com/28E14f1OmeCC5lj3shgfu01" class="btn btn-primary">ATIVAR MINHA LICENÇA AGORA</a>
     </div>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-content">
             <div class="footer-col">
