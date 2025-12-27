@@ -85,10 +85,12 @@
         }
 
         .logo-header {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 2rem;
-            filter: brightness(0) invert(1);
+            width: auto;          /* Deixa a largura se ajustar */
+            height: auto;         /* Mantém a proporção da imagem */
+            max-width: 220px;     /* AUMENTADO: Limita o tamanho máximo (antes era 60px) */
+            margin-bottom: 2.5rem;
+            filter: brightness(0) invert(1); /* Mantém branco */
+            display: block;       /* Garante que fique em linha própria */
             animation: glow-pulse 3s ease-in-out infinite;
         }
 
@@ -741,6 +743,38 @@
                 font-size: 0.75rem;
             }
         }
+        /* Necessário para posicionar os badges flutuantes dentro do cartão */
+.feature-item {
+    position: relative; 
+}
+
+/* Container padrão para os badges flutuantes */
+.floating-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilo para o badge de notificação vermelho (Card 1) */
+.badge-notify {
+    width: 22px;
+    height: 22px;
+    background-color: #FF4747; /* Cor vermelha da foto */
+    border-radius: 50%;
+    color: white;
+    font-size: 12px;
+    /* Borda escura para destacar do fundo do cartão */
+    border: 2px solid rgba(33, 38, 45, 1); 
+}
+
+/* Estilo para o badge de ícone simples (Card 2 - Cadeado) */
+.badge-icon {
+    color: var(--text-muted); /* Cor cinza sutil */
+    font-size: 1.2rem;
+}
     </style>
 </head>
 <body>
@@ -772,35 +806,43 @@
 
             <div class="features-grid">
                 <div class="feature-item">
+                    <div class="floating-badge badge-notify">
+                        <i class="ph-bold ph-check"></i>
+                    </div>
                     <div class="icon">
-                        <i class="ph-fill ph-wallet"></i>
+                        <i class="ph ph-shield-check"></i>
                     </div>
                     <h4>Sem Mensalidades</h4>
                     <p>Pague uma vez, use para sempre. R$ 1.000/ano economizados.</p>
                 </div>
+
                 <div class="feature-item">
+                    <div class="floating-badge badge-icon">
+                        <i class="ph-fill ph-lock-key"></i>
+                    </div>
                     <div class="icon">
-                        <i class="ph-fill ph-robot"></i>
+                        <i class="ph ph-robot"></i>
                     </div>
                     <h4>Consultor IA</h4>
                     <p>Análise automática de custos e sugestões de lucro.</p>
                 </div>
+
                 <div class="feature-item">
                     <div class="icon">
-                        <i class="ph-fill ph-lock-key"></i>
+                         <i class="ph ph-file-text"></i>
                     </div>
                     <h4>100% Seguro</h4>
                     <p>Dados criptografados offline. Privacidade garantida.</p>
                 </div>
+
                 <div class="feature-item">
                     <div class="icon">
-                        <i class="ph-fill ph-chart-bar"></i>
+                        <i class="ph ph-chart-bar"></i>
                     </div>
                     <h4>Relatórios Pro</h4>
                     <p>Gráficos em tempo real e previsões financeiras.</p>
                 </div>
             </div>
-        </div>
 
         <!-- DIREITA: MOCKUP DO APP -->
         <div class="hero-mockup">
