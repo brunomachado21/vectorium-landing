@@ -213,48 +213,102 @@
             transform: translateY(-2px);
         }
 
-        /* FEATURES */
+        /* --- FEATURES ESTILO BRAVE (Novo Design) --- */
         .features-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            /* Muda para 3 colunas para ficar igual a foto */
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 1.2rem;
             margin-top: 3rem;
+            width: 100%;
         }
 
         .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            
+            /* Altura fixa para ficarem quadrados/retangulares iguais */
+            min-height: 160px; 
             padding: 1.5rem;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            background: rgba(33, 38, 45, 0.3);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            
+            /* Estilo Visual Dark Premium */
+            background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px; /* Arredondamento maior igual da foto */
+            
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             cursor: pointer;
+            position: relative; /* Para posicionar os ícones extras */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
 
         .feature-item:hover {
-            background: rgba(33, 38, 45, 0.5);
+            transform: translateY(-5px) scale(1.02);
             border-color: var(--accent-green);
-            transform: translateY(-2px);
+            background: linear-gradient(180deg, #1f242c 0%, #161b22 100%);
+            box-shadow: 0 15px 30px rgba(0, 212, 126, 0.15);
         }
 
+        /* Ícone Principal */
         .feature-item .icon {
-            font-size: 1.8rem;
-            margin-bottom: 0.8rem;
+            font-size: 2.5rem; /* Ícone maior */
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.1));
         }
 
         .feature-item h4 {
-            font-size: 0.95rem;
+            font-size: 1rem;
             margin-bottom: 0.5rem;
-            color: var(--text-primary);
+            color: #FFFFFF; /* Branco puro */
             font-weight: 700;
         }
 
         .feature-item p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
+            font-size: 0.8rem;
+            color: #8B949E; /* Cinza claro */
+            line-height: 1.4;
+            max-width: 90%;
         }
 
+        /* Pequenos detalhes flutuantes (Cadeado e Check) iguais da foto */
+        .floating-badge {
+            position: absolute;
+            font-size: 1rem;
+            top: 15px;
+            right: 15px;
+            opacity: 0.8;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        /* Responsividade para celular */
+        @media (max-width: 768px) {
+            .features-grid {
+                /* No celular, vira um carrossel ou coluna única */
+                grid-template-columns: 1fr; 
+                gap: 1rem;
+            }
+            .feature-item {
+                flex-direction: row; /* Ícone do lado do texto no celular fica melhor */
+                justify-content: flex-start;
+                text-align: left;
+                min-height: auto;
+                padding: 1.2rem;
+                gap: 1rem;
+            }
+            .feature-item .icon {
+                margin-bottom: 0;
+                font-size: 2rem;
+            }
+            .floating-badge { display: none; } /* Esconde detalhes no mobile pra limpar */
+        }
         /* --- COLUNA DIREITA (EFEITO BRAVE) --- */
         .hero-mockup-container {
             position: relative;
@@ -571,28 +625,28 @@
             <p style="font-size: 0.85rem; color: var(--text-muted);">🔒 Checkout Seguro via Stripe | ⚡ Entrega Imediata</p>
 
             <div class="features-grid">
+                
                 <div class="feature-item">
-                    <div class="icon">🚫</div>
+                    <div class="floating-badge" style="color: #FF7B00;">✔</div>
+                    <div class="icon">🛡️</div>
                     <h4>Sem Mensalidades</h4>
-                    <p>Pague uma vez, use para sempre. R$ 1.000/ano economizados.</p>
+                    <p>Licença vitalícia. Pague uma vez e use para sempre.</p>
                 </div>
+
                 <div class="feature-item">
+                    <div class="floating-badge">🔒</div>
                     <div class="icon">🤖</div>
                     <h4>Consultor IA</h4>
-                    <p>Análise automática de custos e sugestões de lucro.</p>
+                    <p>Inteligência artificial analisando seu lucro 24h.</p>
                 </div>
+
                 <div class="feature-item">
-                    <div class="icon">🔒</div>
+                    <div class="icon">📋</div>
                     <h4>100% Seguro</h4>
-                    <p>Dados criptografados offline. Privacidade garantida.</p>
+                    <p>Relatórios Pro e dados criptografados offline.</p>
                 </div>
-                <div class="feature-item">
-                    <div class="icon">📊</div>
-                    <h4>Relatórios Pro</h4>
-                    <p>Gráficos em tempo real e previsões financeiras.</p>
-                </div>
+
             </div>
-        </div>
 
         <div class="hero-mockup-container">
             <img src="img/hero_phone_mockup.png" alt="Dashboard Metricora" class="hero-phone-image">
