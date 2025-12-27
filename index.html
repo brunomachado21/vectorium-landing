@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
     
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
     <title>Metricora | Gestão Inteligente</title>
     
     <style>
@@ -47,17 +49,9 @@
 
         /* Efeito de ruído sutil */
         body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(0, 212, 126, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(0, 217, 255, 0.03) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 1;
+            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(circle at 20% 50%, rgba(0, 212, 126, 0.03) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(0, 217, 255, 0.03) 0%, transparent 50%);
+            pointer-events: none; z-index: 1;
         }
 
         h1, h2, h3, .btn { font-family: 'Poppins', sans-serif; }
@@ -66,11 +60,11 @@
         /* LAYOUT PRINCIPAL (Com Efeito Brave) */
         .hero-wrapper {
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr; /* Mais espaço para texto */
-            gap: 2rem;
+            grid-template-columns: 1fr 1fr; /* Mais espaço para texto */
+            gap: 5rem;
             align-items: center;
             min-height: 100vh;
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
             max-width: 1600px;
             margin: 0 auto;
             position: relative;
@@ -87,228 +81,75 @@
             z-index: 5; /* Texto sempre acima */
         }
 
-        .logo-header {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 2rem;
-            filter: brightness(0) invert(1);
-            animation: glow-pulse 3s ease-in-out infinite;
+        /* COLUNA ESQUERDA - CONTEÚDO */
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        @keyframes glow-pulse {
-            0%, 100% { filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(0, 212, 126, 0.4)); }
-            50% { filter: brightness(0) invert(1) drop-shadow(0 0 16px rgba(0, 212, 126, 0.8)); }
+        /* [CORREÇÃO 1] LOGO MAIOR */
+        .logo-header {
+            width: auto; /* Largura automática */
+            height: auto;
+            max-width: 220px; /* Define um tamanho máximo bem maior que antes */
+            margin-bottom: 3rem;
+            filter: brightness(0) invert(1); /* Garante que fique branco */
         }
 
         .hero-content h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            font-weight: 900;
-            line-height: 1.15;
-            margin-bottom: 1.5rem;
+            font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; line-height: 1.15; margin-bottom: 1.5rem;
             background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-cyan) 50%, var(--accent-green) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
             letter-spacing: -0.02em;
         }
 
         .hero-content p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 500px;
-            line-height: 1.8;
-            font-weight: 300;
+            font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem;
+            max-width: 550px; line-height: 1.8; font-weight: 300;
         }
 
         /* PREÇO DESTACADO */
         .price-section {
-            display: flex;
-            align-items: baseline;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-            padding: 1.5rem;
-            background: rgba(0, 212, 126, 0.05);
-            border: 1px solid rgba(0, 212, 126, 0.2);
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-        }
-
-        .price-old {
-            text-decoration: line-through;
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
-
-        .price-new {
-            font-family: 'Space Mono', monospace;
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--accent-green);
-            letter-spacing: -0.02em;
-        }
-
-        .price-label {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-            margin-left: auto;
-        }
+            display: flex; align-items: baseline; gap: 1rem; margin-bottom: 2.5rem; padding: 1.5rem;
+            background: rgba(0, 212, 126, 0.05); border: 1px solid rgba(0, 212, 126, 0.2);
+            border-radius: 12px; backdrop-filter: blur(10px);
+        }.price-old { text-decoration: line-through; color: var(--text-muted); font-size: 1rem; }
+        .price-new { font-family: 'Space Mono', monospace; font-size: 2.2rem; font-weight: 700; color: var(--accent-green); letter-spacing: -0.02em; }
+        .price-label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-left: auto; }
 
         /* BOTÕES */
-        .cta-group {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
+        .cta-group { display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
         .btn {
-            padding: 0.95rem 2rem;
-            font-size: 1rem;
-            font-weight: 700;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-family: 'Poppins', sans-serif;
-            min-width: 200px;
+            padding: 0.95rem 2rem; font-size: 1rem; font-weight: 700; border: none; border-radius: 8px;
+            cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center;
+            gap: 0.5rem; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); text-transform: uppercase;
+            letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; min-width: 200px;
         }
+        .btn-primary { background: linear-gradient(135deg, var(--accent-green) 0%, #00a860 100%); color: #06371E; box-shadow: 0 10px 30px rgba(0, 212, 126, 0.3); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0, 212, 126, 0.5); background: linear-gradient(135deg, var(--accent-green-hover) 0%, #008f52 100%); }
+        .btn-primary:active { transform: translateY(-1px); }
+        .btn-secondary { background: rgba(255, 255, 255, 0.08); color: var(--text-primary); border: 1px solid var(--border-color); }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.12); border-color: var(--accent-cyan); color: var(--accent-cyan); transform: translateY(-2px); }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-green) 0%, #00a860 100%);
-            color: #06371E;
-            box-shadow: 0 10px 30px rgba(0, 212, 126, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 212, 126, 0.5);
-            background: linear-gradient(135deg, var(--accent-green-hover) 0%, #008f52 100%);
-        }
-
-        .btn-primary:active {
-            transform: translateY(-1px);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.08);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: var(--accent-cyan);
-            color: var(--accent-cyan);
-            transform: translateY(-2px);
-        }
-
-        /* --- FEATURES ESTILO BRAVE (Novo Design) --- */
-        .features-grid {
-            display: grid;
-            /* Muda para 3 colunas para ficar igual a foto */
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 1.2rem;
-            margin-top: 3rem;
-            width: 100%;
-        }
-
+        /* FEATURES GRID */
+        .features-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
         .feature-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            
-            /* Altura fixa para ficarem quadrados/retangulares iguais */
-            min-height: 160px; 
-            padding: 1.5rem;
-            
-            /* Estilo Visual Dark Premium */
-            background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px; /* Arredondamento maior igual da foto */
-            
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            cursor: pointer;
-            position: relative; /* Para posicionar os ícones extras */
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            padding: 2rem 1.5rem; border: 1px solid var(--border-color); border-radius: 12px;
+            background: rgba(33, 38, 45, 0.3); backdrop-filter: blur(10px); transition: all 0.3s ease; cursor: pointer;
+            display: flex; flex-direction: column; align-items: center; text-align: center;
         }
-
-        .feature-item:hover {
-            transform: translateY(-5px) scale(1.02);
-            border-color: var(--accent-green);
-            background: linear-gradient(180deg, #1f242c 0%, #161b22 100%);
-            box-shadow: 0 15px 30px rgba(0, 212, 126, 0.15);
-        }
-
-        /* Ícone Principal */
-        .feature-item .icon {
-            font-size: 2.5rem; /* Ícone maior */
+        .feature-item:hover { background: rgba(33, 38, 45, 0.5); border-color: var(--accent-green); transform: translateY(-3px); }
+        
+        /* [CORREÇÃO 4] ESTILO DOS ÍCONES DESENHADOS */
+        .feature-item .icon i {
+            font-size: 2.5rem; /* Tamanho do ícone */
             margin-bottom: 1rem;
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.1));
+            color: var(--accent-green); /* Cor do ícone */
         }
 
-        .feature-item h4 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            color: #FFFFFF; /* Branco puro */
-            font-weight: 700;
-        }
-
-        .feature-item p {
-            font-size: 0.8rem;
-            color: #8B949E; /* Cinza claro */
-            line-height: 1.4;
-            max-width: 90%;
-        }
-
-        /* Pequenos detalhes flutuantes (Cadeado e Check) iguais da foto */
-        .floating-badge {
-            position: absolute;
-            font-size: 1rem;
-            top: 15px;
-            right: 15px;
-            opacity: 0.8;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
-        }
-
-        /* Responsividade para celular */
-        @media (max-width: 768px) {
-            .features-grid {
-                /* No celular, vira um carrossel ou coluna única */
-                grid-template-columns: 1fr; 
-                gap: 1rem;
-            }
-            .feature-item {
-                flex-direction: row; /* Ícone do lado do texto no celular fica melhor */
-                justify-content: flex-start;
-                text-align: left;
-                min-height: auto;
-                padding: 1.2rem;
-                gap: 1rem;
-            }
-            .feature-item .icon {
-                margin-bottom: 0;
-                font-size: 2rem;
-            }
-            .floating-badge { display: none; } /* Esconde detalhes no mobile pra limpar */
-        }
+        .feature-item h4 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 700; }
+        .feature-item p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
         /* --- COLUNA DIREITA (EFEITO BRAVE) --- */
         .hero-mockup-container {
             position: relative;
@@ -321,10 +162,10 @@
         }
 
         .hero-phone-image {
-            width: 140%; /* 40% maior que o container */
-            max-width: 900px;
+            width: 100%; 
+            max-width: 550px;
             height: auto;
-            filter: drop-shadow(0 40px 80px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 40px 80px rgba(0,0,0,0.4));
             /* Rotação removida para ficar reto */
         }
 
@@ -559,29 +400,14 @@
 
         /* RESPONSIVO */
         @media (max-width: 1024px) {
-            .hero-wrapper {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-                min-height: auto;
-                padding: 2rem;
-                text-align: center;
-            }
-            .hero-mockup-container { 
-                margin: 0; 
-                order: 2; /* Joga imagem para baixo */
-            }
-            .hero-phone-image {
-                width: 100%;
-                max-width: 500px;
-                transform: none;
-            }
-
+            .hero-wrapper { grid-template-columns: 1fr; gap: 3rem; min-height: auto; padding: 2rem; text-align: center; }
+            .hero-mockup-container { margin: 0; order: 2; }
+            .hero-phone-image { width: 100%; max-width: 500px; transform: none; }
             .hero-content h1 { font-size: 3rem; }
+            .logo-header { margin: 0 auto 2rem; } /* Centraliza logo no mobile */
             .features-grid { grid-template-columns: 1fr; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .profiles-grid { grid-template-columns: 1fr; }
         }
-
         @media (max-width: 768px) {
             .hero-wrapper { gap: 2rem; padding: 1.5rem; }
             .hero-content h1 { font-size: 2rem; }
@@ -591,13 +417,6 @@
             .cta-group { flex-direction: column; width: 100%; }
             .btn { width: 100%; }
             .stats-grid { grid-template-columns: 1fr; }
-        }
-
-        @media (max-width: 480px) {
-            .hero-content h1 { font-size: 1.6rem; }
-            .price-new { font-size: 1.8rem; }
-            .features-grid { gap: 1rem; }
-            .feature-item { padding: 1rem; }
         }
     </style>
 </head>
@@ -741,7 +560,7 @@
             <div class="footer-col">
                 <h4>Empresa</h4>
                 <p><strong>Vectorium Systems Ltda</strong></p>
-                <p>CNPJ: 062.439.855-20</p>
+                <p>CPF: 062.439.855-20</p>
                 <p>📧 suporte@vectorium.tec.br</p>
                 <p>📍 Bahia, Brasil</p>
             </div>
