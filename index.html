@@ -63,7 +63,7 @@
         h1, h2, h3, .btn { font-family: 'Poppins', sans-serif; }
         code, .mono { font-family: 'Space Mono', monospace; }
 
-        /* LAYOUT PRINCIPAL (Alterado para Efeito Brave) */
+        /* LAYOUT PRINCIPAL (Com Efeito Brave) */
         .hero-wrapper {
             display: grid;
             grid-template-columns: 1.1fr 0.9fr; /* Mais espaço para texto */
@@ -256,12 +256,11 @@
         }
 
         /* --- COLUNA DIREITA (EFEITO BRAVE) --- */
-        /* Substitui o antigo CSS do celular pela estrutura da imagem gigante */
         .hero-mockup-container {
             position: relative;
             display: flex;
             justify-content: center;
-            /* O Segredo do Efeito Brave: Margens negativas */
+            /* Margens negativas para overlap */
             margin-left: -120px; 
             margin-bottom: -100px;
             pointer-events: none; /* Evita bloquear cliques */
@@ -272,7 +271,7 @@
             max-width: 900px;
             height: auto;
             filter: drop-shadow(0 40px 80px rgba(0,0,0,0.5));
-            transform: rotate(-2deg); /* Leve inclinação */
+            /* Rotação removida para ficar reto */
         }
 
 
