@@ -82,17 +82,34 @@
             z-index: 1;
         }
 
+        /* CSS BASE (Celulares e Tablets pequenos) */
         .phone-mockup {
-            width: 280px; /* Largura base para mobile */
+            /* AUMENTEI DE 280px PARA 360px (Fica mais imponente no mobile) */
+            width: 360px; 
             height: auto;
-            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.4)); /* Sombra mais forte */
+            /* Sombra um pouco mais forte e difusa */
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5)); 
             position: relative;
-            bottom: -80px;
+            /* DESCID MAIS: De -80px para -100px para sobrepor melhor o card abaixo */
+            bottom: -100px; 
             z-index: 2;
-            transition: all 0.3s ease; /* Transição suave para o hover */
+            /* Transição mais "elástica" e premium */
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
         }
         
-        /* Efeito legal: o celular sobe um pouco quando passa o mouse */
+        .phone-mockup:hover {
+            transform: translateY(-15px); /* Sobe um pouco mais no hover */
+        }
+
+        /* --- A MÁGICA PARA DESKTOP (Adicione isso logo abaixo do hover) --- */
+        /* Em telas maiores que 1024px (Notebooks/PCs), o celular fica GIGANTE */
+        @media (min-width: 1024px) {
+            .phone-mockup {
+                width: 580px; /* MODO GIGANTE: Quase o dobro do tamanho original */
+                bottom: -200px; /* Desce muito mais para invadir o cartão branco com estilo */
+                filter: drop-shadow(0 35px 70px rgba(0,0,0,0.6)); /* Sombra 3D muito mais dramática */
+            }
+        }/* Efeito legal: o celular sobe um pouco quando passa o mouse */
         .phone-mockup:hover {
             transform: translateY(-10px);
         }
