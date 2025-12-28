@@ -14,17 +14,20 @@
     <style>
         /* --- CONFIGURAÇÕES GERAIS E CORES --- */
         :root {
-            --primary-blue: #0A2540;
-            --button-blue: #0D3E6B;
-            --danger-red: #D32F2F;
-            --danger-bg: #FEECEB;
-            --warning-bg: #FFF8E1;
-            --warning-text: #856404;
-            --text-dark: #1A1F36;
-            --text-light: #697386;
-            --bg-page: #F7F9FC;
-            --green-accent: #00D47E;
-        }
+    /* Tema Dark Vectorium */
+    --primary-blue: #0D1117;      /* Fundo muito escuro */
+    --button-blue: #238636;       /* Verde GitHub/Tech */
+    --danger-red: #f85149;        /* Vermelho suave */
+    --danger-bg: rgba(248, 81, 73, 0.1); /* Fundo vermelho transparente */
+    --warning-bg: rgba(210, 153, 34, 0.15); /* Amarelo transparente */
+    --warning-text: #e3b341;      /* Amarelo texto */
+    --text-dark: #c9d1d9;         /* Texto quase branco */
+    --text-light: #8b949e;        /* Texto cinza */
+    --bg-page: #010409;           /* Fundo da página preto profundo */
+    --green-accent: #00D47E;      /* Seu verde neon */
+    --card-bg: #161B22;           /* Cor do cartão */
+    --border-color: #30363D;      /* Cor das bordas */
+}
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -106,10 +109,12 @@
         }
 
         .main-card {
-            background: white;
+            background: var(--card-bg);
             width: 100%;
             max-width: 650px; /* Largura base para mobile */
-            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            color: var(--text-dark);
+            border-radius: 20px;
             box-shadow: 0 25px 50px rgba(0,0,0,0.1); /* Sombra mais imponente */
             padding: 100px 30px 40px 30px;
             text-align: left;
@@ -174,14 +179,16 @@
         }
         .step-title-group { display: flex; align-items: center; }
         .step-number {
-            background-color: var(--primary-blue);
-            color: white;
-            width: 32px; height: 32px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700; margin-right: 15px;
-        }
-        .step-title { font-size: 1.25rem; font-weight: 700; color: var(--primary-blue); }
+    background-color: var(--button-blue); /* Muda bolinha para verde */
+    color: white;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; margin-right: 15px;
+}
+        .step-title {
+    color: #ffffff; /* Título branco */
+}
         
         .progress-bar {
             height: 8px; width: 150px;
@@ -241,15 +248,11 @@
         .activation-text { color: var(--text-dark); font-size: 0.95rem; margin-bottom: 20px; }
         
         .email-field {
-            background: white;
-            padding: 12px;
-            border-radius: 8px;
-            font-family: 'Inter', monospace; font-weight: 600; font-size: 1.1rem;
-            color: var(--primary-blue);
-            display: inline-block;
-            margin-bottom: 25px;
-            border: 1px solid #E0E6ED;
-            width: 100%; max-width: 350px;
+            background: #0D1117;
+            color: var(--text-dark);               
+            
+            border: 1px solid var(--border-color);
+            
         }
 
         .btn-email {
@@ -358,6 +361,30 @@
             <span>🇧🇷 Vectorium Systems</span>
         </div>
     </footer>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+    // Dispara confetes assim que a página carrega
+    window.onload = function() {
+        var duration = 3 * 1000;
+        var animationEnd = Date.now() + duration;
+        var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
+        function randomInRange(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+
+        var interval = setInterval(function() {
+          var timeLeft = animationEnd - Date.now();
+
+          if (timeLeft <= 0) {
+            return clearInterval(interval);
+          }
+
+          var particleCount = 50 * (timeLeft / duration);
+          confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+          confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+        }, 250);
+    };
+</script>
 </body>
 </html>
