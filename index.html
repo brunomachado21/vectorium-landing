@@ -99,16 +99,46 @@
             max-width: 500px; line-height: 1.8; font-weight: 300;
         }
 
-        /* PREÇO DESTACADO */
+        /* PREÇO DESTACADO (GIGANTE) */
         .price-section {
-            display: flex; align-items: baseline; gap: 1rem; margin-bottom: 2.5rem; padding: 1.5rem;
-            background: rgba(0, 212, 126, 0.05); border: 1px solid rgba(0, 212, 126, 0.2);
-            border-radius: 12px; backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center; /* Mudado de baseline para center para alinhar verticalmente melhor */
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            padding: 1.5rem 2rem; /* Mais espaçamento interno */
+            background: rgba(0, 212, 126, 0.05);
+            border: 1px solid rgba(0, 212, 126, 0.2);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            width: fit-content; /* Garante que a caixa se ajuste ao tamanho do texto */
         }
-        .price-old { text-decoration: line-through; color: var(--text-muted); font-size: 1rem; }
-        .price-new { font-family: 'Space Mono', monospace; font-size: 2.2rem; font-weight: 700; color: var(--accent-green); letter-spacing: -0.02em; }
-        .price-label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-left: auto; }
 
+        .price-old {
+            text-decoration: line-through;
+            color: var(--text-muted);
+            font-size: 1.4rem; /* Aumentado de 1rem para 1.4rem */
+            font-weight: 500;
+        }
+
+        .price-new {
+            font-family: 'Space Mono', monospace;
+            font-size: 4.5rem; /* AUMENTADO DE 2.2rem PARA 4.5rem (Ficou Enorme) */
+            font-weight: 700;
+            color: var(--accent-green);
+            letter-spacing: -0.04em;
+            line-height: 1; /* Importante para não criar espaço extra em cima/baixo */
+        }
+
+        .price-label {
+            font-size: 0.9rem; /* Aumentado um pouco */
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            margin-left: 1rem;
+            max-width: 100px; /* Força quebra de linha se necessário */
+            line-height: 1.2;
+        }
         /* BOTÕES */
         .cta-group { display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
         .btn {
