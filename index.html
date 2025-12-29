@@ -729,12 +729,26 @@
       el.addEventListener('click', () => showToast(el.getAttribute('data-toast')));
     });
 
-    // Track CTA clicks (demo telemetry in console)
+    // Rastreamento Profissional (Console + Facebook Pixel)
     function track(name) {
       try {
-        const payload = { name, ts: new Date().toISOString(), path: location.pathname };
-        console.log('[metricora_event]', payload);
-      } catch (_) {}
+        // 1. Log interno para você ver no navegador (F12)
+        console.log('[metricora_event]', { name, ts: new Date().toISOString() });
+
+        // 2. Dispara o evento para o Facebook Ads
+        if (typeof fbq === 'function') {
+          if (name === 'click_buy') {
+            // Quem clica em COMPRAR -> InitiateCheckout
+            fbq('track', 'InitiateCheckout', { currency: 'BRL', value: 97.90 }); 
+          }
+          if (name === 'click_download') {
+            // Quem clica em DOWNLOAD -> Lead (Cliente Potencial)
+            fbq('track', 'Lead'); 
+          }
+        }
+      } catch (err) {
+        console.error('Erro no rastreamento:', err);
+      }
     }
     document.getElementById('ctaBuy')?.addEventListener('click', () => track('click_buy'));
     document.getElementById('ctaDownload')?.addEventListener('click', () => track('click_download'));
