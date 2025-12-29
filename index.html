@@ -63,10 +63,11 @@
     h1, h2, h3, .btn { font-family: 'Poppins', sans-serif; }
     code, .mono { font-family: 'Space Mono', monospace; }
 
+    /* LAYOUT - Aumentei o GAP para afastar o celular do texto */
     .hero-wrapper {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
-      gap: 2rem;
+      gap: 5rem; /* Aumentado de 2rem para 5rem (Isso resolve o toque) */
       align-items: center;
       min-height: 100vh;
       padding: 3rem 2rem;
@@ -202,11 +203,12 @@
     .feature-item h4 { font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 700; }
     .feature-item p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
 
+    /* MOCKUP CONTAINER - Ajustado para não tocar no texto */
     .hero-mockup-container {
       position: relative;
       display: flex;
       justify-content: center;
-      margin-left: -120px;
+      margin-left: 0; /* Zerei a margem negativa que puxava pra esquerda */
       margin-bottom: -100px;
       pointer-events: none;
     }
@@ -216,7 +218,7 @@
       max-width: 900px;
       height: auto;
       filter: drop-shadow(0 40px 80px rgba(0,0,0,0.5));
-      /* Removido o transform-origin para evitar qualquer eixo de rotação estranho */
+      /* Removido transform-origin pois não vamos mais girar */
     }
 
     .stats-section {
@@ -782,24 +784,13 @@
   </script>
 </body>
 </html>
-      .hero-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 4rem;
-      min-height: 100vh;
-      padding: 8rem 4rem 4rem;
-      max-width: 1600px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-content {
-      z-index: 2;
-    }
-
-    .logo-header {
-      max-width: 150px;
+      .logo-header {
+      width: 180px;
+      height: auto;
       margin-bottom: 2rem;
+    }
+
+    .logo-header img {
+      width: 100%;
+      height: auto;
     }
