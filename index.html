@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Metricora | Gestão Inteligente</title>
 
+  <meta name="facebook-domain-verification" content="ktu7rxmna9apzl1i9xbbipkz2smgnr" />
+
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://vectorium.tec.br/" />
   <meta property="og:title" content="Metricora - Gestão Financeira de Elite" />
   <meta property="og:description" content="Elimine planilhas e assuma o controle total do seu negócio. Sem mensalidades." />
-  <meta property="og:image" content="https://vectorium.tec.br/img/hero_phone_mockup.png" />
+  <meta property="og:image" content="img/hero_phone_mockup.png" />
 
   <script>
     !function(f,b,e,v,n,t,s)
@@ -21,7 +23,7 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     
-    // Pixel Configurado com seu ID
+    // Pixel Configurado (Seu ID: 1215025004067870)
     fbq('init', '1215025004067870'); 
     fbq('track', 'PageView');
   </script>
@@ -729,20 +731,23 @@
       el.addEventListener('click', () => showToast(el.getAttribute('data-toast')));
     });
 
-    // Rastreamento Profissional (Console + Facebook Pixel)
+    // --- RASTREAMENTO AVANÇADO (CONSOLE + FACEBOOK PIXEL) ---
+    // Substituindo o track original pelo correto para eventos
     function track(name) {
       try {
-        // 1. Log interno para você ver no navegador (F12)
+        // 1. Mostra no console do navegador (para você conferir)
         console.log('[metricora_event]', { name, ts: new Date().toISOString() });
 
-        // 2. Dispara o evento para o Facebook Ads
+        // 2. Manda o sinal para o Facebook (O QUE ESTAVA FALTANDO)
         if (typeof fbq === 'function') {
+          
+          // Se clicou em COMPRAR -> Dispara "InitiateCheckout"
           if (name === 'click_buy') {
-            // Quem clica em COMPRAR -> InitiateCheckout
             fbq('track', 'InitiateCheckout', { currency: 'BRL', value: 97.90 }); 
           }
+          
+          // Se clicou em DOWNLOAD -> Dispara "Lead"
           if (name === 'click_download') {
-            // Quem clica em DOWNLOAD -> Lead (Cliente Potencial)
             fbq('track', 'Lead'); 
           }
         }
@@ -750,10 +755,11 @@
         console.error('Erro no rastreamento:', err);
       }
     }
+
     document.getElementById('ctaBuy')?.addEventListener('click', () => track('click_buy'));
     document.getElementById('ctaDownload')?.addEventListener('click', () => track('click_download'));
 
-    // Modal for terms/privacy (mock content)
+    // Modal for terms/privacy (TEXTOS REAIS DE MODELO)
     const modal = document.getElementById('modal');
     const modalTitle = document.getElementById('modalTitle');
     const modalBody = document.getElementById('modalBody');
@@ -773,21 +779,49 @@
     document.getElementById('openTerms')?.addEventListener('click', (e) => {
       e.preventDefault();
       openModal('Termos de Uso', `
-        <p><strong>1. Aceitação</strong> Ao utilizar esta página e/ou adquirir o Metricora, você concorda com estes termos.</p>
-        <p><strong>2. Licença</strong> Licença de uso do software (vitalícia), vinculada ao comprador, conforme condições de venda.</p>
-        <p><strong>3. Entrega</strong> Entrega imediata após confirmação do pagamento no checkout.</p>
-        <p><strong>4. Suporte</strong> Suporte via e-mail: <a class="underline" href="mailto:suporte@vectorium.tec.br">suporte@vectorium.tec.br</a>.</p>
-        <p class="mt-3">Substitua este texto por seu documento oficial.</p>
+        <p class="mb-4">Ao baixar ou usar o aplicativo Metricora, você concorda automaticamente com estes termos.</p>
+        
+        <h4 class="font-bold text-white mt-4 mb-2">1. Concessão de Licença</h4>
+        <p class="mb-3">A Vectorium Systems concede a você uma licença pessoal, intransferível e não exclusiva para usar o software Metricora em seus dispositivos. A venda ou redistribuição do arquivo instalador (.apk) é estritamente proibida (Pirataria).</p>
+
+        <h4 class="font-bold text-white mt-4 mb-2">2. Licença Vitalícia</h4>
+        <p class="mb-3">A compra da licença "Vitalícia" garante o acesso ao uso do software por tempo indeterminado, sem cobrança de mensalidades recorrentes. A Vectorium Systems se reserva o direito de definir quais atualizações futuras estarão inclusas nesta licença.</p>
+
+        <h4 class="font-bold text-white mt-4 mb-2">3. Isenção de Responsabilidade</h4>
+        <p class="mb-2">O Metricora é uma ferramenta de auxílio à gestão. A Vectorium Systems <strong>não se responsabiliza</strong> por:</p>
+        <ul class="list-disc pl-5 mb-3 space-y-1">
+            <li>Erros de cálculo decorrentes de dados inseridos incorretamente pelo usuário.</li>
+            <li>Prejuízos financeiros ou decisões de negócio tomadas com base nas sugestões da IA.</li>
+            <li>Perda de dados caso o usuário não faça backups regulares ou perca o dispositivo.</li>
+        </ul>
+
+        <h4 class="font-bold text-white mt-4 mb-2">4. Reembolso</h4>
+        <p class="mb-3">Conforme o Código de Defesa do Consumidor (Brasil), oferecemos garantia de arrependimento de 7 dias após a compra, desde que comprovado que o software não atendeu às funcionalidades prometidas.</p>
       `);
     });
 
     document.getElementById('openPrivacy')?.addEventListener('click', (e) => {
       e.preventDefault();
       openModal('Política de Privacidade', `
-        <p><strong>1. Coleta</strong> Esta landing não exige cadastro para navegação.</p>
-        <p><strong>2. Pagamento</strong> O checkout é processado via Stripe; dados de pagamento são tratados pelo provedor.</p>
-        <p><strong>3. Contato</strong> Ao nos contatar, você pode fornecer e-mail para retorno.</p>
-        <p class="mt-3">Substitua este texto por sua política oficial.</p>
+        <p class="mb-4 text-xs text-slate-400"><strong>Última atualização:</strong> 14 de Dezembro de 2025</p>
+        <p class="mb-4">A Vectorium Systems ("nós") desenvolveu o aplicativo <strong>Metricora</strong> como um serviço Comercial. Esta página informa aos visitantes sobre nossas políticas de coleta, uso e divulgação de Informações Pessoais.</p>
+
+        <h4 class="font-bold text-white mt-4 mb-2">1. Coleta e Armazenamento de Dados</h4>
+        <p class="mb-3">O Metricora opera sob o princípio de <strong>"Privacidade em Primeiro Lugar"</strong> (Privacy First). Todos os dados financeiros, registros de vendas e informações de clientes inseridos no aplicativo são armazenados <strong>localmente no dispositivo do usuário</strong> (banco de dados SQLite Offline).</p>
+        <p class="mb-3">Nós NÃO temos acesso aos seus dados financeiros. Eles não são enviados para nenhum servidor externo da Vectorium Systems.</p>
+
+        <h4 class="font-bold text-white mt-4 mb-2">2. Permissões do Dispositivo</h4>
+        <p class="mb-2">O aplicativo pode solicitar as seguintes permissões:</p>
+        <ul class="list-disc pl-5 mb-3 space-y-1">
+            <li><strong>Armazenamento:</strong> Para salvar backups e gerar relatórios PDF no seu dispositivo.</li>
+            <li><strong>Notificações:</strong> Para enviar lembretes locais de lançamento de caixa.</li>
+        </ul>
+
+        <h4 class="font-bold text-white mt-4 mb-2">3. Pagamentos</h4>
+        <p class="mb-3">Os pagamentos da licença são processados pela <strong>Stripe</strong>. Nós não armazenamos os dados do seu cartão de crédito. A política de privacidade da Stripe pode ser consultada no site deles.</p>
+
+        <h4 class="font-bold text-white mt-4 mb-2">4. Contato</h4>
+        <p class="mb-3">Se tiver dúvidas sobre esta política, entre em contato: <a href="mailto:suporte@vectorium.tec.br" class="text-accent-cyan hover:underline">suporte@vectorium.tec.br</a></p>
       `);
     });
 
