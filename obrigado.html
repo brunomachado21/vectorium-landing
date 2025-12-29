@@ -10,24 +10,47 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
     
     <title>Pedido Confirmado | Metricora</title>
-    
+
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        
+        // Pixel Configurado
+        fbq('init', '1215025004067870'); 
+        fbq('track', 'PageView');
+
+        // MARCA A VENDA DE R$ 97,90
+        fbq('track', 'Purchase', {
+            currency: 'BRL', 
+            value: 97.90,
+            content_name: 'Licenca Vitalicia Metricora'
+        });
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=1215025004067870&ev=PageView&noscript=1"
+    /></noscript>
     <style>
         /* --- CONFIGURAÇÕES GERAIS E CORES --- */
         :root {
-    /* Tema Dark Vectorium */
-    --primary-blue: #0D1117;      /* Fundo muito escuro */
-    --button-blue: #238636;       /* Verde GitHub/Tech */
-    --danger-red: #f85149;        /* Vermelho suave */
-    --danger-bg: rgba(248, 81, 73, 0.1); /* Fundo vermelho transparente */
-    --warning-bg: rgba(210, 153, 34, 0.15); /* Amarelo transparente */
-    --warning-text: #e3b341;      /* Amarelo texto */
-    --text-dark: #c9d1d9;         /* Texto quase branco */
-    --text-light: #8b949e;        /* Texto cinza */
-    --bg-page: #010409;           /* Fundo da página preto profundo */
-    --green-accent: #00D47E;      /* Seu verde neon */
-    --card-bg: #161B22;           /* Cor do cartão */
-    --border-color: #30363D;      /* Cor das bordas */
-}
+            --primary-blue: #0D1117;      
+            --button-blue: #238636;       
+            --danger-red: #f85149;        
+            --danger-bg: rgba(248, 81, 73, 0.1); 
+            --warning-bg: rgba(210, 153, 34, 0.15); 
+            --warning-text: #e3b341;      
+            --text-dark: #c9d1d9;         
+            --text-light: #8b949e;        
+            --bg-page: #010409;           
+            --green-accent: #00D47E;      
+            --card-bg: #161B22;           
+            --border-color: #30363D;      
+        }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -43,38 +66,35 @@
 
         h1, h2, h3, h4, .btn { font-family: 'Poppins', sans-serif; }
 
-        /* --- CABEÇALHO (HEADER) --- */
         .main-header {
             background-color: var(--primary-blue);
             color: white;
             text-align: center;
-            padding: 2rem 1rem; /* Aumentei um pouco o padding base */
+            padding: 2rem 1rem;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
         .header-logo {
-            max-width: 160px; /* Um pouco maior */
+            max-width: 160px;
             height: auto;
             margin-bottom: 1rem;
             filter: brightness(0) invert(1);
         }
 
         .header-title {
-            font-size: 2rem; /* Base para mobile */
+            font-size: 2rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin: 0;
         }
 
-        /* --- HERO SECTION (Fundo Barbearia + Celular) --- */
         .hero-section {
             position: relative;
-            /* Use a sua imagem local */
             background: linear-gradient(rgba(10, 37, 64, 0.7), rgba(10, 37, 64, 0.7)), url('img/barber_bg.jpg');
             background-size: cover;
             background-position: center;
-            height: 350px; /* Altura base para mobile */
+            height: 350px;
             display: flex;
             justify-content: center;
             align-items: flex-end;
@@ -82,39 +102,31 @@
             z-index: 1;
         }
 
-        /* CSS BASE (Celulares e Tablets pequenos) */
         .phone-mockup {
-            /* AUMENTEI DE 280px PARA 360px (Fica mais imponente no mobile) */
             width: 360px; 
             height: auto;
-            /* Sombra um pouco mais forte e difusa */
             filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5)); 
             position: relative;
-            /* DESCID MAIS: De -80px para -100px para sobrepor melhor o card abaixo */
             bottom: -100px; 
             z-index: 2;
-            /* Transição mais "elástica" e premium */
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
         }
         
-        .phone-mockup:hover {
-            transform: translateY(-15px); /* Sobe um pouco mais no hover */
-        }
-
-        /* --- A MÁGICA PARA DESKTOP (Adicione isso logo abaixo do hover) --- */
-        /* Em telas maiores que 1024px (Notebooks/PCs), o celular fica GIGANTE */
         @media (min-width: 1024px) {
             .phone-mockup {
-                width: 580px; /* MODO GIGANTE: Quase o dobro do tamanho original */
-                bottom: -200px; /* Desce muito mais para invadir o cartão branco com estilo */
-                filter: drop-shadow(0 35px 70px rgba(0,0,0,0.6)); /* Sombra 3D muito mais dramática */
+                width: 580px; 
+                bottom: -200px; 
+                filter: drop-shadow(0 35px 70px rgba(0,0,0,0.6)); 
             }
-        }/* Efeito legal: o celular sobe um pouco quando passa o mouse */
-        .phone-mockup:hover {
-            transform: translateY(-10px);
+            .header-title { font-size: 4rem; padding: 1rem 0; }
+            .hero-section { height: 750px; padding-bottom: 100px; }
+            .main-card { max-width: 1200px; padding: 220px 80px 80px 80px; }
+            .step-title { font-size: 2.2rem; }
+            .btn-download { font-size: 1.5rem; padding: 25px; }
+            .email-field { font-size: 1.4rem; padding: 20px; }
+            .btn-email { font-size: 1.2rem; padding: 18px 40px; }
         }
 
-        /* --- CONTAINER PRINCIPAL (O Card Branco) --- */
         .content-container {
             flex: 1;
             display: flex;
@@ -128,187 +140,80 @@
         .main-card {
             background: var(--card-bg);
             width: 100%;
-            max-width: 650px; /* Largura base para mobile */
+            max-width: 650px;
             border: 1px solid var(--border-color);
             color: var(--text-dark);
             border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.1); /* Sombra mais imponente */
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
             padding: 100px 30px 40px 30px;
             text-align: left;
         }
 
-        /* --- CSS ESPECÍFICO PARA DESKTOP (Telas maiores que 768px) --- */
-        /* --- MODO GIGANTE (ULTRA WIDE) --- */
-        /* Aplica em Notebooks e PCs */
-        @media (min-width: 1024px) {
-            
-            /* 1. Título do Topo Enorme */
-            .header-title { 
-                font-size: 4rem; /* Letras gigantes */
-                padding: 1rem 0;
-            }
-
-            /* 2. Fundo da Barbearia: Ocupa quase a tela toda */
-            .hero-section { 
-                height: 750px; /* Aumentei de 600px para 750px */
-                padding-bottom: 100px;
-            }
-
-            /* 3. Celular: MONSTRUOSO */
-            .phone-mockup {
-                width: 520px; /* Aumentei de 420px para 520px (quase um tablet) */
-                bottom: -160px; /* Desce bem mais para invadir o cartão */
-                filter: drop-shadow(0 30px 60px rgba(0,0,0,0.6)); /* Sombra pesada 3D */
-            }
-
-            /* 4. Cartão Branco: Largo e Alto */
-            .main-card {
-                max-width: 1200px; /* Aumentei de 900px para 1200px (Muito largo) */
-                padding: 220px 80px 80px 80px; /* Padding gigante no topo pro celular não tapar o texto */
-                margin-top: 0; /* Remove margem negativa pra não subir demais */
-            }
-
-            /* 5. Textos e Botões Escalados */
-            .step-title { font-size: 2.2rem; margin-bottom: 10px; }
-            .step-number { width: 45px; height: 45px; font-size: 1.5rem; }
-            .step-description { font-size: 1.3rem; line-height: 1.8; }
-            
-            .btn-download { 
-                font-size: 1.5rem; /* Botão gigante */
-                padding: 25px; 
-                border-radius: 16px;
-            }
-
-            .warning-box { font-size: 1.1rem; padding: 20px; }
-            
-            .activation-header { font-size: 1.5rem; }
-            .activation-text { font-size: 1.2rem; }
-            .email-field { font-size: 1.4rem; max-width: 500px; padding: 15px; }
-            .btn-email { font-size: 1.2rem; padding: 18px 40px; }
-        }
-
-        /* --- RESTANTE DO CSS (Passos, Footer, etc.) - MANTIDO IGUAL --- */
-        .step-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
+        .step-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
         .step-title-group { display: flex; align-items: center; }
-        .step-number {
-    background-color: var(--button-blue); /* Muda bolinha para verde */
-    color: white;
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; margin-right: 15px;
-}
-        .step-title {
-    color: #ffffff; /* Título branco */
-}
         
-        .progress-bar {
-            height: 8px; width: 150px;
-            background-color: #E0E6ED; border-radius: 4px; overflow: hidden;
-        }
-        .progress-fill { height: 100%; width: 50%; background-color: var(--green-accent); }
-
-        .step-description { color: var(--text-light); margin-bottom: 25px; font-size: 1rem; }
-
-        .btn-download {
-            display: flex; align-items: center; justify-content: center;
-            width: 100%;
-            padding: 16px;
+        .step-number {
             background-color: var(--button-blue);
             color: white;
-            text-decoration: none;
-            font-weight: 700; font-size: 1.1rem;
-            border-radius: 12px;
-            transition: all 0.2s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; margin-right: 15px;
         }
-        .btn-download:hover {
-            background-color: var(--primary-blue);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        .step-title { color: #ffffff; }
+        .progress-bar { height: 8px; width: 150px; background-color: #E0E6ED; border-radius: 4px; overflow: hidden; }
+        .progress-fill { height: 100%; width: 50%; background-color: var(--green-accent); }
+        .step-description { color: var(--text-light); margin-bottom: 25px; font-size: 1rem; }
+
+        .btn { text-decoration: none; border-radius: 50px; transition: all 0.2s; cursor: pointer; }
+        
+        .btn-download {
+            display: flex; align-items: center; justify-content: center; width: 100%; padding: 16px;
+            background-color: var(--button-blue); color: white; font-weight: 700; font-size: 1.1rem; border-radius: 12px;
         }
-        .btn-icon { margin-right: 10px; font-size: 1.2rem; }
+        .btn-download:hover { background-color: var(--primary-blue); transform: translateY(-2px); }
 
         .warning-box {
-            background-color: var(--warning-bg);
-            border: 1px solid #FFEEBA;
-            color: var(--warning-text);
-            padding: 15px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            display: flex; align-items: flex-start;
+            background-color: var(--warning-bg); border: 1px solid #FFEEBA; color: var(--warning-text);
+            padding: 15px; border-radius: 12px; font-size: 0.9rem; display: flex; align-items: flex-start; margin-top: 20px;
         }
         .warning-icon { margin-right: 10px; font-size: 1.1rem; }
 
         .activation-section {
-            margin-top: 40px;
-            background-color: var(--danger-bg);
-            border: 2px dashed var(--danger-red);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
+            margin-top: 40px; background-color: var(--danger-bg); border: 2px dashed var(--danger-red);
+            border-radius: 20px; padding: 30px; text-align: center;
         }
         .activation-header {
-            color: var(--danger-red);
-            font-weight: 800; font-size: 1.1rem;
-            text-transform: uppercase;
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: 15px;
+            color: var(--danger-red); font-weight: 800; font-size: 1.1rem; text-transform: uppercase;
+            display: flex; align-items: center; justify-content: center; margin-bottom: 15px;
         }
         .lock-icon { margin-right: 10px; font-size: 1.2rem; }
-        
         .activation-text { color: var(--text-dark); font-size: 0.95rem; margin-bottom: 20px; }
-        
+
         .email-field {
-            background: #0D1117;
-            color: var(--text-dark);               
-            
-            border: 1px solid var(--border-color);
-            
+            background: #0D1117; color: var(--text-dark); border: 1px solid var(--border-color);
+            padding: 12px; border-radius: 8px; font-family: 'Inter', monospace; font-weight: 600; font-size: 1.1rem;
+            display: inline-block; margin-bottom: 25px; width: 100%; max-width: 350px;
         }
 
         .btn-email {
-            display: inline-flex; align-items: center; justify-content: center;
-            padding: 14px 30px;
-            background-color: var(--danger-red);
-            color: white;
-            text-decoration: none;
-            font-weight: 700; font-size: 1rem;
-            border-radius: 50px;
-            transition: all 0.2s;
+            display: inline-flex; align-items: center; justify-content: center; padding: 14px 30px;
+            background-color: var(--danger-red); color: white; font-weight: 700; font-size: 1rem;
             box-shadow: 0 4px 6px rgba(211, 47, 47, 0.2);
         }
-        .btn-email:hover {
-            background-color: #B71C1C;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(211, 47, 47, 0.3);
-        }
+        .btn-email:hover { background-color: #B71C1C; transform: translateY(-2px); }
         .btn-arrow { margin-left: 10px; }
 
         .main-footer {
-            background-color: var(--primary-blue);
-            color: rgba(255,255,255,0.7);
-            text-align: center;
-            padding: 30px 20px;
-            font-size: 0.9rem;
-            margin-top: auto;
+            background-color: var(--primary-blue); color: rgba(255,255,255,0.7);
+            text-align: center; padding: 30px 20px; font-size: 0.9rem; margin-top: auto;
         }
-        .footer-links {
-            display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;
-        }
-        .footer-links span { display: flex; align-items: center; font-weight: 500; }
-        .footer-icon { margin-right: 8px; }
+        .footer-links { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        .btn-icon { margin-right: 8px; font-size: 1.2rem; }
 
-        /* Responsividade para Celulares (Ajustes finais) */
         @media (max-width: 767px) {
             .step-header { flex-direction: column; align-items: flex-start; gap: 10px; }
             .progress-bar { width: 100%; }
-            .btn-email { width: 100%; }
             .main-card { padding-left: 25px; padding-right: 25px; }
         }
     </style>
@@ -321,8 +226,8 @@
     </header>
 
     <section class="hero-section">
-    <img src="img/phone_mockup.png" alt="Celular Metricora no App" class="phone-mockup">
-</section>
+        <img src="img/phone_mockup.png" alt="Celular Metricora no App" class="phone-mockup">
+    </section>
 
     <main class="content-container">
         <div class="main-card">
@@ -356,7 +261,7 @@
                 </div>
                 
                 <p class="activation-text">
-                    Para liberar sua licença <strong>VITALÍCIA</strong>, precisamos validar seu pagamento manualmente no sistema.
+                    Para liberar sua licença <strong>VITALÍCIA</strong>, precisamos validar seu pagamento manualmente.
                     <br><br>
                     Envie o comprovante e seu <strong>NOME DE USUÁRIO</strong> para:
                 </p>
@@ -378,6 +283,7 @@
             <span>🇧🇷 Vectorium Systems</span>
         </div>
     </footer>
+
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <script>
     // Dispara confetes assim que a página carrega
