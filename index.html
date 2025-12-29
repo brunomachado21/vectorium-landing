@@ -1,426 +1,809 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="img/favicon.png">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
-    
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    
-    <title>Metricora | Gestão Inteligente</title>
-    
-    <style>
-        :root {
-            /* Premium Tech Palette */
-            --primary-dark: #0D1117;
-            --secondary-dark: #161B22;
-            --tertiary-dark: #21262D;
-            --accent-green: #00D47E;
-            --accent-green-hover: #00B068;
-            --accent-cyan: #00D9FF;
-            --text-primary: #E6EDF3;
-            --text-secondary: #8B949E;
-            --text-muted: #6E7681;
-            --border-color: #30363D;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
-            --shadow-md: 0 10px 30px rgba(0,0,0,0.3);
-            --shadow-lg: 0 20px 60px rgba(0,0,0,0.4);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Metricora | Gestão Inteligente</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <!-- Tailwind (required) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, #1a1f2e 50%, var(--secondary-dark) 100%);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-            min-height: 100vh;
-            position: relative;
-        }
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" />
 
-        /* Efeito de ruído sutil */
-        body::before {
-            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(circle at 20% 50%, rgba(0, 212, 126, 0.03) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(0, 217, 255, 0.03) 0%, transparent 50%);
-            pointer-events: none; z-index: 1;
-        }
+  <!-- Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-        h1, h2, h3, .btn { font-family: 'Poppins', sans-serif; }
-        code, .mono { font-family: 'Space Mono', monospace; }
+  <!-- Favicon (will gracefully fail if missing) -->
+  <link rel="icon" type="image/png" href="img/favicon.png" />
 
-        /* LAYOUT PRINCIPAL */
-        .hero-wrapper {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr; 
-            gap: 5rem;
-            align-items: center;
-            min-height: 100vh;
-            padding: 3rem 2rem;
-            max-width: 1600px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-            overflow: visible; 
-        }
+  <style>
+    :root {
+      --primary-dark: #0D1117;
+      --secondary-dark: #161B22;
+      --tertiary-dark: #21262D;
+      --accent-green: #00D47E;
+      --accent-green-hover: #00B068;
+      --accent-cyan: #00D9FF;
+      --text-primary: #E6EDF3;
+      --text-secondary: #8B949E;
+      --text-muted: #6E7681;
+      --border-color: #30363D;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+      --shadow-md: 0 10px 30px rgba(0,0,0,0.3);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.4);
+    }
 
-        /* COLUNA ESQUERDA - CONTEÚDO */
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            z-index: 5;
-        }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* LOGO GRANDE NO DESKTOP */
-        .logo-header {
-            width: auto;
-            height: auto;
-            max-width: 180px; /* Grande no PC */
-            margin-bottom: 2rem;
-            filter: brightness(0) invert(1);
-            display: block;
-        }
+    html { scroll-behavior: smooth; }
 
-        .hero-content h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; line-height: 1.15; margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-cyan) 50%, var(--accent-green) 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            letter-spacing: -0.02em;
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #1a1f2e 50%, var(--secondary-dark) 100%);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
 
-        .hero-content p {
-            font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem;
-            max-width: 500px; line-height: 1.8; font-weight: 300;
-        }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        radial-gradient(circle at 20% 50%, rgba(0, 212, 126, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 217, 255, 0.03) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 1;
+    }
 
-        /* PREÇO DESTACADO (GIGANTE) */
-        .price-section {
-            display: flex;
-            align-items: center; /* Mudado de baseline para center para alinhar verticalmente melhor */
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
-            padding: 1.5rem 2rem; /* Mais espaçamento interno */
-            background: rgba(0, 212, 126, 0.05);
-            border: 1px solid rgba(0, 212, 126, 0.2);
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-            width: fit-content; /* Garante que a caixa se ajuste ao tamanho do texto */
-        }
+    h1, h2, h3, .btn { font-family: 'Poppins', sans-serif; }
+    code, .mono { font-family: 'Space Mono', monospace; }
 
-        .price-old {
-            text-decoration: line-through;
-            color: var(--text-muted);
-            font-size: 1.4rem; /* Aumentado de 1rem para 1.4rem */
-            font-weight: 500;
-        }
+    .hero-wrapper {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      align-items: center;
+      min-height: 100vh;
+      padding: 3rem 2rem;
+      max-width: 1600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      overflow: visible;
+    }
 
-        .price-new {
-            font-family: 'Space Mono', monospace;
-            font-size: 4.5rem; /* AUMENTADO DE 2.2rem PARA 4.5rem (Ficou Enorme) */
-            font-weight: 700;
-            color: var(--accent-green);
-            letter-spacing: -0.04em;
-            line-height: 1; /* Importante para não criar espaço extra em cima/baixo */
-        }
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 5;
+    }
 
-        .price-label {
-            font-size: 0.9rem; /* Aumentado um pouco */
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-            margin-left: 1rem;
-            max-width: 100px; /* Força quebra de linha se necessário */
-            line-height: 1.2;
-        }
-        /* BOTÕES */
-        .cta-group { display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
-        .btn {
-            padding: 0.95rem 2rem; font-size: 1rem; font-weight: 700; border: none; border-radius: 8px;
-            cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center;
-            gap: 0.5rem; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); text-transform: uppercase;
-            letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; min-width: 200px;
-        }
-        .btn-primary { background: linear-gradient(135deg, var(--accent-green) 0%, #00a860 100%); color: #06371E; box-shadow: 0 10px 30px rgba(0, 212, 126, 0.3); }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0, 212, 126, 0.5); background: linear-gradient(135deg, var(--accent-green-hover) 0%, #008f52 100%); }
-        .btn-primary:active { transform: translateY(-1px); }
-        .btn-secondary { background: rgba(255, 255, 255, 0.08); color: var(--text-primary); border: 1px solid var(--border-color); }
-        .btn-secondary:hover { background: rgba(255, 255, 255, 0.12); border-color: var(--accent-cyan); color: var(--accent-cyan); transform: translateY(-2px); }
+    .logo-header {
+      width: auto;
+      height: auto;
+      max-width: 180px;
+      margin-bottom: 2rem;
+      filter: brightness(0) invert(1);
+      display: block;
+    }
 
-        /* FEATURES (ESTILO DESENHADO) */
-        .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
-        .feature-item {
-            padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 8px;
-            background: rgba(33, 38, 45, 0.3); backdrop-filter: blur(10px); transition: all 0.3s ease; cursor: pointer;
-            position: relative; 
-        }
-        .feature-item:hover { background: rgba(33, 38, 45, 0.5); border-color: var(--accent-green); transform: translateY(-2px); }
-        
-        /* ÍCONES DESENHADOS */
-        .feature-item .icon { font-size: 1.8rem; margin-bottom: 0.8rem; color: var(--accent-green); }
-        .feature-item h4 { font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 700; }
-        .feature-item p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-cyan) 50%, var(--accent-green) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+    }
 
-        /* MOCKUP CONTAINER */
-        .hero-mockup-container {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            /* Margens negativas para o efeito "Brave" no Desktop */
-            margin-left: 0px; 
-            margin-bottom: -100px;
-            pointer-events: none;
-        }
+    .hero-content p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      max-width: 500px;
+      line-height: 1.8;
+      font-weight: 300;
+    }
 
-        .hero-phone-image {
-            width: 140%;
-            max-width: 900px;
-            height: auto;
-            filter: drop-shadow(0 40px 80px rgba(0,0,0,0.5));
-        }
+    .price-section {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      padding: 1.5rem;
+      background: rgba(0, 212, 126, 0.05);
+      border: 1px solid rgba(0, 212, 126, 0.2);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+    }
 
-        /* STATS SECTION */
-        .stats-section {
-            margin-top: 8rem; padding: 3rem 0;
-            border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);
-            background: rgba(13, 17, 23, 0.5);
-        }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; max-width: 1600px; margin: 0 auto; padding: 0 2rem; }
-        .stat-card { text-align: center; }
-        .stat-number { font-family: 'Space Mono', monospace; font-size: 2.5rem; font-weight: 700; color: var(--accent-green); margin-bottom: 0.5rem; }
-        .stat-label { font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+    .price-old { text-decoration: line-through; color: var(--text-muted); font-size: 1rem; }
+    .price-new { font-family: 'Space Mono', monospace; font-size: 2.2rem; font-weight: 700; color: var(--accent-green); letter-spacing: -0.02em; }
+    .price-label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-left: auto; }
 
-        /* DEMO, PERFIS, FOOTER */
-        .demo-section { max-width: 1600px; margin: 6rem auto 0; padding: 0 2rem; }
-        .demo-header { text-align: center; margin-bottom: 3rem; }
-        .demo-header h2 { font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem; color: var(--text-primary); }
-        .demo-header p { font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
-        .video-wrapper { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px; margin-bottom: 3rem; border: 1px solid var(--border-color); }
-        .video-wrapper iframe, .video-wrapper video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 16px; }
-        
-        .profiles-section { margin: 4rem 0; }
-        .profiles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
-        .profile-card { border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; background: rgba(33, 38, 45, 0.3); backdrop-filter: blur(10px); transition: all 0.3s ease; cursor: pointer; }
-        .profile-card:hover { background: rgba(33, 38, 45, 0.5); border-color: var(--accent-cyan); transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0, 217, 255, 0.2); }
-        .profile-badge { padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin: 1rem; border-radius: 6px; }
-        .profile-image { width: 100%; height: auto; display: block; background: rgba(0, 0, 0, 0.2); }
-        .profile-description { padding: 1.5rem 1rem; color: var(--text-secondary); font-size: 0.95rem; font-weight: 500; }
+    .cta-group { display: flex; gap: 1rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
 
-        .guarantee-section { max-width: 900px; margin: 4rem auto; padding: 3rem; border: 2px dashed var(--border-color); border-radius: 12px; text-align: center; background: rgba(0, 212, 126, 0.02); }
-        .guarantee-section h3 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--text-primary); }
-        .guarantee-section p { color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.8; }
+    .btn {
+      padding: 0.95rem 2rem;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-family: 'Poppins', sans-serif;
+      min-width: 200px;
+    }
 
-        footer { background: var(--secondary-dark); border-top: 1px solid var(--border-color); padding: 4rem 2rem 2rem; margin-top: 6rem; }
-        .footer-content { max-width: 1600px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
-        .footer-col h4 { color: var(--accent-green); margin-bottom: 1.2rem; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
-        .footer-col p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.75rem; line-height: 1.8; }
-        .footer-col a { color: var(--text-secondary); text-decoration: none; display: block; margin-bottom: 0.8rem; transition: color 0.2s; }
-        .footer-col a:hover { color: var(--accent-cyan); }
-        .footer-bottom { border-top: 1px solid var(--border-color); padding-top: 2rem; text-align: center; font-size: 0.85rem; color: var(--text-muted); }
-        .footer-bottom a { color: var(--text-muted); text-decoration: none; margin: 0 1rem; transition: color 0.2s; }
-        .footer-bottom a:hover { color: var(--accent-cyan); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-green) 0%, #00a860 100%);
+      color: #06371E;
+      box-shadow: 0 10px 30px rgba(0, 212, 126, 0.3);
+    }
 
-        /* RESPONSIVO */
-        @media (max-width: 1024px) {
-            .hero-wrapper { grid-template-columns: 1fr; gap: 3rem; min-height: auto; padding: 2rem; text-align: center; }
-            .hero-mockup-container { margin: 0; order: 2; }
-            /* Aqui ajusta o tamanho do celular para tablets/celulares grandes */
-            .hero-phone-image { width: 100%; max-width: 400px; transform: none; margin-top: 2rem; }
-            .hero-content h1 { font-size: 3rem; }
-            .features-grid { grid-template-columns: 1fr; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            /* Centraliza logo no mobile */
-            .logo-header { margin: 0 auto 2rem; } 
-        }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 212, 126, 0.5);
+      background: linear-gradient(135deg, var(--accent-green-hover) 0%, #008f52 100%);
+    }
 
-        /* --- AJUSTE FINO PARA CELULARES --- */
-        @media (max-width: 768px) {
-            .hero-wrapper { gap: 2rem; padding: 1.5rem 1rem; }
-            .hero-content h1 { font-size: 2rem; }
-            .hero-content p { font-size: 1rem; }
-            
-            /* Logo menor no celular para não ocupar tudo */
-            .logo-header { max-width: 130px; margin-bottom: 1.5rem; }
+    .btn-primary:active { transform: translateY(-1px); }
 
-            /* Celular menor no mobile */
-            .hero-phone-image { max-width: 280px; }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+    }
 
-            .price-section { flex-direction: column; align-items: center; }
-            .price-label { margin-left: 0; margin-top: 0.5rem; }
-            .cta-group { flex-direction: column; width: 100%; }
-            .btn { width: 100%; }
-            .stats-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+
+    .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+
+    .feature-item {
+      padding: 1.5rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: rgba(33, 38, 45, 0.3);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .feature-item:hover {
+      background: rgba(33, 38, 45, 0.5);
+      border-color: var(--accent-green);
+      transform: translateY(-2px);
+    }
+
+    .feature-item .icon { font-size: 1.8rem; margin-bottom: 0.8rem; color: var(--accent-green); }
+    .feature-item h4 { font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 700; }
+    .feature-item p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+
+    .hero-mockup-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      margin-left: -120px;
+      margin-bottom: -100px;
+      pointer-events: none;
+    }
+
+    .hero-phone-image {
+      width: 140%;
+      max-width: 900px;
+      height: auto;
+      filter: drop-shadow(0 40px 80px rgba(0,0,0,0.5));
+      transform-origin: 50% 60%;
+    }
+
+    .stats-section {
+      margin-top: 8rem;
+      padding: 3rem 0;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      background: rgba(13, 17, 23, 0.5);
+      position: relative;
+      z-index: 2;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .stat-card { text-align: center; }
+    .stat-number { font-family: 'Space Mono', monospace; font-size: 2.5rem; font-weight: 700; color: var(--accent-green); margin-bottom: 0.5rem; }
+    .stat-label { font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+
+    .demo-section { max-width: 1600px; margin: 6rem auto 0; padding: 0 2rem; position: relative; z-index: 2; }
+    .demo-header { text-align: center; margin-bottom: 3rem; }
+    .demo-header h2 { font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem; color: var(--text-primary); }
+    .demo-header p { font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 16px;
+      margin-bottom: 3rem;
+      border: 1px solid var(--border-color);
+      background: rgba(0,0,0,0.15);
+    }
+
+    .video-wrapper iframe, .video-wrapper video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+    }
+
+    .profiles-section { margin: 4rem 0; }
+    .profiles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+
+    .profile-card {
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(33, 38, 45, 0.3);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .profile-card:hover {
+      background: rgba(33, 38, 45, 0.5);
+      border-color: var(--accent-cyan);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 217, 255, 0.2);
+    }
+
+    .profile-badge {
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-block;
+      margin: 1rem;
+      border-radius: 6px;
+    }
+
+    .profile-image { width: 100%; height: auto; display: block; background: rgba(0, 0, 0, 0.2); }
+    .profile-description { padding: 1.5rem 1rem; color: var(--text-secondary); font-size: 0.95rem; font-weight: 500; }
+
+    .guarantee-section {
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 3rem;
+      border: 2px dashed var(--border-color);
+      border-radius: 12px;
+      text-align: center;
+      background: rgba(0, 212, 126, 0.02);
+      position: relative;
+      z-index: 2;
+    }
+
+    .guarantee-section h3 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--text-primary); }
+    .guarantee-section p { color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.8; }
+
+    footer {
+      background: var(--secondary-dark);
+      border-top: 1px solid var(--border-color);
+      padding: 4rem 2rem 2rem;
+      margin-top: 6rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-content {
+      max-width: 1600px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-col h4 { color: var(--accent-green); margin-bottom: 1.2rem; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+    .footer-col p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.75rem; line-height: 1.8; }
+    .footer-col a { color: var(--text-secondary); text-decoration: none; display: block; margin-bottom: 0.8rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--accent-cyan); }
+
+    .footer-bottom { border-top: 1px solid var(--border-color); padding-top: 2rem; text-align: center; font-size: 0.85rem; color: var(--text-muted); }
+    .footer-bottom a { color: var(--text-muted); text-decoration: none; margin: 0 1rem; transition: color 0.2s; }
+    .footer-bottom a:hover { color: var(--accent-cyan); }
+
+    /* Tiny top bar (uses Tailwind utility feel but implemented in CSS to match the rest) */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(13, 17, 23, 0.55);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(48, 54, 61, 0.7);
+    }
+
+    .topbar-inner {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0.8rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.6rem;
+      border: 1px solid rgba(48, 54, 61, 0.9);
+      border-radius: 999px;
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      background: rgba(22, 27, 34, 0.35);
+    }
+
+    .navlink {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.35rem 0.6rem;
+      border-radius: 8px;
+      transition: all .2s ease;
+    }
+
+    .navlink:hover { color: var(--text-primary); background: rgba(255,255,255,0.06); }
+
+    /* Reveal animations */
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    /* Back to top */
+    .backtop {
+      position: fixed;
+      right: 1.25rem;
+      bottom: 1.25rem;
+      z-index: 60;
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+
+    .backtop.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-wrapper { grid-template-columns: 1fr; gap: 3rem; min-height: auto; padding: 6rem 2rem 2rem; text-align: center; }
+      .hero-mockup-container { margin: 0; order: 2; }
+      .hero-phone-image { width: 100%; max-width: 400px; transform: none; margin-top: 2rem; }
+      .hero-content h1 { font-size: 3rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .logo-header { margin: 0 auto 2rem; }
+      .topbar-inner { padding: 0.8rem 1.25rem; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-wrapper { gap: 2rem; padding: 6rem 1rem 1.5rem; }
+      .hero-content h1 { font-size: 2rem; }
+      .hero-content p { font-size: 1rem; }
+      .logo-header { max-width: 130px; margin-bottom: 1.5rem; }
+      .hero-phone-image { max-width: 280px; }
+      .price-section { flex-direction: column; align-items: center; }
+      .price-label { margin-left: 0; margin-top: 0.5rem; }
+      .cta-group { flex-direction: column; width: 100%; }
+      .btn { width: 100%; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .topbar-inner nav { display: none; }
+    }
+  </style>
 </head>
 <body>
-
-    <div class="hero-wrapper">
-        <div class="hero-content">
-            <img src="img/logo.png" alt="Metricora" class="logo-header">
-            
-            <h1>Gestão financeira de elite. Sem complexidade.</h1>
-            
-            <p>O Metricora elimina planilhas, mensalidades e burocracia. Controle total do seu negócio em um único dashboard inteligente, com sugestões de IA e privacidade absoluta.</p>
-
-            <div class="price-section">
-                <span class="price-old">De R$ 297,90</span>
-                <span class="price-new">R$ 97,90</span>
-                <span class="price-label">Vitalício • Pagamento Único</span>
-            </div>
-
-            <div class="cta-group">
-                <a href="https://buy.stripe.com/28E14f1OmeCC5lj3shgfu01" class="btn btn-primary">GARANTIR ACESSO AGORA</a>
-                <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.3/metricora_v1.0.3.apk" class="btn btn-secondary">DOWNLOAD PILOTO</a>
-            </div>
-
-            <p style="font-size: 0.85rem; color: var(--text-muted);">🔒 Checkout Seguro via Stripe | ⚡ Entrega Imediata</p>
-
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="icon">
-                        <i class="ph ph-wallet"></i>
-                    </div>
-                    <h4>Sem Mensalidades</h4>
-                    <p>Pague uma vez, use para sempre. R$ 1.000/ano economizados.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="icon">
-                        <i class="ph ph-robot"></i>
-                    </div>
-                    <h4>Consultor IA</h4>
-                    <p>Análise automática de custos e sugestões de lucro.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="icon">
-                        <i class="ph ph-lock-key"></i>
-                    </div>
-                    <h4>100% Seguro</h4>
-                    <p>Dados criptografados offline. Privacidade garantida.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="icon">
-                        <i class="ph ph-chart-bar"></i>
-                    </div>
-                    <h4>Relatórios Pro</h4>
-                    <p>Gráficos em tempo real e previsões financeiras.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="hero-mockup-container">
-            <img src="img/hero_phone_mockup.png" alt="Dashboard Metricora" class="hero-phone-image">
-        </div>
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="flex items-center gap-3">
+        <span class="chip"><i class="ph ph-shield-check"></i> Checkout seguro (Stripe)</span>
+        <span class="chip"><i class="ph ph-lightning"></i> Entrega imediata</span>
+      </div>
+      <nav class="flex items-center gap-1">
+        <a class="navlink" href="#demo">Demo</a>
+        <a class="navlink" href="#perfis">Perfis</a>
+        <a class="navlink" href="#garantia">Garantia</a>
+        <a class="navlink" href="#comprar">Comprar</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="stats-section">
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-number">39.392</div>
-                <div class="stat-label">Negócios Controlados</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">394,9 MB</div>
-                <div class="stat-label">Ultra Compacto</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">7 Minutos</div>
-                <div class="stat-label">Setup Completo</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">∞</div>
-                <div class="stat-label">Atualizações Grátis</div>
-            </div>
-        </div>
-    </div>
+  <main>
+    <section class="hero-wrapper" id="comprar">
+      <div class="hero-content">
+        <img src="img/logo.png" alt="Metricora" class="logo-header" />
 
-    <div class="demo-section">
-        <div class="demo-header">
-            <h2>Um Cérebro. Múltiplas Faces.</h2>
-            <p>O design se adapta automaticamente ao nicho da sua empresa. Veja o poder do Metricora em ação:</p>
+        <h1 class="reveal">Gestão financeira de elite. Sem complexidade.</h1>
+
+        <p class="reveal" style="transition-delay: .05s;">
+          O Metricora elimina planilhas, mensalidades e burocracia. Controle total do seu negócio em um único dashboard inteligente,
+          com sugestões de IA e privacidade absoluta.
+        </p>
+
+        <div class="price-section reveal" style="transition-delay: .1s;">
+          <span class="price-old">De R$ 297,90</span>
+          <span class="price-new">R$ 97,90</span>
+          <span class="price-label">Vitalício • Pagamento Único</span>
         </div>
 
-        <div class="video-wrapper">
-            <video controls poster="img/print_barber.png">
-                <source src="demo.mp4" type="video/mp4">
-                Seu navegador não suporta a tag de vídeo.
-            </video>
+        <div class="cta-group reveal" style="transition-delay: .15s;">
+          <a href="https://buy.stripe.com/28E14f1OmeCC5lj3shgfu01" class="btn btn-primary" id="ctaBuy">
+            GARANTIR ACESSO AGORA <i class="ph ph-arrow-right"></i>
+          </a>
+          <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.3/metricora_v1.0.3.apk" class="btn btn-secondary" id="ctaDownload">
+            DOWNLOAD PILOTO <i class="ph ph-download-simple"></i>
+          </a>
         </div>
 
-        <div class="profiles-section">
-            <div class="profiles-grid">
-                <div class="profile-card">
-                    <div style="background: #000; padding: 1rem;">
-                        <span class="profile-badge" style="background: #FFD700; color: #000;">Modo Barber</span>
-                    </div>
-                    <img src="img/print_barber.png" alt="Tela Barbearia" class="profile-image">
-                    <p class="profile-description">Comissões automáticas e fluxo rápido. Controle seus barbeiros e suas metas em tempo real.</p>
-                </div>
+        <p class="reveal" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0; transition-delay: .2s;">
+          🔒 Checkout Seguro via Stripe | ⚡ Entrega Imediata
+        </p>
 
-                <div class="profile-card">
-                    <div style="background: #E91E63; padding: 1rem;">
-                        <span class="profile-badge" style="background: #E91E63; color: white;">Modo Confeitaria</span>
-                    </div>
-                    <img src="img/print_confeitaria.png" alt="Tela Confeitaria" class="profile-image">
-                    <p class="profile-description">Precificação de ingredientes e encomendas. Automatize a gestão de receitas e custos.</p>
-                </div>
+        <div class="features-grid reveal" style="transition-delay: .25s;">
+          <div class="feature-item" data-toast="Sem mensalidades: licença vitalícia.">
+            <div class="icon"><i class="ph ph-wallet"></i></div>
+            <h4>Sem Mensalidades</h4>
+            <p>Pague uma vez, use para sempre. R$ 1.000/ano economizados.</p>
+          </div>
+          <div class="feature-item" data-toast="Consultor IA: sugestões de custo e lucro.">
+            <div class="icon"><i class="ph ph-robot"></i></div>
+            <h4>Consultor IA</h4>
+            <p>Análise automática de custos e sugestões de lucro.</p>
+          </div>
+          <div class="feature-item" data-toast="Segurança: dados offline e criptografados.">
+            <div class="icon"><i class="ph ph-lock-key"></i></div>
+            <h4>100% Seguro</h4>
+            <p>Dados criptografados offline. Privacidade garantida.</p>
+          </div>
+          <div class="feature-item" data-toast="Relatórios Pro: gráficos e previsões.">
+            <div class="icon"><i class="ph ph-chart-bar"></i></div>
+            <h4>Relatórios Pro</h4>
+            <p>Gráficos em tempo real e previsões financeiras.</p>
+          </div>
+        </div>
+      </div>
 
-                <div class="profile-card">
-                    <div style="background: #1565C0; padding: 1rem;">
-                        <span class="profile-badge" style="background: #1565C0; color: white;">Modo Lojista</span>
-                    </div>
-                    <img src="img/print_loja.png" alt="Tela Loja" class="profile-image">
-                    <p class="profile-description">Controle de estoque e vendas online. Integre múltiplos canais em um único dashboard.</p>
-                </div>
+      <div class="hero-mockup-container">
+        <img src="img/hero_phone_mockup.png" alt="Dashboard Metricora" class="hero-phone-image" id="phoneMock" />
+      </div>
+    </section>
+
+    <section class="stats-section">
+      <div class="stats-grid">
+        <div class="stat-card reveal">
+          <div class="stat-number" data-count="39392">0</div>
+          <div class="stat-label">Negócios Controlados</div>
+        </div>
+        <div class="stat-card reveal" style="transition-delay: .05s;">
+          <div class="stat-number" data-static="394,9 MB">394,9 MB</div>
+          <div class="stat-label">Ultra Compacto</div>
+        </div>
+        <div class="stat-card reveal" style="transition-delay: .1s;">
+          <div class="stat-number" data-static="7 Minutos">7 Minutos</div>
+          <div class="stat-label">Setup Completo</div>
+        </div>
+        <div class="stat-card reveal" style="transition-delay: .15s;">
+          <div class="stat-number" data-static="∞">∞</div>
+          <div class="stat-label">Atualizações Grátis</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="demo-section" id="demo">
+      <div class="demo-header reveal">
+        <h2>Um Cérebro. Múltiplas Faces.</h2>
+        <p>O design se adapta automaticamente ao nicho da sua empresa. Veja o poder do Metricora em ação:</p>
+      </div>
+
+      <div class="video-wrapper reveal" style="transition-delay: .05s;">
+        <video controls preload="metadata" poster="img/print_barber.png">
+          <source src="demo.mp4" type="video/mp4" />
+          Seu navegador não suporta a tag de vídeo.
+        </video>
+      </div>
+
+      <div class="profiles-section" id="perfis">
+        <div class="profiles-grid">
+          <div class="profile-card reveal" data-toast="Modo Barber: comissões e metas em tempo real.">
+            <div style="background: #000; padding: 1rem;">
+              <span class="profile-badge" style="background: #FFD700; color: #000;">Modo Barber</span>
             </div>
-        </div>
-    </div>
+            <img src="img/print_barber.png" alt="Tela Barbearia" class="profile-image" />
+            <p class="profile-description">Comissões automáticas e fluxo rápido. Controle seus barbeiros e suas metas em tempo real.</p>
+          </div>
 
-    <div class="guarantee-section">
-        <h3>🛡️ Risco Zero Absoluto</h3>
-        <p>Baixe, instale e teste. Se não aumentar sua organização em 7 dias, devolvemos 100% do seu dinheiro. Sem perguntas, sem burocracia.</p>
-        <a href="https://buy.stripe.com/28E14f1OmeCC5lj3shgfu01" class="btn btn-primary">ATIVAR MINHA LICENÇA AGORA</a>
-    </div>
+          <div class="profile-card reveal" style="transition-delay: .05s;" data-toast="Modo Confeitaria: custos de ingredientes e encomendas.">
+            <div style="background: #E91E63; padding: 1rem;">
+              <span class="profile-badge" style="background: #E91E63; color: white;">Modo Confeitaria</span>
+            </div>
+            <img src="img/print_confeitaria.png" alt="Tela Confeitaria" class="profile-image" />
+            <p class="profile-description">Precificação de ingredientes e encomendas. Automatize a gestão de receitas e custos.</p>
+          </div>
+
+          <div class="profile-card reveal" style="transition-delay: .1s;" data-toast="Modo Lojista: estoque, vendas e dashboard unificado.">
+            <div style="background: #1565C0; padding: 1rem;">
+              <span class="profile-badge" style="background: #1565C0; color: white;">Modo Lojista</span>
+            </div>
+            <img src="img/print_loja.png" alt="Tela Loja" class="profile-image" />
+            <p class="profile-description">Controle de estoque e vendas online. Integre múltiplos canais em um único dashboard.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="guarantee-section reveal" id="garantia">
+      <h3>🛡️ Risco Zero Absoluto</h3>
+      <p>Baixe, instale e teste. Se não aumentar sua organização em 7 dias, devolvemos 100% do seu dinheiro. Sem perguntas, sem burocracia.</p>
+      <a href="https://buy.stripe.com/28E14f1OmeCC5lj3shgfu01" class="btn btn-primary">ATIVAR MINHA LICENÇA AGORA</a>
+    </section>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-col">
-                <h3 style="color: white; font-weight: 800; font-size: 1.4rem; margin-bottom: 1rem;">VECTORIUM</h3>
-                <p>Desenvolvemos soluções financeiras inteligentes para pequenos negócios que pensam grande.</p>
-                <p><strong>Missão:</strong> Eliminar a complexidade e colocar o controle de volta na mão do empreendedor.</p>
-            </div>
-
-            <div class="footer-col">
-                <h4>Produto</h4>
-                <a href="#">Metricora Pro</a>
-                <a href="#">Atualizações (Roadmap)</a>
-                <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.3/metricora_v1.0.3.apk">Download Versão Piloto</a>
-                <a href="https://buy.stripe.com/28E14f1OmeCC5lj3shgfu01">Comprar Licença ➔</a>
-            </div>
-
-            <div class="footer-col">
-                <h4>Empresa</h4>
-                <p><strong>Vectorium Systems Ltda</strong></p>
-                <p>CPF: 062.439.855-20</p>
-                <p>📧 suporte@vectorium.tec.br</p>
-                <p>📍 Bahia, Brasil</p>
-            </div>
+      <div class="footer-content">
+        <div class="footer-col">
+          <h3 style="color: white; font-weight: 800; font-size: 1.4rem; margin-bottom: 1rem;">VECTORIUM</h3>
+          <p>Desenvolvemos soluções financeiras inteligentes para pequenos negócios que pensam grande.</p>
+          <p><strong>Missão:</strong> Eliminar a complexidade e colocar o controle de volta na mão do empreendedor.</p>
         </div>
 
-        <div class="footer-bottom">
-            <p>&copy; 2025 Vectorium Systems. Todos os direitos reservados.</p>
-            <div style="margin-top: 1rem;">
-                <a href="termos.html">Termos de Uso</a> | 
-                <a href="privacidade.html">Política de Privacidade</a>
-            </div>
+        <div class="footer-col">
+          <h4>Produto</h4>
+          <a href="#comprar">Metricora Pro</a>
+          <a href="#demo">Demonstração</a>
+          <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.3/metricora_v1.0.3.apk">Download Versão Piloto</a>
+          <a href="https://buy.stripe.com/28E14f1OmeCC5lj3shgfu01">Comprar Licença ➔</a>
         </div>
+
+        <div class="footer-col">
+          <h4>Empresa</h4>
+          <p><strong>Vectorium Systems Ltda</strong></p>
+          <p>CNPJ: 062.439.855-20</p>
+          <p>📧 suporte@vectorium.tec.br</p>
+          <p>📍 Bahia, Brasil</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Vectorium Systems. Todos os direitos reservados.</p>
+        <div style="margin-top: 1rem;">
+          <a href="#" id="openTerms">Termos de Uso</a> |
+          <a href="#" id="openPrivacy">Política de Privacidade</a>
+        </div>
+      </div>
     </footer>
+  </main>
 
+  <!-- Toast -->
+  <div id="toast" class="fixed left-1/2 -translate-x-1/2 bottom-6 z-[70] hidden" aria-live="polite" aria-atomic="true">
+    <div class="rounded-xl border border-white/10 bg-black/60 backdrop-blur-xl px-4 py-3 text-sm text-slate-100 shadow-xl">
+      <span id="toastText"></span>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 z-[80] hidden">
+    <div class="absolute inset-0 bg-black/60" data-close></div>
+    <div class="relative mx-auto mt-16 w-[min(920px,92vw)] rounded-2xl border border-white/10 bg-[#0D1117]/90 backdrop-blur-xl shadow-2xl">
+      <div class="flex items-center justify-between gap-4 border-b border-white/10 px-5 py-4">
+        <h3 id="modalTitle" class="text-lg font-extrabold" style="font-family: 'Poppins', sans-serif;"></h3>
+        <button class="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-100 hover:bg-white/10" data-close>
+          Fechar
+        </button>
+      </div>
+      <div id="modalBody" class="px-5 py-5 text-sm leading-7 text-slate-200"></div>
+      <div class="px-5 pb-5 text-xs text-slate-400">Documento informativo (mock) para esta landing. Substitua pelo seu conteúdo jurídico oficial.</div>
+    </div>
+  </div>
+
+  <!-- Back to top -->
+  <a href="#comprar" id="backTop" class="backtop btn btn-secondary" style="min-width: auto; padding: .7rem .9rem; border-radius: 999px;">
+    <i class="ph ph-arrow-up"></i>
+  </a>
+
+  <script>
+    // Reveal on scroll
+    const reveals = Array.from(document.querySelectorAll('.reveal'));
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) e.target.classList.add('in');
+      }
+    }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+
+    // Count-up for first stat
+    function animateCount(el, to) {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) { el.textContent = to.toLocaleString('pt-BR'); return; }
+
+      const start = 0;
+      const duration = 900;
+      const t0 = performance.now();
+
+      function tick(now) {
+        const p = Math.min(1, (now - t0) / duration);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const val = Math.round(start + (to - start) * eased);
+        el.textContent = val.toLocaleString('pt-BR');
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    const statToCount = document.querySelector('[data-count]');
+    if (statToCount) {
+      const to = Number(statToCount.getAttribute('data-count'));
+      const io2 = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            animateCount(statToCount, to);
+            io2.disconnect();
+            break;
+          }
+        }
+      }, { threshold: 0.35 });
+      io2.observe(statToCount);
+    }
+
+    // Parallax tilt on the mockup (subtle)
+    const phone = document.getElementById('phoneMock');
+    let raf = null;
+    function onMove(ev) {
+      if (!phone) return;
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) return;
+
+      const x = (ev.clientX / window.innerWidth) * 2 - 1;
+      const y = (ev.clientY / window.innerHeight) * 2 - 1;
+      const rx = (-y * 3).toFixed(2);
+      const ry = (x * 6).toFixed(2);
+
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        phone.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      });
+    }
+    window.addEventListener('mousemove', onMove, { passive: true });
+
+    // Back to top visibility
+    const backTop = document.getElementById('backTop');
+    function onScroll() {
+      if (!backTop) return;
+      const show = window.scrollY > 700;
+      backTop.classList.toggle('show', show);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Tiny toast helper
+    const toast = document.getElementById('toast');
+    const toastText = document.getElementById('toastText');
+    let toastTimer = null;
+
+    function showToast(text) {
+      if (!toast || !toastText) return;
+      toastText.textContent = text;
+      toast.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('hidden'), 2200);
+    }
+
+    // Click-to-toast on feature/profile cards
+    document.querySelectorAll('[data-toast]').forEach(el => {
+      el.addEventListener('click', () => showToast(el.getAttribute('data-toast')));
+    });
+
+    // Track CTA clicks (demo telemetry in console)
+    function track(name) {
+      try {
+        const payload = { name, ts: new Date().toISOString(), path: location.pathname };
+        console.log('[metricora_event]', payload);
+      } catch (_) {}
+    }
+    document.getElementById('ctaBuy')?.addEventListener('click', () => track('click_buy'));
+    document.getElementById('ctaDownload')?.addEventListener('click', () => track('click_download'));
+
+    // Modal for terms/privacy (mock content)
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+
+    function openModal(title, html) {
+      modalTitle.textContent = title;
+      modalBody.innerHTML = html;
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('openTerms')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal('Termos de Uso', `
+        <p><strong>1. Aceitação</strong> Ao utilizar esta página e/ou adquirir o Metricora, você concorda com estes termos.</p>
+        <p><strong>2. Licença</strong> Licença de uso do software (vitalícia), vinculada ao comprador, conforme condições de venda.</p>
+        <p><strong>3. Entrega</strong> Entrega imediata após confirmação do pagamento no checkout.</p>
+        <p><strong>4. Suporte</strong> Suporte via e-mail: <a class="underline" href="mailto:suporte@vectorium.tec.br">suporte@vectorium.tec.br</a>.</p>
+        <p class="mt-3">Substitua este texto por seu documento oficial.</p>
+      `);
+    });
+
+    document.getElementById('openPrivacy')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal('Política de Privacidade', `
+        <p><strong>1. Coleta</strong> Esta landing não exige cadastro para navegação.</p>
+        <p><strong>2. Pagamento</strong> O checkout é processado via Stripe; dados de pagamento são tratados pelo provedor.</p>
+        <p><strong>3. Contato</strong> Ao nos contatar, você pode fornecer e-mail para retorno.</p>
+        <p class="mt-3">Substitua este texto por sua política oficial.</p>
+      `);
+    });
+
+    modal?.addEventListener('click', (e) => {
+      const t = e.target;
+      if (t && (t.hasAttribute('data-close') || t.closest('[data-close]'))) closeModal();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) closeModal();
+    });
+
+    // If images/videos are missing in this environment, keep layout nice
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('error', () => {
+        img.style.opacity = '0.0';
+        img.style.height = '0';
+        img.style.margin = '0';
+      });
+    });
+  </script>
 </body>
 </html>
