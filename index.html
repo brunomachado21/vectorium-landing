@@ -5,18 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Metricora | Gestão Inteligente</title>
 
-  <!-- Tailwind (required) -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" />
 
-  <!-- Icons -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-  <!-- Favicon (will gracefully fail if missing) -->
   <link rel="icon" type="image/png" href="img/favicon.png" />
 
   <style>
@@ -220,7 +216,7 @@
       max-width: 900px;
       height: auto;
       filter: drop-shadow(0 40px 80px rgba(0,0,0,0.5));
-      transform-origin: 50% 60%;
+      /* Removido o transform-origin para evitar qualquer eixo de rotação estranho */
     }
 
     .stats-section {
@@ -348,7 +344,7 @@
     .footer-bottom a { color: var(--text-muted); text-decoration: none; margin: 0 1rem; transition: color 0.2s; }
     .footer-bottom a:hover { color: var(--accent-cyan); }
 
-    /* Tiny top bar (uses Tailwind utility feel but implemented in CSS to match the rest) */
+    /* Topbar */
     .topbar {
       position: fixed;
       top: 0;
@@ -440,7 +436,6 @@
   </style>
 </head>
 <body>
-  <!-- Topbar -->
   <header class="topbar">
     <div class="topbar-inner">
       <div class="flex items-center gap-3">
@@ -620,14 +615,12 @@
     </footer>
   </main>
 
-  <!-- Toast -->
   <div id="toast" class="fixed left-1/2 -translate-x-1/2 bottom-6 z-[70] hidden" aria-live="polite" aria-atomic="true">
     <div class="rounded-xl border border-white/10 bg-black/60 backdrop-blur-xl px-4 py-3 text-sm text-slate-100 shadow-xl">
       <span id="toastText"></span>
     </div>
   </div>
 
-  <!-- Modal -->
   <div id="modal" class="fixed inset-0 z-[80] hidden">
     <div class="absolute inset-0 bg-black/60" data-close></div>
     <div class="relative mx-auto mt-16 w-[min(920px,92vw)] rounded-2xl border border-white/10 bg-[#0D1117]/90 backdrop-blur-xl shadow-2xl">
@@ -642,7 +635,6 @@
     </div>
   </div>
 
-  <!-- Back to top -->
   <a href="#comprar" id="backTop" class="backtop btn btn-secondary" style="min-width: auto; padding: .7rem .9rem; border-radius: 999px;">
     <i class="ph ph-arrow-up"></i>
   </a>
@@ -691,25 +683,8 @@
       io2.observe(statToCount);
     }
 
-    // Parallax tilt on the mockup (subtle)
-    const phone = document.getElementById('phoneMock');
-    let raf = null;
-    function onMove(ev) {
-      if (!phone) return;
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (prefersReduced) return;
-
-      const x = (ev.clientX / window.innerWidth) * 2 - 1;
-      const y = (ev.clientY / window.innerHeight) * 2 - 1;
-      const rx = (-y * 3).toFixed(2);
-      const ry = (x * 6).toFixed(2);
-
-      if (raf) cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        phone.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg)`;
-      });
-    }
-    window.addEventListener('mousemove', onMove, { passive: true });
+    // REMOVIDO: O script que fazia o celular girar e ficar torto com o mouse.
+    // Agora o celular ficará estático e reto.
 
     // Back to top visibility
     const backTop = document.getElementById('backTop');
@@ -807,3 +782,24 @@
   </script>
 </body>
 </html>
+      .hero-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      min-height: 100vh;
+      padding: 8rem 4rem 4rem;
+      max-width: 1600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-content {
+      z-index: 2;
+    }
+
+    .logo-header {
+      max-width: 150px;
+      margin-bottom: 2rem;
+    }
