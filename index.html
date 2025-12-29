@@ -5,6 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Metricora | Gestão Inteligente</title>
 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://vectorium.tec.br/" />
+  <meta property="og:title" content="Metricora - Gestão Financeira de Elite" />
+  <meta property="og:description" content="Elimine planilhas e assuma o controle total do seu negócio. Sem mensalidades." />
+  <meta property="og:image" content="https://vectorium.tec.br/img/hero_phone_mockup.png" />
+
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    
+    // Pixel Configurado com seu ID
+    fbq('init', '1215025004067870'); 
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1215025004067870&ev=PageView&noscript=1"
+  /></noscript>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -63,11 +86,10 @@
     h1, h2, h3, .btn { font-family: 'Poppins', sans-serif; }
     code, .mono { font-family: 'Space Mono', monospace; }
 
-    /* LAYOUT - Aumentei o GAP para afastar o celular do texto */
     .hero-wrapper {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
-      gap: 5rem; /* Aumentado de 2rem para 5rem (Isso resolve o toque) */
+      gap: 5rem;
       align-items: center;
       min-height: 100vh;
       padding: 3rem 2rem;
@@ -203,12 +225,11 @@
     .feature-item h4 { font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 700; }
     .feature-item p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
 
-    /* MOCKUP CONTAINER - Ajustado para não tocar no texto */
     .hero-mockup-container {
       position: relative;
       display: flex;
       justify-content: center;
-      margin-left: 0; /* Zerei a margem negativa que puxava pra esquerda */
+      margin-left: 0;
       margin-bottom: -100px;
       pointer-events: none;
     }
@@ -218,7 +239,6 @@
       max-width: 900px;
       height: auto;
       filter: drop-shadow(0 40px 80px rgba(0,0,0,0.5));
-      /* Removido transform-origin pois não vamos mais girar */
     }
 
     .stats-section {
@@ -346,7 +366,6 @@
     .footer-bottom a { color: var(--text-muted); text-decoration: none; margin: 0 1rem; transition: color 0.2s; }
     .footer-bottom a:hover { color: var(--accent-cyan); }
 
-    /* Topbar */
     .topbar {
       position: fixed;
       top: 0;
@@ -392,11 +411,9 @@
 
     .navlink:hover { color: var(--text-primary); background: rgba(255,255,255,0.06); }
 
-    /* Reveal animations */
     .reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.in { opacity: 1; transform: translateY(0); }
 
-    /* Back to top */
     .backtop {
       position: fixed;
       right: 1.25rem;
@@ -410,7 +427,6 @@
 
     .backtop.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
-    /* Responsive */
     @media (max-width: 1024px) {
       .hero-wrapper { grid-template-columns: 1fr; gap: 3rem; min-height: auto; padding: 6rem 2rem 2rem; text-align: center; }
       .hero-mockup-container { margin: 0; order: 2; }
@@ -685,9 +701,6 @@
       io2.observe(statToCount);
     }
 
-    // REMOVIDO: O script que fazia o celular girar e ficar torto com o mouse.
-    // Agora o celular ficará estático e reto.
-
     // Back to top visibility
     const backTop = document.getElementById('backTop');
     function onScroll() {
@@ -784,13 +797,3 @@
   </script>
 </body>
 </html>
-      .logo-header {
-      width: 180px;
-      height: auto;
-      margin-bottom: 2rem;
-    }
-
-    .logo-header img {
-      width: 100%;
-      height: auto;
-    }
