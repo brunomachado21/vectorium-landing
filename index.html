@@ -23,7 +23,7 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     
-    // Pixel Configurado (Seu ID: 1215025004067870)
+    // Pixel Configurado
     fbq('init', '1215025004067870'); 
     fbq('track', 'PageView');
   </script>
@@ -293,7 +293,16 @@
     }
 
     .profiles-section { margin: 4rem 0; }
-    .profiles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+    
+    /* Grid centralizado para os Cards */
+    .profiles-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+      gap: 2rem; 
+      margin-bottom: 4rem; 
+      justify-content: center; /* Centraliza o grid */
+      justify-items: center;   /* Centraliza os itens dentro do grid */
+    }
 
     .profile-card {
       border: 1px solid var(--border-color);
@@ -303,6 +312,8 @@
       backdrop-filter: blur(10px);
       transition: all 0.3s ease;
       cursor: pointer;
+      width: 100%;
+      max-width: 380px; /* Limita largura do card para não esticar demais */
     }
 
     .profile-card:hover {
@@ -323,7 +334,18 @@
       border-radius: 6px;
     }
 
-    .profile-image { width: 100%; height: auto; display: block; background: rgba(0, 0, 0, 0.2); }
+    .profile-image { 
+      width: 100%; 
+      height: auto; 
+      display: block; 
+      background: rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease; 
+    }
+    
+    .profile-card:hover .profile-image {
+      transform: scale(1.02); /* Leve zoom ao passar mouse */
+    }
+
     .profile-description { padding: 1.5rem 1rem; color: var(--text-secondary); font-size: 0.95rem; font-weight: 500; }
 
     .guarantee-section {
@@ -498,7 +520,7 @@
              id="ctaDownload" 
              download
              onclick="fbq('track', 'Lead');">
-            DOWNLOAD PILOTO <i class="ph ph-download-simple"></i>
+            DOWNLOAD PILOTO (BAIXE VERSÃO FREE/GRÁTIS)<i class="ph ph-download-simple"></i>
           </a>
         </div>
 
@@ -575,7 +597,7 @@
             <div style="background: #000; padding: 1rem;">
               <span class="profile-badge" style="background: #FFD700; color: #000;">Modo Barber</span>
             </div>
-            <img src="img/print_barber.png" alt="Tela Barbearia" class="profile-image" />
+            <img src="img/print_barber.png" alt="Tela Barbearia" class="profile-image" onclick="openImageModal(this.src)" />
             <p class="profile-description">Comissões automáticas e fluxo rápido. Controle seus barbeiros e suas metas em tempo real.</p>
           </div>
 
@@ -583,7 +605,7 @@
             <div style="background: #E91E63; padding: 1rem;">
               <span class="profile-badge" style="background: #E91E63; color: white;">Modo Confeitaria</span>
             </div>
-            <img src="img/print_confeitaria.png" alt="Tela Confeitaria" class="profile-image" />
+            <img src="img/print_confeitaria.png" alt="Tela Confeitaria" class="profile-image" onclick="openImageModal(this.src)" />
             <p class="profile-description">Precificação de ingredientes e encomendas. Automatize a gestão de receitas e custos.</p>
           </div>
 
@@ -591,7 +613,7 @@
             <div style="background: #1565C0; padding: 1rem;">
               <span class="profile-badge" style="background: #1565C0; color: white;">Modo Lojista</span>
             </div>
-            <img src="img/print_loja.png" alt="Tela Loja" class="profile-image" />
+            <img src="img/print_loja.png" alt="Tela Loja" class="profile-image" onclick="openImageModal(this.src)" />
             <p class="profile-description">Controle de estoque e vendas online. Integre múltiplos canais em um único dashboard.</p>
           </div>
         </div>
@@ -601,7 +623,7 @@
     <section class="max-w-6xl mx-auto px-6 md:px-12 reveal">
       <div class="demo-header" style="margin-top: -2rem; margin-bottom: 3rem;">
         <h2>Inteligência & Relatórios</h2>
-        <p>Veja como a IA e os PDFs profissionais trabalham para você.</p>
+        <p>Clique nas imagens para ver os detalhes da IA e dos Relatórios.</p>
       </div>
 
       <div class="profiles-section" style="margin-top: 0;">
@@ -611,7 +633,7 @@
             <div style="background: #1A1A1A; padding: 1rem;">
               <span class="profile-badge" style="background: #FFD700; color: #000;">Coach de Marketing</span>
             </div>
-            <img src="img/print_ia_1.png" alt="Conselho de Marketing IA 1" class="profile-image" />
+            <img src="img/print_ia_1.png" alt="Conselho de Marketing IA 1" class="profile-image" onclick="openImageModal(this.src)" />
             <p class="profile-description">Receba ideias prontas de postagens e legendas. O fim do bloqueio criativo.</p>
           </div>
 
@@ -619,7 +641,7 @@
             <div style="background: #1A1A1A; padding: 1rem;">
               <span class="profile-badge" style="background: #FFA500; color: #000;">Estratégia de Venda</span>
             </div>
-            <img src="img/print_ia_2.png" alt="Conselho de Marketing IA 2" class="profile-image" />
+            <img src="img/print_ia_2.png" alt="Conselho de Marketing IA 2" class="profile-image" onclick="openImageModal(this.src)" />
             <p class="profile-description">Técnicas de Upsell personalizadas para fazer o cliente gastar mais.</p>
           </div>
 
@@ -627,7 +649,7 @@
             <div style="background: #1A1A1A; padding: 1rem;">
               <span class="profile-badge" style="background: #F44336; color: white;">Relatórios PDF</span>
             </div>
-            <img src="img/print_pdf_dre.png" alt="Relatório DRE PDF" class="profile-image" />
+            <img src="img/print_pdf_dre.png" alt="Relatório DRE PDF" class="profile-image" onclick="openImageModal(this.src)" />
             <p class="profile-description">Gere DREs contábeis e análises de lucro em PDF para enviar ao contador ou sócios.</p>
           </div>
 
@@ -635,10 +657,10 @@
       </div>
     </section>
 
-    <section class="max-w-5xl mx-auto my-24 px-8 md:px-16 reveal">
+    <section class="max-w-4xl mx-auto my-24 px-8 md:px-16 reveal">
       <div class="grid md:grid-cols-2 gap-8">
         
-        <div class="p-8 rounded-2xl border border-[#00D47E]/30 bg-[#00D47E]/5 backdrop-blur-sm relative overflow-hidden group hover:bg-[#00D47E]/10 transition-colors shadow-lg shadow-green-900/10">
+        <div class="p-8 rounded-2xl border border-[#00D47E]/30 bg-[#00D47E]/5 backdrop-blur-sm relative overflow-hidden group hover:bg-[#00D47E]/10 transition-colors shadow-lg shadow-green-900/10 flex flex-col h-full">
           <div class="absolute -right-6 -top-6 text-[#00D47E]/10 text-9xl">
             <i class="ph-fill ph-android-logo"></i>
           </div>
@@ -648,7 +670,7 @@
             <h3 class="text-xl font-bold text-white">Compatibilidade Garantida</h3>
           </div>
           
-          <ul class="space-y-4 text-slate-300">
+          <ul class="space-y-4 text-slate-300 mb-8 flex-grow">
             <li class="flex items-start gap-3">
               <div class="mt-1"><i class="ph-bold ph-device-mobile text-[#00D47E]"></i></div>
               <span><strong>Celulares Android</strong> (8.0 ou superior)</span>
@@ -662,42 +684,47 @@
               <span>Funciona 100% Offline</span>
             </li>
           </ul>
+
+          <div class="flex flex-col items-center gap-2 mt-auto">
+            <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.4/metricora_v1.0.4.apk" 
+               class="bg-transparent border-2 border-[#00D47E] text-[#00D47E] hover:bg-[#00D47E] hover:text-black transition-all duration-300 px-8 py-4 rounded-xl font-bold text-lg flex items-center gap-3 group w-full justify-center"
+               download
+               onclick="fbq('track', 'Lead');">
+               
+               <i class="ph-bold ph-download-simple text-2xl group-hover:animate-bounce"></i>
+               
+               <div class="flex flex-col text-left leading-tight">
+                 <span>BAIXAR GRÁTIS</span>
+                 <span class="text-xs font-normal opacity-80">Versão Piloto • Sem cartão</span>
+               </div>
+            </a>
+            <span class="text-slate-500 text-xs text-center">
+              <i class="ph-fill ph-android-logo text-[#00D47E]"></i> 
+              Requer Android 8.0+
+            </span>
+          </div>
         </div>
 
-        <div class="p-8 rounded-2xl border border-red-500/20 bg-red-500/5 backdrop-blur-sm relative overflow-hidden shadow-lg shadow-red-900/10">
+        <div class="p-8 rounded-2xl border border-red-500/20 bg-red-500/5 backdrop-blur-sm relative overflow-hidden shadow-lg shadow-red-900/10 flex flex-col h-full">
           <div class="flex items-center gap-3 mb-5">
             <i class="ph-fill ph-warning-circle text-3xl text-red-400"></i>
             <h3 class="text-xl font-bold text-white">Incompatível</h3>
           </div>
           
-          <p class="text-slate-400 mb-6 text-sm leading-relaxed">
+          <p class="text-slate-400 mb-6 text-sm leading-relaxed flex-grow">
             O Metricora foi desenhado exclusivamente para a mobilidade do sistema Android.
+            <br><br>
+            <strong>Não funciona em:</strong> iPhone (iOS), Windows Phone ou Computadores (PC/Mac).
           </p>
-
-          <div class="flex flex-col items-center gap-2">
-  
-  <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.4/metricora_v1.0.4.apk" 
-     class="bg-transparent border-2 border-[#00D47E] text-[#00D47E] hover:bg-[#00D47E] hover:text-black transition-all duration-300 px-8 py-4 rounded-xl font-bold text-lg flex items-center gap-3 group w-full md:w-auto justify-center"
-     download
-     onclick="fbq('track', 'Lead');">
-     
-     <i class="ph-bold ph-download-simple text-2xl group-hover:animate-bounce"></i>
-     
-     <div class="flex flex-col text-left leading-tight">
-       <span>BAIXAR GRÁTIS</span>
-       <span class="text-xs font-normal opacity-80">Versão Piloto • Sem cartão</span>
-     </div>
-  </a>
-
-  <span class="text-slate-500 text-xs">
-    <i class="ph-fill ph-android-logo text-[#00D47E]"></i> 
-    Requer Android 8.0+
-  </span>
-
-</div>
+          
+          <div class="mt-auto pt-4 border-t border-red-500/20 text-center">
+              <span class="text-red-400 text-xs uppercase font-bold tracking-widest">Apenas Android</span>
+          </div>
         </div>
+
       </div>
     </section>
+    
     <section class="guarantee-section reveal" id="garantia">
       <h3>🛡️ Risco Zero Absoluto</h3>
       <p>Baixe, instale e teste. Se não aumentar sua organização em 7 dias, devolvemos 100% do seu dinheiro. Sem perguntas, sem burocracia.</p>
@@ -756,6 +783,13 @@
       </div>
       <div id="modalBody" class="px-5 py-5 text-sm leading-7 text-slate-200"></div>
       <div class="px-5 pb-5 text-xs text-slate-400">Documento informativo (mock) para esta landing. Substitua pelo seu conteúdo jurídico oficial.</div>
+    </div>
+  </div>
+  
+  <div id="imageModal" class="fixed inset-0 z-[90] hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 cursor-pointer" onclick="closeImageModal()">
+    <img id="imageModalSrc" src="" alt="Zoom" class="max-w-full max-h-full rounded-lg shadow-2xl transition-transform duration-300 scale-95 border border-white/10" />
+    <div class="absolute top-4 right-4 text-white/50 hover:text-white">
+      <i class="ph-bold ph-x text-3xl"></i>
     </div>
   </div>
 
@@ -832,25 +866,22 @@
 
     // Click-to-toast on feature/profile cards
     document.querySelectorAll('[data-toast]').forEach(el => {
-      el.addEventListener('click', () => showToast(el.getAttribute('data-toast')));
+      el.addEventListener('click', (e) => {
+        // Se clicar na imagem, não mostra o toast (abre o modal)
+        if(e.target.tagName !== 'IMG') {
+            showToast(el.getAttribute('data-toast'));
+        }
+      });
     });
 
     // --- RASTREAMENTO AVANÇADO (CONSOLE + FACEBOOK PIXEL) ---
-    // Substituindo o track original pelo correto para eventos
     function track(name) {
       try {
-        // 1. Mostra no console do navegador (para você conferir)
         console.log('[metricora_event]', { name, ts: new Date().toISOString() });
-
-        // 2. Manda o sinal para o Facebook (O QUE ESTAVA FALTANDO)
         if (typeof fbq === 'function') {
-          
-          // Se clicou em COMPRAR -> Dispara "InitiateCheckout"
           if (name === 'click_buy') {
             fbq('track', 'InitiateCheckout', { currency: 'BRL', value: 97.90 }); 
           }
-          
-          // Se clicou em DOWNLOAD -> Dispara "Lead"
           if (name === 'click_download') {
             fbq('track', 'Lead'); 
           }
@@ -863,7 +894,7 @@
     document.getElementById('ctaBuy')?.addEventListener('click', () => track('click_buy'));
     document.getElementById('ctaDownload')?.addEventListener('click', () => track('click_download'));
 
-    // Modal for terms/privacy (TEXTOS REAIS DE MODELO)
+    // Modal for terms/privacy
     const modal = document.getElementById('modal');
     const modalTitle = document.getElementById('modalTitle');
     const modalBody = document.getElementById('modalBody');
@@ -884,49 +915,16 @@
       e.preventDefault();
       openModal('Termos de Uso', `
         <p class="mb-4">Ao baixar ou usar o aplicativo Metricora, você concorda automaticamente com estes termos.</p>
-        
         <h4 class="font-bold text-white mt-4 mb-2">1. Concessão de Licença</h4>
-        <p class="mb-3">A Vectorium Systems concede a você uma licença pessoal, intransferível e não exclusiva para usar o software Metricora em seus dispositivos. A venda ou redistribuição do arquivo instalador (.apk) é estritamente proibida (Pirataria).</p>
-
-        <h4 class="font-bold text-white mt-4 mb-2">2. Licença Vitalícia</h4>
-        <p class="mb-3">A compra da licença "Vitalícia" garante o acesso ao uso do software por tempo indeterminado, sem cobrança de mensalidades recorrentes. A Vectorium Systems se reserva o direito de definir quais atualizações futuras estarão inclusas nesta licença.</p>
-
-        <h4 class="font-bold text-white mt-4 mb-2">3. Isenção de Responsabilidade</h4>
-        <p class="mb-2">O Metricora é uma ferramenta de auxílio à gestão. A Vectorium Systems <strong>não se responsabiliza</strong> por:</p>
-        <ul class="list-disc pl-5 mb-3 space-y-1">
-            <li>Erros de cálculo decorrentes de dados inseridos incorretamente pelo usuário.</li>
-            <li>Prejuízos financeiros ou decisões de negócio tomadas com base nas sugestões da IA.</li>
-            <li>Perda de dados caso o usuário não faça backups regulares ou perca o dispositivo.</li>
-        </ul>
-
-        <h4 class="font-bold text-white mt-4 mb-2">4. Reembolso</h4>
-        <p class="mb-3">Conforme o Código de Defesa do Consumidor (Brasil), oferecemos garantia de arrependimento de 7 dias após a compra, desde que comprovado que o software não atendeu às funcionalidades prometidas.</p>
-      `);
+        <p class="mb-3">A Vectorium Systems concede a você uma licença pessoal, intransferível e não exclusiva para usar o software Metricora em seus dispositivos.</p>
+        `);
     });
 
     document.getElementById('openPrivacy')?.addEventListener('click', (e) => {
       e.preventDefault();
       openModal('Política de Privacidade', `
         <p class="mb-4 text-xs text-slate-400"><strong>Última atualização:</strong> 14 de Dezembro de 2025</p>
-        <p class="mb-4">A Vectorium Systems ("nós") desenvolveu o aplicativo <strong>Metricora</strong> como um serviço Comercial. Esta página informa aos visitantes sobre nossas políticas de coleta, uso e divulgação de Informações Pessoais.</p>
-
-        <h4 class="font-bold text-white mt-4 mb-2">1. Coleta e Armazenamento de Dados</h4>
-        <p class="mb-3">O Metricora opera sob o princípio de <strong>"Privacidade em Primeiro Lugar"</strong> (Privacy First). Todos os dados financeiros, registros de vendas e informações de clientes inseridos no aplicativo são armazenados <strong>localmente no dispositivo do usuário</strong> (banco de dados SQLite Offline).</p>
-        <p class="mb-3">Nós NÃO temos acesso aos seus dados financeiros. Eles não são enviados para nenhum servidor externo da Vectorium Systems.</p>
-
-        <h4 class="font-bold text-white mt-4 mb-2">2. Permissões do Dispositivo</h4>
-        <p class="mb-2">O aplicativo pode solicitar as seguintes permissões:</p>
-        <ul class="list-disc pl-5 mb-3 space-y-1">
-            <li><strong>Armazenamento:</strong> Para salvar backups e gerar relatórios PDF no seu dispositivo.</li>
-            <li><strong>Notificações:</strong> Para enviar lembretes locais de lançamento de caixa.</li>
-        </ul>
-
-        <h4 class="font-bold text-white mt-4 mb-2">3. Pagamentos</h4>
-        <p class="mb-3">Os pagamentos da licença são processados pela <strong>Stripe</strong>. Nós não armazenamos os dados do seu cartão de crédito. A política de privacidade da Stripe pode ser consultada no site deles.</p>
-
-        <h4 class="font-bold text-white mt-4 mb-2">4. Contato</h4>
-        <p class="mb-3">Se tiver dúvidas sobre esta política, entre em contato: <a href="mailto:suporte@vectorium.tec.br" class="text-accent-cyan hover:underline">suporte@vectorium.tec.br</a></p>
-      `);
+        `);
     });
 
     modal?.addEventListener('click', (e) => {
@@ -935,17 +933,50 @@
     });
 
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) closeModal();
+      if (e.key === 'Escape') {
+        if (modal && !modal.classList.contains('hidden')) closeModal();
+        closeImageModal();
+      }
     });
+    
+    // --- LÓGICA DO LIGHTBOX DE IMAGEM ---
+    const imageModal = document.getElementById('imageModal');
+    const imageModalSrc = document.getElementById('imageModalSrc');
 
-    // If images/videos are missing in this environment, keep layout nice
-    document.querySelectorAll('img').forEach(img => {
-      img.addEventListener('error', () => {
-        img.style.opacity = '0.0';
-        img.style.height = '0';
-        img.style.margin = '0';
-      });
-    });
+    function openImageModal(src) {
+        if (!imageModal || !imageModalSrc) return;
+        imageModalSrc.src = src;
+        imageModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Trava a rolagem
+        // Pequeno delay para animação de zoom
+        setTimeout(() => imageModalSrc.classList.remove('scale-95'), 10);
+    }
+
+    function closeImageModal() {
+        if (!imageModal || !imageModalSrc) return;
+        imageModal.classList.add('hidden');
+        imageModalSrc.classList.add('scale-95');
+        document.body.style.overflow = ''; // Destrava rolagem
+    }
+
   </script>
 </body>
 </html>
+    .profiles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .profile-card {
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      background: var(--secondary-dark);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
