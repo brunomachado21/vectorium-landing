@@ -520,8 +520,10 @@
              id="ctaDownload" 
              download
              onclick="fbq('track', 'Lead');">
-            DOWNLOAD PILOTO (BAIXE VERSÃO FREE/GRÁTIS)<i class="ph ph-download-simple"></i>
-          </a>
+            BAIXAR GRÁTIS (Versão Piloto • Sem cartão)<i class="ph ph-download-simple"></i>
+          <a href="#" id="openInstallHelp" class="text-xs text-slate-500 underline hover:text-[#00D47E] mt-2 block">
+  Apareceu um aviso? Veja como instalar
+</a>
         </div>
 
         <p class="reveal" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0; transition-delay: .2s;">
@@ -926,7 +928,28 @@
         <p class="mb-4 text-xs text-slate-400"><strong>Última atualização:</strong> 14 de Dezembro de 2025</p>
         `);
     });
+    document.getElementById('openInstallHelp')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal('Como Instalar o Metricora', `
+        <div class="space-y-4 text-slate-300">
+          <p>Como nosso app é exclusivo e não está na Play Store, o Android pode emitir um alerta padrão. Fique tranquilo, o app é seguro.</p>
+          
+          <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+            <h4 class="font-bold text-[#00D47E] mb-2">Passo 1: Baixar</h4>
+            <p class="text-sm">Se aparecer "O arquivo pode ser nocivo", toque em <strong>"Fazer o download mesmo assim"</strong>.</p>
+          </div>
 
+          <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+            <h4 class="font-bold text-[#00D47E] mb-2">Passo 2: Instalar</h4>
+            <p class="text-sm">Ao abrir, se pedir permissão de "Fontes Desconhecidas", toque em <strong>Configurações</strong> e ative a chave <strong>"Permitir desta fonte"</strong>.</p>
+          </div>
+
+          <div class="text-center mt-4">
+            <p class="text-xs text-slate-500">Isso acontece apenas na primeira instalação.</p>
+          </div>
+        </div>
+      `);
+    });
     modal?.addEventListener('click', (e) => {
       const t = e.target;
       if (t && (t.hasAttribute('data-close') || t.closest('[data-close]'))) closeModal();
