@@ -216,6 +216,48 @@
             .progress-bar { width: 100%; }
             .main-card { padding-left: 25px; padding-right: 25px; }
         }
+        /* --- CSS DO SELO DE SEGURANÇA --- */
+.security-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  background: rgba(0, 212, 126, 0.05); /* Fundo verde bem suave */
+  padding: 0.5rem 1rem;
+  border-radius: 99px;
+  border: 1px solid rgba(0, 212, 126, 0.2);
+  width: fit-content;
+}
+
+.security-badge i {
+  color: var(--accent-green);
+  font-size: 1.1rem;
+}
+
+.security-badge a {
+  color: var(--accent-green);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px dotted var(--accent-green);
+  margin-left: 0.3rem;
+  transition: all 0.2s;
+}
+
+.security-badge a:hover {
+  color: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+}
+
+/* Ajuste para mobile na Landing Page */
+@media (max-width: 768px) {
+  .security-badge {
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+}
     </style>
 </head>
 <body>
@@ -249,7 +291,16 @@
                     <span class="btn-icon">⬇</span> BAIXAR INSTALADOR (v1.0.5)
                 </a>
 
-                <div class="warning-box">
+                <div style="display: flex; justify-content: center; margin-top: 15px;">
+    <div class="security-badge" style="background: rgba(35, 134, 54, 0.1); border-color: rgba(35, 134, 54, 0.3);">
+      <i class="ph-fill ph-shield-check" style="color: #238636; margin-right: 5px;"></i>
+      <span style="color: #c9d1d9;">Scan de Segurança: <strong>Aprovado</strong>.</span>
+      <a href="https://www.virustotal.com/gui/file/017b986c23adf0dc102d59f059b31b9eca9f75a8ae33b1a2d04048e5274ee309/details" target="_blank" style="color: #238636; border-color: #238636;">
+        Ver Relatório
+      </a>
+    </div>
+</div>
+<div class="warning-box">
                     <span class="warning-icon">⚠️</span>
                     <p><strong>Aviso:</strong> Se o navegador disser que "o arquivo pode ser nocivo", clique em <strong>"Manter mesmo assim"</strong>. Nosso app é seguro e verificado.</p>
                 </div>
