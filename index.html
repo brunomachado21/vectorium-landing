@@ -41,11 +41,45 @@
   <link rel="icon" type="image/png" href="img/favicon.png" />
 
   <style>
-    /* --- BOTÃO FLUTUANTE DO WHATSAPP --- */
-    .whatsapp-float {
+    /* --- BOTÃO FLUTUANTE COM FECHAR --- */
+    .whatsapp-wrapper {
       position: fixed;
       bottom: 20px;
-      left: 20px; /* Fica na esquerda para não cobrir o botão de subir */
+      left: 20px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      animation: pulse-green 2s infinite;
+    }
+
+    /* O botãozinho X para fechar */
+    .whatsapp-close {
+      position: absolute;
+      top: -10px;
+      right: -5px;
+      background-color: #333;
+      color: white;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 12px;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      transition: all 0.2s;
+    }
+
+    .whatsapp-close:hover {
+      background-color: #ff4444;
+      transform: scale(1.1);
+    }
+
+    /* O botão do Zap em si */
+    .whatsapp-link {
       background-color: #25D366;
       color: #FFF;
       border-radius: 50px;
@@ -53,7 +87,6 @@
       font-size: 15px;
       font-weight: 700;
       box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-      z-index: 999;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -63,22 +96,20 @@
       border: 1px solid rgba(255,255,255,0.2);
     }
 
-    .whatsapp-float:hover {
+    .whatsapp-link:hover {
       background-color: #1ebc57;
       transform: translateY(-3px);
       box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
       color: white;
     }
 
-    .whatsapp-float i {
-      font-size: 1.4rem;
-    }
+    .whatsapp-link i { font-size: 1.4rem; }
 
-    /* Animação de "Pulso" para chamar atenção */
+    /* Animação */
     @keyframes pulse-green {
-      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-      70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
     }
     
     .whatsapp-float {
@@ -661,7 +692,7 @@
           <div class="stat-label">Negócios Controlados</div>
         </div>
         <div class="stat-card reveal" style="transition-delay: .05s;">
-          <div class="stat-number" data-static="394,9 MB">394,9 MB</div>
+          <div class="stat-number" data-static="200,9 MB">200,9 MB</div>
           <div class="stat-label">Ultra Compacto</div>
         </div>
         <div class="stat-card reveal" style="transition-delay: .1s;">
@@ -904,13 +935,21 @@
   <a href="#comprar" id="backTop" class="backtop btn btn-secondary" style="min-width: auto; padding: .7rem .9rem; border-radius: 999px;">
     <i class="ph ph-arrow-up"></i>
   </a>
-  <a href="https://wa.me/5577981037422?text=Olá, tenho dúvidas sobre o Metricora e gostaria de falar com o suporte." 
-     class="whatsapp-float" 
-     target="_blank"
-     onclick="fbq('track', 'Contact');">
-    <i class="ph-fill ph-whatsapp-logo"></i>
-    <span>Dúvidas? Fale Conosco</span>
-  </a>
+  <div class="whatsapp-wrapper" id="wa-div">
+    
+    <button class="whatsapp-close" onclick="document.getElementById('wa-div').style.display='none'" aria-label="Fechar suporte">
+      <i class="ph-bold ph-x"></i>
+    </button>
+
+    <a href="https://wa.me/5577981037422?text=Olá, tenho dúvidas sobre o Metricora e gostaria de falar com o suporte." 
+       class="whatsapp-link" 
+       target="_blank"
+       onclick="fbq('track', 'Contact');">
+      <i class="ph-fill ph-whatsapp-logo"></i>
+      <span>Dúvidas? Fale Conosco</span>
+    </a>
+
+  </div>
   <script>
     // Reveal on scroll
     const reveals = Array.from(document.querySelectorAll('.reveal'));
