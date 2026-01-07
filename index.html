@@ -1064,19 +1064,56 @@
       document.body.style.overflow = '';
     }
 
+    // --- ATUALIZAÇÃO DOS MODAIS JURÍDICOS (Copie daqui para baixo) ---
+
     document.getElementById('openTerms')?.addEventListener('click', (e) => {
       e.preventDefault();
-      openModal('Termos de Uso', `
-        <p class="mb-4">Ao baixar ou usar o aplicativo Metricora, você concorda automaticamente com estes termos.</p>
-        <h4 class="font-bold text-white mt-4 mb-2">1. Concessão de Licença</h4>
-        <p class="mb-3">A Vectorium Systems concede a você uma licença pessoal, intransferível e não exclusiva para usar o software Metricora em seus dispositivos.</p>
+      openModal('Termos de Uso e Licença', `
+        <div class="space-y-4 text-slate-300">
+            <p class="text-xs text-slate-500">Última atualização: Janeiro de 2026</p>
+            
+            <h4 class="font-bold text-white mt-4">1. Concessão de Licença (Dispositivo Único)</h4>
+            <p>A Vectorium Systems concede a você uma licença de uso pessoal. Devido à segurança do software, <strong>cada chave é válida para ativação em apenas 1 (um) dispositivo móvel</strong>, vinculada ao ID do hardware.</p>
+            
+            <h4 class="font-bold text-white mt-4">2. Política de Troca de Aparelho</h4>
+            <ul class="list-disc pl-5 space-y-2">
+                <li><strong>Cortesia Anual:</strong> O cliente tem direito a <strong>1 (uma) substituição de chave gratuita a cada 12 meses</strong> (para casos de troca de celular, perda ou roubo).</li>
+                <li><strong>Excedente:</strong> Trocas adicionais no mesmo período estão sujeitas a uma Taxa Administrativa de Reativação.</li>
+            </ul>
+
+            <h4 class="font-bold text-white mt-4">3. Sobre o "Vitalício"</h4>
+            <p>Garante o uso da versão adquirida por tempo indeterminado enquanto você possuir um dispositivo compatível, sem mensalidades. Novas versões principais (ex: 2.0) podem ser vendidas separadamente.</p>
+
+            <h4 class="font-bold text-white mt-4">4. Isenção de Responsabilidade</h4>
+            <div class="bg-yellow-500/10 border border-yellow-500/20 p-3 rounded text-yellow-200 text-xs">
+                <strong>Atenção:</strong> O Metricora é Offline. Seus dados ficam salvos <strong>apenas no seu celular</strong>. Não nos responsabilizamos por perda de dados se o usuário não fizer backups regulares.
+            </div>
+            
+            <h4 class="font-bold text-white mt-4">5. Garantia</h4>
+            <p>Garantimos reembolso integral em até 7 dias após a compra, conforme Art. 49 do CDC.</p>
+        </div>
         `);
     });
 
     document.getElementById('openPrivacy')?.addEventListener('click', (e) => {
       e.preventDefault();
       openModal('Política de Privacidade', `
-        <p class="mb-4 text-xs text-slate-400"><strong>Última atualização:</strong> 03 de Janeiro de 2026</p>
+        <div class="space-y-4 text-slate-300">
+            <p class="text-xs text-slate-500">Última atualização: Janeiro de 2026</p>
+
+            <h4 class="font-bold text-[#00D47E] mt-2">1. Dados Financeiros (Offline)</h4>
+            <p>Operamos sob o princípio "Privacy First". Seus registros de vendas e lucro são armazenados <strong>localmente no seu dispositivo</strong> (SQLite). A Vectorium Systems NÃO tem acesso a esses dados.</p>
+
+            <h4 class="font-bold text-[#00D47E] mt-4">2. Dados de Licença</h4>
+            <p>Para gerar sua chave vitalícia, coletamos e armazenamos o <strong>ID do Dispositivo (Android ID)</strong> e seu e-mail de compra. Esses dados são usados estritamente para validação contra pirataria.</p>
+
+            <h4 class="font-bold text-[#00D47E] mt-4">3. Pagamentos</h4>
+            <p>Processados via Stripe. Não armazenamos números de cartão de crédito.</p>
+
+            <div class="mt-6 pt-4 border-t border-white/10 text-center text-xs text-slate-500">
+                Dúvidas? suporte@vectorium.tec.br
+            </div>
+        </div>
         `);
     });
     document.getElementById('openInstallHelp')?.addEventListener('click', (e) => {

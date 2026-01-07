@@ -6,34 +6,47 @@
     <link rel="icon" type="image/png" href="img/favicon.png">
     <title>Política de Privacidade | Metricora</title>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
-        h1 { color: #1565C0; }
-        h2 { color: #333; margin-top: 30px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; }
+        h1 { color: #000; border-bottom: 2px solid #1565C0; padding-bottom: 10px; }
+        h2 { color: #1a1a1a; margin-top: 30px; font-size: 1.2rem; }
+        p, li { font-size: 0.95rem; margin-bottom: 10px; }
+        .highlight { background-color: #e3f2fd; padding: 15px; border-left: 4px solid #1565C0; border-radius: 4px; }
     </style>
 </head>
 <body>
     <h1>Política de Privacidade</h1>
-    <p><strong>Última atualização:</strong> 14 de Dezembro de 2025</p>
+    <p><strong>Última atualização:</strong> Janeiro de 2026</p>
 
     <p>A Vectorium Systems ("nós") desenvolveu o aplicativo <strong>Metricora</strong> como um serviço Comercial. Esta página informa aos visitantes sobre nossas políticas de coleta, uso e divulgação de Informações Pessoais.</p>
 
-    <h2>1. Coleta e Armazenamento de Dados</h2>
-    <p>O Metricora opera sob o princípio de <strong>"Privacidade em Primeiro Lugar"</strong> (Privacy First). Todos os dados financeiros, registros de vendas e informações de clientes inseridos no aplicativo são armazenados <strong>localmente no dispositivo do usuário</strong> (banco de dados SQLite Offline).</p>
-    <p>Nós NÃO temos acesso aos seus dados financeiros. Eles não são enviados para nenhum servidor externo da Vectorium Systems.</p>
+    <h2>1. O Princípio "Offline First" (Seus Dados Financeiros)</h2>
+    <div class="highlight">
+        <p><strong>Resumo:</strong> O que acontece no seu celular, fica no seu celular.</p>
+    </div>
+    <p>O Metricora opera com armazenamento local (SQLite). Todos os dados sensíveis inseridos no aplicativo (vendas, custos, lucros, nomes de clientes) são salvos <strong>exclusivamente na memória interna do seu dispositivo</strong>.</p>
+    <p>Nós da Vectorium Systems <strong>NÃO temos acesso</strong>, não visualizamos e não fazemos backup em nuvem dos seus dados financeiros. A responsabilidade pelo backup (exportação) é inteiramente do usuário.</p>
 
-    <h2>2. Permissões do Dispositivo</h2>
-    <p>O aplicativo pode solicitar as seguintes permissões:</p>
+    <h2>2. Dados que Coletamos (Para Licenciamento)</h2>
+    <p>Embora não tenhamos acesso ao seu financeiro, coletamos dados técnicos mínimos necessários para validar sua compra e evitar pirataria:</p>
     <ul>
-        <li><strong>Armazenamento:</strong> Para salvar backups e gerar relatórios PDF no seu dispositivo.</li>
-        <li><strong>Notificações:</strong> Para enviar lembretes locais de lançamento de caixa.</li>
+        <li><strong>ID do Dispositivo (Android ID):</strong> Coletamos o identificador único do seu hardware para gerar a Chave de Licença Vitalícia e vinculá-la ao seu aparelho.</li>
+        <li><strong>Dados de Compra:</strong> Nome e E-mail informados no checkout (Stripe) para envio da chave e suporte técnico.</li>
     </ul>
 
-    <h2>3. Pagamentos</h2>
-    <p>Os pagamentos da licença são processados pela <strong>Stripe</strong>. Nós não armazenamos os dados do seu cartão de crédito. A política de privacidade da Stripe pode ser consultada no site deles.</p>
+    <h2>3. Permissões do Android</h2>
+    <p>O aplicativo solicita apenas permissões essenciais para funcionamento:</p>
+    <ul>
+        <li><strong>Armazenamento (Storage):</strong> Necessário estritamente para que <em>você</em> possa salvar os relatórios PDF e arquivos de Backup no seu próprio celular.</li>
+        <li><strong>Notificações:</strong> Usadas para lembretes locais (ex: "Fechar o caixa"), sem envio de dados externos.</li>
+    </ul>
 
-    <h2>4. Contato</h2>
-    <p>Se tiver dúvidas sobre esta política, entre em contato: <strong>suporte@vectorium.tec.br</strong></p>
+    <h2>4. Pagamentos</h2>
+    <p>Todas as transações são processadas pela <strong>Stripe</strong> (gateway de pagamento internacional). A Vectorium Systems <strong>não tem acesso nem armazena</strong> os dados do seu cartão de crédito. A segurança da transação é garantida pela criptografia SSL da Stripe.</p>
 
-    <p><a href="index.html">← Voltar para o site</a></p>
+    <h2>5. Contato e Exclusão de Dados</h2>
+    <p>Caso deseje remover seu registro de cliente da nossa base de suporte (o que invalidará sua chave de licença), entre em contato:</p>
+    <p>📧 <strong>suporte@vectorium.tec.br</strong></p>
+
+    <p style="margin-top: 40px;"><a href="index.html" style="text-decoration: none; font-weight: bold; color: #1565C0;">← Voltar para o site</a></p>
 </body>
 </html>
