@@ -593,12 +593,26 @@
     
   </style>
 </head>
-<body>
-  <div id="preloader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 0.8s ease;">
-    <video id="introVideo" width="300" muted autoplay playsinline>
-    <source src="1768312553669.mp4" type="video/mp4">
-</video>
-
+<div id="preloader" style="
+    position: fixed; 
+    inset: 0; 
+    width: 100%; 
+    height: 100vh; 
+    background: #000; 
+    z-index: 9999; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    overflow: hidden; 
+    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);">
+    
+    <video id="introVideo" 
+           muted 
+           autoplay 
+           playsinline 
+           style="width: 100%; height: 100%; object-fit: cover; max-width: 100vw;">
+        <source src="1768312553669.mp4" type="video/mp4">
+    </video>
 </div>
 
   <header class="topbar">
