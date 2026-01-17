@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestão para Confeitaria: Como Calcular Lucro Real | Metricora</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    :root {
+      --primary-dark: #0D1117;
+      --secondary-dark: #161B22;
+      --accent-green: #00D47E;
+      --accent-pink: #E91E63; /* Cor específica da confeitaria no app */
+      --text-primary: #E6EDF3;
+      --text-secondary: #8B949E;
+      --border-color: #30363D;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--primary-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-green) 0%, #00a860 100%);
+      color: #06371E;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-transform: uppercase;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .reveal { opacity: 0; transform: translateY(14px); transition: all .7s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    .topbar {
+      background: rgba(13, 17, 23, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <a href="index.html" style="color: var(--text-secondary); text-decoration: none; font-weight: 600;">
+        <i class="ph ph-arrow-left"></i> Voltar ao Início
+      </a>
+      <img src="img/logo.png" alt="Metricora" style="height: 30px; filter: brightness(0) invert(1);">
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-6 py-16">
+    
+    <article class="reveal">
+      <span style="color: var(--accent-pink); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">Especialista em Confeitaria</span>
+      <h1 class="text-4xl md:text-6xl font-black mt-4 mb-8" style="font-family: 'Poppins'; line-height: 1.1;">
+        Pare de pagar para trabalhar: O guia de lucro para <span style="color: var(--accent-pink);">Confeiteiras</span>.
+      </h1>
+
+      <p class="text-xl text-slate-400 mb-10">
+        Você passa horas na cozinha, entrega bolos incríveis, mas no final do mês parece que o dinheiro só deu para repor os ingredientes? O segredo não está na receita, mas na <strong>precificação inteligente</strong>.
+      </p>
+
+      <div class="space-y-12">
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">1. Controle o custo de cada grama</h2>
+          <p class="text-slate-300">
+            Farinha, manteiga e chocolate mudam de preço toda semana. No Metricora, você atualiza o custo dos insumos e o app ajusta automaticamente o lucro das suas encomendas. Chega de palpites.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">2. Lucro Real por Encomenda</h2>
+          <p class="text-slate-300">
+            Sabe aquele bolo de 2kg que deu um trabalhão? O Metricora te mostra exatamente quanto sobrou no seu bolso depois de descontar a embalagem, a luz e até a entrega. Faturamento é ego, lucro é realidade.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">3. Organização sem planilhas chatas</h2>
+          <p class="text-slate-300">
+            Nós sabemos que você prefere estar decorando um bolo do que preenchendo o Excel. O Metricora é visual, simples e funciona 100% no seu celular. Gestão de elite em dois cliques.
+          </p>
+        </section>
+      </div>
+
+      <div class="mt-16 p-8 rounded-2xl border border-[#E91E63]/30 bg-[#E91E63]/5 text-center">
+        <h3 class="text-2xl font-bold mb-4">Transforme sua paixão em um negócio lucrativo.</h3>
+        <p class="mb-8 text-slate-400">O caderninho de receitas é ótimo, mas o de finanças precisa ser digital e profissional.</p>
+        
+        <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.7/metricora_app_releasev1.0.7.apk" 
+           class="btn btn-primary" 
+           style="background: linear-gradient(135deg, var(--accent-pink) 0%, #c2185b 100%); color: white;"
+           download>
+           BAIXAR MÉTRICORA GRÁTIS <i class="ph ph-download-simple"></i>
+        </a>
+        <p class="text-xs text-slate-500 mt-4">🔒 Verificado: Livre de Vírus | Exclusivo para Android</p>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="py-12 border-t border-white/10 text-center text-slate-500 text-sm">
+    <p>&copy; 2026 Vectorium Systems. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    const reveals = Array.from(document.querySelectorAll('.reveal'));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
