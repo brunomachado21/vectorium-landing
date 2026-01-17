@@ -601,10 +601,12 @@
         <span class="chip"><i class="ph ph-lightning"></i> Entrega imediata</span>
       </div>
       <nav class="flex items-center gap-1">
-  <a class="navlink" href="#demo">Demo</a>
-  <a class="navlink" href="#perfis">Perfis</a>
-  <a class="navlink" href="#dicas">Dicas de Gestão</a> <a class="navlink" href="#download" style="color: var(--accent-green);">Baixar Agora</a>
+  <a class="navlink" href="salao.html">Salões</a>
+  <a class="navlink" href="confeitaria.html">Confeitaria</a>
+  <a class="navlink" href="vendedores.html">Vendedores</a>
+  <a class="navlink" href="#download" style="color: var(--accent-green);">Baixar Grátis</a>
 </nav>
+
 
     </div>
   </header>
@@ -717,28 +719,40 @@
 
       <div class="profiles-section" id="perfis">
         <div class="profiles-grid">
-          <div class="profile-card reveal" data-toast="Modo Barber: comissões e metas em tempo real.">
-            <div style="background: #000; padding: 1rem;">
-              <span class="profile-badge" style="background: #FFD700; color: #000;">Modo Barber</span>
-            </div>
-            <img src="img/print_barber.png" alt="Tela Barbearia" class="profile-image" onclick="openImageModal(this.src)" />
-            <p class="profile-description">Comissões automáticas e fluxo rápido. Controle seus barbeiros e suas metas em tempo real.</p>
-          </div>
+  <a href="salao.html" class="profile-card reveal" style="text-decoration: none;">
+    <div style="background: #000; padding: 1rem;">
+      <span class="profile-badge" style="background: #FFD700; color: #000;">Modo Barber</span>
+    </div>
+    <img src="img/print_barber.png" alt="Tela Barbearia" class="profile-image" />
+    <p class="profile-description">
+      Sente que o lucro do salão "some"? <br>
+      <span style="color: var(--accent-green); font-weight: bold;">Veja como organizar ➔</span>
+    </p>
+  </a>
 
-          <div class="profile-card reveal" style="transition-delay: .05s;" data-toast="Modo Confeitaria: custos de ingredientes e encomendas.">
-            <div style="background: #E91E63; padding: 1rem;">
-              <span class="profile-badge" style="background: #E91E63; color: white;">Modo Confeitaria</span>
-            </div>
-            <img src="img/print_confeitaria.png" alt="Tela Confeitaria" class="profile-image" onclick="openImageModal(this.src)" />
-            <p class="profile-description">Precificação de ingredientes e encomendas. Automatize a gestão de receitas e custos.</p>
-          </div>
+  <a href="confeitaria.html" class="profile-card reveal" style="transition-delay: .05s; text-decoration: none;">
+    <div style="background: #E91E63; padding: 1rem;">
+      <span class="profile-badge" style="background: #E91E63; color: white;">Modo Confeitaria</span>
+    </div>
+    <img src="img/print_confeitaria.png" alt="Tela Confeitaria" class="profile-image" />
+    <p class="profile-description">
+      Não sabe o lucro real dos seus bolos? <br>
+      <span style="color: var(--accent-green); font-weight: bold;">Calcule seu lucro aqui ➔</span>
+    </p>
+  </a>
 
-          <div class="profile-card reveal" style="transition-delay: .1s;" data-toast="Modo Lojista: estoque, vendas e dashboard unificado.">
-            <div style="background: #1565C0; padding: 1rem;">
-              <span class="profile-badge" style="background: #1565C0; color: white;">Modo Lojista</span>
-            </div>
-            <img src="img/print_loja.png" alt="Tela Loja" class="profile-image" onclick="openImageModal(this.src)" />
-            <p class="profile-description">Controle de estoque e vendas online. Integre múltiplos canais em um único dashboard.</p>
+  <a href="vendedores.html" class="profile-card reveal" style="transition-delay: .1s; text-decoration: none;">
+    <div style="background: #1565C0; padding: 1rem;">
+      <span class="profile-badge" style="background: #1565C0; color: white;">Modo Vendedor</span>
+    </div>
+    <img src="img/print_loja.png" alt="Tela Loja" class="profile-image" />
+    <p class="profile-description">
+      O ROAS do anúncio está caro? <br>
+      <span style="color: var(--accent-green); font-weight: bold;">Veja seu ROI real ➔</span>
+    </p>
+  </a>
+</div>
+ class="profile-description">Controle de estoque e vendas online. Integre múltiplos canais em um único dashboard.</p>
           </div>
         </div>
       </div>
