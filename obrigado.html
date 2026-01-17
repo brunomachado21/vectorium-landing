@@ -1,15 +1,59 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="img/favicon.png">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
-    
-    <title>Pedido Confirmado | Metricora</title>
+    <title>Bem-vindo à Elite | Metricora PRO</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        /* --- CORES & FUNDO VECTORIUM --- */
+        :root {
+            --primary-dark: #0D1117;
+            --accent-green: #00D47E;
+            --accent-blue: #00D9FF;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at top center, #1a2230 0%, #0D1117 100%);
+            color: #E6EDF3;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, .btn { font-family: 'Poppins', sans-serif; }
+
+        /* --- ANIMAÇÕES INTERATIVAS --- */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pointDown {
+            0%, 100% { transform: translateY(0); opacity: 0.8; }
+            50% { transform: translateY(10px); opacity: 1; }
+        }
+
+        .interactive-float { animation: float 4s ease-in-out infinite; }
+        .pointer-arrow { animation: pointDown 1.5s ease-in-out infinite; }
+
+        .btn-shine {
+            position: relative; overflow: hidden;
+        }
+        .btn-shine::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(30deg); transition: all 0.3s; opacity: 0;
+        }
+        .btn-shine:hover::after { animation: shine 1s forwards; opacity: 1; }
+        @keyframes shine { from { left: -50%; } to { left: 150%; } }
+    </style>
 
     <script>
         !function(f,b,e,v,n,t,s)
@@ -20,345 +64,109 @@
         t.src=v;s=b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
-        
-        // Pixel Configurado
         fbq('init', '1215025004067870'); 
         fbq('track', 'PageView');
-
-        // MARCA A VENDA DE R$ 97,90
-        fbq('track', 'Purchase', {
-            currency: 'BRL', 
-            value: 97.90,
-            content_name: 'Licenca Vitalicia Metricora'
-        });
+        // MARCA A COMPRA PRO
+        fbq('track', 'Purchase', { currency: 'BRL', value: 97.90, content_name: 'Licenca Vitalicia Metricora PRO' });
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=1215025004067870&ev=PageView&noscript=1"
-    /></noscript>
-    <style>
-        /* --- CONFIGURAÇÕES GERAIS E CORES --- */
-        :root {
-            --primary-blue: #0D1117;      
-            --button-blue: #238636;       
-            --danger-red: #f85149;        
-            --danger-bg: rgba(248, 81, 73, 0.1); 
-            --warning-bg: rgba(210, 153, 34, 0.15); 
-            --warning-text: #e3b341;      
-            --text-dark: #c9d1d9;         
-            --text-light: #8b949e;        
-            --bg-page: #010409;           
-            --green-accent: #00D47E;      
-            --card-bg: #161B22;           
-            --border-color: #30363D;      
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-page);
-            color: var(--text-dark);
-            line-height: 1.5;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        h1, h2, h3, h4, .btn { font-family: 'Poppins', sans-serif; }
-
-        .main-header {
-            background-color: var(--primary-blue);
-            color: white;
-            text-align: center;
-            padding: 2rem 1rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .header-logo {
-            max-width: 160px;
-            height: auto;
-            margin-bottom: 1rem;
-            filter: brightness(0) invert(1);
-        }
-
-        .header-title {
-            font-size: 2rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0;
-        }
-
-        .hero-section {
-            position: relative;
-            background: linear-gradient(rgba(10, 37, 64, 0.7), rgba(10, 37, 64, 0.7)), url('img/barber_bg.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 350px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            padding-bottom: 50px;
-            z-index: 1;
-        }
-
-        .phone-mockup {
-            width: 360px; 
-            height: auto;
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5)); 
-            position: relative;
-            bottom: -100px; 
-            z-index: 2;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
-        }
-        
-        @media (min-width: 1024px) {
-            .phone-mockup {
-                width: 580px; 
-                bottom: -200px; 
-                filter: drop-shadow(0 35px 70px rgba(0,0,0,0.6)); 
-            }
-            .header-title { font-size: 4rem; padding: 1rem 0; }
-            .hero-section { height: 750px; padding-bottom: 100px; }
-            .main-card { max-width: 1200px; padding: 220px 80px 80px 80px; }
-            .step-title { font-size: 2.2rem; }
-            .btn-download { font-size: 1.5rem; padding: 25px; }
-            .email-field { font-size: 1.4rem; padding: 20px; }
-            .btn-email { font-size: 1.2rem; padding: 18px 40px; }
-        }
-
-        .content-container {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            padding: 0 20px 60px 20px;
-            margin-top: -60px;
-            position: relative;
-            z-index: 3;
-        }
-
-        .main-card {
-            background: var(--card-bg);
-            width: 100%;
-            max-width: 650px;
-            border: 1px solid var(--border-color);
-            color: var(--text-dark);
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
-            padding: 100px 30px 40px 30px;
-            text-align: left;
-        }
-
-        .step-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-        .step-title-group { display: flex; align-items: center; }
-        
-        .step-number {
-            background-color: var(--button-blue);
-            color: white;
-            width: 32px; height: 32px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700; margin-right: 15px;
-        }
-        .step-title { color: #ffffff; }
-        .progress-bar { height: 8px; width: 150px; background-color: #E0E6ED; border-radius: 4px; overflow: hidden; }
-        .progress-fill { height: 100%; width: 50%; background-color: var(--green-accent); }
-        .step-description { color: var(--text-light); margin-bottom: 25px; font-size: 1rem; }
-
-        .btn { text-decoration: none; border-radius: 50px; transition: all 0.2s; cursor: pointer; }
-        
-        .btn-download {
-            display: flex; align-items: center; justify-content: center; width: 100%; padding: 16px;
-            background-color: var(--button-blue); color: white; font-weight: 700; font-size: 1.1rem; border-radius: 12px;
-        }
-        .btn-download:hover { background-color: var(--primary-blue); transform: translateY(-2px); }
-
-        .warning-box {
-            background-color: var(--warning-bg); border: 1px solid #FFEEBA; color: var(--warning-text);
-            padding: 15px; border-radius: 12px; font-size: 0.9rem; display: flex; align-items: flex-start; margin-top: 20px;
-        }
-        .warning-icon { margin-right: 10px; font-size: 1.1rem; }
-
-        .activation-section {
-            margin-top: 40px; background-color: var(--danger-bg); border: 2px dashed var(--danger-red);
-            border-radius: 20px; padding: 30px; text-align: center;
-        }
-        .activation-header {
-            color: var(--danger-red); font-weight: 800; font-size: 1.1rem; text-transform: uppercase;
-            display: flex; align-items: center; justify-content: center; margin-bottom: 15px;
-        }
-        .lock-icon { margin-right: 10px; font-size: 1.2rem; }
-        .activation-text { color: var(--text-dark); font-size: 0.95rem; margin-bottom: 20px; }
-
-        .email-field {
-            background: #0D1117; color: var(--text-dark); border: 1px solid var(--border-color);
-            padding: 12px; border-radius: 8px; font-family: 'Inter', monospace; font-weight: 600; font-size: 1.1rem;
-            display: inline-block; margin-bottom: 25px; width: 100%; max-width: 350px;
-        }
-
-        .btn-email {
-            display: inline-flex; align-items: center; justify-content: center; padding: 14px 30px;
-            background-color: var(--danger-red); color: white; font-weight: 700; font-size: 1rem;
-            box-shadow: 0 4px 6px rgba(211, 47, 47, 0.2);
-        }
-        .btn-email:hover { background-color: #B71C1C; transform: translateY(-2px); }
-        .btn-arrow { margin-left: 10px; }
-
-        .main-footer {
-            background-color: var(--primary-blue); color: rgba(255,255,255,0.7);
-            text-align: center; padding: 30px 20px; font-size: 0.9rem; margin-top: auto;
-        }
-        .footer-links { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
-        .btn-icon { margin-right: 8px; font-size: 1.2rem; }
-
-        @media (max-width: 767px) {
-            .step-header { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .progress-bar { width: 100%; }
-            .main-card { padding-left: 25px; padding-right: 25px; }
-        }
-        /* --- CSS DO SELO DE SEGURANÇA --- */
-.security-badge {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 0.8rem;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  background: rgba(0, 212, 126, 0.05); /* Fundo verde bem suave */
-  padding: 0.5rem 1rem;
-  border-radius: 99px;
-  border: 1px solid rgba(0, 212, 126, 0.2);
-  width: fit-content;
-}
-
-.security-badge i {
-  color: var(--accent-green);
-  font-size: 1.1rem;
-}
-
-.security-badge a {
-  color: var(--accent-green);
-  text-decoration: none;
-  font-weight: 600;
-  border-bottom: 1px dotted var(--accent-green);
-  margin-left: 0.3rem;
-  transition: all 0.2s;
-}
-
-.security-badge a:hover {
-  color: var(--accent-cyan);
-  border-color: var(--accent-cyan);
-}
-
-/* Ajuste para mobile na Landing Page */
-@media (max-width: 768px) {
-  .security-badge {
-    width: 100%;
-    justify-content: center;
-    margin-top: 1rem;
-  }
-}
-    </style>
 </head>
-<body>
 
-    <header class="main-header">
-        <img src="img/logo.png" alt="Metricora Logo" class="header-logo">
-        <h1 class="header-title">PEDIDO CONFIRMADO!</h1>
+<body class="flex flex-col items-center justify-center p-6 relative">
+
+    <header class="absolute top-0 left-0 w-full p-6 flex justify-center z-10">
+        <img src="img/logo.png" alt="Metricora Logo" class="h-8 brightness-0 invert opacity-80">
     </header>
 
-    <section class="hero-section">
-        <img src="img/phone_mockup.png" alt="Celular Metricora no App" class="phone-mockup">
-    </section>
-
-    <main class="content-container">
-        <div class="main-card">
-            
-            <div class="step-section">
-                <div class="step-header">
-                    <div class="step-title-group">
-                        <div class="step-number">1</div>
-                        <h2 class="step-title">Baixe o Aplicativo</h2>
-                    </div>
-                    <div class="progress-bar"><div class="progress-fill"></div></div>
-                </div>
-
-                <p class="step-description">
-                    Clique no botão abaixo para baixar a versão mais recente do Metricora diretamente no seu Android.
-                </p>
-
-                <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.7/metricora_app_releasev1.0.7.apk" class="btn btn-download" download>
-                    <span class="btn-icon">⬇</span> BAIXAR INSTALADOR (v1.0.7) <span class="btn-icon">⬇</span>
-                </a>
-
-                <div style="display: flex; justify-content: center; margin-top: 15px;">
-    <div class="security-badge" style="background: rgba(35, 134, 54, 0.1); border-color: rgba(35, 134, 54, 0.3);">
-      <i class="ph-fill ph-shield-check" style="color: #238636; margin-right: 5px;"></i>
-      <span style="color: #c9d1d9;">Scan de Segurança: <strong>Aprovado</strong>.</span>
-      <a href="https://www.virustotal.com/gui/file/017b986c23adf0dc102d59f059b31b9eca9f75a8ae33b1a2d04048e5274ee309/details" target="_blank" style="color: #238636; border-color: #238636;">
-        Ver Relatório
-      </a>
-    </div>
-</div>
-<div class="warning-box">
-                    <span class="warning-icon">⚠️</span>
-                    <p><strong>Aviso:</strong> Se o navegador disser que "o arquivo pode ser nocivo", clique em <strong>"Manter mesmo assim"</strong>. Nosso app é seguro e verificado.</p>
-                </div>
-            </div>
-
-            <div class="activation-section">
-                <div class="activation-header">
-                    <span class="lock-icon">🔒</span> ATIVAÇÃO OBRIGATÓRIA
-                </div>
-                
-                <p class="activation-text">
-                    Para liberar sua licença <strong>VITALÍCIA</strong>, precisamos validar seu pagamento manualmente.
-                    <br><br>
-                    Envie o comprovante para nosso <strong>WHATSAPP</strong>:
-                </p>
-
-                <div class="email-field">📱 (77) 98103-7422</div>
-
-                <a href="https://wa.me/5577981037422?text=Ola, comprei o Metricora! Aqui esta meu comprovante." class="btn btn-email">
-                    ENVIAR NO WHATSAPP <span class="btn-arrow">➔</span>
-                </a>
-            </div>
-
+    <main class="max-w-md w-full text-center mt-20 relative z-20">
+        
+        <div class="mb-8 reveal">
+            <span class="inline-block px-4 py-1 rounded-full bg-[#00D47E]/20 text-[#00D47E] font-bold text-sm mb-4 border border-[#00D47E]/30 uppercase tracking-wider">
+                Pedido Confirmado
+            </span>
+            <h1 class="text-4xl font-black leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">
+                Bem-vindo à Elite.<br>Você agora é <span class="text-[#00D47E]">PRO</span>.
+            </h1>
         </div>
+
+        <div class="relative mb-8 flex flex-col items-center justify-center">
+            <div class="interactive-float relative z-10">
+                <img src="img/hero_phone_mockup.png" alt="Metricora PRO no Celular" class="w-64 md:w-80 drop-shadow-2xl mx-auto">
+            </div>
+            
+            <div class="pointer-arrow mt-6 text-[#00D47E]">
+                <i class="ph-bold ph-arrow-down text-4xl filter drop-shadow-lg"></i>
+            </div>
+        </div>
+
+        <div class="space-y-6 reveal">
+            <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.7/metricora_app_releasev1.0.7.apk" 
+               class="btn btn-shine w-full flex items-center justify-center gap-3 bg-gradient-to-r from-[#00D47E] to-[#00a860] text-black font-bold text-lg py-4 px-8 rounded-xl shadow-lg shadow-[#00D47E]/20 hover:transform hover:-translate-y-1 transition-all"
+               download>
+               <i class="ph-bold ph-download-simple text-2xl"></i>
+               INSTALAR VERSÃO PRO (v1.0.7)
+            </a>
+
+            <div class="bg-blue-500/10 border border-blue-500/20 p-4 rounded-xl text-left flex gap-3 items-start text-sm text-blue-200">
+                <i class="ph-fill ph-info text-xl text-blue-400 flex-shrink-0 mt-0.5"></i>
+                <div>
+                    <strong>Dica de Instalação:</strong> Se o Android avisar sobre "arquivo desconhecido", é normal pois não estamos na loja. Clique em <strong>"Permitir"</strong> ou <strong>"Instalar mesmo assim"</strong>. É 100% seguro.
+                </div>
+            </div>
+
+            <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full text-xs text-slate-400">
+                <i class="ph-fill ph-shield-check text-[#00D47E] text-base"></i>
+                <span>Arquivo verificado: Livre de ameaças.</span>
+            </div>
+        </div>
+
+        <div class="mt-16 pt-10 border-t border-white/10 reveal">
+            <h3 class="text-xl font-bold text-white mb-4 flex items-center justify-center gap-2">
+                <i class="ph-fill ph-crown text-yellow-400"></i> Próximo Passo: Ativação VIP
+            </h3>
+            <p class="text-slate-400 text-sm mb-6">
+                Para garantir a segurança da sua licença vitalícia, finalize sua ativação com nosso suporte prioritário.
+            </p>
+            
+            <a href="https://wa.me/5577981037422?text=Olá! Acabei de comprar o Metricora PRO e já instalei o app. Gostaria de liberar minha licença vitalícia." 
+               target="_blank"
+               class="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold py-3 px-6 rounded-lg transition-all group w-full sm:w-auto mx-auto">
+                <i class="ph-fill ph-whatsapp-logo text-green-400 text-xl"></i>
+                <span>Falar com Suporte de Ativação</span>
+                <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition-transform"></i>
+            </a>
+        </div>
+
     </main>
 
-    <footer class="main-footer">
-        <div class="footer-links">
-            <span>🛡️ Pedido Seguro</span>
-            <span>📞 Suporte Vitalício</span>
-            <span>🇧🇷 Vectorium Systems</span>
-        </div>
+    <footer class="mt-20 text-center text-xs text-slate-500 pb-6 relative z-20">
+        <p>&copy; 2026 Vectorium Systems. Compra Segura & Vitalícia.</p>
     </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-<script>
-    // Dispara confetes assim que a página carrega
-    window.onload = function() {
-        var duration = 3 * 1000;
-        var animationEnd = Date.now() + duration;
-        var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        // Animação de entrada simples
+        document.querySelectorAll('.reveal').forEach((el, i) => {
+            el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                el.style.transition = 'all 0.8s ease';
+                el.style.opacity = '1'; el.style.transform = 'translateY(0)';
+            }, 100 + (i * 150));
+        });
 
-        function randomInRange(min, max) {
-          return Math.random() * (max - min) + min;
-        }
-
-        var interval = setInterval(function() {
-          var timeLeft = animationEnd - Date.now();
-
-          if (timeLeft <= 0) {
-            return clearInterval(interval);
-          }
-
-          var particleCount = 50 * (timeLeft / duration);
-          confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
-          confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
-        }, 250);
-    };
-</script>
+        // Confetes (Seu script original)
+        window.onload = function() {
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+            var interval = setInterval(function() {
+              var timeLeft = animationEnd - Date.now();
+              if (timeLeft <= 0) return clearInterval(interval);
+              var particleCount = 50 * (timeLeft / duration);
+              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        };
+    </script>
 </body>
 </html>
