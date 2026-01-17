@@ -601,51 +601,47 @@
         <span class="chip"><i class="ph ph-lightning"></i> Entrega imediata</span>
       </div>
       <nav class="flex items-center gap-1">
-        <a class="navlink" href="#demo">Demo</a>
-        <a class="navlink" href="#perfis">Perfis</a>
-        <a class="navlink" href="#garantia">Garantia</a>
-        <a class="navlink" href="#comprar">Comprar</a>
-      </nav>
+  <a class="navlink" href="#demo">Demo</a>
+  <a class="navlink" href="#perfis">Perfis</a>
+  <a class="navlink" href="#dicas">Dicas de Gestão</a> <a class="navlink" href="#download" style="color: var(--accent-green);">Baixar Agora</a>
+</nav>
+
     </div>
   </header>
 
   <main>
     <section class="hero-wrapper" id="comprar">
       <div class="hero-content">
-        <img src="img/logo.png" alt="Metricora" class="logo-header" />
+  <img src="img/logo.png" alt="Metricora" class="logo-header" />
 
-        <h1 class="reveal">Gestão financeira de elite. Sem complexidade.</h1>
+  <h1 class="reveal">Gestão financeira de elite. Sem complexidade.</h1>
 
-        <p class="reveal" style="transition-delay: .05s;">
-          O Metricora elimina planilhas, mensalidades e burocracia. Controle total do seu negócio em um único dashboard inteligente,
-          com sugestões de IA e privacidade absoluta.
-        </p>
+  <p class="reveal" style="transition-delay: .05s;">
+    O Metricora elimina a bagunça do caderninho e a burocracia. Controle total do seu lucro real em um dashboard inteligente feito para profissionais que não têm tempo a perder.
+  </p>
 
-        <div class="price-section reveal" style="transition-delay: .1s;">
-          <span class="price-old">De R$ 297,90</span>
-          <span class="price-new">R$ 97,90</span>
-          <span class="price-label">Vitalício • Pagamento Único</span>
-        </div>
+  <div class="cta-group reveal" style="transition-delay: .15s;" id="download">
+    <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.7/metricora_app_releasev1.0.7.apk" 
+       class="btn btn-primary" 
+       id="ctaDownloadHero" 
+       download
+       onclick="fbq('track', 'Lead');">
+       BAIXAR GRÁTIS AGORA <i class="ph ph-download-simple"></i>
+    </a>
+    
+    <a href="https://buy.stripe.com/28E14f1OmeCC5lj3shgfu01" class="btn btn-secondary" id="ctaBuySecondary">
+      QUERO A LICENÇA PRO <i class="ph ph-crown"></i>
+    </a>
 
-        <div class="cta-group reveal" style="transition-delay: .15s;">
-          <a href="https://buy.stripe.com/28E14f1OmeCC5lj3shgfu01" class="btn btn-primary" id="ctaBuy">
-            GARANTIR ACESSO AGORA <i class="ph ph-arrow-right"></i>
-          </a>
-          <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.7/metricora_app_releasev1.0.7.apk" 
-   class="btn btn-secondary" 
-   id="ctaDownload" 
-   download
-   onclick="fbq('track', 'Lead');">
-   BAIXAR GRÁTIS (Versão Piloto)<i class="ph ph-download-simple"></i>
-</a>
+    <div class="security-badge">
+      <i class="ph-fill ph-shield-check"></i>
+      <span>Verificado: <strong>Sem Vírus</strong>.</span>
+      <a href="https://www.virustotal.com/gui/file/017b986c23adf0dc102d59f059b31b9eca9f75a8ae33b1a2d04048e5274ee309/details" target="_blank" rel="noopener noreferrer">
+        Ver Laudo Técnico ➔
+      </a>
+    </div>
+  </div>
 
-<div class="security-badge">
-  <i class="ph-fill ph-shield-check"></i>
-  <span>Verificado: <strong>Sem Vírus</strong>.</span>
-  <a href="https://www.virustotal.com/gui/file/017b986c23adf0dc102d59f059b31b9eca9f75a8ae33b1a2d04048e5274ee309/details" target="_blank" rel="noopener noreferrer">
-    Ver Laudo Técnico ➔
-  </a>
-</div>
 
 <a href="#" id="openInstallHelp" class="text-xs text-slate-500 underline hover:text-[#00D47E] mt-3 block w-full text-center md:text-left">
   Apareceu um aviso? Veja como instalar
@@ -863,7 +859,37 @@
 
       </div>
     </section>
-    
+    <section id="dicas" class="demo-section reveal" style="margin-top: 8rem; border-top: 1px solid var(--border-color); padding-top: 6rem;">
+  <div class="max-w-4xl mx-auto">
+    <div class="demo-header">
+      <span class="chip" style="margin-bottom: 1rem;">Conteúdo Exclusivo</span>
+      <h2 style="font-size: clamp(2rem, 4vw, 3rem);">Como organizar o financeiro do seu salão e parar de pagar boleto com o lucro</h2>
+    </div>
+
+    <div class="space-y-8 text-slate-300 leading-relaxed text-lg">
+      <p>Muitas donas de salão e barbeiros trabalham 12 horas por dia, vêem o caixa entrar, mas chegam no dia 30 sem saber para onde foi o dinheiro. Se você se sente assim, o problema não é o seu trabalho, é a sua <strong>ferramenta de controle</strong>.</p>
+      
+      <h3 class="text-white font-bold text-2xl mt-8">Os 3 erros que "assaltam" o seu caixa</h3>
+      <ul class="list-disc pl-5 space-y-4 mt-4">
+        <li><strong>Misturar o seu bolso com o do salão:</strong> Retirar dinheiro do caixa para o Uber ou almoço é o erro nº 1 de quem quebra em 6 meses.</li>
+        <li><strong>Ignorar os custos invisíveis:</strong> Cada gota de produto e cada minuto de luz ligada deve ser descontado do seu lucro.</li>
+        <li><strong>Confiar no caderninho:</strong> Papel aceita tudo, mas o papel some e não te avisa quando o seu negócio está no vermelho.</li>
+      </ul>
+
+      <div class="bg-[#00D47E]/10 p-6 rounded-xl border border-[#00D47E]/20 my-10">
+        <h4 class="text-white font-bold mb-2">A Solução de Elite</h4>
+        <p class="text-sm">Criamos o <strong>Metricora</strong> na Vectorium Systems para ser o fim dessa bagunça. Você registra o serviço em 2 cliques e a inteligência faz o resto por você.</p>
+      </div>
+
+      <p>Para crescer de verdade, você precisa de dados, não de palpites. Quando você assume o controle do seu lucro real, você para de "pagar para trabalhar" e começa a construir patrimônio.</p>
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="#download" class="btn btn-primary">SAIR DO CADERNINHO AGORA</a>
+    </div>
+  </div>
+</section>
+
     <section class="guarantee-section reveal" id="garantia">
       <h3>🛡️ Risco Zero Absoluto</h3>
       <p>Baixe, instale e teste. Se não aumentar sua organização em 7 dias, devolvemos 100% do seu dinheiro. Sem perguntas, sem burocracia.</p>
