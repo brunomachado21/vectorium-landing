@@ -594,26 +594,33 @@
   </style>
 </head>
 <div id="preloader" style="
-    position: fixed; 
-    inset: 0; 
-    width: 100%; 
-    height: 100vh; 
-    background: #000; 
-    z-index: 9999; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    overflow: hidden; 
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    background: #000; /* O fundo preto que cobre o site */
+    z-index: 9999;
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    overflow: hidden;
     transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);">
-    
-    <video id="introVideo" 
-           muted 
-           autoplay 
-           playsinline 
-           style="width: 100%; height: 100%; object-fit: cover; max-width: 100vw;">
+
+    <video id="introVideo"
+           muted
+           autoplay
+           playsinline
+           /* MUDANÇA CRÍTICA AQUI */
+           style="
+               width: 100%; 
+               max-width: 450px; /* Define um tamanho máximo elegante */
+               height: auto;
+               object-fit: contain; /* Garante que o V apareça inteiro, sem cortar */
+           ">
         <source src="1768312553669.mp4" type="video/mp4">
     </video>
 </div>
+
 
   <header class="topbar">
     <div class="topbar-inner">
