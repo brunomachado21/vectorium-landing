@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Como Organizar Financeiro de Salão e Barbearia | Metricora</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    /* Copiando exatamente o seu CSS original do index.html */
+    :root {
+      --primary-dark: #0D1117;
+      --secondary-dark: #161B22;
+      --accent-green: #00D47E;
+      --accent-cyan: #00D9FF;
+      --text-primary: #E6EDF3;
+      --text-secondary: #8B949E;
+      --border-color: #30363D;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--primary-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-green) 0%, #00a860 100%);
+      color: #06371E;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-transform: uppercase;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .reveal { opacity: 0; transform: translateY(14px); transition: all .7s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    .topbar {
+      background: rgba(13, 17, 23, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <a href="index.html" style="color: var(--text-secondary); text-decoration: none; font-weight: 600;">
+        <i class="ph ph-arrow-left"></i> Voltar ao Início
+      </a>
+      <img src="img/logo.png" alt="Metricora" style="height: 30px; filter: brightness(0) invert(1);">
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-6 py-16">
+    
+    <article class="reveal">
+      <span style="color: var(--accent-green); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">Guia de Gestão de Elite</span>
+      <h1 class="text-4xl md:text-6xl font-black mt-4 mb-8" style="font-family: 'Poppins'; line-height: 1.1;">
+        Como organizar o financeiro do seu <span style="color: var(--accent-cyan);">salão ou barbearia</span> e parar de pagar para trabalhar.
+      </h1>
+
+      <p class="text-xl text-slate-400 mb-10">
+        Muitas donas de salão e barbeiros trabalham 12 horas por dia, vêem o caixa entrar, mas chegam no dia 30 sem saber para onde foi o lucro. Se você se sente assim, o problema não é o seu talento, é a sua <strong>ferramenta de controle</strong>.
+      </p>
+
+      <div class="space-y-12">
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">1. O fim da mistura de contas</h2>
+          <p class="text-slate-300">
+            Retirar dinheiro do caixa para o Uber, almoço ou boletos pessoais é o caminho mais rápido para a falência. No Metricora, você aprende a separar o seu salário (pró-labore) do lucro da empresa.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">2. Cálculo automático de comissões</h2>
+          <p class="text-slate-300">
+            Chega de passar horas com a calculadora no final de semana. Registre o serviço e o app já separa o que é do profissional e o que fica para o salão, com transparência total.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">3. Abandone o caderninho de papel</h2>
+          <p class="text-slate-300">
+            Papel aceita tudo, mas o papel some, molha e não faz conta sozinho. O Metricora foi desenhado para ser tão simples quanto mandar um "oi" no WhatsApp. Registro em 2 cliques.
+          </p>
+        </section>
+      </div>
+
+      <div class="mt-16 p-8 rounded-2xl border border-[#00D47E]/30 bg-[#00D47E]/5 text-center">
+        <h3 class="text-2xl font-bold mb-4">Pronta para assumir o controle?</h3>
+        <p class="mb-8 text-slate-400">Junte-se a milhares de profissionais que saíram do escuro e agora enxergam o lucro real todo dia.</p>
+        
+        <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.7/metricora_app_releasev1.0.7.apk" 
+           class="btn btn-primary" 
+           download>
+           BAIXAR MÉTRICORA GRÁTIS <i class="ph ph-download-simple"></i>
+        </a>
+        <p class="text-xs text-slate-500 mt-4">🔒 Verificado: Livre de Vírus | Exclusivo para Android</p>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="py-12 border-t border-white/10 text-center text-slate-500 text-sm">
+    <p>&copy; 2026 Vectorium Systems. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    // Reveal animation
+    const reveals = Array.from(document.querySelectorAll('.reveal'));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
