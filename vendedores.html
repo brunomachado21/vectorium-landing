@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Métricas de Lucro para Vendedores: ROI, ROAS e CPV | Metricora</title>
+  <title>Métricas de Lucro para Vendedores: ROI e CPV | Metricora</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" />
@@ -14,55 +14,27 @@
       --primary-dark: #0D1117;
       --secondary-dark: #161B22;
       --accent-green: #00D47E;
-      --accent-blue: #00D9FF; /* Cor de métricas e tecnologia */
+      --accent-blue: #00D9FF;
       --text-primary: #E6EDF3;
       --text-secondary: #8B949E;
       --border-color: #30363D;
     }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--primary-dark);
-      color: var(--text-primary);
-      line-height: 1.6;
-    }
+    body { font-family: 'Inter', sans-serif; background: var(--primary-dark); color: var(--text-primary); line-height: 1.6; }
 
     .btn-primary {
       background: linear-gradient(135deg, var(--accent-green) 0%, #00a860 100%);
-      color: #06371E;
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      font-weight: 700;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-transform: uppercase;
-      font-family: 'Poppins', sans-serif;
+      color: #06371E; padding: 1rem 2rem; border-radius: 8px; font-weight: 700;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+      text-transform: uppercase; font-family: 'Poppins', sans-serif;
     }
 
     .reveal { opacity: 0; transform: translateY(14px); transition: all .7s ease; }
     .reveal.in { opacity: 1; transform: translateY(0); }
 
-    .topbar {
-      background: rgba(13, 17, 23, 0.8);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-color);
-      padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+    .topbar { background: rgba(13, 17, 23, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; }
     
-    .metric-badge {
-      background: rgba(0, 217, 255, 0.1);
-      color: var(--accent-blue);
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.9rem;
-      border: 1px solid rgba(0, 217, 255, 0.2);
-    }
+    .metric-badge { background: rgba(0, 217, 255, 0.1); color: var(--accent-blue); padding: 0.2rem 0.6rem; border-radius: 4px; font-family: 'Space Mono', monospace; font-size: 0.9rem; border: 1px solid rgba(0, 217, 255, 0.2); }
   </style>
 </head>
 <body>
@@ -77,70 +49,75 @@
   </header>
 
   <main class="max-w-4xl mx-auto px-6 py-16">
-    
     <article class="reveal">
       <span style="color: var(--accent-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">Performance para Vendedores</span>
       <h1 class="text-4xl md:text-6xl font-black mt-4 mb-8" style="font-family: 'Poppins'; line-height: 1.1;">
-        ROAS alto não paga boleto. O que importa é o seu <span style="color: var(--accent-blue);">Lucro no Bolso</span>.
+        ROAS alto não paga boleto. Foque no seu <span style="color: var(--accent-blue);">Lucro Real</span>.
       </h1>
-
-      <p class="text-xl text-slate-400 mb-10">
-        Vender online ou na loja física exige mais do que "vender muito". Exige saber se o custo de aquisição do cliente está matando a sua margem. Pare de se enganar com o faturamento bruto.
-      </p>
 
       <div class="space-y-12">
         <section>
           <div class="flex items-center gap-3 mb-4">
-            <h2 class="text-2xl font-bold text-white">1. Domine o seu CPV (Custo por Venda)</h2>
+            <h2 class="text-2xl font-bold text-white">Domine o seu CPV (Custo por Venda)</h2>
             <span class="metric-badge">CPV</span>
           </div>
           <p class="text-slate-300">
-            Quanto custa cada venda depois de somar o valor do produto, a embalagem, o frete e o anúncio? No Metricora, você visualiza o custo real de cada transação, garantindo que você nunca venda com prejuízo.
+            Saiba exatamente quanto sobra após descontar o produto, a embalagem, o frete e a taxa do marketplace. No Metricora, você vê a margem real de cada pedido.
           </p>
         </section>
 
+        <div class="my-12 reveal">
+          <img src="img/print_loja.png" 
+               alt="Interface de Vendas" 
+               class="rounded-2xl border border-white/10 shadow-2xl cursor-pointer hover:scale-[1.02] transition-transform w-full"
+               onclick="openImageModal(this.src)">
+          <p class="text-center text-xs text-slate-500 mt-4 italic">Clique na imagem para ver o dashboard de lucro em detalhes</p>
+        </div>
+
         <section>
           <div class="flex items-center gap-3 mb-4">
-            <h2 class="text-2xl font-bold text-white">2. ROI e ROAS Realistas</h2>
+            <h2 class="text-2xl font-bold text-white">ROI e ROAS que fazem sentido</h2>
             <span class="metric-badge">ROI/ROAS</span>
           </div>
           <p class="text-slate-300">
-            O gerenciador de anúncios diz uma coisa, o seu banco diz outra. O Metricora cruza seus dados de investimento em tráfego pago com seus custos operacionais para te dar o Retorno sobre Investimento real.
-          </p>
-        </section>
-
-        <section>
-          <div class="flex items-center gap-3 mb-4">
-            <h2 class="text-2xl font-bold text-white">3. Decisões baseadas em Dados de Elite</h2>
-            <span class="metric-badge">Dashboard</span>
-          </div>
-          <p class="text-slate-300">
-            Pare de "achar" que o mês foi bom. Tenha um dashboard de elite que mostra o seu lucro líquido em tempo real. Se o anúncio ficou caro, você saberá na hora o impacto na sua margem.
+            Não se engane com as métricas do Facebook ou Google Ads. O Metricora cruza seu investimento em tráfego com seu lucro líquido para te dar o retorno real sobre cada real investido.
           </p>
         </section>
       </div>
 
       <div class="mt-16 p-8 rounded-2xl border border-[#00D9FF]/30 bg-[#00D9FF]/5 text-center">
-        <h3 class="text-2xl font-bold mb-4">Escalar sem lucro é o caminho para a quebra.</h3>
-        <p class="mb-8 text-slate-400">O Metricora é a ferramenta de elite para quem vende e quer ver o dinheiro sobrar de verdade.</p>
-        
         <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.7/metricora_app_releasev1.0.7.apk" 
            class="btn btn-primary" 
-           style="background: linear-gradient(135deg, var(--accent-blue) 0%, #008ba3 100%); color: #002b33;"
-           download>
+           style="background: linear-gradient(135deg, var(--accent-blue) 0%, #008ba3 100%); color: #002b33;" download>
            BAIXAR MÉTRICORA GRÁTIS <i class="ph ph-download-simple"></i>
         </a>
-        <p class="text-xs text-slate-500 mt-4">🔒 Verificado: Livre de Vírus | Exclusivo para Android</p>
       </div>
     </article>
-
   </main>
 
-  <footer class="py-12 border-t border-white/10 text-center text-slate-500 text-sm">
-    <p>&copy; 2026 Vectorium Systems. Todos os direitos reservados.</p>
-  </footer>
+  <div id="imageModal" class="fixed inset-0 z-[90] hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 cursor-pointer" onclick="closeImageModal()">
+    <img id="imageModalSrc" src="" alt="Zoom" class="max-w-full max-h-full rounded-lg shadow-2xl transition-transform duration-300 scale-95 border border-white/10" />
+    <div class="absolute top-4 right-4 text-white/50 hover:text-white"><i class="ph-bold ph-x text-3xl"></i></div>
+  </div>
 
   <script>
+    const imageModal = document.getElementById('imageModal');
+    const imageModalSrc = document.getElementById('imageModalSrc');
+
+    function openImageModal(src) {
+      imageModalSrc.src = src;
+      imageModal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => imageModalSrc.classList.remove('scale-95'), 10);
+    }
+
+    function closeImageModal() {
+      imageModal.classList.add('hidden');
+      imageModalSrc.classList.add('scale-95');
+      document.body.style.overflow = '';
+    }
+
+    // Reveal animation
     const reveals = Array.from(document.querySelectorAll('.reveal'));
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
