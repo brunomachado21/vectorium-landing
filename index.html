@@ -1187,7 +1187,16 @@
         closeImageModal();
       }
     });
-    
+    // Remove o preloader após 3 segundos (tempo médio da sua intro)
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    setTimeout(() => {
+        preloader.style.opacity = '0';
+        setTimeout(() => {
+            preloader.style.display = 'none';
+        }, 800);
+    }, 3000); 
+});
     // --- LÓGICA DO LIGHTBOX DE IMAGEM ---
     const imageModal = document.getElementById('imageModal');
     const imageModalSrc = document.getElementById('imageModalSrc');
@@ -1209,16 +1218,7 @@
     }
 
   </script>
-// Remove o preloader após 3 segundos (tempo médio da sua intro)
-window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader');
-    setTimeout(() => {
-        preloader.style.opacity = '0';
-        setTimeout(() => {
-            preloader.style.display = 'none';
-        }, 800);
-    }, 3000); 
-});
+
 
 </body>
 </html>
