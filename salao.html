@@ -128,7 +128,23 @@
     <p>&copy; 2026 Vectorium Systems. Todos os direitos reservados.</p>
   </footer>
 
-  <script>
+    <script>
+    const imageModal = document.getElementById('imageModal');
+    const imageModalSrc = document.getElementById('imageModalSrc');
+
+    function openImageModal(src) {
+      imageModalSrc.src = src;
+      imageModal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => imageModalSrc.classList.remove('scale-95'), 10);
+    }
+
+    function closeImageModal() {
+      imageModal.classList.add('hidden');
+      imageModalSrc.classList.add('scale-95');
+      document.body.style.overflow = '';
+    }
+
     // Reveal animation
     const reveals = Array.from(document.querySelectorAll('.reveal'));
     const io = new IntersectionObserver((entries) => {
