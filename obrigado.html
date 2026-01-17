@@ -11,7 +11,31 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
-        /* --- CORES & FUNDO VECTORIUM --- */
+        /* CSS para o Robô 3D na Página de Obrigado */
+.spline-robot-container {
+  width: 100%;
+  height: 350px; /* Altura para o robô flutuar com espaço */
+  margin: -2rem auto 1rem auto; /* Margem negativa para aproximar do texto */
+  position: relative;
+}
+
+.spline-robot-container spline-viewer {
+  width: 100%;
+  height: 100%;
+  /* Remove o fundo padrão do Spline para ficar transparente */
+  background: transparent !important; 
+}
+
+/* Ajuste para Mobile */
+@media (max-width: 768px) {
+  .spline-robot-container {
+    height: 280px;
+    margin-top: -1rem;
+  }
+}
+
+
+/* --- CORES & FUNDO VECTORIUM --- */
         :root {
             --primary-dark: #0D1117;
             --accent-green: #00D47E;
@@ -88,10 +112,11 @@
             </h1>
         </div>
 
-        <div class="relative mb-8 flex flex-col items-center justify-center">
-            <div class="interactive-float relative z-10">
-                <img src="img/hero_phone_mockup.png" alt="Metricora PRO no Celular" class="w-64 md:w-80 drop-shadow-2xl mx-auto">
-            </div>
+        <div class="spline-robot-container relative z-10">
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.55/build/spline-viewer.js"></script>
+  <spline-viewer url="https://prod.spline.design/8Y2x3W4v5U6t7S8r/scene.splinecode"></spline-viewer>
+</div>
+
             
             <div class="pointer-arrow mt-6 text-[#00D47E]">
                 <i class="ph-bold ph-arrow-down text-4xl filter drop-shadow-lg"></i>
