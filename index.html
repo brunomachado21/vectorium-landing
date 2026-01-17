@@ -598,28 +598,30 @@
     inset: 0;
     width: 100%;
     height: 100vh;
-    background: #000; /* O fundo preto que cobre o site */
+    background: #000; /* Fundo Preto Absoluto */
     z-index: 9999;
     display: flex;
-    align-items: center; /* Centraliza verticalmente */
-    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
-    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);">
+    transition: opacity 1s ease-in-out;">
 
     <video id="introVideo"
            muted
            autoplay
            playsinline
-           /* MUDANÇA CRÍTICA AQUI */
            style="
-               width: 100%; 
-               max-width: 450px; /* Define um tamanho máximo elegante */
-               height: auto;
-               object-fit: contain; /* Garante que o V apareça inteiro, sem cortar */
+               width: 100%;
+               height: 100%;
+               object-fit: contain; /* Mantém o V inteiro sem cortar */
+               /* TRUQUE DE ELITE: Remove o 'quadrado' do vídeo */
+               filter: brightness(1.1) contrast(1.2); 
+               mix-blend-mode: lighten; 
            ">
         <source src="1768312553669.mp4" type="video/mp4">
     </video>
 </div>
+
 
 
   <header class="topbar">
