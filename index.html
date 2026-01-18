@@ -705,7 +705,16 @@
         <source src="intro.mp4" type="video/mp4">
     </video>
 </div>
-
+<!-- LOADING SCREEN FULLSCREEN (aparece depois que o vídeo intro acaba) -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-logo">
+      <div class="loading-spinner"></div>
+    </div>
+    <div class="loading-text">Carregando...</div>
+    <div class="loading-bar-container">
+      <div class="loading-bar-fill"></div>
+    </div>
+  </div>
 
 
   <header class="topbar">
@@ -1336,26 +1345,25 @@ window.addEventListener('load', () => {
       }, 2500);
     });
 
-    // Alternative: Hide if DOM is already ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => {
-        setTimeout(() => {
-          const loadingOverlay = document.getElementById('loadingOverlay');
-          if (loadingOverlay && !loadingOverlay.classList.contains('hidden')) {
-            loadingOverlay.classList.add('hidden');
-          }
-        }, 2500);
-      });
-    } else {
+      // Alternative: Hide if DOM is already ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          
+      // Mostra a tela de loading APÓS o preloader desaparecer
+      // Sincroniza com o tempo do seu vídeo intro (4 segundos)
       setTimeout(() => {
         const loadingOverlay = document.getElementById('loadingOverlay');
-        if (loadingOverlay && !loadingOverlay.classList.contains('hidden')) {
-          loadingOverlay.classList.add('hidden');
+        if (loadingOverlay) {
+          loadingOverlay.style.display = 'flex';
+          // Desaparece após 2.5 segundos da loading screen
+          setTimeout(() => {
+            loadingOverlay.classList.add('hidden');
+          }, 2500);
         }
-      }, 2500);
-    }
-  </script>
-
-
-</body>
-</html>
+      }, 4000); // Tempo do seu vídeo intro
+        });
+      }
+    </script>
+  
+    </body>
+  </html>
