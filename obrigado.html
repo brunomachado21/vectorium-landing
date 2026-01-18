@@ -23,16 +23,16 @@
         }
         h1, .btn { font-family: 'Poppins', sans-serif; }
 
-        /* Container ajustado para o Robô não ficar gigante nem pequeno demais */
+        /* Container ajustado para o Robô */
         .spline-container {
             width: 100%;
-            height: 450px; /* Altura ideal para mobile e desktop */
+            height: 450px;
             margin-top: -2rem;
             position: relative;
             z-index: 10;
         }
         
-        /* Remove a logo do Spline para parecer proprietário */
+        /* Remove a logo do Spline */
         spline-viewer::part(logo) { display: none; }
 
         .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease; }
@@ -70,10 +70,6 @@
 
         <div class="spline-container reveal">
             <spline-viewer url="https://prod.spline.design/KcIizBEp3aBW2CPk/scene.splinecode"></spline-viewer>
-            
-            <div class="absolute inset-0 flex items-center justify-center -z-10">
-                <div class="w-10 h-10 border-4 border-[#00D47E] border-t-transparent rounded-full animate-spin"></div>
-            </div>
         </div>
 
         <div class="space-y-6 reveal mt-[-30px] relative z-20">
