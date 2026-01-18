@@ -111,7 +111,91 @@
       50% { transform: scale(1.02); }
       100% { transform: scale(1); }
     }
-    
+    /* ===== LOADING SCREEN FULLSCREEN ===== */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #1a1f2e 50%, var(--secondary-dark) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9998;
+      gap: 30px;
+      opacity: 1;
+      transition: opacity 0.6s ease-out;
+      pointer-events: auto;
+    }
+
+    .loading-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loading-logo {
+      width: 120px;
+      height: 120px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loading-spinner {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border: 3px solid rgba(0, 212, 126, 0.2);
+      border-top: 3px solid var(--accent-green);
+      border-right: 3px solid var(--accent-cyan);
+      border-radius: 50%;
+      animation: spinRotate 2s linear infinite;
+      box-shadow: 0 0 20px rgba(0, 212, 126, 0.3);
+    }
+
+    .loading-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--accent-green);
+      letter-spacing: 2px;
+      animation: textPulse 1.5s ease-in-out infinite;
+    }
+
+    .loading-bar-container {
+      width: 300px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0, 212, 126, 0.2);
+    }
+
+    .loading-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-green), var(--accent-cyan));
+      width: 0%;
+      animation: fillBar 2.5s ease-in-out forwards;
+      box-shadow: 0 0 15px rgba(0, 212, 126, 0.8);
+    }
+
+    @keyframes spinRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes textPulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes fillBar {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
     .whatsapp-float {
       animation: pulse-green 2s infinite;
     }
@@ -1240,7 +1324,36 @@ window.addEventListener('load', () => {
         imageModalSrc.classList.add('scale-95');
         document.body.style.overflow = ''; // Destrava rolagem
     }
+  
+  
+    // Auto-hide loading screen after 2.5 seconds
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        if (loadingOverlay) {
+          loadingOverlay.classList.add('hidden');
+        }
+      }, 2500);
+    });
 
+    // Alternative: Hide if DOM is already ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+          const loadingOverlay = document.getElementById('loadingOverlay');
+          if (loadingOverlay && !loadingOverlay.classList.contains('hidden')) {
+            loadingOverlay.classList.add('hidden');
+          }
+        }, 2500);
+      });
+    } else {
+      setTimeout(() => {
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        if (loadingOverlay && !loadingOverlay.classList.contains('hidden')) {
+          loadingOverlay.classList.add('hidden');
+        }
+      }, 2500);
+    }
   </script>
 
 
