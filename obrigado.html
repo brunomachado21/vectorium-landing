@@ -6,17 +6,14 @@
     <link rel="icon" type="image/png" href="img/favicon.png">
     <title>Bem-vindo à Elite | Metricora PRO</title>
 
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.55/build/spline-viewer.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
-        /* --- CORES & FUNDO --- */
-        :root {
-            --primary-dark: #0D1117;
-            --accent-green: #00D47E;
-        }
-
+        :root { --primary-dark: #0D1117; --accent-green: #00D47E; }
         body {
             font-family: 'Inter', sans-serif;
             background: radial-gradient(circle at top center, #1a2230 0%, #0D1117 100%);
@@ -24,34 +21,27 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
+        h1, .btn { font-family: 'Poppins', sans-serif; }
 
-        h1, h2, .btn { font-family: 'Poppins', sans-serif; }
-
-        /* --- ANIMAÇÃO DE FLUTUAÇÃO (O SEGREDO DO ROBÔ) --- */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+        /* Container ajustado para o Robô não ficar gigante nem pequeno demais */
+        .spline-container {
+            width: 100%;
+            height: 450px; /* Altura ideal para mobile e desktop */
+            margin-top: -2rem;
+            position: relative;
+            z-index: 10;
         }
+        
+        /* Remove a logo do Spline para parecer proprietário */
+        spline-viewer::part(logo) { display: none; }
 
-        .robot-float {
-            animation: float 4s ease-in-out infinite;
-            filter: drop-shadow(0 20px 30px rgba(0, 212, 126, 0.2)); /* Sombra verde neon */
-        }
-
-        @keyframes pointDown {
-            0%, 100% { transform: translateY(0); opacity: 0.8; }
-            50% { transform: translateY(10px); opacity: 1; }
-        }
-        .pointer-arrow { animation: pointDown 1.5s ease-in-out infinite; }
-
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease; }
+        .reveal.in { opacity: 1; transform: translateY(0); }
+        
         .btn-shine { position: relative; overflow: hidden; }
         .btn-shine::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%); transform: rotate(30deg); transition: all 0.3s; opacity: 0; }
         .btn-shine:hover::after { animation: shine 1s forwards; opacity: 1; }
         @keyframes shine { from { left: -50%; } to { left: 150%; } }
-        
-        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease; }
-        .reveal.in { opacity: 1; transform: translateY(0); }
     </style>
 
     <script>
@@ -69,72 +59,24 @@
 
     <main class="max-w-md w-full text-center mt-20 relative z-20">
         
-        <div class="mb-4 reveal">
-            <span class="inline-block px-4 py-1 rounded-full bg-[#00D47E]/20 text-[#00D47E] font-bold text-sm mb-4 border border-[#00D47E]/30 uppercase tracking-wider">
-                Pedido Confirmado
+        <div class="mb-2 reveal">
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00D47E]/10 text-[#00D47E] font-bold text-xs mb-4 border border-[#00D47E]/30 uppercase tracking-widest">
+                <i class="ph-fill ph-check-circle"></i> Pedido Confirmado
             </span>
             <h1 class="text-4xl font-black leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">
                 Bem-vindo à Elite.<br>Você agora é <span class="text-[#00D47E]">PRO</span>.
             </h1>
         </div>
 
-        <div class="relative w-full flex justify-center py-10 reveal">
-    
-    <div class="tech-circle-container">
-        <div class="tech-ring"></div>
-        <div class="tech-ring-inner"></div>
-        <div class="tech-icon">
-            <i class="ph-bold ph-check"></i>
+        <div class="spline-container reveal">
+            <spline-viewer url="https://prod.spline.design/KcIizBEp3aBW2CPk/scene.splinecode"></spline-viewer>
+            
+            <div class="absolute inset-0 flex items-center justify-center -z-10">
+                <div class="w-10 h-10 border-4 border-[#00D47E] border-t-transparent rounded-full animate-spin"></div>
+            </div>
         </div>
-    </div>
 
-</div>
-
-<style>
-        /* ANIMAÇÃO DO SELO TECH */
-    .tech-circle-container {
-        position: relative;
-        width: 180px;
-        height: 180px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* Anel Externo Girando */
-    .tech-ring {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        border: 4px solid transparent;
-        border-top-color: #00D47E; /* Verde */
-        border-right-color: #00D9FF; /* Azul */
-        filter: drop-shadow(0 0 10px rgba(0, 212, 126, 0.5));
-        animation: spinRing 2s linear infinite;
-    }
-
-    /* Anel Interno Pulsando */
-    .tech-ring-inner {
-        position: absolute;
-        width: 70%;
-        height: 70%;
-        border-radius: 50%;
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        background: radial-gradient(circle, rgba(0,212,126,0.1) 0%, transparent 70%);
-        animation: pulseRing 2s ease-in-out infinite;
-    }
-
-    /* Ícone Central */
-    .tech-icon {
-        font-size: 5rem;
-        color: #E6EDF3;
-        z-index: 10;
-        animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-    }
-    </style>
-
-        <div class="space-y-6 reveal">
+        <div class="space-y-6 reveal mt-[-30px] relative z-20">
             <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.7/metricora_app_releasev1.0.7.apk" 
                class="btn btn-shine w-full flex items-center justify-center gap-3 bg-gradient-to-r from-[#00D47E] to-[#00a860] text-black font-bold text-lg py-4 px-8 rounded-xl shadow-lg shadow-[#00D47E]/20 hover:transform hover:-translate-y-1 transition-all"
                download>
@@ -145,50 +87,38 @@
             <div class="bg-blue-500/10 border border-blue-500/20 p-4 rounded-xl text-left flex gap-3 items-start text-sm text-blue-200">
                 <i class="ph-fill ph-info text-xl text-blue-400 flex-shrink-0 mt-0.5"></i>
                 <div>
-                    <strong>Dica de Instalação:</strong> Se o Android avisar sobre "arquivo desconhecido", é normal pois não estamos na loja. Clique em <strong>"Permitir"</strong> ou <strong>"Instalar mesmo assim"</strong>. É 100% seguro.
+                    <strong>Instalação Segura:</strong> Se o Android pedir permissão, clique em <strong>"Instalar mesmo assim"</strong> ou <strong>"Permitir desta fonte"</strong>. App verificado.
                 </div>
             </div>
         </div>
 
         <div class="mt-12 pt-8 border-t border-white/10 reveal text-center">
-            <h3 class="text-xl font-bold text-white mb-2">Ativação Obrigatória</h3>
-            <p class="text-slate-400 text-sm mb-6">Envie o comprovante para validar sua licença vitalícia.</p>
-            <a href="https://wa.me/5577981037422?text=Olá! Comprei o PRO e já instalei o app. Gostaria de liberar minha licença vitalícia." 
+            <h3 class="text-lg font-bold text-white mb-2">Ativação Obrigatória</h3>
+            <p class="text-slate-400 text-xs mb-4">Envie o comprovante para liberar sua licença.</p>
+            <a href="https://wa.me/5577981037422?text=Olá! Comprei o PRO e o Robô me mandou aqui para ativar." 
                target="_blank"
-               class="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold py-3 px-6 rounded-lg transition-all w-full">
-                <i class="ph-fill ph-whatsapp-logo text-green-400 text-xl"></i>
-                <span>Falar com Suporte de Ativação</span>
+               class="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold py-3 px-6 rounded-lg transition-all text-sm">
+                <i class="ph-fill ph-whatsapp-logo text-green-400 text-lg"></i>
+                Falar com Suporte
             </a>
         </div>
 
     </main>
 
-    <footer class="mt-20 text-center text-xs text-slate-500 pb-6 relative z-20">
-        <p>&copy; 2026 Vectorium Systems. Compra Segura & Vitalícia.</p>
+    <footer class="mt-16 text-center text-[10px] text-slate-600 pb-6">
+        &copy; 2026 Vectorium Systems.
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
-        // Animação de entrada
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-        // Confetes
-        window.onload = function() {
-            var duration = 3 * 1000;
-            var animationEnd = Date.now() + duration;
-            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
-            var interval = setInterval(function() {
-              var timeLeft = animationEnd - Date.now();
-              if (timeLeft <= 0) return clearInterval(interval);
-              var particleCount = 50 * (timeLeft / duration);
-              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
-              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
-            }, 250);
-        };
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.reveal').forEach((el, i) => {
+                setTimeout(() => el.classList.add('in'), 100 + (i * 100));
+            });
+            setTimeout(() => {
+                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+            }, 800);
+        });
     </script>
 </body>
 </html>
