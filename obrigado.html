@@ -6,27 +6,50 @@
     <link rel="icon" type="image/png" href="img/favicon.png">
     <title>Bem-vindo à Elite | Metricora PRO</title>
 
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.55/build/spline-viewer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
-        :root { --primary-dark: #0D1117; --accent-green: #00D47E; --accent-blue: #00D9FF; }
-        body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at top center, #1a2230 0%, #0D1117 100%); color: #E6EDF3; min-height: 100vh; overflow-x: hidden; }
-        h1, h2, .btn { font-family: 'Poppins', sans-serif; }
-        
-        /* Container do Robô */
-        .spline-robot-container { width: 100%; height: 350px; margin: -1rem auto 1rem auto; position: relative; }
-        .spline-robot-container spline-viewer { width: 100%; height: 100%; background: transparent !important; }
+        /* --- CORES & FUNDO --- */
+        :root {
+            --primary-dark: #0D1117;
+            --accent-green: #00D47E;
+        }
 
-        @keyframes pointDown { 0%, 100% { transform: translateY(0); opacity: 0.8; } 50% { transform: translateY(10px); opacity: 1; } }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at top center, #1a2230 0%, #0D1117 100%);
+            color: #E6EDF3;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, .btn { font-family: 'Poppins', sans-serif; }
+
+        /* --- ANIMAÇÃO DE FLUTUAÇÃO (O SEGREDO DO ROBÔ) --- */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .robot-float {
+            animation: float 4s ease-in-out infinite;
+            filter: drop-shadow(0 20px 30px rgba(0, 212, 126, 0.2)); /* Sombra verde neon */
+        }
+
+        @keyframes pointDown {
+            0%, 100% { transform: translateY(0); opacity: 0.8; }
+            50% { transform: translateY(10px); opacity: 1; }
+        }
         .pointer-arrow { animation: pointDown 1.5s ease-in-out infinite; }
-        
+
         .btn-shine { position: relative; overflow: hidden; }
         .btn-shine::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%); transform: rotate(30deg); transition: all 0.3s; opacity: 0; }
         .btn-shine:hover::after { animation: shine 1s forwards; opacity: 1; }
         @keyframes shine { from { left: -50%; } to { left: 150%; } }
+        
         .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease; }
         .reveal.in { opacity: 1; transform: translateY(0); }
     </style>
@@ -39,20 +62,33 @@
 </head>
 
 <body class="flex flex-col items-center justify-center p-6 relative">
+
     <header class="absolute top-0 left-0 w-full p-6 flex justify-center z-10">
         <img src="img/logo.png" alt="Metricora Logo" class="h-8 brightness-0 invert opacity-80">
     </header>
 
     <main class="max-w-md w-full text-center mt-20 relative z-20">
+        
         <div class="mb-4 reveal">
-            <span class="inline-block px-4 py-1 rounded-full bg-[#00D47E]/20 text-[#00D47E] font-bold text-sm mb-4 border border-[#00D47E]/30 uppercase tracking-wider">Pedido Confirmado</span>
+            <span class="inline-block px-4 py-1 rounded-full bg-[#00D47E]/20 text-[#00D47E] font-bold text-sm mb-4 border border-[#00D47E]/30 uppercase tracking-wider">
+                Pedido Confirmado
+            </span>
             <h1 class="text-4xl font-black leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">
                 Bem-vindo à Elite.<br>Você agora é <span class="text-[#00D47E]">PRO</span>.
             </h1>
         </div>
 
-        <div class="spline-robot-container reveal">
-            <spline-viewer url="https://prod.spline.design/Y8m6-7vR0eY9Kk-U/scene.splinecode"></spline-viewer>
+        <div class="relative w-full flex justify-center py-6 reveal">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-[#00D47E]/20 rounded-full blur-3xl animate-pulse"></div>
+            
+            <img src="img/robo.png" 
+                 alt="Mascote Metricora" 
+                 class="robot-float w-64 md:w-72 relative z-10 object-contain"
+                 onerror="this.style.display='none'; document.getElementById('backup-icon').style.display='block';">
+            
+            <div id="backup-icon" class="hidden text-[#00D47E] text-9xl animate-bounce">
+                <i class="ph-fill ph-robot"></i>
+            </div>
         </div>
             
         <div class="pointer-arrow mb-6 text-[#00D47E]">
@@ -61,26 +97,36 @@
 
         <div class="space-y-6 reveal">
             <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.7/metricora_app_releasev1.0.7.apk" 
-               class="btn btn-shine w-full flex items-center justify-center gap-3 bg-gradient-to-r from-[#00D47E] to-[#00a860] text-black font-bold text-lg py-4 px-8 rounded-xl shadow-lg shadow-[#00D47E]/20 hover:transform hover:-translate-y-1 transition-all" download>
-               <i class="ph-bold ph-download-simple text-2xl"></i> BAIXAR VERSÃO PRO (v1.0.7)
+               class="btn btn-shine w-full flex items-center justify-center gap-3 bg-gradient-to-r from-[#00D47E] to-[#00a860] text-black font-bold text-lg py-4 px-8 rounded-xl shadow-lg shadow-[#00D47E]/20 hover:transform hover:-translate-y-1 transition-all"
+               download>
+               <i class="ph-bold ph-download-simple text-2xl"></i>
+               INSTALAR VERSÃO PRO (v1.0.7)
             </a>
 
             <div class="bg-blue-500/10 border border-blue-500/20 p-4 rounded-xl text-left flex gap-3 items-start text-sm text-blue-200">
                 <i class="ph-fill ph-info text-xl text-blue-400 flex-shrink-0 mt-0.5"></i>
-                <div><strong>Dica:</strong> Se o Android avisar sobre "arquivo desconhecido", clique em <strong>"Instalar mesmo assim"</strong>. É 100% seguro.</div>
+                <div>
+                    <strong>Dica de Instalação:</strong> Se o Android avisar sobre "arquivo desconhecido", é normal pois não estamos na loja. Clique em <strong>"Permitir"</strong> ou <strong>"Instalar mesmo assim"</strong>. É 100% seguro.
+                </div>
             </div>
         </div>
 
         <div class="mt-12 pt-8 border-t border-white/10 reveal text-center">
             <h3 class="text-xl font-bold text-white mb-2">Ativação Obrigatória</h3>
             <p class="text-slate-400 text-sm mb-6">Envie o comprovante para validar sua licença vitalícia.</p>
-            <a href="https://wa.me/5577981037422?text=Olá! Comprei o PRO e já instalei o app." target="_blank" class="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold py-3 px-6 rounded-lg transition-all w-full">
-                <i class="ph-fill ph-whatsapp-logo text-green-400 text-xl"></i> Falar com Suporte de Ativação
+            <a href="https://wa.me/5577981037422?text=Olá! Comprei o PRO e já instalei o app. Gostaria de liberar minha licença vitalícia." 
+               target="_blank"
+               class="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold py-3 px-6 rounded-lg transition-all w-full">
+                <i class="ph-fill ph-whatsapp-logo text-green-400 text-xl"></i>
+                <span>Falar com Suporte de Ativação</span>
             </a>
         </div>
+
     </main>
 
-    <footer class="mt-20 text-center text-xs text-slate-500 pb-6 opacity-50">&copy; 2026 Vectorium Systems.</footer>
+    <footer class="mt-20 text-center text-xs text-slate-500 pb-6 relative z-20">
+        <p>&copy; 2026 Vectorium Systems. Compra Segura & Vitalícia.</p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
@@ -92,7 +138,17 @@
 
         // Confetes
         window.onload = function() {
-            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+            var interval = setInterval(function() {
+              var timeLeft = animationEnd - Date.now();
+              if (timeLeft <= 0) return clearInterval(interval);
+              var particleCount = 50 * (timeLeft / duration);
+              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
         };
     </script>
 </body>
