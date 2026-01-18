@@ -111,91 +111,7 @@
       50% { transform: scale(1.02); }
       100% { transform: scale(1); }
     }
-    /* ===== LOADING SCREEN FULLSCREEN ===== */
-    .loading-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, var(--primary-dark) 0%, #1a1f2e 50%, var(--secondary-dark) 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 9998;
-      gap: 30px;
-      opacity: 1;
-      transition: opacity 0.6s ease-out;
-      pointer-events: auto;
-    }
-
-    .loading-overlay.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .loading-logo {
-      width: 120px;
-      height: 120px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .loading-spinner {
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      border: 3px solid rgba(0, 212, 126, 0.2);
-      border-top: 3px solid var(--accent-green);
-      border-right: 3px solid var(--accent-cyan);
-      border-radius: 50%;
-      animation: spinRotate 2s linear infinite;
-      box-shadow: 0 0 20px rgba(0, 212, 126, 0.3);
-    }
-
-    .loading-text {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--accent-green);
-      letter-spacing: 2px;
-      animation: textPulse 1.5s ease-in-out infinite;
-    }
-
-    .loading-bar-container {
-      width: 300px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 0 15px rgba(0, 212, 126, 0.2);
-    }
-
-    .loading-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-green), var(--accent-cyan));
-      width: 0%;
-      animation: fillBar 2.5s ease-in-out forwards;
-      box-shadow: 0 0 15px rgba(0, 212, 126, 0.8);
-    }
-
-    @keyframes spinRotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes textPulse {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
-    }
-
-    @keyframes fillBar {
-      0% { width: 0%; }
-      100% { width: 100%; }
-    }
+    
     .whatsapp-float {
       animation: pulse-green 2s infinite;
     }
@@ -677,45 +593,7 @@
     
   </style>
 </head>
-<div id="preloader" style="
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100vh;
-    background: #000; /* Fundo Preto Absoluto */
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    transition: opacity 1s ease-in-out;">
-
-    <video id="introVideo"
-           muted
-           autoplay
-           playsinline
-           style="
-               width: 100%;
-               height: 100%;
-               object-fit: contain; /* Mantém o V inteiro sem cortar */
-               /* TRUQUE DE ELITE: Remove o 'quadrado' do vídeo */
-               filter: brightness(1.1) contrast(1.2); 
-               mix-blend-mode: lighten; 
-           ">
-        <source src="intro.mp4" type="video/mp4">
-    </video>
-</div>
-<!-- LOADING SCREEN FULLSCREEN (aparece depois que o vídeo intro acaba) -->
-  <div class="loading-overlay" id="loadingOverlay">
-    <div class="loading-logo">
-      <div class="loading-spinner"></div>
-    </div>
-    <div class="loading-text">Carregando...</div>
-    <div class="loading-bar-container">
-      <div class="loading-bar-fill"></div>
-    </div>
-  </div>
-
+<body>
 
   <header class="topbar">
     <div class="topbar-inner">
@@ -875,9 +753,6 @@
     </p>
   </a>
 </div>
- class="profile-description">Controle de estoque e vendas online. Integre múltiplos canais em um único dashboard.</p>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -1304,16 +1179,7 @@
         closeImageModal();
       }
     });
-    // Remove o preloader após 3 segundos (tempo médio da sua intro)
-window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader');
-    setTimeout(() => {
-        preloader.style.opacity = '0';
-        setTimeout(() => {
-            preloader.style.display = 'none';
-        }, 1000);
-    }, 4000); 
-});
+    
     // --- LÓGICA DO LIGHTBOX DE IMAGEM ---
     const imageModal = document.getElementById('imageModal');
     const imageModalSrc = document.getElementById('imageModalSrc');
@@ -1333,37 +1199,7 @@ window.addEventListener('load', () => {
         imageModalSrc.classList.add('scale-95');
         document.body.style.overflow = ''; // Destrava rolagem
     }
+  </script>
   
-  
-    // Auto-hide loading screen after 2.5 seconds
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        const loadingOverlay = document.getElementById('loadingOverlay');
-        if (loadingOverlay) {
-          loadingOverlay.classList.add('hidden');
-        }
-      }, 2500);
-    });
-
-      // Alternative: Hide if DOM is already ready
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-          
-      // Mostra a tela de loading APÓS o preloader desaparecer
-      // Sincroniza com o tempo do seu vídeo intro (4 segundos)
-      setTimeout(() => {
-        const loadingOverlay = document.getElementById('loadingOverlay');
-        if (loadingOverlay) {
-          loadingOverlay.style.display = 'flex';
-          // Desaparece após 2.5 segundos da loading screen
-          setTimeout(() => {
-            loadingOverlay.classList.add('hidden');
-          }, 2500);
-        }
-      }, 4000); // Tempo do seu vídeo intro
-        });
-      }
-    </script>
-  
-    </body>
-  </html>
+</body>
+</html>
