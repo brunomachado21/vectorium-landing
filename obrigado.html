@@ -91,72 +91,46 @@
 </div>
 
 <style>
-        .tech-circle-container {
-            position: relative;
-            width: 120px;
-            height: 120px;
-        }
-
-        .tech-ring {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 3px solid #00D47E;
-            box-shadow: 0 0 25px rgba(0, 212, 126, 0.5);
-        }
-
-        .tech-ring-inner {
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            width: calc(100% + 10px);
-            height: calc(100% + 10px);
-            border-radius: 50%;
-            border: 3px solid #FFD74D;
-            box-shadow: 0 0 25px rgba(255, 215, 77, 0.3);
-        }
-
-        .tech-icon {
-            position: absolute;
-            top: -8px;
-            left: -8px;
-            width: calc(100% + 16px);
-            height: calc(100% + 16px);
-        }
-
-        .tech-icon i {
-          font-size: clamp(4rem,8vw,6rem);
-          color:#FFD74D;
-          text-shadow:
-              -2px -2px 4px rgba(255,255,255,0.3),
-              -4px -4px 8px rgba(255,255,255,0.3),
-              inset -4px -4px rgba(255,255,255,0.3),
-              inset -8px -8px rgba(255,255,255,0.3),
-              inset -8px -8px rgba(99,99,99),
-              inset -8px -8px rgba(99,99,99);
-          animation:
-              pulse-border var(--pulse-duration) infinite,
-              pulse-icon var(--pulse-duration) infinite alternate,
-              float var(--pulse-duration) infinite alternate;
-
-          --pulse-duration : ${duration};
-        }
-        @keyframes spinRing {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+        /* ANIMAÇÃO DO SELO TECH */
+    .tech-circle-container {
+        position: relative;
+        width: 180px;
+        height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    @keyframes pulseRing {
-        0%, 100% { transform: scale(0.9); opacity: 0.5; }
-        50% { transform: scale(1.1); opacity: 1; }
+    /* Anel Externo Girando */
+    .tech-ring {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 4px solid transparent;
+        border-top-color: #00D47E; /* Verde */
+        border-right-color: #00D9FF; /* Azul */
+        filter: drop-shadow(0 0 10px rgba(0, 212, 126, 0.5));
+        animation: spinRing 2s linear infinite;
     }
 
-    @keyframes popIn {
-        0% { transform: scale(0); opacity: 0; }
-        100% { transform: scale(1); opacity: 1; }
+    /* Anel Interno Pulsando */
+    .tech-ring-inner {
+        position: absolute;
+        width: 70%;
+        height: 70%;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        background: radial-gradient(circle, rgba(0,212,126,0.1) 0%, transparent 70%);
+        animation: pulseRing 2s ease-in-out infinite;
+    }
+
+    /* Ícone Central */
+    .tech-icon {
+        font-size: 5rem;
+        color: #E6EDF3;
+        z-index: 10;
+        animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     }
     </style>
 
