@@ -6,8 +6,6 @@
     <link rel="icon" type="image/png" href="img/favicon.png">
     <title>Bem-vindo à Elite | Metricora PRO</title>
 
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.55/build/spline-viewer.js"></script>
-    
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -23,17 +21,19 @@
         }
         h1, .btn { font-family: 'Poppins', sans-serif; }
 
-        /* Container ajustado para o Robô */
-        .spline-container {
-            width: 100%;
-            height: 450px;
-            margin-top: -2rem;
-            position: relative;
-            z-index: 10;
+        /* Animação de Flutuação (Substitui o 3D pesado) */
+        .robo-float {
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 20px 30px rgba(0, 212, 126, 0.2)); /* Sombra verde */
+            max-width: 100%;
+            height: auto;
         }
-        
-        /* Remove a logo do Spline */
-        spline-viewer::part(logo) { display: none; }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); } /* Sobe */
+            100% { transform: translateY(0px); }
+        }
 
         .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease; }
         .reveal.in { opacity: 1; transform: translateY(0); }
@@ -59,7 +59,7 @@
 
     <main class="max-w-md w-full text-center mt-20 relative z-20">
         
-        <div class="mb-2 reveal">
+        <div class="mb-8 reveal">
             <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00D47E]/10 text-[#00D47E] font-bold text-xs mb-4 border border-[#00D47E]/30 uppercase tracking-widest">
                 <i class="ph-fill ph-check-circle"></i> Pedido Confirmado
             </span>
@@ -68,11 +68,13 @@
             </h1>
         </div>
 
-        <div class="spline-container reveal">
-            <spline-viewer url="https://prod.spline.design/KcIizBEp3aBW2CPk/scene.splinecode"></spline-viewer>
+        <div class="reveal relative z-10 w-full flex justify-center mb-8">
+            <img src="img/robo_pro.png" alt="Robô Metricora" class="robo-float w-64 md:w-80">
+            
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-[#00D47E] blur-[80px] opacity-20 -z-10"></div>
         </div>
 
-        <div class="space-y-6 reveal mt-[-30px] relative z-20">
+        <div class="space-y-6 reveal relative z-20">
             <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.7/metricora_app_releasev1.0.7.apk" 
                class="btn btn-shine w-full flex items-center justify-center gap-3 bg-gradient-to-r from-[#00D47E] to-[#00a860] text-black font-bold text-lg py-4 px-8 rounded-xl shadow-lg shadow-[#00D47E]/20 hover:transform hover:-translate-y-1 transition-all"
                download>
@@ -111,8 +113,9 @@
             document.querySelectorAll('.reveal').forEach((el, i) => {
                 setTimeout(() => el.classList.add('in'), 100 + (i * 100));
             });
+            // Otimizei os confetes para não travar (reduzi de 150 para 100)
             setTimeout(() => {
-                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+                confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, disableForReducedMotion: true });
             }, 800);
         });
     </script>
