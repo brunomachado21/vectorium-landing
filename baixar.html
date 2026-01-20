@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <title>Instalar Metricora Piloto | Seguro</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        body { 
+            background-color: #0D1117; 
+            color: #E6EDF3; 
+            font-family: 'Inter', sans-serif;
+            background-image: radial-gradient(circle at top, #161b22 0%, #0D1117 100%);
+        }
+        .btn-glow {
+            box-shadow: 0 0 20px rgba(0, 212, 126, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-glow:active {
+            transform: scale(0.98);
+            box-shadow: 0 0 10px rgba(0, 212, 126, 0.1);
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-6 text-center">
+
+    <div class="bg-[#161B22]/80 backdrop-blur-md p-8 rounded-3xl border border-[#30363D] max-w-sm w-full relative overflow-hidden">
+        
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-[#00D47E]/20 blur-3xl rounded-full -z-10"></div>
+
+        <div class="w-20 h-20 bg-[#00D47E]/10 border border-[#00D47E]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <i class="ph-fill ph-shield-check text-[#00D47E] text-4xl"></i>
+        </div>
+        
+        <h1 class="text-2xl font-bold text-white mb-2 tracking-tight">Download Seguro</h1>
+        <p class="text-slate-400 text-sm mb-8 leading-relaxed">
+            Você está baixando a versão oficial e verificada do <strong class="text-white">Metricora Piloto (v1.0.7)</strong>.
+        </p>
+
+        <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.7/metricora_app_releasev1.0.7.apk" 
+           class="btn-glow flex items-center justify-center gap-3 w-full bg-[#00D47E] hover:bg-[#00a860] text-[#0D1117] font-bold py-4 px-6 rounded-xl text-lg mb-6">
+            <i class="ph-bold ph-download-simple text-2xl"></i>
+            INSTALAR AGORA
+        </a>
+
+        <div class="text-left bg-[#0D1117]/50 p-4 rounded-xl border border-white/5 space-y-3">
+            <div class="flex gap-3 items-start">
+                <i class="ph-fill ph-warning-circle text-yellow-500 text-lg mt-0.5"></i>
+                <p class="text-[11px] text-slate-400 leading-tight">
+                    <strong class="text-slate-200">Aviso do Android:</strong> Se aparecer "Fonte Desconhecida", clique em <em>Configurações > Permitir desta fonte</em>.
+                </p>
+            </div>
+            <div class="flex gap-3 items-start">
+                <i class="ph-fill ph-lock-key text-blue-400 text-lg mt-0.5"></i>
+                <p class="text-[11px] text-slate-400 leading-tight">
+                    <strong class="text-slate-200">Privacidade Total:</strong> O App é 100% Offline. Seus dados não saem do seu celular.
+                </p>
+            </div>
+        </div>
+
+        <p class="mt-8 text-[10px] text-slate-600 font-mono">VECTORIUM SYSTEMS SECURE SERVER</p>
+    </div>
+
+</body>
+</html>
