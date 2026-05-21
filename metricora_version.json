@@ -1,5 +1,6 @@
 {
-  "version": "1.0.7",
-  "url": "https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.7/metricora_app_releasev1.0.7.apk",
-  "notes": "💈 NOVIDADE v1.0.7:\n\n✅ Modo Barbeiro Inteligente: Agora o botão diz 'REGISTRAR SERVIÇO'.\n✅ Correções visuais e de performance.\n✅ Atualização de segurança.\n\nAtualize agora para ter a melhor experiência."
+  "version": "1.0.8",
+  "url": "https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.8/metricora_app_releasev1.0.8.apk",
+  "required": true,
+  "notes": "🚀 UPGRADE CRÍTICO v1.0.8:\n\n✅ Módulo de Fábrica: Controle de estoque de insumos e cálculo automatizado de custo por grama/unidade.\n✅ Engenharia de Ficha Técnica: Montagem de produtos finais com custo variável preciso puxado no caixa.\n✅ Blindagem Contábil: Separação profissional entre despesas da empresa e retiradas pessoais do sócio.\n⚡ Correção estrutural na inicialização do banco offline (SQLite v4)."
 }

@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Métricas de Lucro para Vendedores: ROI e CPV | Metricora</title>
+  <title>Métricas de Lucro e DRE Real | Metricora PRO v1.0.8</title>
 
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
@@ -50,46 +50,46 @@
 
   <main class="max-w-4xl mx-auto px-6 py-16">
     <article class="reveal">
-      <span style="color: var(--accent-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">Performance para Vendedores</span>
+      <span style="color: var(--accent-green); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">Atualização v1.0.8 Disponível</span>
       <h1 class="text-4xl md:text-6xl font-black mt-4 mb-8" style="font-family: 'Poppins'; line-height: 1.1;">
-        ROAS alto não paga boleto. Foque no seu <span style="color: var(--accent-blue);">Lucro Real</span>.
+        Separe o seu bolso da empresa com o novo <span style="color: var(--accent-green);">DRE Profissional</span>.
       </h1>
 
       <div class="space-y-12">
         <section>
           <div class="flex items-center gap-3 mb-4">
-            <h2 class="text-2xl font-bold text-white">Domine o seu CPV (Custo por Venda)</h2>
-            <span class="metric-badge">CPV</span>
+            <h2 class="text-2xl font-bold text-white">Gestão de Manufatura Integrada</h2>
+            <span class="metric-badge">NOVO</span>
           </div>
           <p class="text-slate-300">
-            Saiba exatamente quanto sobra após descontar o produto, a embalagem, o frete e a taxa do marketplace. No Metricora, você vê a margem real de cada pedido.
+            Agora você cadastra insumos, monta fichas técnicas avançadas e o sistema calcula automaticamente o custo real da sua produção. Sem achismos, sem precificação errada.
           </p>
         </section>
 
         <div class="my-12 reveal">
           <img src="img/print_loja.png" 
-               alt="Interface de Vendas" 
+               alt="Dashboard v1.0.8" 
                class="rounded-2xl border border-white/10 shadow-2xl cursor-pointer hover:scale-[1.02] transition-transform w-full"
                onclick="openImageModal(this.src)">
-          <p class="text-center text-xs text-slate-500 mt-4 italic">Clique na imagem para ver o dashboard de lucro em detalhes</p>
+          <p class="text-center text-xs text-slate-500 mt-4 italic">O novo painel de Lucro Real e sangria de caixa</p>
         </div>
 
         <section>
           <div class="flex items-center gap-3 mb-4">
-            <h2 class="text-2xl font-bold text-white">ROI e ROAS que fazem sentido</h2>
-            <span class="metric-badge">ROI/ROAS</span>
+            <h2 class="text-2xl font-bold text-white">DRE e Fluxo de Caixa Blindado</h2>
+            <span class="metric-badge">DRE</span>
           </div>
           <p class="text-slate-300">
-            Não se engane com as métricas do Facebook ou Google Ads. O Metricora cruza seu investimento em tráfego com seu lucro líquido para te dar o retorno real sobre cada real investido.
+            A v1.0.8 introduz a distinção obrigatória entre despesas operacionais da empresa e retiradas de sócio (pró-labore). Entenda, pela primeira vez, se a sua empresa é lucrativa ou se é você quem está drenando o caixa.
           </p>
         </section>
       </div>
 
-      <div class="mt-16 p-8 rounded-2xl border border-[#00D9FF]/30 bg-[#00D9FF]/5 text-center">
-        <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.7/metricora_app_releasev1.0.7.apk" 
+      <div class="mt-16 p-8 rounded-2xl border border-[#00D47E]/30 bg-[#00D47E]/5 text-center">
+        <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.8/metricora_app_releasev1.0.8.apk" 
            class="btn btn-primary" 
-           style="background: linear-gradient(135deg, var(--accent-blue) 0%, #008ba3 100%); color: #002b33;" download>
-           BAIXAR MÉTRICORA GRÁTIS <i class="ph ph-download-simple"></i>
+           style="background: linear-gradient(135deg, var(--accent-green) 0%, #008ba3 100%); color: #06371E;" download>
+            BAIXAR MÉTRICORA PRO v1.0.8 <i class="ph ph-download-simple"></i>
         </a>
       </div>
     </article>
@@ -97,32 +97,21 @@
 
   <div id="imageModal" class="fixed inset-0 z-[90] hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 cursor-pointer" onclick="closeImageModal()">
     <img id="imageModalSrc" src="" alt="Zoom" class="max-w-full max-h-full rounded-lg shadow-2xl transition-transform duration-300 scale-95 border border-white/10" />
-    <div class="absolute top-4 right-4 text-white/50 hover:text-white"><i class="ph-bold ph-x text-3xl"></i></div>
   </div>
 
   <script>
-    const imageModal = document.getElementById('imageModal');
-    const imageModalSrc = document.getElementById('imageModalSrc');
-
     function openImageModal(src) {
-      imageModalSrc.src = src;
-      imageModal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-      setTimeout(() => imageModalSrc.classList.remove('scale-95'), 10);
+      document.getElementById('imageModalSrc').src = src;
+      document.getElementById('imageModal').classList.remove('hidden');
     }
-
     function closeImageModal() {
-      imageModal.classList.add('hidden');
-      imageModalSrc.classList.add('scale-95');
-      document.body.style.overflow = '';
+      document.getElementById('imageModal').classList.add('hidden');
     }
-
-    // Reveal animation
-    const reveals = Array.from(document.querySelectorAll('.reveal'));
+    // Intersection Observer mantido original
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
     }, { threshold: 0.1 });
-    reveals.forEach(el => io.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   </script>
 </body>
 </html>
