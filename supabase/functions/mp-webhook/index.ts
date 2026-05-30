@@ -1,9 +1,11 @@
-// supabase/functions/mercado-pago-webhook/index.ts
+// supabase/functions/mp-webhook/index.ts
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
+// Puxa as duas chaves do cofre de segurança do Supabase
 const MERCADO_PAGO_TOKEN = Deno.env.get('MP_ACCESS_TOKEN') ?? ''
+const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY') ?? ''
 
 serve(async (req) => {
   try {
@@ -46,15 +48,60 @@ serve(async (req) => {
 
         if (error) throw error
 
-        console.log(`✅ Licença ${chaveGerada} gerada com sucesso para ${emailCliente}`)
+        console.log(`✅ Licença ${chaveGerada} gerada com sucesso no banco para ${emailCliente}`)
         
-        // (Opcional) Aqui você poderia chamar uma API de disparo de e-mail (Resend, SendGrid) 
-        // para enviar a chave direto para a caixa de entrada do cliente.
+        // =======================================================
+        // 6. NOVO MOTOR: DISPARO DE E-MAIL VIA RESEND API
+        // =======================================================
+        const emailResponse = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${RESEND_API_KEY}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            // ATENÇÃO: Enquanto não validar o domínio, use onboarding@resend.dev para testes.
+            // Depois mude para contato@vectorium.tec.br
+            from: 'Vectorium Systems <onboarding@resend.dev>', 
+            to: [emailCliente],
+            subject: 'Sua Licença PRO - Vectorium Systems',
+            html: `
+              <div style="font-family: sans-serif; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #eaeaea; border-radius: 10px; padding: 20px;">
+                <h2 style="color: #6200EA; text-align: center;">Bem-vindo à Vectorium Systems!</h2>
+                <p>Seu pagamento foi aprovado com sucesso. Sua licença vitalícia está pronta e vinculada ao seu e-mail.</p>
+                
+                <div style="background-color: #f4f4f4; padding: 20px; border-radius: 8px; text-align: center; margin: 20px 0;">
+                  <p style="margin: 0; color: #666; font-size: 14px;">Sua Chave de Ativação:</p>
+                  <h1 style="margin: 10px 0; color: #333; letter-spacing: 2px;">${chaveGerada}</h1>
+                  <p style="margin: 0; color: #666; font-size: 14px;">E-mail de vínculo: <strong>${emailCliente}</strong></p>
+                </div>
+                
+                <p><strong>Como acessar:</strong></p>
+                <ol>
+                  <li>Abra o aplicativo.</li>
+                  <li>Acesse o menu Configurações > <b>Ativar Licença PRO</b>.</li>
+                  <li>Insira o exato e-mail desta compra e a chave acima.</li>
+                </ol>
+                
+                <hr style="border: none; border-top: 1px solid #eaeaea; margin: 20px 0;" />
+                <p style="font-size: 12px; color: #999; text-align: center;">Este é um e-mail automático. Em caso de dúvidas, acione nosso suporte.</p>
+              </div>
+            `
+          })
+        })
+
+        if (!emailResponse.ok) {
+          const errorText = await emailResponse.text()
+          console.error("❌ Falha crítica ao enviar e-mail:", errorText)
+        } else {
+          console.log(`✉️ E-mail com a chave enviado com sucesso para ${emailCliente}`)
+        }
+        // =======================================================
       }
     }
 
     // Retorna 200 OK para o Mercado Pago parar de tentar enviar o webhook
-    return new Response(JSON.stringify({ message: 'Webhook processado' }), { status: 200 })
+    return new Response(JSON.stringify({ message: 'Webhook e E-mail processados com sucesso' }), { status: 200 })
 
   } catch (error) {
     console.error("Erro fatal no processamento do webhook:", error)
