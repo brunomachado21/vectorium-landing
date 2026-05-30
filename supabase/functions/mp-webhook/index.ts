@@ -16,6 +16,11 @@ serve(async (req) => {
       const emailCliente = body.email ?? 'brunomachadorocha@outlook.com'
       const chaveGerada = `PRO-${crypto.randomUUID().split('-')[0].toUpperCase()}`
 
+      console.log(`[TEST] Iniciando... email: ${emailCliente}, chave: ${chaveGerada}`)
+      console.log(`[TEST] SUPABASE_URL: ${Deno.env.get('SUPABASE_URL') ? 'OK' : 'MISSING'}`)
+      console.log(`[TEST] SUPABASE_SERVICE_ROLE_KEY: ${Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ? 'OK' : 'MISSING'}`)
+      console.log(`[TEST] RESEND_API_KEY: ${RESEND_API_KEY ? 'OK' : 'MISSING'}`)
+
       const supabase = createClient(
         Deno.env.get('SUPABASE_URL') ?? '',
         Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
@@ -30,7 +35,10 @@ serve(async (req) => {
           device_id: null
         })
 
-      if (dbError) throw dbError
+      if (dbError) {
+        console.error('[TEST][ERRO] DB Error:', JSON.stringify(dbError))
+        throw new Error(`DB Error: ${JSON.stringify(dbError)}`)
+      }
 
       console.log(`[TEST][OK] Licenca inserida: ${chaveGerada} -> ${emailCliente}`)
 
@@ -66,9 +74,9 @@ serve(async (req) => {
       })
 
       const resendData = await resendResponse.json()
+      console.log(`[TEST] Resend status: ${resendResponse.status}, body: ${JSON.stringify(resendData)}`)
 
       if (!resendResponse.ok) {
-        console.error('[TEST][ERRO] Resend falhou:', JSON.stringify(resendData))
         throw new Error(`Resend falhou: ${JSON.stringify(resendData)}`)
       }
 
@@ -84,7 +92,6 @@ serve(async (req) => {
     if (body.type === 'payment' || body.action === 'payment.created') {
       const paymentId = body.data.id
 
-      // 1. Valida pagamento na API oficial do Mercado Pago (anti-fraude)
       const mpResponse = await fetch(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
         headers: { Authorization: `Bearer ${MP_ACCESS_TOKEN}` }
       })
@@ -92,17 +99,13 @@ serve(async (req) => {
 
       if (paymentData.status === 'approved') {
         const emailCliente = paymentData.payer.email
-
-        // 2. Gera chave PRO aleatoria
         const chaveGerada = `PRO-${crypto.randomUUID().split('-')[0].toUpperCase()}`
 
-        // 3. Conecta no Supabase como Admin (bypassa RLS)
         const supabase = createClient(
           Deno.env.get('SUPABASE_URL') ?? '',
           Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
         )
 
-        // 4. Salva a licenca no banco
         const { error: dbError } = await supabase
           .from('licencas')
           .insert({
@@ -112,11 +115,13 @@ serve(async (req) => {
             device_id: null
           })
 
-        if (dbError) throw dbError
+        if (dbError) {
+          console.error('[ERRO] DB Error:', JSON.stringify(dbError))
+          throw new Error(`DB Error: ${JSON.stringify(dbError)}`)
+        }
 
         console.log(`[OK] Licenca inserida: ${chaveGerada} -> ${emailCliente}`)
 
-        // 5. Envia a chave por e-mail via Resend
         const resendResponse = await fetch('https://api.resend.com/emails', {
           method: 'POST',
           headers: {
@@ -165,8 +170,9 @@ serve(async (req) => {
     })
 
   } catch (error) {
-    console.error('[ERRO FATAL] Webhook:', String(error))
-    return new Response(JSON.stringify({ error: String(error) }), {
+    const msg = error instanceof Error ? error.message : JSON.stringify(error)
+    console.error('[ERRO FATAL] Webhook:', msg)
+    return new Response(JSON.stringify({ error: msg }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     })
