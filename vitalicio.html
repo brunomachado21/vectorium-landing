@@ -7,34 +7,88 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <style>body { background: #0D1117; color: #fff; font-family: 'Inter', sans-serif; }</style>
+    <style>
+        body { background: #0D1117; color: #fff; font-family: 'Inter', sans-serif; }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 126, 0.3); }
+            50%       { box-shadow: 0 0 40px rgba(0, 212, 126, 0.6); }
+        }
+        .btn-pagar          { animation: pulse-glow 2.5s ease-in-out infinite; }
+        .btn-pagar:disabled { animation: none; opacity: 0.7; cursor: not-allowed; }
+    </style>
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen p-4">
 
     <div class="max-w-md w-full bg-[#161B22] border border-[#30363D] rounded-2xl p-8 text-center shadow-2xl">
+
         <div class="w-16 h-16 bg-[#00D47E]/20 rounded-full flex items-center justify-center mx-auto mb-4">
             <i class="ph-fill ph-crown text-[#00D47E] text-3xl"></i>
         </div>
 
         <h1 class="text-2xl font-bold text-white mb-2">Licença Vitalícia v1.0.8</h1>
-        <p class="text-slate-400 mb-6">Acesso ilimitado ao sistema de gestão financeira. Pagamento único, sem mensalidades.</p>
+        <p class="text-slate-400 mb-6">Acesso ilimitado ao sistema de gestão financeira.<br>Pagamento único, sem mensalidades.</p>
 
-        <div class="text-4xl font-extrabold text-[#00D47E] mb-2">R$ 97,90</div>
+        <div class="text-4xl font-extrabold text-[#00D47E] mb-1">R$ 97,90</div>
         <div class="text-xs text-slate-500 uppercase tracking-widest mb-8 font-semibold">Liberado para a Versão PRO</div>
 
-        <a href="https://mpago.la/1bqiPE5" 
-           class="block w-full bg-[#00D47E] hover:bg-[#00a860] text-[#0D1117] font-bold py-4 rounded-xl transition-all active:scale-95 mb-6 shadow-lg shadow-[#00D47E]/20">
-            PAGAR COM PIX OU CARTÃO
-        </a>
+        <button
+            id="btnPagar"
+            onclick="iniciarPagamento()"
+            class="btn-pagar block w-full bg-[#00D47E] hover:bg-[#00a860] text-[#0D1117] font-bold py-4 rounded-xl transition-all active:scale-95 mb-6">
+            <span id="btnTexto" class="flex items-center justify-center gap-2">
+                <i class="ph-fill ph-lock-key text-lg"></i>
+                PAGAR COM PIX OU CARTÃO
+            </span>
+        </button>
 
         <div class="flex flex-col gap-3 text-xs text-slate-500">
             <div class="flex justify-center gap-6">
-                <span class="flex items-center gap-1"><i class="ph-fill ph-lock-key"></i> Compra Segura</span>
+                <span class="flex items-center gap-1"><i class="ph-fill ph-shield-check"></i> Compra Segura</span>
                 <span class="flex items-center gap-1"><i class="ph-fill ph-check-circle"></i> Acesso Imediato</span>
+                <span class="flex items-center gap-1"><i class="ph-fill ph-currency-circle-dollar"></i> Pix ou Cartão</span>
             </div>
-            <p class="border-t border-[#30363D] pt-4 mt-2 italic">Ao finalizar, você será redirecionado para a área de ativação.</p>
+            <p class="border-t border-[#30363D] pt-4 mt-2 italic">
+                Ao finalizar, você receberá sua chave de ativação por email.
+            </p>
         </div>
     </div>
+
+    <div id="msgErro" class="hidden max-w-md w-full mt-4 bg-red-900/30 border border-red-500/30 text-red-400 text-sm rounded-xl px-4 py-3 text-center">
+        Erro ao iniciar pagamento. Tente novamente ou entre em contato.
+    </div>
+
+    <script>
+        async function iniciarPagamento() {
+            const btn   = document.getElementById('btnPagar');
+            const texto = document.getElementById('btnTexto');
+            const erro  = document.getElementById('msgErro');
+
+            btn.disabled = true;
+            erro.classList.add('hidden');
+            texto.innerHTML = '<i class="ph-fill ph-spinner-gap animate-spin text-lg"></i> Aguarde...';
+
+            try {
+                const res = await fetch(
+                    'https://hxwjseeuwetmfodpjbhc.supabase.co/functions/v1/create-preference',
+                    {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: '' })
+                    }
+                );
+
+                if (!res.ok) throw new Error('Erro na resposta');
+
+                const { init_point } = await res.json();
+                window.location.href = init_point;
+
+            } catch (e) {
+                btn.disabled = false;
+                texto.innerHTML = '<i class="ph-fill ph-lock-key text-lg"></i> PAGAR COM PIX OU CARTÃO';
+                erro.classList.remove('hidden');
+            }
+        }
+    </script>
 
 </body>
 </html>
