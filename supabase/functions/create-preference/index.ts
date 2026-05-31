@@ -35,9 +35,9 @@ Deno.serve(async (req: Request) => {
     }],
     notification_url: 'https://hxwjseeuwetmfodpjbhc.supabase.co/functions/v1/mp-webhook',
     back_urls: {
-      success: 'https://metricora.com.br/ativacao',
-      failure: 'https://metricora.com.br/checkout',
-      pending: 'https://metricora.com.br/checkout',
+      success: 'https://vectorium.tec.br/obrigado.html',
+      failure: 'https://vectorium.tec.br/vitalicio.html',
+      pending: 'https://vectorium.tec.br/vitalicio.html',
     },
     auto_return: 'approved',
     ...(email ? { payer: { email } } : {}),
