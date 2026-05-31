@@ -15,11 +15,81 @@
         }
         .btn-pagar          { animation: pulse-glow 2.5s ease-in-out infinite; }
         .btn-pagar:disabled { animation: none; opacity: 0.7; cursor: not-allowed; }
+
+        .pro-col  { background: linear-gradient(135deg, #00D47E08, #00D47E14); }
+        .pro-badge { background: linear-gradient(90deg, #00D47E, #00a860); }
     </style>
 </head>
-<body class="flex flex-col items-center justify-center min-h-screen p-4">
+<body class="flex flex-col items-center justify-center min-h-screen p-4 py-12">
 
-    <div class="max-w-md w-full bg-[#161B22] border border-[#30363D] rounded-2xl p-8 text-center shadow-2xl">
+    <!-- TABELA COMPARATIVA -->
+    <div class="max-w-2xl w-full mb-8">
+        <h2 class="text-center text-xl font-bold text-white mb-1">Escolha seu plano</h2>
+        <p class="text-center text-slate-500 text-sm mb-6">Upgrade único, sem mensalidade, sem surpresas.</p>
+
+        <div class="grid grid-cols-3 rounded-2xl overflow-hidden border border-[#30363D]">
+
+            <!-- Cabeçalho -->
+            <div class="bg-[#161B22] p-4 border-b border-r border-[#30363D] flex items-end">
+                <span class="text-xs text-slate-500 uppercase tracking-widest font-semibold">Recurso</span>
+            </div>
+            <div class="bg-[#161B22] p-4 border-b border-r border-[#30363D] text-center">
+                <span class="text-sm font-bold text-slate-300">Free</span>
+                <div class="text-xs text-slate-500 mt-1">Gratuito</div>
+            </div>
+            <div class="pro-col p-4 border-b border-[#00D47E]/20 text-center relative">
+                <span class="pro-badge text-[10px] font-bold text-black px-2 py-0.5 rounded-full absolute top-2 right-2 uppercase tracking-wide">Recomendado</span>
+                <span class="text-sm font-bold text-[#00D47E]">PRO</span>
+                <div class="text-xs text-slate-400 mt-1">R$ 97,90 único</div>
+            </div>
+
+            <!-- Linha: Histórico financeiro -->
+            <div class="bg-[#161B22] px-4 py-3 border-b border-r border-[#30363D] text-sm text-slate-300">Histórico financeiro</div>
+            <div class="bg-[#161B22] px-4 py-3 border-b border-r border-[#30363D] text-center"><i class="ph-fill ph-check text-slate-400"></i></div>
+            <div class="pro-col px-4 py-3 border-b border-[#00D47E]/20 text-center"><i class="ph-fill ph-check text-[#00D47E]"></i></div>
+
+            <!-- Linha: Backup dos dados -->
+            <div class="bg-[#161B22] px-4 py-3 border-b border-r border-[#30363D] text-sm text-slate-300">Backup dos dados</div>
+            <div class="bg-[#161B22] px-4 py-3 border-b border-r border-[#30363D] text-center"><i class="ph-fill ph-x text-slate-600"></i></div>
+            <div class="pro-col px-4 py-3 border-b border-[#00D47E]/20 text-center"><i class="ph-fill ph-check text-[#00D47E]"></i></div>
+
+            <!-- Linha: Relatório comparativo -->
+            <div class="bg-[#161B22] px-4 py-3 border-b border-r border-[#30363D] text-sm text-slate-300">Relatório comparativo</div>
+            <div class="bg-[#161B22] px-4 py-3 border-b border-r border-[#30363D] text-center"><i class="ph-fill ph-x text-slate-600"></i></div>
+            <div class="pro-col px-4 py-3 border-b border-[#00D47E]/20 text-center"><i class="ph-fill ph-check text-[#00D47E]"></i></div>
+
+            <!-- Linha: Projeção financeira -->
+            <div class="bg-[#161B22] px-4 py-3 border-b border-r border-[#30363D] text-sm text-slate-300">Projeção financeira</div>
+            <div class="bg-[#161B22] px-4 py-3 border-b border-r border-[#30363D] text-center"><i class="ph-fill ph-x text-slate-600"></i></div>
+            <div class="pro-col px-4 py-3 border-b border-[#00D47E]/20 text-center"><i class="ph-fill ph-check text-[#00D47E]"></i></div>
+
+            <!-- Linha: DRE com IA -->
+            <div class="bg-[#161B22] px-4 py-3 border-b border-r border-[#30363D]">
+                <span class="text-sm text-slate-300">DRE com Inteligência Artificial</span>
+            </div>
+            <div class="bg-[#161B22] px-4 py-3 border-b border-r border-[#30363D] text-center"><i class="ph-fill ph-x text-slate-600"></i></div>
+            <div class="pro-col px-4 py-3 border-b border-[#00D47E]/20 text-center"><i class="ph-fill ph-check text-[#00D47E]"></i></div>
+
+            <!-- Linha: PDF do DRE -->
+            <div class="bg-[#161B22] px-4 py-3 border-b border-r border-[#30363D]">
+                <span class="text-sm text-slate-300">Exportar DRE em PDF</span>
+            </div>
+            <div class="bg-[#161B22] px-4 py-3 border-b border-r border-[#30363D] text-center"><i class="ph-fill ph-x text-slate-600"></i></div>
+            <div class="pro-col px-4 py-3 border-b border-[#00D47E]/20 text-center"><i class="ph-fill ph-check text-[#00D47E]"></i></div>
+
+            <!-- Linha: Conselheiro IA -->
+            <div class="bg-[#161B22] px-4 py-3 border-r border-[#30363D]">
+                <span class="text-sm text-slate-300">Conselheiro IA financeiro</span>
+                <span class="ml-2 text-[10px] bg-[#00D47E]/10 text-[#00D47E] border border-[#00D47E]/20 px-1.5 py-0.5 rounded-full font-semibold uppercase tracking-wide">Exclusivo</span>
+            </div>
+            <div class="bg-[#161B22] px-4 py-3 border-r border-[#30363D] text-center"><i class="ph-fill ph-x text-slate-600"></i></div>
+            <div class="pro-col px-4 py-3 border-[#00D47E]/20 text-center"><i class="ph-fill ph-check text-[#00D47E]"></i></div>
+
+        </div>
+    </div>
+
+    <!-- CARD DE CHECKOUT -->
+    <div class="max-w-md w-full bg-[#161B22] border border-[#00D47E]/30 rounded-2xl p-8 text-center shadow-2xl">
 
         <div class="w-16 h-16 bg-[#00D47E]/20 rounded-full flex items-center justify-center mx-auto mb-4">
             <i class="ph-fill ph-crown text-[#00D47E] text-3xl"></i>
