@@ -49,7 +49,7 @@ serve(async (req) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          from: 'Metricora <onboarding@resend.dev>',
+          from: 'Vectorium <suporte@vectorium.tec.br>',
           to: [emailCliente],
           subject: 'Sua chave PRO do Metricora chegou!',
           html: `
@@ -129,7 +129,7 @@ serve(async (req) => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            from: 'Metricora <onboarding@resend.dev>',
+            from: 'Vectorium <suporte@vectorium.tec.br>',
             to: [emailCliente],
             subject: 'Sua chave PRO do Metricora chegou!',
             html: `
