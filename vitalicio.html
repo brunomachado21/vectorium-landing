@@ -31,15 +31,15 @@
         <div class="text-4xl font-extrabold text-[#00D47E] mb-1">R$ 97,90</div>
         <div class="text-xs text-slate-500 uppercase tracking-widest mb-8 font-semibold">Liberado para a Versão PRO</div>
 
-        <!-- TESTE: link direto de R$ 1,00 — trocar pela função create-preference após validar -->
-        <a
-            href="https://mpago.la/1bqiPE5"
+        <button
+            id="btnPagar"
+            onclick="iniciarPagamento()"
             class="btn-pagar block w-full bg-[#00D47E] hover:bg-[#00a860] text-[#0D1117] font-bold py-4 rounded-xl transition-all active:scale-95 mb-6">
-            <span class="flex items-center justify-center gap-2">
+            <span id="btnTexto" class="flex items-center justify-center gap-2">
                 <i class="ph-fill ph-lock-key text-lg"></i>
                 PAGAR COM PIX OU CARTÃO
             </span>
-        </a>
+        </button>
 
         <div class="flex flex-col gap-3 text-xs text-slate-500">
             <div class="flex justify-center gap-6">
@@ -56,6 +56,39 @@
     <div id="msgErro" class="hidden max-w-md w-full mt-4 bg-red-900/30 border border-red-500/30 text-red-400 text-sm rounded-xl px-4 py-3 text-center">
         Erro ao iniciar pagamento. Tente novamente ou entre em contato.
     </div>
+
+    <script>
+        async function iniciarPagamento() {
+            const btn   = document.getElementById('btnPagar');
+            const texto = document.getElementById('btnTexto');
+            const erro  = document.getElementById('msgErro');
+
+            btn.disabled = true;
+            erro.classList.add('hidden');
+            texto.innerHTML = '<i class="ph-fill ph-spinner-gap animate-spin text-lg"></i> Aguarde...';
+
+            try {
+                const res = await fetch(
+                    'https://hxwjseeuwetmfodpjbhc.supabase.co/functions/v1/create-preference',
+                    {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: '' })
+                    }
+                );
+
+                if (!res.ok) throw new Error('Erro na resposta');
+
+                const { init_point } = await res.json();
+                window.location.href = init_point;
+
+            } catch (e) {
+                btn.disabled = false;
+                texto.innerHTML = '<i class="ph-fill ph-lock-key text-lg"></i> PAGAR COM PIX OU CARTÃO';
+                erro.classList.remove('hidden');
+            }
+        }
+    </script>
 
 </body>
 </html>

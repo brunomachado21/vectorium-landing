@@ -30,7 +30,7 @@ Deno.serve(async (req: Request) => {
       id: 'metricora-pro-v1',
       title: 'Licença Vitalícia Metricora PRO v1.0.8',
       quantity: 1,
-      unit_price: 97.90,
+      unit_price: 1.00, // TESTE: trocar para 97.90 após validar
       currency_id: 'BRL',
     }],
     notification_url: 'https://hxwjseeuwetmfodpjbhc.supabase.co/functions/v1/mp-webhook',
