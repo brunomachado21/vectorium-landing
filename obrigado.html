@@ -49,7 +49,6 @@
         #state-pending, #state-rejected { display: none; }
     </style>
 
-    <!-- Facebook Pixel — disparo de Purchase só via JS abaixo, após checar status -->
     <script>
         !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '1215025004067870');
@@ -84,11 +83,11 @@
             <div class="space-y-6 reveal relative z-20">
                 <p class="text-sm text-slate-400 mb-2">Instale o motor financeiro no seu dispositivo:</p>
 
-                <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.8/metricora_app_releasev1.0.8.apk"
+                <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.9/metricora_app_releasev1.0.9.apk"
                    class="btn btn-shine w-full flex items-center justify-center gap-3 bg-gradient-to-r from-[#00D47E] to-[#00a860] text-black font-bold text-lg py-4 px-8 rounded-xl shadow-lg shadow-[#00D47E]/20 hover:transform hover:-translate-y-1 transition-all"
                    download>
                     <i class="ph-bold ph-download-simple text-2xl"></i>
-                    BAIXAR VERSÃO v1.0.8
+                    BAIXAR VERSÃO v1.0.9
                 </a>
 
                 <div class="bg-blue-500/10 border border-blue-500/20 p-3 rounded-lg text-left flex gap-3 items-start text-xs text-blue-200 mt-2">
@@ -182,9 +181,8 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
         window.addEventListener('load', () => {
-            // Lê parâmetros do Mercado Pago na URL
             const params = new URLSearchParams(window.location.search);
-            const status = params.get('status') || 'approved'; // fallback: approved (acesso direto)
+            const status = params.get('status') || 'approved';
             const paymentId = params.get('payment_id') || '';
 
             const stateApproved = document.getElementById('state-approved');
@@ -193,7 +191,6 @@
 
             if (status === 'approved') {
                 stateApproved.style.display = 'block';
-                // Dispara Purchase só quando realmente aprovado
                 if (typeof fbq === 'function') {
                     fbq('track', 'Purchase', {
                         currency: 'BRL',
@@ -202,18 +199,15 @@
                         ...(paymentId ? { transaction_id: paymentId } : {})
                     });
                 }
-                // Confetti de celebração
                 setTimeout(() => {
                     confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, disableForReducedMotion: true, colors: ['#00D47E', '#ffffff', '#0D1117'] });
                 }, 800);
             } else if (status === 'pending') {
                 statePending.style.display = 'block';
             } else {
-                // failure, rejected, null, etc.
                 stateRejected.style.display = 'block';
             }
 
-            // Anima todos os .reveal visíveis
             document.querySelectorAll('.reveal').forEach((el, i) => {
                 setTimeout(() => el.classList.add('in'), 100 + (i * 100));
             });
