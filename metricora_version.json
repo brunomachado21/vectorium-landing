@@ -1,6 +1,6 @@
 {
-  "version": "1.0.8",
-  "url": "https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.8/metricora_app_releasev1.0.8.apk",
+  "version": "1.0.9",
+  "url": "https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.9/metricora_app_releasev1.0.9.apk",
   "required": true,
-  "notes": "🚀 UPGRADE CRÍTICO v1.0.8:\n\n✅ Módulo de Fábrica: Controle de estoque de insumos e cálculo automatizado de custo por grama/unidade.\n✅ Engenharia de Ficha Técnica: Montagem de produtos finais com custo variável preciso puxado no caixa.\n✅ Blindagem Contábil: Separação profissional entre despesas da empresa e retiradas pessoais do sócio.\n⚡ Correção estrutural na inicialização do banco offline (SQLite v4)."
+  "notes": "🚀 NOVIDADES v1.0.9:\n\n✅ Autenticação por e-mail via Supabase Auth (opcional) — vincule seu e-mail para ativar backup na nuvem.\n✅ Backup & Restore completo — sincronize todos os lançamentos com a nuvem com 1 toque.\n✅ Widget Real vs Meta — acompanhe o progresso da receita do mês em tempo real.\n✅ Onboarding interativo — guia de boas-vindas no primeiro acesso.\n✅ Dashboard motivacional — barra de meta com 5 estágios e badge dinâmico.\n⚡ Correções de compilação no módulo de autenticação."
 }
