@@ -21,8 +21,8 @@
     .topbar{background:rgba(248,250,252,0.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0.9rem 2rem;position:sticky;top:0;z-index:100;}
     .btn-back{color:var(--text-secondary);text-decoration:none;font-weight:600;font-size:0.9rem;display:inline-flex;align-items:center;gap:0.4rem;transition:color 0.2s;}
     .btn-back:hover{color:var(--accent-blue);}
-    .btn-web{background:var(--gradient);color:#fff;font-weight:700;padding:0.6rem 1.2rem;border-radius:8px;font-size:0.85rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;transition:all 0.25s;font-family:'Poppins',sans-serif;box-shadow:0 2px 10px rgba(0,201,107,0.2);}
-    .btn-web:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,201,107,0.3);}
+    .btn-web-top{background:var(--gradient);color:#fff;font-weight:700;padding:0.55rem 1.2rem;border-radius:8px;font-size:0.85rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.45rem;transition:all 0.25s;font-family:'Poppins',sans-serif;box-shadow:0 2px 12px rgba(0,201,107,0.25);border:none;}
+    .btn-web-top:hover{opacity:0.9;transform:translateY(-1px);box-shadow:0 4px 18px rgba(0,201,107,0.35);}
     .article-badge-cyan{display:inline-block;font-weight:700;text-transform:uppercase;letter-spacing:2px;font-size:0.78rem;font-family:'Space Mono',monospace;color:var(--accent-blue);}
     h1 span{background:linear-gradient(135deg,var(--accent-blue) 0%,var(--accent-green) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
     .article-lead{font-size:1.15rem;color:var(--text-secondary);line-height:1.8;margin-bottom:2.5rem;}
@@ -59,7 +59,9 @@
     <div style="max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;">
       <a href="index.html" class="btn-back"><i class="ph ph-arrow-left"></i> Voltar ao Início</a>
       <div style="display:flex;align-items:center;gap:0.75rem;">
-        <a href="https://app.metricora.tec.br" target="_blank" class="btn-web"><i class="ph ph-globe"></i> Acessar Web</a>
+        <a href="https://vectorium.tec.br/app" target="_blank" rel="noopener" class="btn-web-top">
+          <i class="ph-bold ph-globe"></i> Acessar Web
+        </a>
         <img src="img/logo.png" alt="Metricora" style="height:30px;" />
       </div>
     </div>
