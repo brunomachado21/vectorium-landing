@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Como Organizar Financeiro de Salão e Barbearia | Metricora PRO v1.0.10</title>
+  <title>Como Organizar Financeiro de Salão e Barbearia | Metricora</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" />
@@ -11,150 +11,295 @@
 
   <style>
     :root {
-      --primary-dark: #0D1117;
-      --secondary-dark: #161B22;
-      --accent-green: #00D47E;
-      --accent-cyan: #00D9FF;
-      --text-primary: #E6EDF3;
-      --text-secondary: #8B949E;
-      --border-color: #30363D;
+      --bg-page:        #F8FAFC;
+      --bg-card:        #FFFFFF;
+      --bg-section-alt: #F1F5F9;
+      --accent-green:   #00C96B;
+      --accent-blue:    #0EA5E9;
+      --gradient:       linear-gradient(135deg, #00C96B 0%, #0EA5E9 100%);
+      --gradient-soft:  linear-gradient(135deg, rgba(0,201,107,0.08) 0%, rgba(14,165,233,0.08) 100%);
+      --text-primary:   #0F172A;
+      --text-secondary: #475569;
+      --text-muted:     #94A3B8;
+      --border:         #E2E8F0;
+      --shadow-sm:      0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md:      0 4px 24px rgba(0,0,0,0.07);
+      --shadow-lg:      0 12px 48px rgba(0,0,0,0.10);
     }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--primary-dark);
+      background-color: var(--bg-page);
+      background-image: radial-gradient(circle, rgba(14,165,233,0.07) 1px, transparent 1px);
+      background-size: 28px 28px;
       color: var(--text-primary);
       line-height: 1.6;
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent-green) 0%, #00a860 100%);
-      color: #06371E;
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      font-weight: 700;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-transform: uppercase;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    .reveal { opacity: 0; transform: translateY(14px); transition: all .7s ease; }
-    .reveal.in { opacity: 1; transform: translateY(0); }
+    h1, h2, h3 { font-family: 'Poppins', sans-serif; }
 
     .topbar {
-      background: rgba(13, 17, 23, 0.8);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-color);
-      padding: 1rem 2rem;
+      background: rgba(248,250,252,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.9rem 2rem;
       position: sticky;
       top: 0;
       z-index: 100;
     }
+
+    .btn-back {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .btn-back:hover { color: var(--accent-blue); }
+
+    .article-badge {
+      display: inline-block;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.78rem;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .article-badge-cyan {
+      display: inline-block;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.78rem;
+      font-family: 'Space Mono', monospace;
+      color: var(--accent-blue);
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-green) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .article-lead {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .article-section {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.3s, border-color 0.3s;
+    }
+    .article-section:hover { box-shadow: var(--shadow-md); border-color: rgba(0,201,107,0.25); }
+
+    .article-section h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+    .article-section p { color: var(--text-secondary); line-height: 1.75; }
+
+    .section-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--gradient);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-right: 0.75rem;
+      flex-shrink: 0;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .screenshot-box {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1.5px solid var(--border);
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+      transition: all 0.3s;
+      margin: 2.5rem 0 0.5rem;
+    }
+    .screenshot-box:hover { transform: scale(1.01); box-shadow: var(--shadow-lg); border-color: rgba(14,165,233,0.3); }
+    .screenshot-box img { width: 100%; display: block; }
+    .screenshot-caption { text-align: center; font-size: 0.78rem; color: var(--text-muted); font-style: italic; margin: 0.5rem 0 2rem; }
+
+    .cta-box {
+      background: var(--gradient);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-top: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: 50%;
+      transform: translateX(-50%);
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-box h3 { font-size: 1.7rem; font-weight: 800; color: #fff; margin-bottom: 0.75rem; }
+    .cta-box p { color: rgba(255,255,255,0.85); margin-bottom: 2rem; line-height: 1.7; }
+
+    .btn-cta-white {
+      background: #fff;
+      color: #047857;
+      font-weight: 700;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.25s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      font-family: 'Poppins', sans-serif;
+    }
+    .btn-cta-white:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.18); }
+    .cta-box .cta-note { font-size: 0.78rem; color: rgba(255,255,255,0.65); margin-top: 1rem; }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: all 0.65s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    footer {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    footer a { color: var(--text-muted); text-decoration: none; margin: 0 0.75rem; transition: color 0.2s; }
+    footer a:hover { color: var(--accent-green); }
+
+    #imageModal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.85);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+    }
+    #imageModal.active { display: flex; }
+    #imageModal img { max-width: 90vw; max-height: 90vh; border-radius: 14px; box-shadow: 0 30px 80px rgba(0,0,0,0.3); }
   </style>
 </head>
 <body>
 
   <header class="topbar">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
-      <a href="index.html" style="color: var(--text-secondary); text-decoration: none; font-weight: 600;">
-        <i class="ph ph-arrow-left"></i> Voltar ao Início
-      </a>
-      <img src="img/logo.png" alt="Metricora" style="height: 30px; filter: brightness(0) invert(1);">
+    <div style="max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+      <a href="index.html" class="btn-back"><i class="ph ph-arrow-left"></i> Voltar ao Início</a>
+      <img src="img/logo.png" alt="Metricora" style="height: 30px;" />
     </div>
   </header>
 
-  <main class="max-w-4xl mx-auto px-6 py-16">
-    
+  <main style="max-width: 800px; margin: 0 auto; padding: 4rem 1.5rem 5rem;">
     <article class="reveal">
-      <span style="color: var(--accent-green); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">Nova Versão 1.0.10 Disponível</span>
-      <h1 class="text-4xl md:text-6xl font-black mt-4 mb-8" style="font-family: 'Poppins'; line-height: 1.1;">
-        Organize o financeiro do seu <span style="color: var(--accent-cyan);">salão ou barbearia</span> com precisão de elite.
+
+      <span class="article-badge-cyan">💈 Salão &amp; Barbearia</span>
+      <h1 style="font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.1; margin: 1rem 0 1.5rem; color: var(--text-primary); letter-spacing: -0.02em;">
+        Organize o financeiro do seu <span>salão ou barbearia</span> com precisão de elite.
       </h1>
 
-      <p class="text-xl text-slate-400 mb-10">
+      <p class="article-lead">
         Muitos profissionais trabalham 12 horas por dia, vêem o caixa girar, mas não sabem o tamanho do lucro líquido. A versão 1.0.10 traz backup na nuvem e autenticação por e-mail, separando finalmente o dinheiro do seu negócio das suas contas pessoais.
       </p>
 
-      <div class="space-y-12">
-        <section>
-          <h2 class="text-2xl font-bold text-white mb-4">1. Fim da mistura de contas</h2>
-          <p class="text-slate-300">
-            Retirar dinheiro do caixa para boletos pessoais sem registro corrói o seu lucro. O Metricora v1.0.10 agora exige a classificação correta: <strong>Despesa Operacional</strong> vs <strong>Retirada de Sócio</strong>.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-2xl font-bold text-white mb-4">2. Performance Real</h2>
-          <p class="text-slate-300">
-            Chega de calcular comissões e custos na calculadora. O app processa o valor do serviço, deduz o custo operacional e entrega seu lucro real instantaneamente.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-2xl font-bold text-white mb-4">3. Gestão Offline-First com Backup na Nuvem</h2>
-          <p class="text-slate-300">
-            Seu financeiro não pode depender de Wi-Fi. O Metricora funciona 100% offline e agora sincroniza seus dados com a nuvem em 1 toque, garantindo que você nunca perca um registro sequer.
-          </p>
-        </section>
+      <div class="article-section reveal">
+        <h2 style="display: flex; align-items: center;"><span class="section-number">1</span> Fim da mistura de contas</h2>
+        <p>Retirar dinheiro do caixa para boletos pessoais sem registro corroi o seu lucro. O Metricora v1.0.10 exige a classificação correta: <strong>Despesa Operacional</strong> vs <strong>Retirada de Sócio</strong>. Veja pela primeira vez o que seu salão realmente lucra.</p>
       </div>
 
-      <div class="my-12 reveal">
-        <img src="img/print_barber.png" 
-             alt="Interface do Modo Barber v1.0.10" 
-             class="rounded-2xl border border-white/10 shadow-2xl cursor-pointer hover:scale-[1.02] transition-transform"
-             onclick="openImageModal(this.src)">
-        <p class="text-center text-xs text-slate-500 mt-4 italic">Painel de controle financeiro v1.0.10</p>
+      <div class="article-section reveal">
+        <h2 style="display: flex; align-items: center;"><span class="section-number">2</span> Performance Real por Serviço</h2>
+        <p>Chega de calcular comissões e custos na calculadora. O app processa o valor do serviço, deduz o custo operacional e entrega seu lucro real instantaneamente. Faturamento é ego, lucro é realidade.</p>
       </div>
 
-      <div class="mt-16 p-8 rounded-2xl border border-[#00D47E]/30 bg-[#00D47E]/5 text-center">
-        <h3 class="text-2xl font-bold mb-4">Assuma o controle total.</h3>
-        <p class="mb-8 text-slate-400">Junte-se aos profissionais que pararam de pagar para trabalhar e começaram a escalar o lucro.</p>
-        
-        <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk" 
-           class="btn btn-primary" 
-           download>
-            BAIXAR MÉTRICORA v1.0.10 <i class="ph ph-download-simple"></i>
+      <div class="article-section reveal">
+        <h2 style="display: flex; align-items: center;"><span class="section-number">3</span> Gestão Offline-First com Backup na Nuvem</h2>
+        <p>Seu financeiro não pode depender de Wi-Fi. O Metricora funciona 100% offline e sincroniza seus dados com a nuvem em 1 toque, garantindo que você nunca perca um registro sequer.</p>
+      </div>
+
+      <div class="reveal">
+        <div class="screenshot-box" onclick="openModal(this.querySelector('img').src)">
+          <img src="img/print_barber.png" alt="Interface do Modo Salão v1.0.10" loading="lazy" />
+        </div>
+        <p class="screenshot-caption">Painel de controle financeiro v1.0.10</p>
+      </div>
+
+      <div class="cta-box reveal">
+        <h3>Assuma o controle total.</h3>
+        <p>Junte-se aos profissionais que pararam de pagar para trabalhar e começaram a escalar o lucro.</p>
+        <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk"
+           class="btn-cta-white" download>
+          <i class="ph-bold ph-download-simple"></i> Baixar Metricora v1.0.10 Grátis
         </a>
-        <p class="text-xs text-slate-500 mt-4">🔒 Binário Ofuscado | Segurança contra engenharia reversa</p>
+        <p class="cta-note">🔒 Binário Ofuscado · Segurança contra engenharia reversa · Android 6.0+</p>
       </div>
-    </article>
 
+    </article>
   </main>
 
-  <div id="imageModal" class="fixed inset-0 z-[90] hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 cursor-pointer" onclick="closeImageModal()">
-    <img id="imageModalSrc" src="" alt="Zoom" class="max-w-full max-h-full rounded-lg shadow-2xl transition-transform duration-300 scale-95 border border-white/10" />
-    <div class="absolute top-4 right-4 text-white/50 hover:text-white"><i class="ph-bold ph-x text-3xl"></i></div>
-  </div>
-
-  <footer class="py-12 border-t border-white/10 text-center text-slate-500 text-sm">
-    <p>&copy; 2026 Vectorium Systems. A matemática não falha.</p>
+  <footer>
+    <p style="margin-bottom: 0.5rem;">
+      <a href="index.html">Início</a>
+      <a href="confeitaria.html">Confeitaria</a>
+      <a href="vendedores.html">Loja &amp; Vendas</a>
+    </p>
+    <p>&copy; 2026 Vectorium Systems · A matemática não falha.</p>
   </footer>
 
+  <div id="imageModal" onclick="closeModal()">
+    <img id="modalImg" src="" alt="Screenshot" />
+  </div>
+
   <script>
-    const imageModal = document.getElementById('imageModal');
-    const imageModalSrc = document.getElementById('imageModalSrc');
-
-    function openImageModal(src) {
-      imageModalSrc.src = src;
-      imageModal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-      setTimeout(() => imageModalSrc.classList.remove('scale-95'), 10);
-    }
-
-    function closeImageModal() {
-      imageModal.classList.add('hidden');
-      imageModalSrc.classList.add('scale-95');
-      document.body.style.overflow = '';
-    }
-
-    const reveals = Array.from(document.querySelectorAll('.reveal'));
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
     }, { threshold: 0.1 });
-    reveals.forEach(el => io.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    function openModal(src) {
+      document.getElementById('modalImg').src = src;
+      document.getElementById('imageModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      document.getElementById('imageModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
   </script>
 </body>
 </html>
