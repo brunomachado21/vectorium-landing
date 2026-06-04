@@ -271,6 +271,21 @@
       transform: translateY(-2px);
     }
 
+    /* --- BOTÃO ACESSO WEB --- */
+    .btn-web {
+      background: transparent;
+      color: var(--accent-cyan);
+      border: 1px solid rgba(0, 217, 255, 0.35);
+      font-size: 0.9rem;
+    }
+
+    .btn-web:hover {
+      background: rgba(0, 217, 255, 0.08);
+      border-color: var(--accent-cyan);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 217, 255, 0.15);
+    }
+
     .trust-row {
       display: flex;
       align-items: center;
@@ -791,6 +806,14 @@
           </a>
         </div>
 
+        <!-- Acesso direto pela web -->
+        <div style="margin-bottom: 1.5rem;">
+          <a href="https://vectorium.tec.br/app" class="btn btn-web" target="_blank" rel="noopener">
+            <i class="ph-bold ph-globe"></i>
+            Prefiro acessar pelo navegador, sem baixar
+          </a>
+        </div>
+
         <div class="trust-row">
           <span class="trust-item"><i class="ph-fill ph-shield-check"></i> Sem vírus — verificado</span>
           <span class="trust-item"><i class="ph-fill ph-device-mobile"></i> Android 6.0+</span>
@@ -944,9 +967,13 @@
         </ul>
 
         <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk" 
-           class="btn btn-primary" style="width: 100%; justify-content: center;" download>
+           class="btn btn-primary" style="width: 100%; justify-content: center; margin-bottom: 0.75rem;" download>
           <i class="ph-bold ph-download-simple"></i>
           Baixar Metricora v1.0.10 Grátis
+        </a>
+        <a href="https://vectorium.tec.br/app" class="btn btn-web" style="width: 100%; justify-content: center;" target="_blank" rel="noopener">
+          <i class="ph-bold ph-globe"></i>
+          Prefiro acessar pelo navegador, sem baixar
         </a>
       </div>
     </div>
@@ -1055,11 +1082,17 @@
         <h2 class="section-title" style="max-width: 600px; margin: 0 auto 1rem;">Assuma o controle total do seu negócio hoje.</h2>
         <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.8;">Junte-se a centenas de empreendedores que pararam de trabalhar no escuro e começaram a escalar o lucro.</p>
         
-        <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk" 
-           class="btn btn-primary" style="font-size: 1.1rem; padding: 1.1rem 2.5rem;" download>
-          <i class="ph-bold ph-download-simple"></i>
-          Baixar Metricora Grátis
-        </a>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem;">
+          <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk" 
+             class="btn btn-primary" style="font-size: 1.1rem; padding: 1.1rem 2.5rem;" download>
+            <i class="ph-bold ph-download-simple"></i>
+            Baixar Metricora Grátis
+          </a>
+          <a href="https://vectorium.tec.br/app" class="btn btn-web" style="font-size: 0.95rem; padding: 0.85rem 2rem;" target="_blank" rel="noopener">
+            <i class="ph-bold ph-globe"></i>
+            Prefiro acessar pelo navegador, sem baixar
+          </a>
+        </div>
         <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 1rem;">🔒 Seguro • Android 6.0+ • Sem anúncios • Sem rastreamento</p>
       </div>
     </div>
