@@ -20,6 +20,22 @@
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="A new Flutter project.">
 
+  <!--
+    Content Security Policy:
+    - unsafe-eval   : exigido pelo engine do Flutter Web (dart2js) e sqlite3.wasm
+    - wasm-unsafe-eval : exigido pelo WebAssembly (sqlite3.wasm via Drift)
+    - unsafe-inline : exigido pelo Flutter Web bootstrap
+  -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 script-src  'self' 'unsafe-eval' 'unsafe-inline' 'wasm-unsafe-eval';
+                 style-src   'self' 'unsafe-inline';
+                 img-src     'self' data: blob:;
+                 font-src    'self' data:;
+                 connect-src 'self' https://*.supabase.co wss://*.supabase.co https://supabase.io;
+                 worker-src  'self' blob:;
+                 child-src   blob:;">
+
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
