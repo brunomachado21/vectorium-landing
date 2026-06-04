@@ -1,6 +1,6 @@
 {
   "version": "1.0.10",
-  "url": "https://github.com/brunomachado21/vectorium-landing/releases/download/v.1.0.10/metricora_app_releasev1.0.10.apk",
+  "url": "https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk",
   "required": true,
   "notes": "🚀 NOVIDADES v1.0.10:\n\n☁️ Backup na nuvem — vincule um e-mail para sincronizar seus dados automaticamente via Supabase.\n🔒 Autenticação por e-mail — cadastro e login seguros com verificação de e-mail.\n📱 Controle de dispositivos — gerencie onde sua conta está ativa e revogue acessos remotamente.\n🔗 Desvincular e-mail — remova o e-mail da conta a qualquer momento sem perder seus dados locais.\n🛡️ Backup com integridade — registros protegidos por chave de usuário com exclusão em cascata.\n⚡ Estabilidade geral — correções no fluxo de autenticação e sincronização em segundo plano."
 }
