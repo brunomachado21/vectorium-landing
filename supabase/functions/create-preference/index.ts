@@ -28,7 +28,7 @@ Deno.serve(async (req: Request) => {
   const preference = {
     items: [{
       id: 'metricora-pro-v1',
-      title: 'Licença Vitalícia Metricora PRO v1.0.9',
+      title: 'Licença Vitalícia Metricora PRO v1.0.10',
       quantity: 1,
       unit_price: 1.00, // TESTE: trocar para 97.90 após validar
       currency_id: 'BRL',
