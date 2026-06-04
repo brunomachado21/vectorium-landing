@@ -1,220 +1,193 @@
-# Diagramas UML — Vectorium / Metricora Web App
+# UML — Vectorium / Metricora
 
 **Versão:** 1.2  
 **Data:** 2026-06-04
 
 ---
 
-## 1. Diagrama de Casos de Uso
+## 1. Diagrama de Arquitetura de Deploy
 
 ```
-+-----------------------------------------------------------+
-|                  <<System>> Metricora Web                 |
-|                                                           |
-|  +----------------+     +-----------------------------+   |
-|  |                |     |                             |   |
-|  |   Registrar    |     |  Lançar Venda / Despesa     |   |
-|  |   Conta        |     |                             |   |
-|  +----------------+     +-----------------------------+   |
-|                                                           |
-|  +----------------+     +-----------------------------+   |
-|  |                |     |                             |   |
-|  |   Fazer Login  |     |  Visualizar DRE Mensal      |   |
-|  |                |     |                             |   |
-|  +----------------+     +-----------------------------+   |
-|                                                           |
-|  +----------------+     +-----------------------------+   |
-|  |                |     |                             |   |
-|  |  Fazer Backup  |     |  Exportar PDF               |   |
-|  |  (Nuvem)       |     |                             |   |
-|  +----------------+     +-----------------------------+   |
-|                                                           |
-+-----------------------------------------------------------+
-          ^
-          |
-    [Empreendedor]
-```
-
----
-
-## 2. Diagrama de Casos de Uso — Landing Page
-
-```
-+-----------------------------------------------------------+
-|              <<System>> Metricora Landing Page            |
-|                                                           |
-|  +--------------------+   +---------------------------+  |
-|  | Baixar APK Android |   | Acessar Versão Web        |  |
-|  | (navbar CTA)       |   | (navbar botão outline)    |  |
-|  +--------------------+   +---------------------------+  |
-|                                                           |
-|  +--------------------+   +---------------------------+  |
-|  | Navegar para       |   | Falar no WhatsApp         |  |
-|  | segmento específico|   | (botão flutuante)         |  |
-|  +--------------------+   +---------------------------+  |
-|                                                           |
-|  +--------------------+                                  |
-|  | Visualizar         |                                  |
-|  | screenshots        |                                  |
-|  +--------------------+                                  |
-|                                                           |
-+-----------------------------------------------------------+
-          ^
-          |
-   [Visitante / Prospect]
+┌───────────────────────────────────────────────┐
+│          brunomachado21/metricora (Flutter)          │
+│   push em main → GitHub Actions [deploy_web.yml]    │
+│                                                      │
+│  1. flutter pub get                                  │
+│  2. cp drift_worker.dart → web/ (do pub cache)       │
+│  3. dart compile js → web/drift_worker.dart.js       │
+│  4. flutter build web --release --base-href /app/    │
+│  5. cp sqlite3.wasm (pub cache) → build/web/         │
+│  6. cp drift_worker.dart.js    → build/web/          │
+└───────────────────────────────────────────────┘
+                        │
+                        │ cp -r build/web → app/
+                        ▼
+┌───────────────────────────────────────────────┐
+│    brunomachado21/vectorium-landing                 │
+│    branch: main                                      │
+│                                                      │
+│    index.html          ← landing page estática       │
+│    app/                ← Flutter Web build           │
+│    ├── index.html       (com CSP + manifest)          │
+│    ├── main.dart.js     (app compilado)              │
+│    ├── sqlite3.wasm     (← copiado do pub cache)      │
+│    ├── drift_worker.dart.js (← compilado no CI)      │
+│    ├── flutter_bootstrap.js                          │
+│    └── icons/           (PNGs válidos 192+512)        │
+└───────────────────────────────────────────────┘
+                        │
+                        │ GitHub Pages serve
+                        ▼
+              vectorium.tec.br
+              ├── /           (landing page)
+              └── /app/        (Flutter Web App)
+                   ├── /app/sqlite3.wasm
+                   └── /app/drift_worker.dart.js
 ```
 
 ---
 
-## 3. Diagrama de Classes (Modelos Principais)
+## 2. Diagrama de Classes — Core (Metricora)
 
 ```
-+-------------------+       +---------------------+
-|    UserModel      |       |   RegistroModel     |
-+-------------------+       +---------------------+
-| - id: int         |1    * | - id: int           |
-| - name: String    |-------| - userId: int       |
-| - email: String   |       | - produto: String   |
-| - createdAt: Date |       | - receita: double   |
-+-------------------+       | - cpv: double       |
-                            | - frete: double     |
-                            | - marketing: double |
-                            | - despesas: double  |
-                            | - proLabore: double |
-                            | - lucro: double     |
-                            | - data: String      |
-                            | - notas: String     |
-                            +---------------------+
+┌─────────────────────┐   ┌────────────────────────┐
+│    DatabaseHelper       │   │      SyncService          │
+│    (Singleton)          │   │                          │
+│  +instance: static      │   │ +syncPendentes()         │
+│  +init()               │   │ +pullFromSupabase()      │
+│  +openDefaultConn()    │◄──│ +listenRealtime(uid)     │
+│  [Web: WasmDatabase]   │   │ +stopRealtime()          │
+│  [Mobile: sqflite]     │   └────────────────────────┘
+└─────────────────────┘
+         │ usa
+         ▼
+┌─────────────────────┐   ┌────────────────────────┐
+│    SupabaseService      │   │  BackgroundSyncService   │
+│                         │   │                          │
+│ +loginComEmail()        │   │ +iniciar(userId)         │
+│ +registrarEmailAuth()   │   │ +parar()                 │
+│ +logout()               │   │ Timer: 15min             │
+│ +sincronizarPerfil()    │   │ AppLifecycleObserver     │
+└─────────────────────┘   └────────────────────────┘
 
-+---------------------+       +----------------------+
-|  FornecedorModel    |       |   SessionModel       |
-+---------------------+       +----------------------+
-| - id: int           |       | + currentUser:       |
-| - userId: int       |       |     UserModel?       |
-| - nome: String      |       | + isLoggedIn: bool   |
-| - site: String?     |       +----------------------+
-| - whatsapp: String? |
-| - especialidade:    |
-|     String?         |
-| - pedidoMinimo:     |
-|     double?         |
-| - avaliacao: int    |
-| - supabaseId: String|
-+---------------------+
+┌─────────────────────┐   ┌────────────────────────┐
+│    DeviceService        │   │     Session               │
+│                         │   │                          │
+│ +registrarDispositivo() │   │ +currentUser: UserModel? │
+│ +verificarLimite()      │   │ (static, global)         │
+│ +revogarAtual()         │   └────────────────────────┘
+│ FREE≤1, PRO≤2 devices   │
+└─────────────────────┘
 ```
 
 ---
 
-## 4. Diagrama de Sequência — Fluxo de Cadastro
+## 3. Diagrama de Sequência — Login Web (com WASM)
 
 ```
-Usuário       RegisterScreen     SupabaseAuth      Database
-   |                |                 |                |
-   |--preenche----> |                 |                |
-   |  formulário    |                 |                |
-   |                |--valida campos->|                |
-   |                |                 |                |
-   |                |--signUp(email,  |                |
-   |                |   senha, nome)->|                |
-   |                |                 |--cria user---> |
-   |                |                 |<--user_id------|
-   |                |<--AuthResponse--|                |
-   |                |                 |                |
-   |                |--insere perfil na tabela users-->|
-   |                |<---------------------------------|
-   |<--navega para--|                 |                |
-   |  Dashboard     |                 |                |
-```
-
----
-
-## 5. Diagrama de Sequência — Fluxo de Login
-
-```
-Usuário       LoginScreen        SupabaseAuth      Session
-   |                |                 |                |
-   |--email+senha-> |                 |                |
-   |                |--signIn()------>|                |
-   |                |<--Session/Error-|                |
-   |                |--Session.set()--|--------------->|
-   |<--Dashboard----|                 |                |
+Browser          main.dart      DatabaseHelper    WasmDatabase      SupabaseService
+   |                 |                |                 |                  |
+   | abre /app/      |                |                 |                  |
+   |---------------->|                |                 |                  |
+   |                 | init()         |                 |                  |
+   |                 |--------------->|                 |                  |
+   |                 |                | WasmDatabase    |                  |
+   |                 |                | .open()         |                  |
+   |                 |                |---------------->|                  |
+   |                 |                |  GET /app/sqlite3.wasm (200 ✅)    |
+   |                 |                |  GET /app/drift_worker.dart.js (200✅)|
+   |                 |                |<----------------|                  |
+   |                 |<---------------|                 |                  |
+   |                 | Supabase.initialize()            |                  |
+   |                 |-------------------------------------------------------->|
+   |                 |                                  |                  |
+   | digita login    |                                  |                  |
+   |---------------->|                                  |                  |
+   |                 | loginComEmail()                  |                  |
+   |                 |-------------------------------------------------------->|
+   |                 |  signInWithPassword() → Supabase Auth               |
+   |                 |  ✔ setUserEmail() → DatabaseHelper.instance          |
+   |                 |  ✔ SyncService.syncPendentes()                        |
+   |                 |  ✔ SyncService.pullFromSupabase()                     |
+   |                 |<--------------------------------------------------------|
+   | tela inicial    |                                  |                  |
+   |<----------------|                                  |                  |
 ```
 
 ---
 
-## 6. Diagrama de Fluxo — Tela de Cadastro (FIX-01)
+## 4. Diagrama de Sequência — CI/CD Deploy
 
 ```
-[Abrir /app] --> [Splash] --> [LoginScreen]
-                                   |
-                         [Toca "Criar conta"]
-                                   |
-                         [RegisterScreen]
-                          ___________________
-                         | Logo Metricora    |
-                         | Campo: Nome       |
-                         | Campo: E-mail     |
-                         | Campo: Senha      |
-                         | Campo: Confirmar  |
-                         | Botão [Cadastrar] |
-                         | Link [Já tenho    |
-                         |       conta]      |
-                         |___________________|
-                                   |
-                      [Valida localmente]
-                          /         \
-                    [Erro]         [OK]
-                  [Mostra msg]      |
-                              [Chama Supabase
-                               signUp()]
-                               /        \
-                          [Erro]        [OK]
-                       [Mostra msg] [Vai p/ Dashboard]
+Dev (push main)    GitHub Actions       pub.dev cache       vectorium-landing
+       |                  |                   |                     |
+  git push main           |                   |                     |
+       |----------------->|                   |                     |
+       |            flutter pub get           |                     |
+       |                  |------------------>|                     |
+       |            find drift_worker.dart    |                     |
+       |                  |<------------------|                     |
+       |            dart compile js           |                     |
+       |            (dentro do projeto)       |                     |
+       |            flutter build web         |                     |
+       |            cp sqlite3.wasm → build/  |                     |
+       |            cp drift_worker.js → build/                    |
+       |            cp -r build/web → app/    |                     |
+       |                  |-------------------------------------------->|
+       |                  |          git commit + push [auto]           |
+       |                  |<--------------------------------------------|  
+       |            GitHub Pages atualiza                               |
+       |            vectorium.tec.br/app ✅                              |
 ```
 
 ---
 
-## 7. Diagrama de Componentes — Navbar Landing Page (atual)
+## 5. Diagrama de Casos de Uso
 
 ```
-+------------------------------------------------------------------+
-|  <nav class="navbar">                                            |
-|                                                                  |
-|  [logo.png]   [navbar-links]               [navbar-actions]      |
-|               +------------------+         +------------------+  |
-|               | Funcionalidades  |         | [navbar-web]     |  |
-|               | Segmentos        |         | 🌐 Versão Web    |  |
-|               | Preço            |         | outline azul     |  |
-|               | Depoimentos      |         +------------------+  |
-|               | FAQ              |         | [navbar-cta]     |  |
-|               +------------------+         | ⬇ Baixar para   |  |
-|               hidden on mobile             |   Android        |  |
-|                                            | gradiente        |  |
-|                                            +------------------+  |
-|                                            navbar-web hidden      |
-|                                            on mobile ≤700px       |
-+------------------------------------------------------------------+
+                 ┌─────────────────────────────┐
+                 │         Metricora Web              │
+                 │                                   │
+[Empreendedor]   │  ◆ Login com e-mail/senha         │
+      ○          │  ◆ Login com Google               │
+      │─────────>│  ◆ Cadastro de conta               │
+                 │  ◆ Lançar venda / despesa         │
+                 │  ◆ Ver dashboard / DRE            │
+                 │  ◆ Filtrar por período            │
+                 │  ◆ Sincronizar com nuvem          │
+                 │  ◆ Instalar como PWA              │
+                 │  ◆ Logout                         │
+                 └─────────────────────────────┘
+
+[CI/CD Bot]      ◆ Build automático após push
+      ○          ◆ Deploy para vectorium-landing
+      │─────────> ◆ Compilar drift_worker.dart.js
+                  ◆ Copiar sqlite3.wasm
 ```
 
 ---
 
-## 8. Arquitetura de Deploy
+## 6. Diagrama de Componentes — Flutter Web Browser
 
 ```
-+------------------+         +------------------+
-|  GitHub Pages    |         |   Supabase       |
-|  vectorium.tec   |         |   (cloud)        |
-|  .br/app         |         |                  |
-|                  |  HTTPS  | - Auth           |
-|  Flutter Web     |<------->| - PostgreSQL     |
-|  (main.dart.js)  |         | - Storage        |
-+------------------+         +------------------+
-        ^
-        |
-   [CNAME DNS]
-   vectorium.tec.br
-        |
-  brunomachado21
-  .github.io/
-  vectorium-landing
+┌─────────────────────────────────────────────────────────────────┐
+│                      Browser (Tab)                              │
+│                                                                  │
+│  ┌────────────────────┐  ┌───────────────────────┐  │
+│  │  Main Thread          │  │  Web Worker              │  │
+│  │  (main.dart.js)       │  │  (drift_worker.dart.js)  │  │
+│  │                      │  │                         │  │
+│  │  Flutter UI           │  │  WasmDatabase.open()     │  │
+│  │  DatabaseHelper   ─────>│  │  loads sqlite3.wasm     │  │
+│  │  SupabaseService      │  │  executa SQL em WASM     │  │
+│  │  Session              │  │  persiste em IndexedDB   │  │
+│  └────────────────────┘  └───────────────────────┘  │
+│           │ HTTPS                      │                      │
+└─────────────────────────────────────────────────────────────────┘
+              │
+              ▼
+   hxwjseeuwetmfodpjbhc.supabase.co
+   ├── /auth/v1/token  (login)
+   ├── /rest/v1/       (dados)
+   └── /realtime/v1/   (websocket)
 ```

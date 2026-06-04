@@ -1,6 +1,6 @@
 # Documento de Requisitos — Vectorium / Metricora Web App
 
-**Versão:** 1.2  
+**Versão:** 1.3  
 **Data:** 2026-06-04  
 **Responsável:** Bruno Machado  
 **Repositório de landing:** [vectorium-landing](https://github.com/brunomachado21/vectorium-landing)  
@@ -33,12 +33,12 @@ A **landing page** (`vectorium.tec.br`) é um site estático HTML/CSS/JS hospeda
 
 | ID | Requisito | Prioridade |
 |---|---|---|
-| RF-01 | O sistema deve permitir **login** com e-mail e senha via Supabase Auth | Alta |
-| RF-02 | O sistema deve permitir **cadastro** de novo usuário com nome, e-mail e senha | Alta |
-| RF-03 | A tela de cadastro deve ter o **mesmo layout visual** da tela de login (fundo escuro, logo centralizada, campos estilizados, botão amberAccent) | Alta |
+| RF-01 | Permitir **login** com e-mail e senha via Supabase Auth | Alta |
+| RF-02 | Permitir **cadastro** de novo usuário com nome, e-mail e senha | Alta |
+| RF-03 | Tela de cadastro com **mesmo layout visual** da tela de login | Alta |
 | RF-04 | Após cadastro bem-sucedido, redirecionar para o painel principal | Alta |
 | RF-05 | Exibir mensagem de erro clara em caso de e-mail já cadastrado ou senha fraca | Média |
-| RF-06 | O sistema deve permitir **recuperação de senha** via e-mail | Média |
+| RF-06 | Permitir **recuperação de senha** via e-mail | Média |
 
 ### 3.2 Painel Principal (Dashboard)
 
@@ -57,21 +57,39 @@ A **landing page** (`vectorium.tec.br`) é um site estático HTML/CSS/JS hospeda
 | RF-12 | Exportar DRE em PDF | Média |
 | RF-13 | Gráfico de evolução 6 meses | Média |
 
-### 3.4 Backup / Sync
+### 3.4 Banco de Dados Local (Web WASM)
 
 | ID | Requisito | Prioridade |
 |---|---|---|
-| RF-14 | Sincronizar dados com Supabase (backup em nuvem) | Alta |
-| RF-15 | Na versão Web, usar Supabase como banco primário (sem SQLite local) | Alta |
+| RF-14 | Na versão Web, usar **Drift + sqlite3.wasm** como banco local no browser (IndexedDB via WASM) | Alta |
+| RF-15 | Sincronizar dados locais com Supabase após login (push + pull com LWW) | Alta |
+| RF-16 | O arquivo `sqlite3.wasm` deve ser servido em `/app/sqlite3.wasm` (path absoluto) | Alta |
+| RF-17 | O arquivo `drift_worker.dart.js` deve ser servido em `/app/drift_worker.dart.js` | Alta |
 
-### 3.5 Landing Page — Navbar
+### 3.5 PWA (Progressive Web App)
 
 | ID | Requisito | Prioridade |
 |---|---|---|
-| RF-16 | A navbar da landing page deve exibir os links de navegação (Funcionalidades, Segmentos, Preço, Depoimentos, FAQ) à esquerda/centro | Alta |
-| RF-17 | O canto direito da navbar deve conter dois botões lado a lado: **"Versão Web"** (outline azul, abre `vectorium.tec.br/app`) e **"Baixar para Android"** (gradiente verde-azul, faz download do APK) | Alta |
-| RF-18 | O botão de download deve especificar explicitamente a plataforma **Android** no rótulo | Média |
-| RF-19 | Em telas ≤ 700px (mobile), o botão "Versão Web" deve ser ocultado; apenas "Baixar para Android" permanece visível na navbar | Média |
+| RF-18 | O app deve ser instalável como PWA em desktop e mobile | Média |
+| RF-19 | O manifest.json deve referenciar ícones PNG válidos 192×192 e 512×512 | Alta |
+| RF-20 | Ícones definitivos com logo da marca devem substituir os placeholders | Média |
+
+### 3.6 Segurança (CSP)
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RF-21 | O `index.html` deve ter `Content-Security-Policy` que permita `'wasm-unsafe-eval'` (Drift/WASM) | Alta |
+| RF-22 | O CSP deve liberar `accounts.google.com` e `*.googleapis.com` para Google Sign-In | Alta |
+| RF-23 | O CSP deve liberar `*.supabase.co` (HTTP + WSS) para conexões com o backend | Alta |
+
+### 3.7 Landing Page — Navbar
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RF-24 | Navbar com links de navegação à esquerda/centro | Alta |
+| RF-25 | Dois botões no canto direito: **"Versão Web"** (outline azul) e **"Baixar para Android"** (gradiente) | Alta |
+| RF-26 | Botão de download especifica explicitamente **Android** | Média |
+| RF-27 | Em mobile (≤ 700px): botão "Versão Web" oculto; apenas CTA de download | Média |
 
 ---
 
@@ -79,46 +97,58 @@ A **landing page** (`vectorium.tec.br`) é um site estático HTML/CSS/JS hospeda
 
 | ID | Requisito | Categoria |
 |---|---|---|
-| RNF-01 | Interface responsiva para desktop e mobile (mínimo 320px de largura) | Usabilidade |
-| RNF-02 | Tema escuro consistente em todas as telas (AppConfigs.*) — sem hardcodes de cor | Manutenibilidade |
-| RNF-03 | Tempo de carregamento inicial (TTI) < 5s em conexão 4G | Performance |
-| RNF-04 | Autenticação protegida por HTTPS (Supabase + CNAME vectorium.tec.br) | Segurança |
-| RNF-05 | Dados de usuário isolados por `user_id` em todas as queries | Segurança |
-| RNF-06 | Build Flutter Web otimizado (tree-shaking, minificação) | Performance |
-| RNF-07 | A landing page não deve depender de frameworks JS externos além do Tailwind CDN e Phosphor Icons | Manutenibilidade |
+| RNF-01 | Interface responsiva (mínimo 320px) | Usabilidade |
+| RNF-02 | Tema escuro consistente — sem hardcodes de cor, usar `AppConfigs.*` | Manutenibilidade |
+| RNF-03 | TTI < 5s em conexão 4G | Performance |
+| RNF-04 | Autenticação por HTTPS (Supabase + CNAME vectorium.tec.br) | Segurança |
+| RNF-05 | Dados isolados por `user_id` em todas as queries (RLS ativo) | Segurança |
+| RNF-06 | Build Flutter Web com tree-shaking e minificação | Performance |
+| RNF-07 | Landing page sem dependências JS externas além de Tailwind CDN e Phosphor Icons | Manutenibilidade |
+| RNF-08 | CI/CD automatizado: todo push em `main` deve disparar build + deploy via GitHub Actions | Infraestrutura |
+| RNF-09 | Os arquivos `sqlite3.wasm` e `drift_worker.dart.js` devem estar presentes em `build/web/` no deploy | Infraestrutura |
+| RNF-10 | Deploy deve ser idempotente: se não houver mudanças, nenhum commit será gerado | Infraestrutura |
 
 ---
 
-## 5. Correções & Melhorias (Backlog)
+## 5. Correções & Melhorias
 
 | ID | Descrição | Status |
 |---|---|---|
-| FIX-01 | Tela de cadastro (`RegisterScreen`) — layout deve ser idêntico ao `LoginScreen` (fundo dark, logo, campos, botão amberAccent) | 🔴 Pendente |
-| FIX-02 | Remover hardcodes de cor em `historico_tab.dart` | ✅ Concluído (2026-06-04) |
-| FIX-03 | Remover hardcodes de cor em `backup_screen.dart` | ✅ Concluído (2026-06-04) |
-| FIX-04 | Remover hardcodes de cor em `contabilidade_screen.dart` | ✅ Concluído (2026-06-04) |
-| FIX-05 | Remover hardcodes de cor em `atacadistas_screen.dart` | ✅ Concluído (2026-06-04) |
-| FIX-06 | Revert redesign completo do `index.html` — restaurar versão anterior | ✅ Concluído (2026-06-04) |
-| FIX-07 | Navbar landing: mover "Versão Web" para botão outline ao lado de "Baixar para Android"; especificar plataforma Android no CTA | ✅ Concluído (2026-06-04) |
+| FIX-01 | `RegisterScreen` — layout deve ser idêntico ao `LoginScreen` | 🔴 Pendente |
+| FIX-02 | Hardcodes de cor em `historico_tab.dart` | ✅ 04/06/2026 |
+| FIX-03 | Hardcodes de cor em `backup_screen.dart` | ✅ 04/06/2026 |
+| FIX-04 | Hardcodes de cor em `contabilidade_screen.dart` | ✅ 04/06/2026 |
+| FIX-05 | Hardcodes de cor em `atacadistas_screen.dart` | ✅ 04/06/2026 |
+| FIX-06 | Revert redesign completo do `index.html` | ✅ 04/06/2026 |
+| FIX-07 | Navbar landing: "Versão Web" como botão + especificar Android | ✅ 04/06/2026 |
+| FIX-08 | `sqlite3.wasm` 404 — URI relativa ignorava `base-href` no Web Worker | ✅ 04/06/2026 |
+| FIX-09 | CSP bloqueava `accounts.google.com` → Google Sign-In inoperante | ✅ 04/06/2026 |
+| FIX-10 | Ícones PWA corrompidos (80/44 bytes) — substituídos por PNGs válidos | ✅ 04/06/2026 |
+| FIX-11 | `drift_worker.dart.js` ausente no deploy — workflow não gerava o arquivo | ✅ 04/06/2026 |
+| FIX-12 | `LateInitializationError` em cascata no login (efeito do banco falhando) | ✅ 04/06/2026 |
+| FIX-13 | Ícones PWA definitivos com logo da marca | 🔴 Pendente |
+| FIX-14 | Script SQL de migration Supabase (campos V12+ ausentes no schema remoto) | 🔴 Pendente |
 
 ---
 
-## 6. Critérios de Aceite — FIX-01 (Tela de Cadastro)
+## 6. Critérios de Aceite — Banco WASM (RF-14 a RF-17)
 
-- [ ] Mesmo fundo (`AppConfigs.fundoApp`) que a tela de login
-- [ ] Logo Metricora centralizada no topo
-- [ ] Campos: Nome, E-mail, Senha, Confirmar Senha — estilizados com `AppConfigs.*`
-- [ ] Botão principal com `backgroundColor: Colors.amberAccent, foregroundColor: Colors.black`
-- [ ] Link "Já tenho conta? Entrar" na parte inferior
-- [ ] Validação inline de senha fraca e e-mail inválido
-- [ ] Loading indicator durante a chamada ao Supabase
+- [x] `vectorium.tec.br/app/sqlite3.wasm` responde 200
+- [x] `vectorium.tec.br/app/drift_worker.dart.js` responde 200
+- [x] Console do browser sem erros de 404 WASM
+- [x] Banco local persiste dados entre sessões (IndexedDB via Drift WASM)
+- [x] Login por e-mail funciona sem `LateInitializationError`
 
----
+## 7. Critérios de Aceite — CSP (RF-21 a RF-23)
 
-## 7. Critérios de Aceite — RF-17 / RF-18 / RF-19 (Navbar Landing)
+- [x] Google Sign-In carrega sem bloqueio de CSP
+- [x] Supabase (HTTP + WebSocket) sem bloqueio de CSP
+- [x] WASM executa sem bloqueio (`wasm-unsafe-eval`)
+- [x] Fontes Google carregam normalmente
 
-- [x] Botão "Versão Web" exibido como elemento `<a class="navbar-web">` com border outline azul
-- [x] Botão "Baixar para Android" exibido como `<a class="navbar-cta">` com gradiente e texto "Baixar para Android"
-- [x] Ambos os botões agrupados em `<div class="navbar-actions">` lado a lado no canto direito
-- [x] Em mobile (`max-width: 700px`): `.navbar-web { display: none }`, somente o CTA primário permanece
-- [x] Link "Versão Web" removido da lista de navegação (`navbar-links`)
+## 8. Critérios de Aceite — PWA (RF-18 a RF-20)
+
+- [x] Ícone 192×192 válido — sem erro no Manifest
+- [x] Ícone 512×512 válido
+- [ ] Ícones definitivos com logo da marca (pendente)
+- [ ] PWA instalável sem avisos no browser
