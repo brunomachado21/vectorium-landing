@@ -4,11 +4,149 @@ Registro cronológico de decisões técnicas, correções e melhorias.
 
 ---
 
-## 2026-06-04
+## 2026-06-04 — Sprint Web (PWA / Deploy)
+
+### [WEB1] Fix: sqlite3Uri e driftWorkerUri com path absoluto
+
+**Commit:** `86370e0` (repo: metricora)  
+**Arquivo:** `lib/helpers/db_connection_web.dart`
+
+**Problema:** O `WasmDatabase.open()` usava URIs relativas (`sqlite3.wasm`, `drift_worker.dart.js`). O Flutter serve o app em `/app/` via `--base-href /app/`, mas o `drift_worker` é instanciado como **Web Worker** separado — cujo contexto de URL parte da raiz do domínio, ignorando o `base-href` do `index.html`. Resultado: o worker procurava `sqlite3.wasm` em `vectorium.tec.br/sqlite3.wasm` (inexistente) → 404.
+
+Erros no console:
+```
+app/sqlite3.wasm:1 Failed to load resource: 404
+⚠️ Erro ao iniciar banco local: TypeError: Failed to execute 'compile' on 'WebAssembly': HTTP status code is not ok
+app/:1 Failed to fetch a worker script.
+```
+
+**Correção:**
+```dart
+// ANTES
+sqlite3Uri: Uri.parse('sqlite3.wasm'),
+driftWorkerUri: Uri.parse('drift_worker.dart.js'),
+
+// DEPOIS
+sqlite3Uri: Uri.parse('/app/sqlite3.wasm'),
+driftWorkerUri: Uri.parse('/app/drift_worker.dart.js'),
+```
+
+**Efeito cascata resolvido:** A falha no banco fazia `DatabaseHelper._driftConnection` ficar `null`. Toda query subsequente lançava `LateInitializationError: Field '' has not been initialized`, que se propagava para o `loginComEmail` do Supabase — fazendo parecer que o Supabase não estava inicializado (mas estava). Corrigir o path resolveu o login.
+
+---
+
+### [WEB2] Fix: CSP bloqueando Google Sign-In
+
+**Commit:** `d64b308` (repo: metricora)  
+**Arquivo:** `web/index.html`
+
+**Problema:** A `Content-Security-Policy` restringia `script-src` a `'self'`, `'unsafe-eval'`, `'unsafe-inline'`, `'wasm-unsafe-eval'` e `https://www.gstatic.com`. O script do Google Sign-In (`https://accounts.google.com/gsi/client`) era bloqueado, impedindo autenticação social.
+
+Erro no console:
+```
+Loading the script 'https://accounts.google.com/gsi/client' violates the following
+Content Security Policy directive: "script-src 'self' 'unsafe-eval' ..."
+The action has been blocked.
+```
+
+**Correção:** CSP expandida:
+```html
+script-src  ... https://accounts.google.com https://*.googleapis.com;
+style-src   ... https://accounts.google.com;
+connect-src ... https://accounts.google.com https://*.googleapis.com;
+frame-src   https://accounts.google.com;
+child-src   blob: https://accounts.google.com;
+img-src     ... https://*.googleusercontent.com;
+```
+
+**Decisão:** Usar `https://*.googleapis.com` (wildcard de subdomínio) para cobrir futuras APIs Google sem nova alteração de CSP.
+
+---
+
+### [WEB3] Fix: Ícones PWA corrompidos
+
+**Commit:** `ede76d8` (repo: metricora)  
+**Arquivos:** `web/icons/Icon-192.png`, `Icon-512.png`, `Icon-maskable-192.png`, `Icon-maskable-512.png`
+
+**Problema:** Os 4 arquivos PNG eram placeholders inválidos gerados pelo `flutter create` (80 bytes e 44 bytes). O browser os rejeitava ao instalar o PWA.
+
+Erro no console:
+```
+Error while trying to use the following icon from the Manifest:
+https://vectorium.tec.br/app/icons/Icon-192.png
+(Download error or resource isn't a valid image)
+```
+
+**Correção:** PNGs válidos gerados programaticamente (Python + struct + zlib) — 192×192 e 512×512 com cor sólida `#0177C2`. Todos os 4 arquivos substituídos com header PNG correto (`\x89PNG`).
+
+**Nota:** ícones são placeholders funcionais. Substituir pelo logo definitivo da marca quando disponível.
+
+---
+
+### [WEB4] Fix: sqlite3.wasm e drift_worker.dart.js ausentes no deploy
+
+**Commits:** `bfc779b` → `202ae58` → `cc14c9e` (repo: metricora)  
+**Arquivo:** `.github/workflows/deploy_web.yml`
+
+**Problema:** O `flutter build web` **não inclui** automaticamente `sqlite3.wasm` nem `drift_worker.dart.js` em `build/web/`. O workflow anterior copiava apenas `build/web/` para o deploy — os dois arquivos WASM/worker chegavam ausentes em produção, causando o erro 404 persistente mesmo após WEB1.
+
+**Investigação — 3 iterações:**
+
+**Tentativa 1** (`bfc779b`): buscar ambos no pub cache via `find ~/.pub-cache`.
+- `sqlite3.wasm` encontrado em `drift-2.31.0/extension/devtools/build/` ✅
+- `drift_worker.dart.js` **não existe** no pub cache — não é distribuído pré-compilado ❌
+
+**Tentativa 2** (`202ae58`): compilar `drift_worker.dart.js` com `dart compile js` apontando para o fonte no pub cache.
+- Fonte encontrado em `drift-2.31.0/web/drift_worker.dart` ✅
+- Falha: sem contexto de projeto, `package:drift/wasm.dart` não é resolvido ❌
+```
+Error: Couldn't resolve the package 'drift' in 'package:drift/wasm.dart'.
+```
+
+**Solução final** (`cc14c9e`):
+```yaml
+- name: Compile drift_worker.dart.js inside project context
+  run: |
+    DRIFT_WORKER_SRC=$(find ~/.pub-cache -path '*/drift-*/web/drift_worker.dart' | head -1)
+    cp "$DRIFT_WORKER_SRC" web/drift_worker.dart        # copia pro projeto
+    dart compile js -O2 -o web/drift_worker.dart.js web/drift_worker.dart  # compila com pubspec.yaml
+    rm web/drift_worker.dart                            # remove .dart temporário
+
+- name: Copy sqlite3.wasm to build/web
+  run: |
+    SQLITE3_WASM=$(find ~/.pub-cache -name 'sqlite3.wasm' | head -1)
+    cp "$SQLITE3_WASM" build/web/sqlite3.wasm
+
+- name: Copy drift_worker.dart.js to build/web
+  run: cp web/drift_worker.dart.js build/web/drift_worker.dart.js
+```
+
+**Status:** ✅ Funcionando em produção.
+
+---
+
+### [WEB5] CI/CD: GitHub Actions automatizado
+
+**Arquivo:** `.github/workflows/deploy_web.yml`  
+**Status:** ✅ Ativo
+
+**Fluxo atual:**
+1. Push em `main` (exceto `.md` e `.github/workflows/**`) → dispara workflow
+2. `flutter pub get` + `flutter build web --release --base-href /app/`
+3. Compila `drift_worker.dart.js` dentro do projeto
+4. Copia `sqlite3.wasm` do pub cache para `build/web/`
+5. Copia `build/web/` para `vectorium-landing/app/`
+6. Commit automático + push → GitHub Pages atualiza em ~1 min
+
+**Observação:** mudanças apenas em `.github/workflows/**` não disparam build (está no `paths-ignore`). Usar **"Run workflow"** manual em [Actions](https://github.com/brunomachado21/metricora/actions) nesses casos.
+
+---
+
+## 2026-06-04 — Sprint UI / Navbar
 
 ### [FIX] Revert redesign completo do index.html
 
-**Commits:** `180d8b2` (revert)  
+**Commits:** `180d8b2`  
 **Arquivo:** `index.html`
 
 **Problema:** Um redesign completo foi aplicado ao `index.html` divergindo do layout original aprovado. O resultado não estava alinhado com a identidade visual do projeto.
@@ -24,18 +162,15 @@ Registro cronológico de decisões técnicas, correções e melhorias.
 **Commit:** `104439a`  
 **Arquivo:** `index.html`
 
-**Problema:** O link "Versão Web" estava listado junto dos links de navegação (Funcionalidades, Segmentos, etc.), sem destaque visual. O botão de download da navbar não especificava a plataforma, podendo gerar confusão em usuários iOS.
+**Problema:** O link "Versão Web" estava listado junto dos links de navegação sem destaque visual. O botão de download não especificava a plataforma.
 
 **Solução:**
-- Removido "Versão Web" da `<div class="navbar-links">`
-- Criado `<div class="navbar-actions">` no canto direito com dois botões lado a lado:
-  - `.navbar-web` — outline azul (`border: 1.5px solid rgba(14,165,233,0.4)`), texto "🌐 Versão Web", abre `vectorium.tec.br/app` em nova aba
-  - `.navbar-cta` — gradiente verde-azul, texto "⬇ Baixar para Android", faz download do APK
-- Em mobile (`max-width: 700px`): `.navbar-web { display: none }` — somente o CTA de download permanece na navbar
+- `<div class="navbar-actions">` com dois botões:
+  - `.navbar-web` — outline azul, abre `/app` em nova aba
+  - `.navbar-cta` — gradiente verde-azul, baixa APK
+- Mobile (`max-width: 700px`): `.navbar-web { display: none }` — só CTA de download
 
-**Motivação UX:** Separar claramente os dois canais de acesso (web vs. mobile) e deixar explícito para o usuário que o download é exclusivo para Android, evitando frustração de usuários iOS.
-
-**Resultado:** Navbar com hierarquia visual clara. CTA primário (download Android) com máximo destaque; acesso web disponível como opção secundária imediatamente ao lado.
+**Resultado:** Hierarquia visual clara. CTA primário (Android) destacado; acesso web como opção secundária.
 
 ---
 
@@ -44,43 +179,11 @@ Registro cronológico de decisões técnicas, correções e melhorias.
 **Commit:** `dd04d79` (repo: metricora)  
 **Arquivos:** `historico_tab.dart`, `backup_screen.dart`, `contabilidade_screen.dart`, `atacadistas_screen.dart`
 
-**Problema:** As 4 telas usavam cores hardcoded (`Color(0xFF0D0D0D)`, `Color(0xFF1A1A2E)`, `Color(0xFF1E1E2E)`, `Colors.white`, `Colors.white54`, `Colors.white38`, `Colors.white30`, `Colors.white24`, `Colors.white12`) em vez das constantes centralizadas de `styles.dart`.
+**Problema:** 4 telas usavam cores hardcoded (`Color(0xFF0D0D0D)`, `Colors.white`, etc.) em vez de `AppConfigs.*`.
 
-**Impacto:** Impossibilidade de mudança de tema sem editar dezenas de arquivos. Violação do princípio de fonte única de verdade para design tokens.
+**Solução:** Substituição sistemática por `AppConfigs.fundoApp`, `.appBarBg`, `.fundoCard`, `.textoTitulo`, `.textoGeral`, `.textoSecundario`, `.principal`.
 
-**Solução:** Substituição sistemática por `AppConfigs.fundoApp`, `AppConfigs.appBarBg`, `AppConfigs.fundoCard`, `AppConfigs.textoTitulo`, `AppConfigs.textoGeral`, `AppConfigs.textoSecundario`, `AppConfigs.principal`.
-
-**Resultado:** 0 hardcodes remanescentes nas 4 telas. Sistema pronto para suportar múltiplos temas (light mode, white-label) com alteração em 1 arquivo.
-
----
-
-### [BACKLOG] Tela de cadastro — inconsistência visual com LoginScreen
-
-**URL afetada:** `vectorium.tec.br/app` (rota de registro)
-
-**Problema:** A `RegisterScreen` (ou equivalente) não segue o mesmo design da `LoginScreen`. Divergências observadas: fundo incorreto, ausência de logo, campos sem estilização `AppConfigs.*`, botão fora do padrão amberAccent.
-
-**Ação:** Criar `RegisterScreen` com layout espelhado do `LoginScreen`:  
-- Fundo: `AppConfigs.fundoApp`  
-- Logo centralizada  
-- Campos: Nome, E-mail, Senha, Confirmar Senha  
-- Botão: `amberAccent / Colors.black`  
-- Link de retorno ao Login  
-- Validação inline + loading state  
-
-**Status:** 🔴 Pendente — próxima sprint
-
----
-
-### [DOCS] Criação de documentação técnica no vectorium-landing
-
-**Commit:** este  
-**Arquivos criados:**
-- `docs/requirements.md` — Requisitos funcionais e não funcionais
-- `docs/uml.md` — Diagramas de casos de uso, classes, sequência e deploy
-- `docs/engineering_log.md` — Este arquivo
-
-**Motivação:** Formalizar o estado atual do projeto, registrar decisões técnicas e criar base para onboarding de colaboradores.
+**Resultado:** 0 hardcodes remanescentes. Sistema pronto para white-label.
 
 ---
 
@@ -88,52 +191,48 @@ Registro cronológico de decisões técnicas, correções e melhorias.
 
 ### [INFRA] Deploy Flutter Web via GitHub Pages
 
-**Decisão:** Usar GitHub Pages com CNAME `vectorium.tec.br` para servir o build Flutter Web em `/app`.
+**Decisão:** GitHub Pages com CNAME `vectorium.tec.br`, app servido em `/app`.
 
-**Razão:** Zero custo, integração nativa com repositório, deploy via push na branch `main`. Build gerado localmente (`flutter build web --release`) e commitado na pasta `/app`.
-
-**Trade-off:** Deploy manual (sem CI/CD automatizado ainda). Cada nova versão requer build local e push. **Próximo passo:** automatizar via GitHub Actions (`flutter build web` + commit automático ao `/app`).
+**Trade-off original:** Deploy manual — cada versão exigia build local + push. **Resolvido em 04/06/2026** com GitHub Actions automatizado (WEB5 acima).
 
 ---
 
 ### [INFRA] Supabase como backend
 
-**Decisão:** Usar Supabase (PostgreSQL + Auth) como backend único para autenticação e persistência de dados na versão Web.
+**Decisão:** Supabase (PostgreSQL + Auth) como backend único para autenticação e persistência.
 
-**Razão:** Compatível com o Flutter SDK (`supabase_flutter`), já em uso no app mobile, oferece Auth pronto, Row Level Security (RLS) para isolamento por `user_id`.
-
-**Configuração:** Credenciais via `supabase_service.dart`. RLS ativo em todas as tabelas: `registros`, `fornecedores`, `users`.
+**Razão:** Compatível com `supabase_flutter`, já em uso no mobile, Auth pronto, RLS por `user_id`.
 
 ---
 
 ### [ARCH] Centralização de design tokens em `styles.dart`
 
-**Decisão:** Criar `lib/styles.dart` com classe `AppConfigs` contendo todas as constantes de cor e configuração visual.
+**Decisão:** `lib/styles.dart` com classe `AppConfigs` contendo todas as constantes de cor.
 
-**Razão:** Suporte a múltiplas verticais (Metricora Vendedores, Metricora Barber, Confeitaria) com white-label via uma única alteração de arquivo.
-
-**Padrão adotado:**
-```dart
-class AppConfigs {
-  static const Color fundoApp      = Color(0xFF0D0D0D);
-  static const Color appBarBg      = Color(0xFF1A1A2E);
-  static const Color fundoCard     = Color(0xFF1E1E2E);
-  static const Color textoTitulo   = Colors.white;
-  static const Color textoGeral    = Colors.white70;  // aprox.
-  static const Color textoSecundario = Colors.white54; // aprox.
-  static const Color principal     = Colors.amberAccent;
-  static String      nomeApp       = 'Metricora';
-}
-```
+**Razão:** Suporte a white-label por vertical (Vendedores, Barber, Confeitaria) com alteração em 1 arquivo.
 
 ---
 
-## Próximas Ações (Roadmap Imediato)
+## Bugs Corrigidos — Inventário
 
-| Prioridade | Item | Responsável |
-|---|---|---|
-| 🔴 Alta | FIX-01: Corrigir RegisterScreen para igualar LoginScreen | Bruno |
-| 🟡 Média | CI/CD: GitHub Actions para build e deploy automático do Flutter Web | Bruno |
-| 🟡 Média | Tela de recuperação de senha (ForgotPasswordScreen) | Bruno |
-| 🟢 Baixa | Light mode / alternância de tema | Futuro |
-| 🟢 Baixa | PWA: melhorar manifest e offline support | Futuro |
+| ID | Data | Repo | Arquivo | Descrição | Status |
+|---|---|---|---|---|---|
+| BW1 | 04/06 | metricora | `db_connection_web.dart` | `sqlite3.wasm` 404 — URI relativa no contexto de Web Worker ignora `base-href` | ✅ |
+| BW2 | 04/06 | metricora | `web/index.html` | CSP bloqueava `accounts.google.com` → Google Sign-In inoperante | ✅ |
+| BW3 | 04/06 | metricora | `web/icons/*.png` | Ícones PWA eram stubs de 80/44 bytes — browser rejeitava | ✅ |
+| BW4 | 04/06 | metricora | `deploy_web.yml` | `sqlite3.wasm` e `drift_worker.dart.js` ausentes no deploy | ✅ |
+| BW5 | 04/06 | metricora | `main.dart` + Drift | `LateInitializationError` em cascata — banco local falhava silenciosamente | ✅ (via BW1+BW4) |
+| UI1 | 04/06 | metricora | 4 telas | Cores hardcoded violando `AppConfigs.*` | ✅ |
+
+---
+
+## Backlog / Próximas Ações
+
+| Prioridade | Item |
+|---|---|
+| 🔴 Alta | FIX: RegisterScreen visual inconsistente com LoginScreen |
+| 🔴 Alta | Ícones PWA definitivos (substituir placeholder `#0177C2` pelo logo real) |
+| 🟡 Média | Tela de recuperação de senha (ForgotPasswordScreen) |
+| 🟡 Média | Script SQL de migration Supabase (campos V12+ ausentes no schema remoto) |
+| 🟢 Baixa | Light mode / alternância de tema |
+| 🟢 Baixa | Testes automatizados (widget tests + integration tests) |
