@@ -136244,9 +136244,9 @@ return A.n($async$KM,r)}}
 A.bl2.prototype={
 $0(){var s=0,r=A.o(t.n3),q,p
 var $async$$0=A.p(function(a,b){if(a===1)return A.l(b,r)
-for(;;)switch(s){case 0:p=A.dc("sqlite3.wasm",0,null)
+for(;;)switch(s){case 0:p=A.dc("/app/sqlite3.wasm",0,null)
 s=3
-return A.d(A.acA("metricora_v5",A.dc("drift_worker.dart.js",0,null),p),$async$$0)
+return A.d(A.acA("metricora_v5",A.dc("/app/drift_worker.dart.js",0,null),p),$async$$0)
 case 3:q=b.a
 s=1
 break
