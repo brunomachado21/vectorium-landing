@@ -1,36 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="/app/">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="Gestão financeira inteligente para microempreendedores.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!--
-    Content Security Policy completa para Flutter Web:
-    - gstatic.com           : CanvasKit (engine de renderização Flutter)
-    - fonts.gstatic.com     : fontes Roboto e Material Icons
-    - fonts.googleapis.com  : stylesheet das fontes
-    - accounts.google.com   : Google Sign-In (GSI client)
-    - *.googleapis.com      : APIs Google em geral
-    - unsafe-eval           : dart2js + sqlite3.wasm
-    - wasm-unsafe-eval      : WebAssembly (Drift/sqlite3)
-    - unsafe-inline         : Flutter bootstrap scripts
-  -->
   <meta http-equiv="Content-Security-Policy"
         content="default-src 'self';
                  script-src  'self' 'unsafe-eval' 'unsafe-inline' 'wasm-unsafe-eval'
@@ -68,8 +45,146 @@
 
   <title>Metricora</title>
   <link rel="manifest" href="manifest.json">
+
+  <style>
+    /* Banner PWA */
+    #pwa-banner {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 99999;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(37,99,235,0.18), 0 2px 8px rgba(0,0,0,0.10);
+      padding: 14px 20px;
+      min-width: 300px;
+      max-width: 90vw;
+      align-items: center;
+      gap: 14px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      border: 1.5px solid rgba(37,99,235,0.12);
+      animation: slideUp 0.35s cubic-bezier(.22,.68,0,1.2) both;
+    }
+    #pwa-banner.visible {
+      display: flex;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateX(-50%) translateY(30px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+    #pwa-banner img {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+    #pwa-banner-text {
+      flex: 1;
+    }
+    #pwa-banner-text strong {
+      display: block;
+      color: #0f172a;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    #pwa-banner-text span {
+      display: block;
+      color: #475569;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    #pwa-banner-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    #pwa-install-btn {
+      background: linear-gradient(135deg, #2563eb, #60a5fa);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(37,99,235,0.30);
+      transition: opacity 0.15s;
+    }
+    #pwa-install-btn:hover { opacity: 0.88; }
+    #pwa-dismiss-btn {
+      background: transparent;
+      color: #94a3b8;
+      border: none;
+      font-size: 11px;
+      cursor: pointer;
+      text-align: center;
+      padding: 2px;
+    }
+    #pwa-dismiss-btn:hover { color: #64748b; }
+  </style>
 </head>
 <body>
+
+  <!-- Banner de instalação PWA -->
+  <div id="pwa-banner">
+    <img src="icons/Icon-192.png" alt="Metricora">
+    <div id="pwa-banner-text">
+      <strong>Instalar Metricora</strong>
+      <span>Adicione à tela inicial e use sem precisar do navegador.</span>
+    </div>
+    <div id="pwa-banner-actions">
+      <button id="pwa-install-btn">📲 Instalar</button>
+      <button id="pwa-dismiss-btn">Agora não</button>
+    </div>
+  </div>
+
+  <script>
+    // Captura o evento beforeinstallprompt (Chrome/Android/Desktop)
+    let _deferredPrompt = null;
+    const banner = document.getElementById('pwa-banner');
+    const installBtn = document.getElementById('pwa-install-btn');
+    const dismissBtn = document.getElementById('pwa-dismiss-btn');
+
+    // Não exibe se já foi dispensado nos últimos 7 dias
+    const dismissed = localStorage.getItem('pwa_banner_dismissed');
+    const dismissedRecently = dismissed && (Date.now() - parseInt(dismissed)) < 7 * 24 * 60 * 60 * 1000;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      _deferredPrompt = e;
+      if (!dismissedRecently) {
+        // Aguarda 3s para o app carregar antes de exibir
+        setTimeout(() => banner.classList.add('visible'), 3000);
+      }
+    });
+
+    installBtn.addEventListener('click', async () => {
+      if (!_deferredPrompt) return;
+      banner.classList.remove('visible');
+      _deferredPrompt.prompt();
+      const { outcome } = await _deferredPrompt.userChoice;
+      _deferredPrompt = null;
+      if (outcome === 'accepted') {
+        localStorage.removeItem('pwa_banner_dismissed');
+      }
+    });
+
+    dismissBtn.addEventListener('click', () => {
+      banner.classList.remove('visible');
+      localStorage.setItem('pwa_banner_dismissed', Date.now().toString());
+    });
+
+    // Já instalado como PWA: nunca exibe o banner
+    window.addEventListener('appinstalled', () => {
+      banner.classList.remove('visible');
+      _deferredPrompt = null;
+    });
+  </script>
+
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
