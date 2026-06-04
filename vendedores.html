@@ -4,291 +4,111 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Métricas de Lucro e DRE Real | Metricora PRO v1.0.10</title>
-
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
   <style>
-    :root {
-      --bg-page:        #F8FAFC;
-      --bg-card:        #FFFFFF;
-      --accent-green:   #00C96B;
-      --accent-blue:    #0EA5E9;
-      --gradient:       linear-gradient(135deg, #00C96B 0%, #0EA5E9 100%);
-      --gradient-soft:  linear-gradient(135deg, rgba(0,201,107,0.08) 0%, rgba(14,165,233,0.08) 100%);
-      --text-primary:   #0F172A;
-      --text-secondary: #475569;
-      --text-muted:     #94A3B8;
-      --border:         #E2E8F0;
-      --shadow-sm:      0 1px 3px rgba(0,0,0,0.06);
-      --shadow-md:      0 4px 24px rgba(0,0,0,0.07);
-      --shadow-lg:      0 12px 48px rgba(0,0,0,0.10);
+    :root{
+      --bg-page:#F8FAFC;--bg-card:#FFFFFF;--accent-green:#00C96B;--accent-blue:#0EA5E9;
+      --gradient:linear-gradient(135deg,#00C96B 0%,#0EA5E9 100%);
+      --gradient-soft:linear-gradient(135deg,rgba(0,201,107,0.08) 0%,rgba(14,165,233,0.08) 100%);
+      --text-primary:#0F172A;--text-secondary:#475569;--text-muted:#94A3B8;
+      --border:#E2E8F0;--shadow-sm:0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md:0 4px 24px rgba(0,0,0,0.07);--shadow-lg:0 12px 48px rgba(0,0,0,0.10);
     }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-page);
-      background-image: radial-gradient(circle, rgba(14,165,233,0.07) 1px, transparent 1px);
-      background-size: 28px 28px;
-      color: var(--text-primary);
-      line-height: 1.6;
-    }
-
-    h1, h2, h3 { font-family: 'Poppins', sans-serif; }
-
-    .topbar {
-      background: rgba(248,250,252,0.85);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-      padding: 0.9rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .btn-back {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: color 0.2s;
-    }
-    .btn-back:hover { color: var(--accent-green); }
-
-    .article-badge-green {
-      display: inline-block;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 0.78rem;
-      font-family: 'Space Mono', monospace;
-      color: var(--accent-green);
-    }
-
-    h1 span {
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .article-lead {
-      font-size: 1.15rem;
-      color: var(--text-secondary);
-      line-height: 1.8;
-      margin-bottom: 2.5rem;
-    }
-
-    .article-section {
-      background: var(--bg-card);
-      border: 1.5px solid var(--border);
-      border-radius: 18px;
-      padding: 2rem;
-      margin-bottom: 1.5rem;
-      box-shadow: var(--shadow-sm);
-      transition: box-shadow 0.3s, border-color 0.3s;
-    }
-    .article-section:hover { box-shadow: var(--shadow-md); border-color: rgba(0,201,107,0.25); }
-    .article-section h2 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
-    .article-section p { color: var(--text-secondary); line-height: 1.75; }
-
-    .section-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      background: var(--gradient);
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.85rem;
-      flex-shrink: 0;
-      font-family: 'Space Mono', monospace;
-    }
-
-    .metric-badge {
-      background: var(--gradient-soft);
-      border: 1px solid rgba(0,201,107,0.25);
-      color: #047857;
-      padding: 0.2rem 0.65rem;
-      border-radius: 6px;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-
-    .screenshot-box {
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1.5px solid var(--border);
-      box-shadow: var(--shadow-md);
-      cursor: pointer;
-      transition: all 0.3s;
-      margin: 2.5rem 0 0.5rem;
-    }
-    .screenshot-box:hover { transform: scale(1.01); box-shadow: var(--shadow-lg); border-color: rgba(0,201,107,0.3); }
-    .screenshot-box img { width: 100%; display: block; }
-    .screenshot-caption { text-align: center; font-size: 0.78rem; color: var(--text-muted); font-style: italic; margin: 0.5rem 0 2rem; }
-
-    .cta-box {
-      background: var(--gradient);
-      border-radius: 20px;
-      padding: 3rem 2rem;
-      text-align: center;
-      margin-top: 3rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-box::before {
-      content: '';
-      position: absolute;
-      top: -50%; left: 50%;
-      transform: translateX(-50%);
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .cta-box h3 { font-size: 1.7rem; font-weight: 800; color: #fff; margin-bottom: 0.75rem; }
-    .cta-box p { color: rgba(255,255,255,0.85); margin-bottom: 2rem; line-height: 1.7; }
-    .btn-cta-white {
-      background: #fff;
-      color: #047857;
-      font-weight: 700;
-      padding: 1rem 2rem;
-      border-radius: 10px;
-      font-size: 1rem;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: all 0.25s;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-      font-family: 'Poppins', sans-serif;
-    }
-    .btn-cta-white:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.18); }
-    .cta-note { font-size: 0.78rem; color: rgba(255,255,255,0.65); margin-top: 1rem; }
-
-    .reveal { opacity: 0; transform: translateY(18px); transition: all 0.65s ease; }
-    .reveal.in { opacity: 1; transform: translateY(0); }
-
-    footer {
-      background: var(--bg-card);
-      border-top: 1px solid var(--border);
-      padding: 2.5rem 2rem;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.875rem;
-    }
-    footer a { color: var(--text-muted); text-decoration: none; margin: 0 0.75rem; transition: color 0.2s; }
-    footer a:hover { color: var(--accent-green); }
-
-    #imageModal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(15,23,42,0.85);
-      z-index: 9999;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      backdrop-filter: blur(10px);
-      cursor: pointer;
-    }
-    #imageModal.active { display: flex; }
-    #imageModal img { max-width: 90vw; max-height: 90vh; border-radius: 14px; box-shadow: 0 30px 80px rgba(0,0,0,0.3); }
+    *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;background-color:var(--bg-page);background-image:radial-gradient(circle,rgba(14,165,233,0.07) 1px,transparent 1px);background-size:28px 28px;color:var(--text-primary);line-height:1.6;}
+    h1,h2,h3{font-family:'Poppins',sans-serif;}
+    .topbar{background:rgba(248,250,252,0.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0.9rem 2rem;position:sticky;top:0;z-index:100;}
+    .btn-back{color:var(--text-secondary);text-decoration:none;font-weight:600;font-size:0.9rem;display:inline-flex;align-items:center;gap:0.4rem;transition:color 0.2s;}
+    .btn-back:hover{color:var(--accent-green);}
+    .btn-web{background:var(--gradient);color:#fff;font-weight:700;padding:0.6rem 1.2rem;border-radius:8px;font-size:0.85rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;transition:all 0.25s;font-family:'Poppins',sans-serif;box-shadow:0 2px 10px rgba(0,201,107,0.2);}
+    .btn-web:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,201,107,0.3);}
+    .article-badge-green{display:inline-block;font-weight:700;text-transform:uppercase;letter-spacing:2px;font-size:0.78rem;font-family:'Space Mono',monospace;color:var(--accent-green);}
+    h1 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .article-lead{font-size:1.15rem;color:var(--text-secondary);line-height:1.8;margin-bottom:2.5rem;}
+    .article-section{background:var(--bg-card);border:1.5px solid var(--border);border-radius:18px;padding:2rem;margin-bottom:1.5rem;box-shadow:var(--shadow-sm);transition:box-shadow 0.3s,border-color 0.3s;}
+    .article-section:hover{box-shadow:var(--shadow-md);border-color:rgba(0,201,107,0.25);}
+    .article-section h2{font-size:1.35rem;font-weight:700;margin-bottom:0.75rem;color:var(--text-primary);display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;}
+    .article-section p{color:var(--text-secondary);line-height:1.75;}
+    .section-number{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--gradient);color:#fff;font-weight:700;font-size:0.85rem;flex-shrink:0;font-family:'Space Mono',monospace;}
+    .metric-badge{background:var(--gradient-soft);border:1px solid rgba(0,201,107,0.25);color:#047857;padding:0.2rem 0.65rem;border-radius:6px;font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;}
+    .screenshot-box{border-radius:18px;overflow:hidden;border:1.5px solid var(--border);box-shadow:var(--shadow-md);cursor:pointer;transition:all 0.3s;margin:2.5rem 0 0.5rem;}
+    .screenshot-box:hover{transform:scale(1.01);box-shadow:var(--shadow-lg);border-color:rgba(0,201,107,0.3);}
+    .screenshot-box img{width:100%;display:block;}
+    .screenshot-caption{text-align:center;font-size:0.78rem;color:var(--text-muted);font-style:italic;margin:0.5rem 0 2rem;}
+    .cta-box{background:var(--gradient);border-radius:20px;padding:3rem 2rem;text-align:center;margin-top:3rem;position:relative;overflow:hidden;}
+    .cta-box::before{content:'';position:absolute;top:-50%;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(255,255,255,0.1) 0%,transparent 70%);pointer-events:none;}
+    .cta-box h3{font-size:1.7rem;font-weight:800;color:#fff;margin-bottom:0.75rem;}
+    .cta-box p{color:rgba(255,255,255,0.85);margin-bottom:2rem;line-height:1.7;}
+    .btn-cta-white{background:#fff;color:#047857;font-weight:700;padding:1rem 2rem;border-radius:10px;font-size:1rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;transition:all 0.25s;box-shadow:0 4px 20px rgba(0,0,0,0.12);font-family:'Poppins',sans-serif;}
+    .btn-cta-white:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,0.18);}
+    .cta-note{font-size:0.78rem;color:rgba(255,255,255,0.65);margin-top:1rem;}
+    .reveal{opacity:0;transform:translateY(18px);transition:all 0.65s ease;}
+    .reveal.in{opacity:1;transform:translateY(0);}
+    footer{background:var(--bg-card);border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;color:var(--text-muted);font-size:0.875rem;}
+    footer a{color:var(--text-muted);text-decoration:none;margin:0 0.75rem;transition:color 0.2s;}
+    footer a:hover{color:var(--accent-green);}
+    #imageModal{display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);z-index:9999;align-items:center;justify-content:center;padding:2rem;backdrop-filter:blur(10px);cursor:pointer;}
+    #imageModal.active{display:flex;}
+    #imageModal img{max-width:90vw;max-height:90vh;border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,0.3);}
   </style>
 </head>
 <body>
-
   <header class="topbar">
-    <div style="max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+    <div style="max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;">
       <a href="index.html" class="btn-back"><i class="ph ph-arrow-left"></i> Voltar ao Início</a>
-      <img src="img/logo.png" alt="Metricora" style="height: 30px;" />
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <a href="https://app.metricora.tec.br" target="_blank" class="btn-web"><i class="ph ph-globe"></i> Acessar Web</a>
+        <img src="img/logo.png" alt="Metricora" style="height:30px;" />
+      </div>
     </div>
   </header>
-
-  <main style="max-width: 800px; margin: 0 auto; padding: 4rem 1.5rem 5rem;">
+  <main style="max-width:800px;margin:0 auto;padding:4rem 1.5rem 5rem;">
     <article class="reveal">
-
       <span class="article-badge-green">🏪 Atualização v1.0.10 Disponível</span>
-      <h1 style="font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.1; margin: 1rem 0 1.5rem; color: var(--text-primary); letter-spacing: -0.02em;">
+      <h1 style="font-size:clamp(2.2rem,5vw,3.5rem);font-weight:900;line-height:1.1;margin:1rem 0 1.5rem;color:var(--text-primary);letter-spacing:-0.02em;">
         Separe o seu bolso da empresa com o novo <span>DRE Profissional</span>.
       </h1>
-
-      <p class="article-lead">
-        Você vende todos os dias, o faturamento cresce, mas no final do mês o lucro some. O problema quase sempre está na falta de separação entre despesas operacionais e retiradas do sócio. O Metricora resolve isso.
-      </p>
-
+      <p class="article-lead">Você vende todos os dias, o faturamento cresce, mas no final do mês o lucro some. O problema quase sempre está na falta de separação entre despesas operacionais e retiradas do sócio. O Metricora resolve isso.</p>
       <div class="article-section reveal">
         <h2><span class="section-number">1</span> Gestão de Manufatura Integrada <span class="metric-badge">NOVO</span></h2>
         <p>Agora você cadastra insumos, monta fichas técnicas avançadas e o sistema calcula automaticamente o custo real da sua produção. Sem achismos, sem precificação errada.</p>
       </div>
-
       <div class="reveal">
         <div class="screenshot-box" onclick="openModal(this.querySelector('img').src)">
           <img src="img/print_loja.png" alt="Dashboard v1.0.10" loading="lazy" />
         </div>
         <p class="screenshot-caption">O novo painel de Lucro Real e sangria de caixa</p>
       </div>
-
       <div class="article-section reveal">
         <h2><span class="section-number">2</span> DRE e Fluxo de Caixa Blindado <span class="metric-badge">DRE</span></h2>
         <p>A v1.0.10 traz backup automático na nuvem e autenticação por e-mail. Além disso, mantém a distinção obrigatória entre despesas operacionais e retiradas de sócio (pró-labore). Entenda, pela primeira vez, se a sua empresa é lucrativa.</p>
       </div>
-
       <div class="article-section reveal">
         <h2><span class="section-number">3</span> Relatórios PDF e Excel em 1 clique</h2>
-        <p>Exporte relatórios profissionais para apresentar ao contador, banco ou sócio. Credibilidade que antes custava caro, agora gratuíta na ponta dos seus dedos.</p>
+        <p>Exporte relatórios profissionais para apresentar ao contador, banco ou sócio. Credibilidade que antes custava caro, agora gratuita na ponta dos seus dedos.</p>
       </div>
-
       <div class="cta-box reveal">
         <h3>Assuma o controle total do seu negócio.</h3>
         <p>Junte-se a centenas de empreendedores que pararam de trabalhar no escuro.</p>
-        <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk"
-           class="btn-cta-white" download>
+        <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk" class="btn-cta-white" download>
           <i class="ph-bold ph-download-simple"></i> Baixar Metricora PRO v1.0.10 Grátis
         </a>
         <p class="cta-note">🔒 Binário Ofuscado · Android 6.0+ · Sem mensalidade</p>
       </div>
-
     </article>
   </main>
-
   <footer>
-    <p style="margin-bottom: 0.5rem;">
-      <a href="index.html">Início</a>
-      <a href="salao.html">Salão &amp; Barbearia</a>
-      <a href="confeitaria.html">Confeitaria</a>
-    </p>
+    <p style="margin-bottom:0.5rem;"><a href="index.html">Início</a><a href="salao.html">Salão &amp; Barbearia</a><a href="confeitaria.html">Confeitaria</a></p>
     <p>&copy; 2026 Vectorium Systems · A matemática não falha.</p>
   </footer>
-
-  <div id="imageModal" onclick="closeModal()">
-    <img id="modalImg" src="" alt="Screenshot" />
-  </div>
-
+  <div id="imageModal" onclick="closeModal()"><img id="modalImg" src="" alt="Screenshot" /></div>
   <script>
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-    function openModal(src) {
-      document.getElementById('modalImg').src = src;
-      document.getElementById('imageModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeModal() {
-      document.getElementById('imageModal').classList.remove('active');
-      document.body.style.overflow = '';
-    }
+    const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    function openModal(src){document.getElementById('modalImg').src=src;document.getElementById('imageModal').classList.add('active');document.body.style.overflow='hidden';}
+    function closeModal(){document.getElementById('imageModal').classList.remove('active');document.body.style.overflow='';}
   </script>
 </body>
 </html>

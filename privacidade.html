@@ -1,52 +1,61 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="img/favicon.png">
-    <title>Política de Privacidade | Metricora</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; }
-        h1 { color: #000; border-bottom: 2px solid #00D47E; padding-bottom: 10px; } 
-        h2 { color: #1a1a1a; margin-top: 30px; font-size: 1.2rem; }
-        p, li { font-size: 0.95rem; margin-bottom: 10px; }
-        .highlight { background-color: #e6fffa; padding: 15px; border-left: 4px solid #00D47E; border-radius: 4px; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <title>Política de Privacidade | Metricora</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#F8FAFC;--card:#FFFFFF;--border:#E2E8F0;--text:#0F172A;--muted:#64748B;--green:#00C96B;--blue:#0EA5E9;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+    .topbar{background:rgba(248,250,252,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:1rem 2rem;position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;}
+    .btn-back{color:var(--muted);text-decoration:none;font-weight:600;font-size:0.875rem;display:inline-flex;align-items:center;gap:0.4rem;transition:color 0.2s;}
+    .btn-back:hover{color:var(--green);}
+    .content{max-width:760px;margin:0 auto;padding:3rem 1.5rem 5rem;}
+    h1{font-family:'Poppins',sans-serif;font-size:2rem;font-weight:800;margin-bottom:0.5rem;color:var(--text);}
+    .subtitle{color:var(--muted);font-size:0.875rem;margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1.5px solid var(--border);}
+    h2{font-family:'Poppins',sans-serif;font-size:1.1rem;font-weight:700;margin:2rem 0 0.75rem;color:var(--text);}
+    p,li{font-size:0.9rem;color:#334155;margin-bottom:0.75rem;}
+    ul{padding-left:1.5rem;}
+    li{margin-bottom:0.5rem;}
+    .highlight-box{background:#F0FDF4;border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:1rem 1.25rem;margin:1rem 0;font-size:0.875rem;color:#14532D;}
+    footer{background:var(--card);border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:0.8rem;color:var(--muted);}
+    footer a{color:var(--muted);text-decoration:none;margin:0 0.5rem;}
+    footer a:hover{color:var(--green);}
+  </style>
 </head>
 <body>
+  <nav class="topbar">
+    <a href="index.html" class="btn-back"><i>←</i> Voltar ao Início</a>
+    <img src="img/logo.png" alt="Metricora" style="height:28px;">
+  </nav>
+  <div class="content">
     <h1>Política de Privacidade</h1>
-    <p><strong>Última atualização:</strong> Maio de 2026</p>
-
-    <p>A Vectorium Systems ("nós") desenvolveu o aplicativo <strong>Metricora</strong> como um serviço comercial. Esta página informa aos visitantes sobre nossas políticas de coleta, uso e divulgação de Informações Pessoais.</p>
-
+    <p class="subtitle"><strong>Última atualização:</strong> Maio de 2026</p>
     <h2>1. O Princípio "Offline First" (Seus Dados Financeiros)</h2>
-    <div class="highlight">
-        <p><strong>Resumo:</strong> O que acontece no seu celular, fica no seu celular.</p>
-    </div>
-    <p>O Metricora opera com armazenamento local (SQLite). Todos os dados sensíveis inseridos no aplicativo (vendas, custos, lucros, nomes de clientes, <strong>estoque de insumos e fichas técnicas</strong>) são salvos <strong>exclusivamente na memória interna do seu dispositivo</strong>.</p>
-    <p>Nós da Vectorium Systems <strong>NÃO temos acesso</strong>, não visualizamos e não fazemos backup em nuvem dos seus dados financeiros. A responsabilidade pelo backup (exportação de relatórios e arquivos) é inteiramente do usuário.</p>
-
+    <div class="highlight-box"><strong>Resumo:</strong> O que acontece no seu celular, fica no seu celular.</div>
+    <p>O Metricora opera com armazenamento local (SQLite). Todos os dados sensíveis são salvos <strong>exclusivamente na memória interna do seu dispositivo</strong>. A Vectorium Systems <strong>NÃO tem acesso</strong> aos seus dados financeiros.</p>
     <h2>2. Dados que Coletamos (Para Licenciamento)</h2>
-    <p>Embora não tenhamos acesso ao seu financeiro, coletamos dados técnicos mínimos necessários para validar sua compra e evitar pirataria:</p>
     <ul>
-        <li><strong>ID do Dispositivo (Android ID):</strong> Coletamos o identificador único do seu hardware para gerar a Chave de Licença Vitalícia e vinculá-la ao seu aparelho.</li>
-        <li><strong>Dados de Compra:</strong> Nome e E-mail informados no checkout (Mercado Pago) para envio da chave e suporte técnico.</li>
+      <li><strong>ID do Dispositivo (Android ID):</strong> Para gerar a Chave de Licença Vitalícia vinculada ao seu aparelho.</li>
+      <li><strong>Dados de Compra:</strong> Nome e e-mail informados no checkout para envio da chave e suporte técnico.</li>
     </ul>
-
     <h2>3. Permissões do Android</h2>
-    <p>O aplicativo solicita apenas permissões essenciais para funcionamento:</p>
     <ul>
-        <li><strong>Armazenamento (Storage):</strong> Necessário estritamente para que <em>você</em> possa salvar os relatórios PDF e arquivos de Backup no seu próprio celular.</li>
-        <li><strong>Notificações:</strong> Usadas para lembretes locais (ex: "Fechar o caixa"), sem envio de dados externos.</li>
+      <li><strong>Armazenamento:</strong> Para que você possa salvar relatórios PDF e arquivos de backup no seu celular.</li>
+      <li><strong>Notificações:</strong> Lembretes locais (ex: "Fechar o caixa"), sem envio de dados externos.</li>
     </ul>
-
     <h2>4. Pagamentos</h2>
-    <p>Todas as transações são processadas pelo <strong>Mercado Pago</strong>. A Vectorium Systems <strong>não tem acesso nem armazena</strong> os dados do seu cartão de crédito ou chaves Pix. A segurança da transação é garantida pela infraestrutura criptografada e antifraude do Mercado Pago.</p>
-
+    <p>Todas as transações são processadas pelo <strong>Mercado Pago</strong>. A Vectorium Systems não tem acesso nem armazena dados do seu cartão de crédito ou chaves Pix.</p>
     <h2>5. Contato e Exclusão de Dados</h2>
-    <p>Caso deseje remover seu registro de cliente da nossa base de suporte (o que invalidará sua chave de licença), entre em contato:</p>
+    <p>Para remover seu registro (o que invalidará sua chave de licença), entre em contato:</p>
     <p>📧 <strong>suporte@vectorium.tec.br</strong></p>
-
-    <p style="margin-top: 40px;"><a href="index.html" style="text-decoration: none; font-weight: bold; color: #009ee3;">← Voltar para o site</a></p>
+  </div>
+  <footer>
+    <p style="margin-bottom:0.5rem;"><a href="index.html">Início</a><a href="termos.html">Termos de Uso</a></p>
+    <p>&copy; 2026 Vectorium Systems</p>
+  </footer>
 </body>
 </html>

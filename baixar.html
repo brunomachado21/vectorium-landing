@@ -1,70 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="img/favicon.png">
-    <title>Instalar Metricora Piloto | Seguro</title>
-    
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-    <style>
-        body { 
-            background-color: #0D1117; 
-            color: #E6EDF3; 
-            font-family: 'Inter', sans-serif;
-            background-image: radial-gradient(circle at top, #161b22 0%, #0D1117 100%);
-        }
-        .btn-glow {
-            box-shadow: 0 0 20px rgba(0, 212, 126, 0.3);
-            transition: all 0.3s ease;
-        }
-        .btn-glow:active {
-            transform: scale(0.98);
-            box-shadow: 0 0 10px rgba(0, 212, 126, 0.1);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <title>Instalar Metricora Piloto | Seguro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    :root{--bg:#F8FAFC;--card:#FFFFFF;--border:#E2E8F0;--text:#0F172A;--muted:#64748B;--green:#00C96B;--blue:#0EA5E9;--gradient:linear-gradient(135deg,#00C96B 0%,#0EA5E9 100%);}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Inter',sans-serif;background:var(--bg);background-image:radial-gradient(circle,rgba(14,165,233,0.07) 1px,transparent 1px);background-size:28px 28px;color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.5rem;}
+    .card{background:var(--card);border:1.5px solid var(--border);border-radius:24px;padding:2.5rem 2rem;max-width:400px;width:100%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,0.08);position:relative;overflow:hidden;}
+    .card::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:200px;height:200px;background:radial-gradient(circle,rgba(0,201,107,0.12) 0%,transparent 70%);pointer-events:none;}
+    .icon-box{width:80px;height:80px;background:linear-gradient(135deg,rgba(0,201,107,0.12),rgba(14,165,233,0.12));border:1.5px solid rgba(0,201,107,0.2);border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;}
+    .btn-download{background:var(--gradient);color:#fff;font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;padding:1rem 1.5rem;border-radius:12px;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:0.6rem;transition:all 0.25s;box-shadow:0 4px 20px rgba(0,201,107,0.25);width:100%;margin-bottom:1.5rem;}
+    .btn-download:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,201,107,0.35);}
+    .info-item{display:flex;gap:0.75rem;align-items:flex-start;text-align:left;padding:0.75rem;background:var(--bg);border-radius:10px;margin-bottom:0.5rem;}
+    .info-item:last-child{margin-bottom:0;}
+  </style>
 </head>
-<body class="flex flex-col items-center justify-center min-h-screen p-6 text-center">
-
-    <div class="bg-[#161B22]/80 backdrop-blur-md p-8 rounded-3xl border border-[#30363D] max-w-sm w-full relative overflow-hidden">
-        
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-[#00D47E]/20 blur-3xl rounded-full -z-10"></div>
-
-        <div class="w-20 h-20 bg-[#00D47E]/10 border border-[#00D47E]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-            <i class="ph-fill ph-shield-check text-[#00D47E] text-4xl"></i>
-        </div>
-        
-        <h1 class="text-2xl font-bold text-white mb-2 tracking-tight">Download Seguro</h1>
-        <p class="text-slate-400 text-sm mb-8 leading-relaxed">
-            Você está baixando a versão oficial e verificada do <strong class="text-white">Metricora Piloto (v1.0.10)</strong>.
-        </p>
-
-        <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk" 
-           class="btn-glow flex items-center justify-center gap-3 w-full bg-[#00D47E] hover:bg-[#00a860] text-[#0D1117] font-bold py-4 px-6 rounded-xl text-lg mb-6">
-            <i class="ph-bold ph-download-simple text-2xl"></i>
-            INSTALAR AGORA
-        </a>
-
-        <div class="text-left bg-[#0D1117]/50 p-4 rounded-xl border border-white/5 space-y-3">
-            <div class="flex gap-3 items-start">
-                <i class="ph-fill ph-warning-circle text-yellow-500 text-lg mt-0.5"></i>
-                <p class="text-[11px] text-slate-400 leading-tight">
-                    <strong class="text-slate-200">Aviso do Android:</strong> Se aparecer "Fonte Desconhecida", clique em <em>Configurações > Permitir desta fonte</em>.
-                </p>
-            </div>
-            <div class="flex gap-3 items-start">
-                <i class="ph-fill ph-lock-key text-blue-400 text-lg mt-0.5"></i>
-                <p class="text-[11px] text-slate-400 leading-tight">
-                    <strong class="text-slate-200">Privacidade Total:</strong> O App é 100% Offline. Seus dados não saem do seu celular.
-                </p>
-            </div>
-        </div>
-
-        <p class="mt-8 text-[10px] text-slate-600 font-mono">VECTORIUM SYSTEMS SECURE SERVER</p>
+<body>
+  <div class="card">
+    <div class="icon-box"><i class="ph-fill ph-shield-check" style="color:var(--green);font-size:2.5rem;"></i></div>
+    <h1 style="font-family:'Poppins',sans-serif;font-size:1.6rem;font-weight:800;margin-bottom:0.5rem;color:var(--text);">Download Seguro</h1>
+    <p style="color:var(--muted);font-size:0.875rem;margin-bottom:2rem;line-height:1.7;">Você está baixando a versão oficial e verificada do <strong style="color:var(--text);">Metricora Piloto (v1.0.10)</strong>.</p>
+    <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk" class="btn-download" download>
+      <i class="ph-bold ph-download-simple" style="font-size:1.4rem;"></i> INSTALAR AGORA
+    </a>
+    <div>
+      <div class="info-item">
+        <i class="ph-fill ph-warning-circle" style="color:#F59E0B;font-size:1.2rem;flex-shrink:0;margin-top:2px;"></i>
+        <p style="font-size:0.78rem;color:var(--muted);line-height:1.5;"><strong style="color:var(--text);">Aviso do Android:</strong> Se aparecer "Fonte Desconhecida", clique em <em>Configurações &gt; Permitir desta fonte</em>.</p>
+      </div>
+      <div class="info-item">
+        <i class="ph-fill ph-lock-key" style="color:var(--blue);font-size:1.2rem;flex-shrink:0;margin-top:2px;"></i>
+        <p style="font-size:0.78rem;color:var(--muted);line-height:1.5;"><strong style="color:var(--text);">Privacidade Total:</strong> O App é 100% Offline. Seus dados não saem do seu celular.</p>
+      </div>
     </div>
-
+    <p style="margin-top:1.5rem;font-size:0.65rem;color:#CBD5E1;font-family:'Space Mono',monospace;letter-spacing:0.05em;">VECTORIUM SYSTEMS · SECURE SERVER</p>
+  </div>
 </body>
 </html>

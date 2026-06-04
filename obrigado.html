@@ -1,217 +1,133 @@
 <!DOCTYPE html>
 <html lang="pt-br" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="img/favicon.png">
-    <title>Bem-vindo à Elite | Metricora PRO</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-    <style>
-        :root { --primary-dark: #0D1117; --accent-green: #00D47E; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: radial-gradient(circle at top center, #1a2230 0%, #0D1117 100%);
-            color: #E6EDF3;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        h1, .btn { font-family: 'Poppins', sans-serif; }
-
-        .robo-float {
-            animation: float 6s ease-in-out infinite;
-            filter: drop-shadow(0 20px 30px rgba(0, 212, 126, 0.2));
-            max-width: 100%;
-            height: auto;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease; }
-        .reveal.in { opacity: 1; transform: translateY(0); }
-
-        .btn-shine { position: relative; overflow: hidden; }
-        .btn-shine::after {
-            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
-            transform: rotate(30deg); transition: all 0.3s; opacity: 0;
-        }
-        .btn-shine:hover::after { animation: shine 1s forwards; opacity: 1; }
-        @keyframes shine { from { left: -50%; } to { left: 150%; } }
-
-        /* Estado pending/rejected */
-        #state-pending, #state-rejected { display: none; }
-    </style>
-
-    <script>
-        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '1215025004067870');
-        fbq('track', 'PageView');
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <title>Bem-vindo à Elite | Metricora PRO</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    :root{--bg:#F8FAFC;--card:#FFFFFF;--border:#E2E8F0;--text:#0F172A;--muted:#64748B;--green:#00C96B;--blue:#0EA5E9;--gradient:linear-gradient(135deg,#00C96B 0%,#0EA5E9 100%);}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Inter',sans-serif;background:var(--bg);background-image:radial-gradient(circle,rgba(14,165,233,0.07) 1px,transparent 1px);background-size:28px 28px;color:var(--text);min-height:100vh;}
+    h1,.btn{font-family:'Poppins',sans-serif;}
+    header{background:rgba(248,250,252,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:1rem 2rem;display:flex;justify-content:center;position:sticky;top:0;z-index:50;}
+    .robo-float{animation:float 6s ease-in-out infinite;filter:drop-shadow(0 16px 24px rgba(0,201,107,0.15));max-width:100%;height:auto;}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-18px)}100%{transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(20px);transition:all 0.8s ease;}
+    .reveal.in{opacity:1;transform:translateY(0);}
+    .badge-green{display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 1rem;border-radius:999px;background:rgba(0,201,107,0.1);color:#047857;font-weight:700;font-size:0.75rem;border:1px solid rgba(0,201,107,0.25);text-transform:uppercase;letter-spacing:0.1em;}
+    .badge-yellow{display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 1rem;border-radius:999px;background:rgba(234,179,8,0.1);color:#92400e;font-weight:700;font-size:0.75rem;border:1px solid rgba(234,179,8,0.25);text-transform:uppercase;letter-spacing:0.1em;}
+    .badge-red{display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 1rem;border-radius:999px;background:rgba(239,68,68,0.1);color:#991b1b;font-weight:700;font-size:0.75rem;border:1px solid rgba(239,68,68,0.25);text-transform:uppercase;letter-spacing:0.1em;}
+    .btn-gradient{background:var(--gradient);color:#fff;font-weight:700;padding:1rem 2rem;border-radius:12px;font-size:1.05rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:0.6rem;transition:all 0.25s;box-shadow:0 4px 20px rgba(0,201,107,0.25);width:100%;}
+    .btn-gradient:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,201,107,0.35);}
+    .btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;background:#fff;border:1.5px solid var(--border);color:var(--text);font-weight:600;padding:0.8rem 1.5rem;border-radius:10px;text-decoration:none;transition:all 0.2s;font-size:0.9rem;width:100%;}
+    .btn-outline:hover{border-color:var(--green);color:#047857;background:rgba(0,201,107,0.04);}
+    .info-box{background:#EFF6FF;border:1px solid #BFDBFE;padding:1rem;border-radius:12px;display:flex;gap:0.75rem;align-items:flex-start;font-size:0.82rem;color:#1E40AF;}
+    .warn-box{background:#FFFBEB;border:1px solid #FDE68A;padding:1rem;border-radius:12px;display:flex;gap:0.75rem;align-items:flex-start;font-size:0.82rem;color:#92400E;}
+    .card{background:var(--card);border:1.5px solid var(--border);border-radius:18px;padding:1.5rem;}
+    #state-pending,#state-rejected{display:none;}
+    footer{padding:2rem;text-align:center;font-size:0.78rem;color:#94A3B8;border-top:1px solid var(--border);background:var(--card);margin-top:3rem;}
+  </style>
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1215025004067870');fbq('track','PageView');
+  </script>
 </head>
+<body>
+  <header><img src="img/logo.png" alt="Metricora" style="height:30px;"></header>
+  <main style="max-width:440px;margin:0 auto;padding:2.5rem 1.5rem 4rem;">
 
-<body class="flex flex-col items-center justify-center p-6 relative">
-
-    <header class="absolute top-0 left-0 w-full p-6 flex justify-center z-10">
-        <img src="img/logo.png" alt="Vectorium Systems Logo" class="h-8 brightness-0 invert opacity-80">
-    </header>
-
-    <main class="max-w-md w-full text-center mt-20 relative z-20">
-
-        <!-- ✅ ESTADO: APROVADO (padrão) -->
-        <div id="state-approved">
-            <div class="mb-8 reveal">
-                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00D47E]/10 text-[#00D47E] font-bold text-xs mb-4 border border-[#00D47E]/30 uppercase tracking-widest">
-                    <i class="ph-fill ph-check-circle"></i> Licença Confirmada
-                </span>
-                <h1 class="text-4xl font-black leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">
-                    Bem-vindo à Elite.<br>Você agora é <span class="text-[#00D47E]">PRO</span>.
-                </h1>
-            </div>
-
-            <div class="reveal relative z-10 w-full flex justify-center mb-8">
-                <img src="img/robo_pro.png" alt="Inteligência Metricora" class="robo-float w-64 md:w-80">
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-[#00D47E] blur-[80px] opacity-20 -z-10"></div>
-            </div>
-
-            <div class="space-y-6 reveal relative z-20">
-                <p class="text-sm text-slate-400 mb-2">Instale o motor financeiro no seu dispositivo:</p>
-
-                <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk"
-                   class="btn btn-shine w-full flex items-center justify-center gap-3 bg-gradient-to-r from-[#00D47E] to-[#00a860] text-black font-bold text-lg py-4 px-8 rounded-xl shadow-lg shadow-[#00D47E]/20 hover:transform hover:-translate-y-1 transition-all"
-                   download>
-                    <i class="ph-bold ph-download-simple text-2xl"></i>
-                    BAIXAR VERSÃO v1.0.10
-                </a>
-
-                <div class="bg-blue-500/10 border border-blue-500/20 p-3 rounded-lg text-left flex gap-3 items-start text-xs text-blue-200 mt-2">
-                    <i class="ph-fill ph-shield-check text-lg text-blue-400 flex-shrink-0"></i>
-                    <div>
-                        <strong>Aviso de Segurança:</strong> O sistema operacional pode solicitar permissão de "Fonte Desconhecida" na primeira instalação. Autorize para prosseguir.
-                    </div>
-                </div>
-
-                <div class="text-center border-t border-white/10 pt-6 mt-6">
-                    <p class="text-xs text-slate-500 mb-2">Já possui o aplicativo instalado (Versão Free)?</p>
-                    <p class="text-sm text-white font-semibold">
-                        A reinstalação não é necessária.<br>
-                        <span class="text-[#00D47E]">Valide sua licença abaixo para desbloquear os módulos 👇</span>
-                    </p>
-                </div>
-            </div>
-
-            <div class="mt-8 pt-6 border-t border-white/10 reveal text-center">
-                <h3 class="text-lg font-bold text-white mb-2">Ativação de Credenciais</h3>
-                <p class="text-slate-400 text-xs mb-4">Envie o comprovante para a nossa equipe liberar o seu acesso corporativo.</p>
-                <a href="https://wa.me/5577981037422?text=Olá! Acabo de adquirir a licença Metricora PRO e desejo ativar meu acesso."
-                   target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold py-3 px-6 rounded-lg transition-all text-sm w-full">
-                    <i class="ph-fill ph-whatsapp-logo text-green-400 text-lg"></i>
-                    Validar Licença com Suporte
-                </a>
-            </div>
+    <!-- APROVADO -->
+    <div id="state-approved">
+      <div class="text-center reveal" style="margin-bottom:2rem;">
+        <span class="badge-green"><i class="ph-fill ph-check-circle"></i> Licença Confirmada</span>
+        <h1 style="font-size:2.2rem;font-weight:900;margin-top:1rem;line-height:1.1;color:var(--text);">Bem-vindo à Elite.<br>Você agora é <span style="background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">PRO</span>.</h1>
+      </div>
+      <div class="reveal" style="display:flex;justify-content:center;margin-bottom:2rem;position:relative;">
+        <img src="img/robo_pro.png" alt="Metricora PRO" class="robo-float" style="width:220px;">
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:140px;height:140px;background:var(--green);filter:blur(70px);opacity:0.15;border-radius:50%;pointer-events:none;"></div>
+      </div>
+      <div class="reveal" style="display:flex;flex-direction:column;gap:1rem;">
+        <p style="text-align:center;font-size:0.85rem;color:var(--muted);">Instale o motor financeiro no seu dispositivo:</p>
+        <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk" class="btn-gradient" download>
+          <i class="ph-bold ph-download-simple" style="font-size:1.3rem;"></i> BAIXAR VERSÃO v1.0.10
+        </a>
+        <div class="info-box">
+          <i class="ph-fill ph-shield-check" style="font-size:1.2rem;color:#3B82F6;flex-shrink:0;margin-top:2px;"></i>
+          <div><strong>Aviso de Segurança:</strong> O sistema operacional pode solicitar "Fonte Desconhecida" na primeira instalação. Autorize para prosseguir.</div>
         </div>
-
-        <!-- ⏳ ESTADO: PENDENTE -->
-        <div id="state-pending">
-            <div class="mb-8 reveal">
-                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-500/10 text-yellow-400 font-bold text-xs mb-4 border border-yellow-500/30 uppercase tracking-widest">
-                    <i class="ph-fill ph-clock"></i> Pagamento em Análise
-                </span>
-                <h1 class="text-4xl font-black leading-tight text-white">
-                    Quase lá!<br><span class="text-yellow-400">Aguardando confirmação.</span>
-                </h1>
-            </div>
-            <div class="reveal relative z-10 w-full flex justify-center mb-8">
-                <img src="img/robo_pro.png" alt="Inteligência Metricora" class="robo-float w-64 md:w-80 opacity-60">
-            </div>
-            <div class="space-y-4 reveal">
-                <p class="text-slate-300 text-sm">Seu pagamento está sendo processado. Assim que for confirmado, você receberá o acesso.</p>
-                <div class="bg-yellow-500/10 border border-yellow-500/20 p-4 rounded-lg text-left flex gap-3 items-start text-sm text-yellow-200">
-                    <i class="ph-fill ph-info text-xl text-yellow-400 flex-shrink-0"></i>
-                    <div>Pagamentos via boleto ou Pix podem levar até <strong>1 dia útil</strong> para serem confirmados. Fique tranquilo!</div>
-                </div>
-                <a href="https://wa.me/5577981037422?text=Olá! Realizei o pagamento da licença Metricora PRO e gostaria de confirmar o status."
-                   target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold py-3 px-6 rounded-lg transition-all text-sm w-full">
-                    <i class="ph-fill ph-whatsapp-logo text-green-400 text-lg"></i>
-                    Falar com Suporte
-                </a>
-            </div>
+        <div class="card reveal" style="text-align:center;">
+          <p style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem;">Já possui o aplicativo instalado?</p>
+          <p style="font-size:0.9rem;font-weight:600;">A reinstalação não é necessária.<br><span style="color:var(--green);">Valide sua licença abaixo 👇</span></p>
         </div>
-
-        <!-- ❌ ESTADO: REJEITADO -->
-        <div id="state-rejected">
-            <div class="mb-8 reveal">
-                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/10 text-red-400 font-bold text-xs mb-4 border border-red-500/30 uppercase tracking-widest">
-                    <i class="ph-fill ph-x-circle"></i> Pagamento não aprovado
-                </span>
-                <h1 class="text-4xl font-black leading-tight text-white">
-                    Algo deu errado.<br><span class="text-red-400">Tente novamente.</span>
-                </h1>
-            </div>
-            <div class="reveal space-y-4">
-                <p class="text-slate-300 text-sm">Seu pagamento não foi aprovado. Verifique os dados do cartão ou tente outro método de pagamento.</p>
-                <a href="vitalicio.html"
-                   class="btn btn-shine w-full flex items-center justify-center gap-3 bg-gradient-to-r from-[#00D47E] to-[#00a860] text-black font-bold text-lg py-4 px-8 rounded-xl shadow-lg shadow-[#00D47E]/20 hover:transform hover:-translate-y-1 transition-all">
-                    <i class="ph-bold ph-arrow-counter-clockwise text-2xl"></i>
-                    TENTAR NOVAMENTE
-                </a>
-                <a href="https://wa.me/5577981037422?text=Olá! Tive um problema com meu pagamento da licença Metricora PRO."
-                   target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold py-3 px-6 rounded-lg transition-all text-sm w-full">
-                    <i class="ph-fill ph-whatsapp-logo text-green-400 text-lg"></i>
-                    Preciso de Ajuda
-                </a>
-            </div>
+        <div class="card reveal">
+          <h3 style="font-family:'Poppins';font-weight:700;margin-bottom:0.4rem;">Ativação de Credenciais</h3>
+          <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem;">Envie o comprovante para a nossa equipe liberar o seu acesso corporativo.</p>
+          <a href="https://wa.me/5577981037422?text=Olá! Acabo de adquirir a licença Metricora PRO e desejo ativar meu acesso." target="_blank" rel="noopener" class="btn-outline">
+            <i class="ph-fill ph-whatsapp-logo" style="color:#22C55E;font-size:1.1rem;"></i> Validar Licença com Suporte
+          </a>
         </div>
+      </div>
+    </div>
 
-    </main>
+    <!-- PENDENTE -->
+    <div id="state-pending">
+      <div class="text-center reveal" style="margin-bottom:2rem;">
+        <span class="badge-yellow"><i class="ph-fill ph-clock"></i> Pagamento em Análise</span>
+        <h1 style="font-size:2.2rem;font-weight:900;margin-top:1rem;line-height:1.1;color:var(--text);">Quase lá!<br><span style="color:#D97706;">Aguardando confirmação.</span></h1>
+      </div>
+      <div class="reveal" style="display:flex;justify-content:center;margin-bottom:2rem;">
+        <img src="img/robo_pro.png" alt="Metricora" class="robo-float" style="width:200px;opacity:0.7;">
+      </div>
+      <div class="reveal" style="display:flex;flex-direction:column;gap:1rem;">
+        <p style="color:var(--muted);font-size:0.9rem;">Seu pagamento está sendo processado. Assim que for confirmado, você receberá o acesso.</p>
+        <div class="warn-box"><i class="ph-fill ph-info" style="font-size:1.2rem;color:#D97706;flex-shrink:0;"></i><div>Pagamentos via boleto ou Pix podem levar até <strong>1 dia útil</strong>. Fique tranquilo!</div></div>
+        <a href="https://wa.me/5577981037422?text=Olá! Realizei o pagamento e gostaria de confirmar o status." target="_blank" rel="noopener" class="btn-outline">
+          <i class="ph-fill ph-whatsapp-logo" style="color:#22C55E;font-size:1.1rem;"></i> Falar com Suporte
+        </a>
+      </div>
+    </div>
 
-    <footer class="mt-16 text-center text-[10px] text-slate-600 pb-6 reveal">
-        &copy; 2026 Vectorium Systems. A matemática não falha.
-    </footer>
+    <!-- REJEITADO -->
+    <div id="state-rejected">
+      <div class="text-center reveal" style="margin-bottom:2rem;">
+        <span class="badge-red"><i class="ph-fill ph-x-circle"></i> Pagamento não aprovado</span>
+        <h1 style="font-size:2.2rem;font-weight:900;margin-top:1rem;line-height:1.1;color:var(--text);">Algo deu errado.<br><span style="color:#EF4444;">Tente novamente.</span></h1>
+      </div>
+      <div class="reveal" style="display:flex;flex-direction:column;gap:1rem;">
+        <p style="color:var(--muted);font-size:0.9rem;">Seu pagamento não foi aprovado. Verifique os dados do cartão ou tente outro método.</p>
+        <a href="vitalicio.html" class="btn-gradient"><i class="ph-bold ph-arrow-counter-clockwise" style="font-size:1.3rem;"></i> TENTAR NOVAMENTE</a>
+        <a href="https://wa.me/5577981037422?text=Olá! Tive um problema com meu pagamento da licença Metricora PRO." target="_blank" rel="noopener" class="btn-outline">
+          <i class="ph-fill ph-whatsapp-logo" style="color:#22C55E;font-size:1.1rem;"></i> Preciso de Ajuda
+        </a>
+      </div>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script>
-        window.addEventListener('load', () => {
-            const params = new URLSearchParams(window.location.search);
-            const status = params.get('status') || 'approved';
-            const paymentId = params.get('payment_id') || '';
-
-            const stateApproved = document.getElementById('state-approved');
-            const statePending  = document.getElementById('state-pending');
-            const stateRejected = document.getElementById('state-rejected');
-
-            if (status === 'approved') {
-                stateApproved.style.display = 'block';
-                if (typeof fbq === 'function') {
-                    fbq('track', 'Purchase', {
-                        currency: 'BRL',
-                        value: 97.90,
-                        content_name: 'Licenca Vitalicia Metricora PRO',
-                        ...(paymentId ? { transaction_id: paymentId } : {})
-                    });
-                }
-                setTimeout(() => {
-                    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, disableForReducedMotion: true, colors: ['#00D47E', '#ffffff', '#0D1117'] });
-                }, 800);
-            } else if (status === 'pending') {
-                statePending.style.display = 'block';
-            } else {
-                stateRejected.style.display = 'block';
-            }
-
-            document.querySelectorAll('.reveal').forEach((el, i) => {
-                setTimeout(() => el.classList.add('in'), 100 + (i * 100));
-            });
-        });
-    </script>
+  </main>
+  <footer>&copy; 2026 Vectorium Systems · A matemática não falha.</footer>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    window.addEventListener('load',()=>{
+      const params=new URLSearchParams(window.location.search);
+      const status=params.get('status')||'approved';
+      const paymentId=params.get('payment_id')||'';
+      document.getElementById('state-approved').style.display='none';
+      document.getElementById('state-pending').style.display='none';
+      document.getElementById('state-rejected').style.display='none';
+      if(status==='approved'){
+        document.getElementById('state-approved').style.display='block';
+        if(typeof fbq==='function')fbq('track','Purchase',{currency:'BRL',value:97.90,content_name:'Licenca Vitalicia Metricora PRO',...(paymentId?{transaction_id:paymentId}:{})});
+        setTimeout(()=>confetti({particleCount:100,spread:70,origin:{y:0.6},disableForReducedMotion:true,colors:['#00C96B','#0EA5E9','#ffffff']}),800);
+      }else if(status==='pending'){
+        document.getElementById('state-pending').style.display='block';
+      }else{
+        document.getElementById('state-rejected').style.display='block';
+      }
+      document.querySelectorAll('.reveal').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),100+(i*100)));
+    });
+  </script>
 </body>
 </html>
