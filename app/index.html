@@ -22,26 +22,39 @@
 
   <!--
     Content Security Policy completa para Flutter Web:
-    - gstatic.com      : CanvasKit (engine de renderização do Flutter)
-    - fonts.gstatic.com: fontes Roboto e Material Icons
-    - fonts.googleapis : stylesheet das fontes
-    - unsafe-eval      : dart2js + sqlite3.wasm
-    - wasm-unsafe-eval : WebAssembly (Drift/sqlite3)
-    - unsafe-inline    : Flutter bootstrap scripts
+    - gstatic.com           : CanvasKit (engine de renderização Flutter)
+    - fonts.gstatic.com     : fontes Roboto e Material Icons
+    - fonts.googleapis.com  : stylesheet das fontes
+    - accounts.google.com   : Google Sign-In (GSI client)
+    - *.googleapis.com      : APIs Google em geral
+    - unsafe-eval           : dart2js + sqlite3.wasm
+    - wasm-unsafe-eval      : WebAssembly (Drift/sqlite3)
+    - unsafe-inline         : Flutter bootstrap scripts
   -->
   <meta http-equiv="Content-Security-Policy"
         content="default-src 'self';
-                 script-src  'self' 'unsafe-eval' 'unsafe-inline' 'wasm-unsafe-eval' https://www.gstatic.com;
-                 style-src   'self' 'unsafe-inline' https://fonts.googleapis.com;
-                 img-src     'self' data: blob: https://www.gstatic.com;
-                 font-src    'self' data: https://fonts.gstatic.com;
+                 script-src  'self' 'unsafe-eval' 'unsafe-inline' 'wasm-unsafe-eval'
+                             https://www.gstatic.com
+                             https://accounts.google.com
+                             https://*.googleapis.com;
+                 style-src   'self' 'unsafe-inline'
+                             https://fonts.googleapis.com
+                             https://accounts.google.com;
+                 img-src     'self' data: blob:
+                             https://www.gstatic.com
+                             https://*.googleusercontent.com;
+                 font-src    'self' data:
+                             https://fonts.gstatic.com;
                  connect-src 'self'
                              https://*.supabase.co wss://*.supabase.co https://supabase.io
                              https://www.gstatic.com
                              https://fonts.gstatic.com
-                             https://fonts.googleapis.com;
+                             https://fonts.googleapis.com
+                             https://accounts.google.com
+                             https://*.googleapis.com;
+                 frame-src   https://accounts.google.com;
                  worker-src  'self' blob:;
-                 child-src   blob:;">
+                 child-src   blob: https://accounts.google.com;">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
