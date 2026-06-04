@@ -1,6 +1,6 @@
 # Documento de Requisitos — Vectorium / Metricora Web App
 
-**Versão:** 1.0  
+**Versão:** 1.2  
 **Data:** 2026-06-04  
 **Responsável:** Bruno Machado  
 **Repositório de landing:** [vectorium-landing](https://github.com/brunomachado21/vectorium-landing)  
@@ -11,6 +11,8 @@
 ## 1. Visão Geral
 
 O Metricora Web App é a versão Flutter Web do aplicativo Metricora, servida em `vectorium.tec.br/app`. Ele permite que empreendedores registrem vendas, despesas, gerem DRE e acompanhem métricas financeiras diretamente no navegador, sem instalação.
+
+A **landing page** (`vectorium.tec.br`) é um site estático HTML/CSS/JS hospedado no GitHub Pages e serve como principal canal de aquisição de usuários.
 
 ---
 
@@ -62,6 +64,15 @@ O Metricora Web App é a versão Flutter Web do aplicativo Metricora, servida em
 | RF-14 | Sincronizar dados com Supabase (backup em nuvem) | Alta |
 | RF-15 | Na versão Web, usar Supabase como banco primário (sem SQLite local) | Alta |
 
+### 3.5 Landing Page — Navbar
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RF-16 | A navbar da landing page deve exibir os links de navegação (Funcionalidades, Segmentos, Preço, Depoimentos, FAQ) à esquerda/centro | Alta |
+| RF-17 | O canto direito da navbar deve conter dois botões lado a lado: **"Versão Web"** (outline azul, abre `vectorium.tec.br/app`) e **"Baixar para Android"** (gradiente verde-azul, faz download do APK) | Alta |
+| RF-18 | O botão de download deve especificar explicitamente a plataforma **Android** no rótulo | Média |
+| RF-19 | Em telas ≤ 700px (mobile), o botão "Versão Web" deve ser ocultado; apenas "Baixar para Android" permanece visível na navbar | Média |
+
 ---
 
 ## 4. Requisitos Não Funcionais
@@ -74,10 +85,11 @@ O Metricora Web App é a versão Flutter Web do aplicativo Metricora, servida em
 | RNF-04 | Autenticação protegida por HTTPS (Supabase + CNAME vectorium.tec.br) | Segurança |
 | RNF-05 | Dados de usuário isolados por `user_id` em todas as queries | Segurança |
 | RNF-06 | Build Flutter Web otimizado (tree-shaking, minificação) | Performance |
+| RNF-07 | A landing page não deve depender de frameworks JS externos além do Tailwind CDN e Phosphor Icons | Manutenibilidade |
 
 ---
 
-## 5. Correções Pendentes (Backlog Imediato)
+## 5. Correções & Melhorias (Backlog)
 
 | ID | Descrição | Status |
 |---|---|---|
@@ -86,6 +98,8 @@ O Metricora Web App é a versão Flutter Web do aplicativo Metricora, servida em
 | FIX-03 | Remover hardcodes de cor em `backup_screen.dart` | ✅ Concluído (2026-06-04) |
 | FIX-04 | Remover hardcodes de cor em `contabilidade_screen.dart` | ✅ Concluído (2026-06-04) |
 | FIX-05 | Remover hardcodes de cor em `atacadistas_screen.dart` | ✅ Concluído (2026-06-04) |
+| FIX-06 | Revert redesign completo do `index.html` — restaurar versão anterior | ✅ Concluído (2026-06-04) |
+| FIX-07 | Navbar landing: mover "Versão Web" para botão outline ao lado de "Baixar para Android"; especificar plataforma Android no CTA | ✅ Concluído (2026-06-04) |
 
 ---
 
@@ -98,3 +112,13 @@ O Metricora Web App é a versão Flutter Web do aplicativo Metricora, servida em
 - [ ] Link "Já tenho conta? Entrar" na parte inferior
 - [ ] Validação inline de senha fraca e e-mail inválido
 - [ ] Loading indicator durante a chamada ao Supabase
+
+---
+
+## 7. Critérios de Aceite — RF-17 / RF-18 / RF-19 (Navbar Landing)
+
+- [x] Botão "Versão Web" exibido como elemento `<a class="navbar-web">` com border outline azul
+- [x] Botão "Baixar para Android" exibido como `<a class="navbar-cta">` com gradiente e texto "Baixar para Android"
+- [x] Ambos os botões agrupados em `<div class="navbar-actions">` lado a lado no canto direito
+- [x] Em mobile (`max-width: 700px`): `.navbar-web { display: none }`, somente o CTA primário permanece
+- [x] Link "Versão Web" removido da lista de navegação (`navbar-links`)

@@ -6,6 +6,39 @@ Registro cronológico de decisões técnicas, correções e melhorias.
 
 ## 2026-06-04
 
+### [FIX] Revert redesign completo do index.html
+
+**Commits:** `180d8b2` (revert)  
+**Arquivo:** `index.html`
+
+**Problema:** Um redesign completo foi aplicado ao `index.html` divergindo do layout original aprovado. O resultado não estava alinhado com a identidade visual do projeto.
+
+**Ação:** Restauração completa do arquivo para o blob SHA `935543e` (versão anterior ao redesign). Conteúdo verificado byte-a-byte.
+
+**Resultado:** Landing page restaurada ao estado original com design limpo, fundo pontilhado, hero em grid 2 colunas, paleta verde-azul e todas as seções intactas.
+
+---
+
+### [FEAT] Navbar landing — "Versão Web" como botão + especificação Android
+
+**Commit:** `104439a`  
+**Arquivo:** `index.html`
+
+**Problema:** O link "Versão Web" estava listado junto dos links de navegação (Funcionalidades, Segmentos, etc.), sem destaque visual. O botão de download da navbar não especificava a plataforma, podendo gerar confusão em usuários iOS.
+
+**Solução:**
+- Removido "Versão Web" da `<div class="navbar-links">`
+- Criado `<div class="navbar-actions">` no canto direito com dois botões lado a lado:
+  - `.navbar-web` — outline azul (`border: 1.5px solid rgba(14,165,233,0.4)`), texto "🌐 Versão Web", abre `vectorium.tec.br/app` em nova aba
+  - `.navbar-cta` — gradiente verde-azul, texto "⬇ Baixar para Android", faz download do APK
+- Em mobile (`max-width: 700px`): `.navbar-web { display: none }` — somente o CTA de download permanece na navbar
+
+**Motivação UX:** Separar claramente os dois canais de acesso (web vs. mobile) e deixar explícito para o usuário que o download é exclusivo para Android, evitando frustração de usuários iOS.
+
+**Resultado:** Navbar com hierarquia visual clara. CTA primário (download Android) com máximo destaque; acesso web disponível como opção secundária imediatamente ao lado.
+
+---
+
 ### [FIX] Remoção de hardcodes dark em 4 telas — Metricora Flutter
 
 **Commit:** `dd04d79` (repo: metricora)  

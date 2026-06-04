@@ -1,6 +1,6 @@
 # Diagramas UML — Vectorium / Metricora Web App
 
-**Versão:** 1.0  
+**Versão:** 1.2  
 **Data:** 2026-06-04
 
 ---
@@ -37,7 +37,36 @@
 
 ---
 
-## 2. Diagrama de Classes (Modelos Principais)
+## 2. Diagrama de Casos de Uso — Landing Page
+
+```
++-----------------------------------------------------------+
+|              <<System>> Metricora Landing Page            |
+|                                                           |
+|  +--------------------+   +---------------------------+  |
+|  | Baixar APK Android |   | Acessar Versão Web        |  |
+|  | (navbar CTA)       |   | (navbar botão outline)    |  |
+|  +--------------------+   +---------------------------+  |
+|                                                           |
+|  +--------------------+   +---------------------------+  |
+|  | Navegar para       |   | Falar no WhatsApp         |  |
+|  | segmento específico|   | (botão flutuante)         |  |
+|  +--------------------+   +---------------------------+  |
+|                                                           |
+|  +--------------------+                                  |
+|  | Visualizar         |                                  |
+|  | screenshots        |                                  |
+|  +--------------------+                                  |
+|                                                           |
++-----------------------------------------------------------+
+          ^
+          |
+   [Visitante / Prospect]
+```
+
+---
+
+## 3. Diagrama de Classes (Modelos Principais)
 
 ```
 +-------------------+       +---------------------+
@@ -76,7 +105,7 @@
 
 ---
 
-## 3. Diagrama de Sequência — Fluxo de Cadastro
+## 4. Diagrama de Sequência — Fluxo de Cadastro
 
 ```
 Usuário       RegisterScreen     SupabaseAuth      Database
@@ -99,7 +128,7 @@ Usuário       RegisterScreen     SupabaseAuth      Database
 
 ---
 
-## 4. Diagrama de Sequência — Fluxo de Login
+## 5. Diagrama de Sequência — Fluxo de Login
 
 ```
 Usuário       LoginScreen        SupabaseAuth      Session
@@ -113,7 +142,7 @@ Usuário       LoginScreen        SupabaseAuth      Session
 
 ---
 
-## 5. Diagrama de Fluxo — Tela de Cadastro (FIX-01)
+## 6. Diagrama de Fluxo — Tela de Cadastro (FIX-01)
 
 ```
 [Abrir /app] --> [Splash] --> [LoginScreen]
@@ -145,7 +174,31 @@ Usuário       LoginScreen        SupabaseAuth      Session
 
 ---
 
-## 6. Arquitetura de Deploy
+## 7. Diagrama de Componentes — Navbar Landing Page (atual)
+
+```
++------------------------------------------------------------------+
+|  <nav class="navbar">                                            |
+|                                                                  |
+|  [logo.png]   [navbar-links]               [navbar-actions]      |
+|               +------------------+         +------------------+  |
+|               | Funcionalidades  |         | [navbar-web]     |  |
+|               | Segmentos        |         | 🌐 Versão Web    |  |
+|               | Preço            |         | outline azul     |  |
+|               | Depoimentos      |         +------------------+  |
+|               | FAQ              |         | [navbar-cta]     |  |
+|               +------------------+         | ⬇ Baixar para   |  |
+|               hidden on mobile             |   Android        |  |
+|                                            | gradiente        |  |
+|                                            +------------------+  |
+|                                            navbar-web hidden      |
+|                                            on mobile ≤700px       |
++------------------------------------------------------------------+
+```
+
+---
+
+## 8. Arquitetura de Deploy
 
 ```
 +------------------+         +------------------+
