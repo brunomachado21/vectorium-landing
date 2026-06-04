@@ -96,6 +96,11 @@
       transition: color 0.2s;
     }
     .navbar-links a:hover { color: var(--accent-green); }
+    .navbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
     .navbar-cta {
       background: var(--gradient);
       color: #fff;
@@ -105,10 +110,36 @@
       border-radius: 8px;
       text-decoration: none;
       transition: opacity 0.2s, transform 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
     }
     .navbar-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+    .navbar-web {
+      background: transparent;
+      color: var(--accent-blue);
+      border: 1.5px solid rgba(14,165,233,0.4);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.5rem 1.1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+      font-family: 'Poppins', sans-serif;
+    }
+    .navbar-web:hover {
+      background: rgba(14,165,233,0.07);
+      border-color: var(--accent-blue);
+      transform: translateY(-1px);
+    }
     @media (max-width: 700px) {
       .navbar-links { display: none; }
+      .navbar-web { display: none; }
     }
 
     /* ── HERO ────────────────────────────────────────────── */
@@ -719,12 +750,16 @@
       <a href="#pricing">Preço</a>
       <a href="#depoimentos">Depoimentos</a>
       <a href="#faq">FAQ</a>
-      <a href="https://vectorium.tec.br/app" target="_blank" rel="noopener">Versão Web</a>
     </div>
-    <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk"
-       class="navbar-cta" download>
-      <i class="ph-bold ph-download-simple"></i> Baixar Grátis
-    </a>
+    <div class="navbar-actions">
+      <a href="https://vectorium.tec.br/app" class="navbar-web" target="_blank" rel="noopener">
+        <i class="ph-bold ph-globe"></i> Versão Web
+      </a>
+      <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk"
+         class="navbar-cta" download>
+        <i class="ph-bold ph-download-simple"></i> Baixar para Android
+      </a>
+    </div>
   </nav>
 
   <!-- WHATSAPP -->
