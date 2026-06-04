@@ -47,7 +47,7 @@
   <link rel="manifest" href="manifest.json">
 
   <style>
-    /* Banner PWA */
+    /* ── Banner PWA base ─────────────────────────────────────── */
     #pwa-banner {
       display: none;
       position: fixed;
@@ -67,74 +67,73 @@
       border: 1.5px solid rgba(37,99,235,0.12);
       animation: slideUp 0.35s cubic-bezier(.22,.68,0,1.2) both;
     }
-    #pwa-banner.visible {
-      display: flex;
-    }
+    #pwa-banner.visible { display: flex; }
     @keyframes slideUp {
       from { opacity: 0; transform: translateX(-50%) translateY(30px); }
       to   { opacity: 1; transform: translateX(-50%) translateY(0); }
     }
     #pwa-banner img {
-      width: 48px;
-      height: 48px;
-      border-radius: 10px;
-      flex-shrink: 0;
+      width: 48px; height: 48px;
+      border-radius: 10px; flex-shrink: 0;
     }
-    #pwa-banner-text {
-      flex: 1;
-    }
+    #pwa-banner-text { flex: 1; }
     #pwa-banner-text strong {
-      display: block;
-      color: #0f172a;
-      font-size: 14px;
-      font-weight: 700;
+      display: block; color: #0f172a;
+      font-size: 14px; font-weight: 700;
     }
     #pwa-banner-text span {
-      display: block;
-      color: #475569;
-      font-size: 12px;
-      margin-top: 2px;
+      display: block; color: #475569;
+      font-size: 12px; margin-top: 2px; line-height: 1.4;
     }
     #pwa-banner-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      flex-shrink: 0;
+      display: flex; flex-direction: column;
+      gap: 6px; flex-shrink: 0;
     }
     #pwa-install-btn {
       background: linear-gradient(135deg, #2563eb, #60a5fa);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 8px 16px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      white-space: nowrap;
+      color: #fff; border: none; border-radius: 8px;
+      padding: 8px 16px; font-size: 13px; font-weight: 700;
+      cursor: pointer; white-space: nowrap;
       box-shadow: 0 4px 12px rgba(37,99,235,0.30);
       transition: opacity 0.15s;
     }
     #pwa-install-btn:hover { opacity: 0.88; }
     #pwa-dismiss-btn {
-      background: transparent;
-      color: #94a3b8;
-      border: none;
-      font-size: 11px;
-      cursor: pointer;
-      text-align: center;
-      padding: 2px;
+      background: transparent; color: #94a3b8;
+      border: none; font-size: 11px;
+      cursor: pointer; text-align: center; padding: 2px;
     }
     #pwa-dismiss-btn:hover { color: #64748b; }
+
+    /* ── Seta iOS apontando para o botão de compartilhar ──────── */
+    #pwa-ios-arrow {
+      display: none;
+      position: fixed;
+      bottom: 72px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100000;
+      pointer-events: none;
+    }
+    #pwa-ios-arrow.visible { display: block; }
+    #pwa-ios-arrow svg {
+      filter: drop-shadow(0 2px 6px rgba(37,99,235,0.25));
+      animation: bounce 1s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(8px); }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Banner de instalação PWA -->
+  <!-- Banner de instalação PWA (Chrome / Android / Desktop) -->
   <div id="pwa-banner">
     <img src="icons/Icon-192.png" alt="Metricora">
     <div id="pwa-banner-text">
       <strong>Instalar Metricora</strong>
-      <span>Adicione à tela inicial e use sem precisar do navegador.</span>
+      <span id="pwa-banner-desc">Adicione à tela inicial e use sem precisar do navegador.</span>
     </div>
     <div id="pwa-banner-actions">
       <button id="pwa-install-btn">📲 Instalar</button>
@@ -142,39 +141,61 @@
     </div>
   </div>
 
+  <!-- Seta animada iOS (aponta para o botão de compartilhar no Safari) -->
+  <div id="pwa-ios-arrow">
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="20" r="20" fill="#2563EB" opacity="0.12"/>
+      <path d="M20 10 L20 30 M12 22 L20 30 L28 22" stroke="#2563EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
   <script>
-    // Captura o evento beforeinstallprompt (Chrome/Android/Desktop)
-    let _deferredPrompt = null;
-    const banner = document.getElementById('pwa-banner');
+    const banner     = document.getElementById('pwa-banner');
     const installBtn = document.getElementById('pwa-install-btn');
     const dismissBtn = document.getElementById('pwa-dismiss-btn');
+    const bannerDesc = document.getElementById('pwa-banner-desc');
+    const iosArrow   = document.getElementById('pwa-ios-arrow');
 
     // Não exibe se já foi dispensado nos últimos 7 dias
     const dismissed = localStorage.getItem('pwa_banner_dismissed');
     const dismissedRecently = dismissed && (Date.now() - parseInt(dismissed)) < 7 * 24 * 60 * 60 * 1000;
 
+    // ── Detecção iOS/Safari ────────────────────────────────────
+    const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    const isInStandaloneMode = ('standalone' in window.navigator) && window.navigator.standalone;
+    const isIosSafari = isIos && isSafari;
+
+    // ── Chrome / Android / Desktop ───────────────────────────────
+    let _deferredPrompt = null;
+
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       _deferredPrompt = e;
       if (!dismissedRecently) {
-        // Aguarda 3s para o app carregar antes de exibir
         setTimeout(() => banner.classList.add('visible'), 3000);
       }
     });
 
     installBtn.addEventListener('click', async () => {
+      if (isIosSafari) {
+        // iOS: não tem prompt nativo, esconde banner e mostra seta
+        banner.classList.remove('visible');
+        iosArrow.classList.add('visible');
+        setTimeout(() => iosArrow.classList.remove('visible'), 8000);
+        return;
+      }
       if (!_deferredPrompt) return;
       banner.classList.remove('visible');
       _deferredPrompt.prompt();
       const { outcome } = await _deferredPrompt.userChoice;
       _deferredPrompt = null;
-      if (outcome === 'accepted') {
-        localStorage.removeItem('pwa_banner_dismissed');
-      }
+      if (outcome === 'accepted') localStorage.removeItem('pwa_banner_dismissed');
     });
 
     dismissBtn.addEventListener('click', () => {
       banner.classList.remove('visible');
+      iosArrow.classList.remove('visible');
       localStorage.setItem('pwa_banner_dismissed', Date.now().toString());
     });
 
@@ -183,6 +204,13 @@
       banner.classList.remove('visible');
       _deferredPrompt = null;
     });
+
+    // ── iOS Safari: exibe banner com instruções específicas ──────
+    if (isIosSafari && !isInStandaloneMode && !dismissedRecently) {
+      bannerDesc.textContent = 'Toque em \u2191 Compartilhar e depois em "Adicionar à Tela de Início".';
+      installBtn.textContent = '\u2139\ufe0f Ver como instalar';
+      setTimeout(() => banner.classList.add('visible'), 3000);
+    }
   </script>
 
   <script src="flutter_bootstrap.js" async></script>
