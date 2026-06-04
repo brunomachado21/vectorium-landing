@@ -22,213 +22,168 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    
-    // Pixel Configurado
-    fbq('init', '1215025004067870'); 
+    fbq('init', '1215025004067870');
     fbq('track', 'PageView');
   </script>
   <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1215025004067870&ev=PageView&noscript=1"
   /></noscript>
 
-  <!-- Tailwind CSS estável -->
   <script src="https://cdn.tailwindcss.com"></script>
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" />
-
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
   <link rel="icon" type="image/png" href="img/favicon.png" />
 
   <style>
-    /* --- BOTÃO FLUTUANTE COM FECHAR --- */
-    .whatsapp-wrapper {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      z-index: 999;
-      display: flex;
-      flex-direction: column;
-      animation: pulse-green 2s infinite;
-    }
-
-    .whatsapp-close {
-      position: absolute;
-      top: -10px;
-      right: -5px;
-      background-color: #333;
-      color: white;
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 50%;
-      width: 22px;
-      height: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 12px;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      transition: all 0.2s;
-    }
-
-    .whatsapp-close:hover {
-      background-color: #ff4444;
-      transform: scale(1.1);
-    }
-
-    .whatsapp-link {
-      background-color: #25D366;
-      color: #FFF;
-      border-radius: 50px;
-      padding: 12px 20px;
-      font-size: 15px;
-      font-weight: 700;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      font-family: 'Inter', sans-serif;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(255,255,255,0.2);
-    }
-
-    .whatsapp-link:hover {
-      background-color: #1ebc57;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-      color: white;
-    }
-
-    .whatsapp-link i { font-size: 1.4rem; }
-
-    @keyframes pulse-green {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.02); }
-      100% { transform: scale(1); }
-    }
-    
-    .whatsapp-float {
-      animation: pulse-green 2s infinite;
-    }
-
     :root {
-      --primary-dark: #0D1117;
-      --secondary-dark: #161B22;
-      --tertiary-dark: #21262D;
-      --accent-green: #00D47E;
-      --accent-green-hover: #00B068;
-      --accent-cyan: #00D9FF;
-      --text-primary: #E6EDF3;
-      --text-secondary: #8B949E;
-      --text-muted: #6E7681;
-      --border-color: #30363D;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
-      --shadow-md: 0 10px 30px rgba(0,0,0,0.3);
-      --shadow-lg: 0 20px 60px rgba(0,0,0,0.4);
+      --bg-page:         #F8FAFC;
+      --bg-card:         #FFFFFF;
+      --bg-section-alt:  #F1F5F9;
+      --accent-green:    #00C96B;
+      --accent-blue:     #0EA5E9;
+      --gradient:        linear-gradient(135deg, #00C96B 0%, #0EA5E9 100%);
+      --gradient-soft:   linear-gradient(135deg, rgba(0,201,107,0.08) 0%, rgba(14,165,233,0.08) 100%);
+      --text-primary:    #0F172A;
+      --text-secondary:  #475569;
+      --text-muted:      #94A3B8;
+      --border:          #E2E8F0;
+      --shadow-sm:       0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md:       0 4px 24px rgba(0,0,0,0.07);
+      --shadow-lg:       0 12px 48px rgba(0,0,0,0.10);
+      --shadow-hover:    0 20px 60px rgba(0,201,107,0.12);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, var(--primary-dark) 0%, #1a1f2e 50%, var(--secondary-dark) 100%);
+      background-color: var(--bg-page);
+      background-image: radial-gradient(circle, rgba(14,165,233,0.07) 1px, transparent 1px);
+      background-size: 28px 28px;
       color: var(--text-primary);
       line-height: 1.6;
       overflow-x: hidden;
       min-height: 100vh;
-      position: relative;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image:
-        radial-gradient(circle at 20% 50%, rgba(0, 212, 126, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(0, 217, 255, 0.03) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: 1;
     }
 
     h1, h2, h3, .btn { font-family: 'Poppins', sans-serif; }
     code, .mono { font-family: 'Space Mono', monospace; }
 
+    /* ── NAVBAR ─────────────────────────────────────────── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(248,250,252,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.9rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 100%;
+    }
+    .navbar-logo { height: 32px; width: auto; }
+    .navbar-links { display: flex; gap: 2rem; align-items: center; }
+    .navbar-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .navbar-links a:hover { color: var(--accent-green); }
+    .navbar-cta {
+      background: var(--gradient);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.55rem 1.3rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .navbar-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+    @media (max-width: 700px) {
+      .navbar-links { display: none; }
+    }
+
+    /* ── HERO ────────────────────────────────────────────── */
     .hero-wrapper {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
       gap: 5rem;
       align-items: center;
-      min-height: 100vh;
-      padding: 3rem 2rem;
-      max-width: 1600px;
+      min-height: calc(100vh - 60px);
+      padding: 4rem 2rem 3rem;
+      max-width: 1400px;
       margin: 0 auto;
-      position: relative;
-      z-index: 2;
-      overflow: visible;
     }
 
-    .hero-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-      z-index: 5;
-    }
+    .hero-content { display: flex; flex-direction: column; justify-content: center; }
 
-    .logo-header {
-      width: auto;
-      height: auto;
-      max-width: 180px;
-      margin-bottom: 2rem;
-      filter: brightness(0) invert(1);
-      display: block;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gradient-soft);
+      border: 1px solid rgba(0,201,107,0.25);
+      color: #047857;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+      width: fit-content;
+      font-family: 'Space Mono', monospace;
     }
 
     .hero-content h1 {
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-size: clamp(2.4rem, 4.5vw, 4.2rem);
       font-weight: 900;
-      line-height: 1.15;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-cyan) 50%, var(--accent-green) 100%);
+      line-height: 1.12;
+      margin-bottom: 1.4rem;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+    }
+
+    .hero-content h1 span {
+      background: var(--gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      letter-spacing: -0.02em;
     }
 
     .hero-content p {
       font-size: 1.1rem;
       color: var(--text-secondary);
       margin-bottom: 2rem;
-      max-width: 500px;
+      max-width: 480px;
       line-height: 1.8;
-      font-weight: 300;
+      font-weight: 400;
     }
 
     .price-section {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       gap: 1rem;
-      margin-bottom: 2.5rem;
-      padding: 1.5rem;
-      background: rgba(0, 212, 126, 0.05);
-      border: 1px solid rgba(0, 212, 126, 0.2);
-      border-radius: 12px;
-      backdrop-filter: blur(10px);
+      margin-bottom: 2.2rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow-md);
+      width: fit-content;
     }
-
-    .price-old { text-decoration: line-through; color: var(--text-muted); font-size: 1rem; }
-    .price-new { font-family: 'Space Mono', monospace; font-size: 2.2rem; font-weight: 700; color: var(--accent-green); letter-spacing: -0.02em; }
-    .price-label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-left: auto; }
+    .price-old { text-decoration: line-through; color: var(--text-muted); font-size: 0.95rem; }
+    .price-new { font-family: 'Space Mono', monospace; font-size: 2.2rem; font-weight: 700; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .price-divider { width: 1px; height: 40px; background: var(--border); }
+    .price-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; line-height: 1.6; }
 
     .cta-group { display: flex; gap: 1rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
 
@@ -237,187 +192,159 @@
       font-size: 1rem;
       font-weight: 700;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-      transition: all 0.3s ease;
-      letter-spacing: 0.5px;
+      transition: all 0.25s ease;
+      letter-spacing: 0.3px;
     }
-
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-green-hover) 100%);
-      color: #06371E;
-      box-shadow: 0 4px 20px rgba(0, 212, 126, 0.3);
+      background: var(--gradient);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(0,201,107,0.3);
     }
-
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(0, 212, 126, 0.5);
+      box-shadow: 0 8px 32px rgba(0,201,107,0.4);
     }
-
     .btn-secondary {
-      background: transparent;
-      color: var(--text-primary);
-      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      border: 1.5px solid var(--border);
+      box-shadow: var(--shadow-sm);
     }
-
     .btn-secondary:hover {
       border-color: var(--accent-green);
       color: var(--accent-green);
       transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
     }
-
-    /* --- BOTÃO ACESSO WEB --- */
     .btn-web {
       background: transparent;
-      color: var(--accent-cyan);
-      border: 1px solid rgba(0, 217, 255, 0.35);
+      color: var(--accent-blue);
+      border: 1.5px solid rgba(14,165,233,0.35);
       font-size: 0.9rem;
     }
-
     .btn-web:hover {
-      background: rgba(0, 217, 255, 0.08);
-      border-color: var(--accent-cyan);
+      background: rgba(14,165,233,0.06);
+      border-color: var(--accent-blue);
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 217, 255, 0.15);
     }
 
-    .trust-row {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
+    .trust-row { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .trust-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: var(--text-muted); }
     .trust-item i { color: var(--accent-green); font-size: 1rem; }
 
-    /* --- PHONE MOCKUP --- */
+    /* ── PHONE MOCKUP ────────────────────────────────────── */
     .phone-container {
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 3;
     }
-
     .phone-glow {
       position: absolute;
-      width: 350px;
-      height: 350px;
-      background: radial-gradient(circle, rgba(0, 212, 126, 0.15) 0%, transparent 70%);
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(0,201,107,0.12) 0%, rgba(14,165,233,0.08) 50%, transparent 70%);
       border-radius: 50%;
-      animation: glow-pulse 3s ease-in-out infinite;
+      animation: glow-pulse 4s ease-in-out infinite;
     }
-
     @keyframes glow-pulse {
       0%, 100% { transform: scale(1); opacity: 0.7; }
-      50% { transform: scale(1.1); opacity: 1; }
+      50% { transform: scale(1.08); opacity: 1; }
     }
-
     .phone-mockup {
       position: relative;
       z-index: 4;
-      max-width: 320px;
+      max-width: 300px;
       width: 100%;
-      filter: drop-shadow(0 30px 60px rgba(0,0,0,0.5));
+      filter: drop-shadow(0 24px 48px rgba(0,0,0,0.15));
       animation: float 4s ease-in-out infinite;
     }
-
     @keyframes float {
       0%, 100% { transform: translateY(0px); }
       50% { transform: translateY(-12px); }
     }
 
-    /* --- SEÇÕES --- */
+    /* ── SEÇÕES ──────────────────────────────────────────── */
     .section-container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 6rem 2rem;
-      position: relative;
-      z-index: 2;
     }
+    .section-alt { background: var(--bg-section-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
     .section-label {
-      font-size: 0.75rem;
+      display: inline-block;
+      font-size: 0.72rem;
       font-weight: 700;
-      letter-spacing: 3px;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
-      color: var(--accent-green);
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       margin-bottom: 1rem;
       font-family: 'Space Mono', monospace;
     }
-
     .section-title {
-      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
       font-weight: 900;
       line-height: 1.2;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
       color: var(--text-primary);
+      letter-spacing: -0.02em;
     }
-
     .section-subtitle {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: var(--text-secondary);
-      max-width: 600px;
+      max-width: 560px;
       line-height: 1.8;
     }
 
-    /* --- FEATURE CARDS --- */
+    /* ── FEATURE CARDS ───────────────────────────────────── */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 1.5rem;
       margin-top: 4rem;
     }
-
     .feature-card {
-      background: var(--secondary-dark);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
       padding: 2rem;
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      box-shadow: var(--shadow-sm);
     }
-
-    .feature-card::before {
+    .feature-card::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gradient);
       opacity: 0;
       transition: opacity 0.3s;
     }
-
     .feature-card:hover {
-      border-color: rgba(0, 212, 126, 0.3);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      border-color: rgba(0,201,107,0.3);
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
     }
-
-    .feature-card:hover::before { opacity: 1; }
-
+    .feature-card:hover::after { opacity: 1; }
     .feature-icon {
       width: 52px;
       height: 52px;
-      background: rgba(0, 212, 126, 0.1);
-      border: 1px solid rgba(0, 212, 126, 0.2);
-      border-radius: 12px;
+      background: var(--gradient-soft);
+      border: 1px solid rgba(0,201,107,0.2);
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -425,46 +352,35 @@
       font-size: 1.5rem;
       color: var(--accent-green);
     }
-
-    .feature-card h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-      color: var(--text-primary);
-    }
-
-    .feature-card p {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-
+    .feature-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.65rem; color: var(--text-primary); }
+    .feature-card p { font-size: 0.93rem; color: var(--text-secondary); line-height: 1.7; }
     .feature-tag {
       display: inline-block;
       margin-top: 1rem;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 1px;
       text-transform: uppercase;
       padding: 0.25rem 0.75rem;
       border-radius: 20px;
-      background: rgba(0, 212, 126, 0.1);
-      color: var(--accent-green);
-      border: 1px solid rgba(0, 212, 126, 0.2);
+      background: var(--gradient-soft);
+      border: 1px solid rgba(0,201,107,0.2);
       font-family: 'Space Mono', monospace;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: #047857;
     }
 
-    /* --- MODOS --- */
+    /* ── MODE CARDS ──────────────────────────────────────── */
     .modes-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
       margin-top: 3rem;
     }
-
     .mode-card {
-      background: var(--secondary-dark);
-      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
       border-radius: 20px;
       padding: 2rem;
       transition: all 0.3s ease;
@@ -472,88 +388,67 @@
       text-decoration: none;
       display: block;
       color: inherit;
+      box-shadow: var(--shadow-sm);
     }
-
-    .mode-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-    }
-
+    .mode-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
     .mode-emoji { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .mode-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-primary); }
+    .mode-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem; }
+    .mode-arrow { font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; transition: gap 0.3s; }
+    .mode-card:hover .mode-arrow { gap: 0.8rem; }
+    .mode-card-cyan  { border-top: 3px solid var(--accent-blue); }
+    .mode-card-pink  { border-top: 3px solid #EC4899; }
+    .mode-card-green { border-top: 3px solid var(--accent-green); }
+    .mode-card-cyan  .mode-arrow { color: var(--accent-blue); }
+    .mode-card-pink  .mode-arrow { color: #EC4899; }
+    .mode-card-green .mode-arrow { color: var(--accent-green); }
 
-    .mode-card h3 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    .mode-card p {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    .mode-arrow {
-      font-size: 0.85rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: gap 0.3s;
-    }
-
-    .mode-card:hover .mode-arrow { gap: 0.75rem; }
-
-    /* --- SCREENSHOTS --- */
+    /* ── SCREENSHOTS ─────────────────────────────────────── */
     .screenshots-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1.5rem;
       margin-top: 3rem;
     }
-
     .screenshot-item {
-      border-radius: 16px;
+      border-radius: 18px;
       overflow: hidden;
-      border: 1px solid var(--border-color);
+      border: 1.5px solid var(--border);
       transition: all 0.3s ease;
       cursor: pointer;
+      box-shadow: var(--shadow-sm);
     }
-
     .screenshot-item:hover {
       transform: scale(1.03);
-      border-color: rgba(0, 212, 126, 0.3);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      border-color: rgba(0,201,107,0.3);
+      box-shadow: var(--shadow-lg);
     }
-
     .screenshot-item img { width: 100%; display: block; }
 
-    /* --- PRICING --- */
+    /* ── PRICING ─────────────────────────────────────────── */
     .pricing-card {
-      background: var(--secondary-dark);
-      border: 2px solid rgba(0, 212, 126, 0.3);
+      background: var(--bg-card);
+      border: 2px solid var(--border);
       border-radius: 24px;
       padding: 3rem;
       max-width: 480px;
       margin: 3rem auto 0;
       position: relative;
       overflow: hidden;
+      box-shadow: var(--shadow-lg);
     }
-
     .pricing-card::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
+      height: 4px;
+      background: var(--gradient);
     }
-
     .pricing-badge {
       display: inline-block;
-      background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
-      color: #06371E;
-      font-size: 0.75rem;
+      background: var(--gradient);
+      color: #fff;
+      font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 1px;
       text-transform: uppercase;
@@ -562,103 +457,85 @@
       margin-bottom: 1.5rem;
       font-family: 'Space Mono', monospace;
     }
-
     .pricing-price {
       font-family: 'Space Mono', monospace;
       font-size: 4rem;
       font-weight: 700;
-      color: var(--accent-green);
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       line-height: 1;
       margin-bottom: 0.5rem;
     }
-
-    .pricing-perks {
-      list-style: none;
-      margin: 2rem 0;
-    }
-
+    .pricing-perks { list-style: none; margin: 2rem 0; }
     .pricing-perks li {
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      padding: 0.6rem 0;
-      border-bottom: 1px solid var(--border-color);
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--border);
       font-size: 0.95rem;
       color: var(--text-secondary);
     }
-
     .pricing-perks li:last-child { border-bottom: none; }
     .pricing-perks li i { color: var(--accent-green); font-size: 1.1rem; flex-shrink: 0; }
 
-    /* --- TESTIMONIALS --- */
+    /* ── TESTIMONIALS ────────────────────────────────────── */
     .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
       margin-top: 3rem;
     }
-
     .testimonial-card {
-      background: var(--secondary-dark);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
       padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s;
     }
-
-    .stars { color: #FFD700; margin-bottom: 1rem; letter-spacing: 2px; font-size: 0.9rem; }
-
-    .testimonial-card p {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-bottom: 1.25rem;
-      font-style: italic;
-    }
-
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
+    .testimonial-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .stars { margin-bottom: 1rem; font-size: 0.9rem; letter-spacing: 2px; }
+    .star-filled { color: #F59E0B; }
+    .testimonial-card p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.25rem; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
     .author-avatar {
-      width: 40px;
-      height: 40px;
+      width: 42px; height: 42px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
+      background: var(--gradient);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
       font-size: 0.9rem;
-      color: #06371E;
+      color: #fff;
       flex-shrink: 0;
     }
+    .author-name { font-weight: 600; font-size: 0.9rem; color: var(--text-primary); }
+    .author-role { font-size: 0.78rem; color: var(--text-muted); }
 
-    .author-name { font-weight: 600; font-size: 0.9rem; }
-    .author-role { font-size: 0.8rem; color: var(--text-muted); }
-
-    /* --- FAQ --- */
+    /* ── FAQ ─────────────────────────────────────────────── */
     .faq-list { margin-top: 2rem; }
-
     .faq-item {
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
       margin-bottom: 0.75rem;
       overflow: hidden;
-      transition: border-color 0.3s;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      box-shadow: var(--shadow-sm);
     }
-
-    .faq-item:hover { border-color: rgba(0, 212, 126, 0.3); }
-
+    .faq-item:hover { border-color: rgba(0,201,107,0.3); box-shadow: var(--shadow-md); }
     .faq-question {
       width: 100%;
-      background: var(--secondary-dark);
+      background: transparent;
       border: none;
       padding: 1.25rem 1.5rem;
       text-align: left;
       color: var(--text-primary);
-      font-size: 1rem;
+      font-size: 0.98rem;
       font-weight: 600;
       cursor: pointer;
       display: flex;
@@ -666,28 +543,21 @@
       align-items: center;
       gap: 1rem;
       font-family: 'Inter', sans-serif;
-      transition: background 0.2s;
     }
-
-    .faq-question:hover { background: var(--tertiary-dark); }
     .faq-question i { color: var(--accent-green); flex-shrink: 0; transition: transform 0.3s; }
     .faq-item.open .faq-question i { transform: rotate(45deg); }
-
     .faq-answer {
       display: none;
       padding: 0 1.5rem 1.25rem;
-      background: var(--secondary-dark);
       color: var(--text-secondary);
-      font-size: 0.95rem;
+      font-size: 0.93rem;
       line-height: 1.7;
     }
-
     .faq-item.open .faq-answer { display: block; }
 
-    /* --- CTA FINAL --- */
+    /* ── CTA FINAL ───────────────────────────────────────── */
     .cta-section {
-      background: linear-gradient(135deg, rgba(0, 212, 126, 0.08) 0%, rgba(0, 217, 255, 0.05) 100%);
-      border: 1px solid rgba(0, 212, 126, 0.2);
+      background: var(--gradient);
       border-radius: 24px;
       padding: 5rem 3rem;
       text-align: center;
@@ -695,87 +565,174 @@
       position: relative;
       overflow: hidden;
     }
-
     .cta-section::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: 50%;
+      top: -60%; left: 50%;
       transform: translateX(-50%);
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(0, 212, 126, 0.1) 0%, transparent 70%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
       pointer-events: none;
     }
+    .cta-section .section-label { color: rgba(255,255,255,0.7); -webkit-text-fill-color: rgba(255,255,255,0.7); }
+    .cta-section .section-title { color: #fff; }
+    .cta-section p { color: rgba(255,255,255,0.85); }
+    .btn-cta-white {
+      background: #fff;
+      color: #047857;
+      font-weight: 700;
+      padding: 1.05rem 2.5rem;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.25s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      font-family: 'Poppins', sans-serif;
+    }
+    .btn-cta-white:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.18); }
+    .btn-cta-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.5);
+      font-weight: 600;
+      padding: 0.9rem 2rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.25s;
+      font-family: 'Poppins', sans-serif;
+    }
+    .btn-cta-outline:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
 
-    /* --- FOOTER --- */
+    /* ── WHATSAPP ────────────────────────────────────────── */
+    .whatsapp-wrapper {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      animation: pulse-wa 2.5s infinite;
+    }
+    .whatsapp-close {
+      position: absolute;
+      top: -10px; right: -6px;
+      background: #fff;
+      color: #475569;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 22px; height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 11px;
+      z-index: 1000;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s;
+    }
+    .whatsapp-close:hover { background: #FEE2E2; color: #DC2626; }
+    .whatsapp-link {
+      background: #25D366;
+      color: #fff;
+      border-radius: 50px;
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s;
+    }
+    .whatsapp-link:hover { background: #1ebc57; transform: translateY(-2px); box-shadow: 0 6px 24px rgba(37,211,102,0.45); }
+    .whatsapp-link i { font-size: 1.35rem; }
+    @keyframes pulse-wa {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
     footer {
-      border-top: 1px solid var(--border-color);
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
       padding: 3rem 2rem;
       text-align: center;
       color: var(--text-muted);
       font-size: 0.875rem;
-      position: relative;
-      z-index: 2;
     }
+    footer a { color: var(--text-muted); text-decoration: none; margin: 0 1rem; transition: color 0.2s; }
+    footer a:hover { color: var(--accent-green); }
 
-    /* --- MODAL DE IMAGEM --- */
+    /* ── MODAL ───────────────────────────────────────────── */
     #imageModal {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.92);
+      background: rgba(15,23,42,0.85);
       z-index: 9999;
       align-items: center;
       justify-content: center;
       padding: 2rem;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
       cursor: pointer;
     }
-
     #imageModal.active { display: flex; }
-    #imageModal img { max-width: 90vw; max-height: 90vh; border-radius: 12px; box-shadow: 0 30px 80px rgba(0,0,0,0.8); }
+    #imageModal img { max-width: 90vw; max-height: 90vh; border-radius: 14px; box-shadow: 0 30px 80px rgba(0,0,0,0.4); }
 
-    /* --- SCROLL REVEAL --- */
-    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.7s ease; }
+    /* ── SCROLL REVEAL ───────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: all 0.65s ease; }
     .reveal.in { opacity: 1; transform: translateY(0); }
 
-    /* --- RESPONSIVE --- */
+    /* ── RESPONSIVE ──────────────────────────────────────── */
     @media (max-width: 900px) {
-      .hero-wrapper {
-        grid-template-columns: 1fr;
-        min-height: auto;
-        padding: 4rem 1.5rem 3rem;
-        gap: 3rem;
-        text-align: center;
-      }
-
+      .hero-wrapper { grid-template-columns: 1fr; min-height: auto; padding: 3rem 1.5rem 2rem; gap: 2.5rem; text-align: center; }
       .hero-content { align-items: center; }
-      .hero-content p { max-width: 100%; }
+      .hero-content p, .hero-badge { max-width: 100%; }
       .cta-group { justify-content: center; }
       .trust-row { justify-content: center; }
-
-      .phone-container {
-        order: -1;
-      }
-
-      .phone-mockup { max-width: 220px; }
-      .phone-glow { width: 250px; height: 250px; }
-
+      .phone-container { order: -1; }
+      .phone-mockup { max-width: 200px; }
+      .phone-glow { width: 260px; height: 260px; }
+      .price-section { width: 100%; justify-content: center; }
       .section-container { padding: 4rem 1.5rem; }
-      .cta-section { padding: 3rem 1.5rem; margin: 0 1rem; }
+      .cta-section { padding: 3.5rem 1.5rem; margin: 0 1rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- BOTÃO WHATSAPP FLUTUANTE -->
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <img src="img/logo.png" alt="Metricora" class="navbar-logo" />
+    <div class="navbar-links">
+      <a href="#features">Funcionalidades</a>
+      <a href="#modos">Segmentos</a>
+      <a href="#pricing">Preço</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://vectorium.tec.br/app" target="_blank" rel="noopener">Versão Web</a>
+    </div>
+    <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk"
+       class="navbar-cta" download>
+      <i class="ph-bold ph-download-simple"></i> Baixar Grátis
+    </a>
+  </nav>
+
+  <!-- WHATSAPP -->
   <div class="whatsapp-wrapper" id="whatsappWrapper">
     <span class="whatsapp-close" onclick="document.getElementById('whatsappWrapper').style.display='none'" title="Fechar">✕</span>
-    <a href="https://wa.me/5577991065327?text=Oi%2C%20quero%20saber%20mais%20sobre%20o%20Metricora!" 
+    <a href="https://wa.me/5577991065327?text=Oi%2C%20quero%20saber%20mais%20sobre%20o%20Metricora!"
        class="whatsapp-link" target="_blank" rel="noopener">
-      <i class="ph-fill ph-whatsapp-logo"></i>
-      Falar no Zap
+      <i class="ph-fill ph-whatsapp-logo"></i> Falar no Zap
     </a>
   </div>
 
@@ -783,34 +740,31 @@
   <section>
     <div class="hero-wrapper">
       <div class="hero-content reveal">
-        <img src="img/logo.png" alt="Metricora" class="logo-header" />
-
-        <h1>Gestão Financeira de Elite para o Seu Negócio.</h1>
-
-        <p>Chega de planilhas e achismos. O Metricora entrega controle total do seu fluxo de caixa, lucro real por venda e DRE profissional — direto no seu celular.</p>
+        <span class="hero-badge"><i class="ph-fill ph-star"></i> Gestão Financeira de Elite</span>
+        <h1>Pare de trabalhar<br>no escuro.<br><span>Lucre de verdade.</span></h1>
+        <p>Chega de planilhas e achismos. O Metricora entrega controle total do fluxo de caixa, lucro real por venda e DRE profissional — direto no seu celular.</p>
 
         <div class="price-section">
           <span class="price-old">R$ 49,90/mês</span>
+          <div class="price-divider"></div>
           <span class="price-new">R$ 0</span>
+          <div class="price-divider"></div>
           <span class="price-label">Pagamento único<br>Sem assinatura</span>
         </div>
 
         <div class="cta-group">
-          <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk" 
+          <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk"
              class="btn btn-primary" download>
-            <i class="ph-bold ph-download-simple"></i>
-            Baixar Grátis para Android
+            <i class="ph-bold ph-download-simple"></i> Baixar Grátis para Android
           </a>
           <a href="#features" class="btn btn-secondary">
-            Ver Funcionalidades
+            <i class="ph-bold ph-list"></i> Ver Funcionalidades
           </a>
         </div>
 
-        <!-- Acesso direto pela web -->
-        <div style="margin-bottom: 1.5rem;">
+        <div style="margin-bottom: 1.4rem;">
           <a href="https://vectorium.tec.br/app" class="btn btn-web" target="_blank" rel="noopener">
-            <i class="ph-bold ph-globe"></i>
-            Prefiro acessar pelo navegador, sem baixar
+            <i class="ph-bold ph-globe"></i> Prefiro acessar pelo navegador, sem baixar
           </a>
         </div>
 
@@ -829,14 +783,13 @@
   </section>
 
   <!-- FEATURES -->
-  <section id="features">
+  <section id="features" class="section-alt">
     <div class="section-container">
       <div class="reveal">
         <p class="section-label">Por que o Metricora?</p>
         <h2 class="section-title">Tudo que você precisa para<br>parar de pagar para trabalhar.</h2>
         <p class="section-subtitle">Desenvolvido para quem vende de verdade — sem MBA necessário.</p>
       </div>
-
       <div class="features-grid">
         <div class="feature-card reveal">
           <div class="feature-icon"><i class="ph-bold ph-chart-line-up"></i></div>
@@ -844,35 +797,30 @@
           <p>Veja exatamente quanto sobrou no bolso depois de descontar custos, impostos e despesas operacionais. Faturamento é ego, lucro é realidade.</p>
           <span class="feature-tag">Precificação Inteligente</span>
         </div>
-
         <div class="feature-card reveal">
           <div class="feature-icon"><i class="ph-bold ph-buildings"></i></div>
           <h3>DRE Profissional</h3>
           <p>Separe despesas operacionais de retiradas de sócio. Entenda pela primeira vez se sua empresa é lucrativa ou se é você quem está drenando o caixa.</p>
           <span class="feature-tag">Controle Total</span>
         </div>
-
         <div class="feature-card reveal">
           <div class="feature-icon"><i class="ph-bold ph-package"></i></div>
           <h3>Gestão de Insumos</h3>
           <p>Cadastre matérias-primas, monte fichas técnicas avançadas e o sistema calcula automaticamente o custo real da sua produção.</p>
           <span class="feature-tag">Manufatura</span>
         </div>
-
         <div class="feature-card reveal">
           <div class="feature-icon"><i class="ph-bold ph-wifi-slash"></i></div>
           <h3>100% Offline</h3>
           <p>Sem internet? Sem problema. O Metricora funciona localmente e sincroniza com a nuvem quando você quiser. Seus dados, sempre seguros.</p>
           <span class="feature-tag">Backup na Nuvem</span>
         </div>
-
         <div class="feature-card reveal">
           <div class="feature-icon"><i class="ph-bold ph-export"></i></div>
           <h3>Exportação PDF/Excel</h3>
           <p>Gere relatórios profissionais para apresentar ao contador, banco ou sócio. Credibilidade na ponta dos dedos.</p>
           <span class="feature-tag">Relatórios</span>
         </div>
-
         <div class="feature-card reveal">
           <div class="feature-icon"><i class="ph-bold ph-lock-key"></i></div>
           <h3>Segurança Máxima</h3>
@@ -884,48 +832,44 @@
   </section>
 
   <!-- MODOS -->
-  <section id="modos" style="background: var(--secondary-dark); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+  <section id="modos">
     <div class="section-container">
       <div class="reveal">
         <p class="section-label">Para o seu segmento</p>
         <h2 class="section-title">Um app, múltiplos negócios.</h2>
         <p class="section-subtitle">O Metricora se adapta ao seu tipo de negócio com modos especializados.</p>
       </div>
-
       <div class="modes-grid">
-        <a href="salao.html" class="mode-card reveal" style="border-color: rgba(0,217,255,0.2);">
+        <a href="salao.html" class="mode-card mode-card-cyan reveal">
           <span class="mode-emoji">💈</span>
-          <h3 style="color: var(--accent-cyan);">Salão & Barbearia</h3>
+          <h3>Salão &amp; Barbearia</h3>
           <p>Controle comissões, produtos e despesas do salão com precisão. Veja o lucro real de cada dia.</p>
-          <span class="mode-arrow" style="color: var(--accent-cyan);">Saiba mais <i class="ph-bold ph-arrow-right"></i></span>
+          <span class="mode-arrow">Saiba mais <i class="ph-bold ph-arrow-right"></i></span>
         </a>
-
-        <a href="confeitaria.html" class="mode-card reveal" style="border-color: rgba(233,30,99,0.2);">
+        <a href="confeitaria.html" class="mode-card mode-card-pink reveal">
           <span class="mode-emoji">🎂</span>
-          <h3 style="color: #E91E63;">Confeitaria</h3>
+          <h3>Confeitaria</h3>
           <p>Calcule o custo de cada grama, precifique encomendas e saiba o lucro real de cada bolo entregue.</p>
-          <span class="mode-arrow" style="color: #E91E63;">Saiba mais <i class="ph-bold ph-arrow-right"></i></span>
+          <span class="mode-arrow">Saiba mais <i class="ph-bold ph-arrow-right"></i></span>
         </a>
-
-        <a href="vendedores.html" class="mode-card reveal" style="border-color: rgba(0,212,126,0.2);">
+        <a href="vendedores.html" class="mode-card mode-card-green reveal">
           <span class="mode-emoji">🏪</span>
-          <h3 style="color: var(--accent-green);">Loja & Vendas</h3>
+          <h3>Loja &amp; Vendas</h3>
           <p>DRE completo, fluxo de caixa e controle de estoque para quem vende produtos físicos ou digitais.</p>
-          <span class="mode-arrow" style="color: var(--accent-green);">Saiba mais <i class="ph-bold ph-arrow-right"></i></span>
+          <span class="mode-arrow">Saiba mais <i class="ph-bold ph-arrow-right"></i></span>
         </a>
       </div>
     </div>
   </section>
 
   <!-- SCREENSHOTS -->
-  <section id="screenshots">
+  <section id="screenshots" class="section-alt">
     <div class="section-container">
       <div class="reveal">
         <p class="section-label">Interface</p>
         <h2 class="section-title">Veja o Metricora em ação.</h2>
         <p class="section-subtitle">Design limpo, dados claros. Gestão de elite no bolso do seu bolso.</p>
       </div>
-
       <div class="screenshots-grid">
         <div class="screenshot-item reveal" onclick="openModal(this.querySelector('img').src)">
           <img src="img/print_dashboard.png" alt="Dashboard" loading="lazy" />
@@ -944,18 +888,16 @@
   </section>
 
   <!-- PRICING -->
-  <section id="pricing" style="background: var(--secondary-dark); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+  <section id="pricing">
     <div class="section-container" style="text-align: center;">
       <div class="reveal">
         <p class="section-label">Preço</p>
         <h2 class="section-title">Simples. Justo. Sem armadilhas.</h2>
       </div>
-
       <div class="pricing-card reveal">
         <span class="pricing-badge">Oferta de Lançamento</span>
         <div class="pricing-price">R$0</div>
-        <p style="color: var(--text-muted); margin-bottom: 0.5rem; font-size: 0.9rem;">Versão completa • Sem mensalidade • Sem limite de uso</p>
-
+        <p style="color: var(--text-muted); margin-bottom: 0.5rem; font-size: 0.9rem;">Versão completa · Sem mensalidade · Sem limite de uso</p>
         <ul class="pricing-perks">
           <li><i class="ph-fill ph-check-circle"></i> Fluxo de caixa ilimitado</li>
           <li><i class="ph-fill ph-check-circle"></i> DRE Profissional completo</li>
@@ -965,61 +907,55 @@
           <li><i class="ph-fill ph-check-circle"></i> Funciona 100% offline</li>
           <li><i class="ph-fill ph-check-circle"></i> Atualizações gratuitas</li>
         </ul>
-
-        <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk" 
+        <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk"
            class="btn btn-primary" style="width: 100%; justify-content: center; margin-bottom: 0.75rem;" download>
-          <i class="ph-bold ph-download-simple"></i>
-          Baixar Metricora v1.0.10 Grátis
+          <i class="ph-bold ph-download-simple"></i> Baixar Metricora v1.0.10 Grátis
         </a>
         <a href="https://vectorium.tec.br/app" class="btn btn-web" style="width: 100%; justify-content: center;" target="_blank" rel="noopener">
-          <i class="ph-bold ph-globe"></i>
-          Prefiro acessar pelo navegador, sem baixar
+          <i class="ph-bold ph-globe"></i> Prefiro acessar pelo navegador, sem baixar
         </a>
       </div>
     </div>
   </section>
 
   <!-- TESTIMONIALS -->
-  <section id="depoimentos">
+  <section id="depoimentos" class="section-alt">
     <div class="section-container">
       <div class="reveal">
         <p class="section-label">Depoimentos</p>
         <h2 class="section-title">Quem já usa, não larga.</h2>
       </div>
-
       <div class="testimonials-grid">
         <div class="testimonial-card reveal">
-          <div class="stars">★★★★★</div>
+          <div class="stars"><span class="star-filled">★★★★★</span></div>
           <p>"Finalmente entendi quanto eu realmente lucro por bolo. Antes achava que estava indo bem, mas estava no prejuízo sem saber."</p>
           <div class="testimonial-author">
             <div class="author-avatar">C</div>
             <div>
               <div class="author-name">Camila R.</div>
-              <div class="author-role">Confeiteira • Vitória da Conquista-BA</div>
+              <div class="author-role">Confeiteira · Vitória da Conquista-BA</div>
             </div>
           </div>
         </div>
-
         <div class="testimonial-card reveal">
-          <div class="stars">★★★★★</div>
+          <div class="stars"><span class="star-filled">★★★★★</span></div>
           <p>"Uso no meu salão faz 2 meses. Descobri que dois serviços que achava lucrativos estavam me dando prejuízo por causa dos produtos."</p>
           <div class="testimonial-author">
             <div class="author-avatar">R</div>
             <div>
               <div class="author-name">Rafael M.</div>
-              <div class="author-role">Barbeiro • Salvador-BA</div>
+              <div class="author-role">Barbeiro · Salvador-BA</div>
             </div>
           </div>
         </div>
-
         <div class="testimonial-card reveal">
-          <div class="stars">★★★★★</div>
+          <div class="stars"><span class="star-filled">★★★★★</span></div>
           <p>"O DRE me mostrou que eu retirava mais do que a empresa lucrava. Corrigi isso e em 30 dias já vi diferença no caixa."</p>
           <div class="testimonial-author">
             <div class="author-avatar">A</div>
             <div>
               <div class="author-name">Ana P.</div>
-              <div class="author-role">Lojista • Feira de Santana-BA</div>
+              <div class="author-role">Lojista · Feira de Santana-BA</div>
             </div>
           </div>
         </div>
@@ -1028,46 +964,31 @@
   </section>
 
   <!-- FAQ -->
-  <section id="faq" style="background: var(--secondary-dark); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+  <section id="faq">
     <div class="section-container" style="max-width: 800px;">
       <div class="reveal">
         <p class="section-label">Dúvidas</p>
         <h2 class="section-title">Perguntas Frequentes</h2>
       </div>
-
       <div class="faq-list reveal">
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            É realmente gratuito? <i class="ph-bold ph-plus"></i>
-          </button>
+          <button class="faq-question" onclick="toggleFaq(this)">É realmente gratuito? <i class="ph-bold ph-plus"></i></button>
           <div class="faq-answer">Sim. O Metricora é 100% gratuito na versão atual. Sem mensalidade, sem compra no app, sem limite de uso. Futuras versões premium podem ser lançadas, mas os usuários atuais serão avisados com antecedência.</div>
         </div>
-
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            Funciona sem internet? <i class="ph-bold ph-plus"></i>
-          </button>
+          <button class="faq-question" onclick="toggleFaq(this)">Funciona sem internet? <i class="ph-bold ph-plus"></i></button>
           <div class="faq-answer">Sim. O Metricora é offline-first. Todos os dados ficam no seu celular. O backup na nuvem é opcional e acontece quando você conectar ao Wi-Fi.</div>
         </div>
-
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            Meus dados ficam seguros? <i class="ph-bold ph-plus"></i>
-          </button>
+          <button class="faq-question" onclick="toggleFaq(this)">Meus dados ficam seguros? <i class="ph-bold ph-plus"></i></button>
           <div class="faq-answer">Sim. Os dados ficam armazenados localmente no seu dispositivo. O backup na nuvem é criptografado. O app usa autenticação por e-mail e o binário é ofuscado para proteção contra engenharia reversa.</div>
         </div>
-
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            Funciona em iOS (iPhone)? <i class="ph-bold ph-plus"></i>
-          </button>
+          <button class="faq-question" onclick="toggleFaq(this)">Funciona em iOS (iPhone)? <i class="ph-bold ph-plus"></i></button>
           <div class="faq-answer">Atualmente o Metricora está disponível apenas para Android (6.0 ou superior). A versão iOS está em desenvolvimento.</div>
         </div>
-
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            Como instalar o APK? <i class="ph-bold ph-plus"></i>
-          </button>
+          <button class="faq-question" onclick="toggleFaq(this)">Como instalar o APK? <i class="ph-bold ph-plus"></i></button>
           <div class="faq-answer">Baixe o arquivo APK, abra as configurações do Android > Segurança > Fontes desconhecidas (ou "Instalar apps desconhecidos") e permita a instalação. Depois abra o arquivo APK baixado e siga as instruções.</div>
         </div>
       </div>
@@ -1075,58 +996,53 @@
   </section>
 
   <!-- CTA FINAL -->
-  <section>
+  <section class="section-alt">
     <div class="section-container">
       <div class="cta-section reveal">
         <p class="section-label">Comece Agora</p>
         <h2 class="section-title" style="max-width: 600px; margin: 0 auto 1rem;">Assuma o controle total do seu negócio hoje.</h2>
-        <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.8;">Junte-se a centenas de empreendedores que pararam de trabalhar no escuro e começaram a escalar o lucro.</p>
-        
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem;">
-          <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk" 
-             class="btn btn-primary" style="font-size: 1.1rem; padding: 1.1rem 2.5rem;" download>
-            <i class="ph-bold ph-download-simple"></i>
-            Baixar Metricora Grátis
+        <p style="max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.8;">Junte-se a centenas de empreendedores que pararam de trabalhar no escuro e começaram a escalar o lucro.</p>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.9rem;">
+          <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk"
+             class="btn-cta-white" download>
+            <i class="ph-bold ph-download-simple"></i> Baixar Metricora Grátis
           </a>
-          <a href="https://vectorium.tec.br/app" class="btn btn-web" style="font-size: 0.95rem; padding: 0.85rem 2rem;" target="_blank" rel="noopener">
-            <i class="ph-bold ph-globe"></i>
-            Prefiro acessar pelo navegador, sem baixar
+          <a href="https://vectorium.tec.br/app" class="btn-cta-outline" target="_blank" rel="noopener">
+            <i class="ph-bold ph-globe"></i> Prefiro acessar pelo navegador, sem baixar
           </a>
         </div>
-        <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 1rem;">🔒 Seguro • Android 6.0+ • Sem anúncios • Sem rastreamento</p>
+        <p style="font-size: 0.8rem; margin-top: 1.25rem;">🔒 Seguro · Android 6.0+ · Sem anúncios · Sem rastreamento</p>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p style="margin-bottom: 0.5rem;">
-      <a href="salao.html" style="color: var(--text-muted); text-decoration: none; margin: 0 1rem;">Salão & Barbearia</a>
-      <a href="confeitaria.html" style="color: var(--text-muted); text-decoration: none; margin: 0 1rem;">Confeitaria</a>
-      <a href="vendedores.html" style="color: var(--text-muted); text-decoration: none; margin: 0 1rem;">Loja & Vendas</a>
+    <p style="margin-bottom: 0.75rem;">
+      <a href="salao.html">Salão &amp; Barbearia</a>
+      <a href="confeitaria.html">Confeitaria</a>
+      <a href="vendedores.html">Loja &amp; Vendas</a>
+      <a href="privacidade.html">Privacidade</a>
+      <a href="termos.html">Termos</a>
     </p>
-    <p style="margin-top: 1rem;">&copy; 2026 Vectorium Systems · Metricora v1.0.10 · A matemática não falha.</p>
+    <p>&copy; 2026 Vectorium Systems · Metricora v1.0.10 · A matemática não falha.</p>
   </footer>
 
-  <!-- MODAL DE IMAGEM -->
+  <!-- MODAL -->
   <div id="imageModal" onclick="closeModal()">
     <img id="modalImg" src="" alt="Screenshot" />
   </div>
 
   <script>
-    // Scroll reveal
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    // FAQ
     function toggleFaq(btn) {
-      const item = btn.closest('.faq-item');
-      item.classList.toggle('open');
+      btn.closest('.faq-item').classList.toggle('open');
     }
 
-    // Modal
     function openModal(src) {
       document.getElementById('modalImg').src = src;
       document.getElementById('imageModal').classList.add('active');
