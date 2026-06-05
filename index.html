@@ -338,6 +338,66 @@
       line-height: 1.8;
     }
 
+    /* ── ACCESS CARDS ────────────────────────────────────── */
+    .access-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .access-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .access-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+    .access-card-android { border-top: 3px solid var(--accent-green); }
+    .access-card-web     { border-top: 3px solid var(--accent-blue); }
+    .access-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 1.25rem;
+    }
+    .access-icon-android { background: linear-gradient(135deg, rgba(0,201,107,0.12), rgba(0,201,107,0.06)); color: var(--accent-green); border: 1px solid rgba(0,201,107,0.2); }
+    .access-icon-web     { background: linear-gradient(135deg, rgba(14,165,233,0.12), rgba(14,165,233,0.06)); color: var(--accent-blue);  border: 1px solid rgba(14,165,233,0.2); }
+    .access-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-primary); }
+    .access-card p  { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.25rem; }
+    .access-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-family: 'Space Mono', monospace;
+    }
+    .access-badge-android { background: rgba(0,201,107,0.1); color: #047857; border: 1px solid rgba(0,201,107,0.2); }
+    .access-badge-web     { background: rgba(14,165,233,0.1); color: #0369A1; border: 1px solid rgba(14,165,233,0.2); }
+    .access-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-top: 1.25rem;
+      transition: gap 0.2s;
+    }
+    .access-card:hover .access-cta { gap: 0.8rem; }
+    .access-cta-android { color: var(--accent-green); }
+    .access-cta-web     { color: var(--accent-blue); }
+
     /* ── FEATURE CARDS ───────────────────────────────────── */
     .features-grid {
       display: grid;
@@ -745,10 +805,10 @@
   <nav class="navbar">
     <img src="img/logo.png" alt="Metricora" class="navbar-logo" />
     <div class="navbar-links">
+      <a href="#acesso">Como Acessar</a>
       <a href="#features">Funcionalidades</a>
       <a href="#modos">Segmentos</a>
       <a href="#pricing">Preço</a>
-      <a href="#depoimentos">Depoimentos</a>
       <a href="#faq">FAQ</a>
     </div>
     <div class="navbar-actions">
@@ -777,7 +837,7 @@
       <div class="hero-content reveal">
         <span class="hero-badge"><i class="ph-fill ph-star"></i> Gestão Financeira de Elite</span>
         <h1>Pare de trabalhar<br>no escuro.<br><span>Lucre de verdade.</span></h1>
-        <p>Chega de planilhas e achismos. O Metricora entrega controle total do fluxo de caixa, lucro real por venda e DRE profissional — direto no seu celular.</p>
+        <p>Chega de planilhas e achismos. O Metricora entrega controle total do fluxo de caixa, lucro real por venda e DRE profissional — no navegador ou no seu Android.</p>
 
         <div class="price-section">
           <span class="price-old">R$ 49,90/mês</span>
@@ -792,27 +852,76 @@
              class="btn btn-primary" download>
             <i class="ph-bold ph-download-simple"></i> Baixar Grátis para Android
           </a>
-          <a href="#features" class="btn btn-secondary">
-            <i class="ph-bold ph-list"></i> Ver Funcionalidades
-          </a>
-        </div>
-
-        <div style="margin-bottom: 1.4rem;">
           <a href="https://vectorium.tec.br/app" class="btn btn-web" target="_blank" rel="noopener">
-            <i class="ph-bold ph-globe"></i> Prefiro acessar pelo navegador, sem baixar
+            <i class="ph-bold ph-globe"></i> Versão Web
           </a>
         </div>
 
         <div class="trust-row">
           <span class="trust-item"><i class="ph-fill ph-shield-check"></i> Sem vírus — verificado</span>
           <span class="trust-item"><i class="ph-fill ph-device-mobile"></i> Android 6.0+</span>
-          <span class="trust-item"><i class="ph-fill ph-lock"></i> Dados locais</span>
+          <span class="trust-item"><i class="ph-fill ph-wifi-slash"></i> Offline no Android via APK</span>
+          <span class="trust-item"><i class="ph-fill ph-globe"></i> Web no navegador</span>
         </div>
       </div>
 
       <div class="phone-container reveal">
         <div class="phone-glow"></div>
         <img src="img/hero_phone_mockup.png" alt="Metricora App" class="phone-mockup" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ACESSO: WEB vs ANDROID -->
+  <section id="acesso" class="section-alt">
+    <div class="section-container">
+      <div class="reveal">
+        <p class="section-label">Escolha como usar</p>
+        <h2 class="section-title">Dois jeitos de acessar o Metricora.</h2>
+        <p class="section-subtitle">Use no navegador sem instalar ou baixe o APK para uma experiência mais completa no Android — especialmente offline.</p>
+      </div>
+      <div class="access-grid">
+        <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk"
+           class="access-card access-card-android reveal" download>
+          <div class="access-icon access-icon-android"><i class="ph-bold ph-android-logo"></i></div>
+          <h3>Android APK</h3>
+          <p>Instale no celular para a experiência mais completa. Dados ficam locais no dispositivo e o app funciona <strong>offline de verdade</strong> — sem depender de internet para operar.</p>
+          <span class="access-badge access-badge-android">Recomendado para uso offline</span>
+          <div class="access-cta access-cta-android">Baixar APK <i class="ph-bold ph-arrow-right"></i></div>
+        </a>
+        <a href="https://vectorium.tec.br/app"
+           class="access-card access-card-web reveal" target="_blank" rel="noopener">
+          <div class="access-icon access-icon-web"><i class="ph-bold ph-globe"></i></div>
+          <h3>Versão Web</h3>
+          <p>Acesse pelo navegador sem precisar instalar nada. Faça login, registre vendas e acompanhe suas métricas em qualquer dispositivo com internet.</p>
+          <span class="access-badge access-badge-web">Acesso rápido sem instalação</span>
+          <div class="access-cta access-cta-web">Abrir no navegador <i class="ph-bold ph-arrow-right"></i></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENSHOTS -- antecipado para mostrar produto cedo -->
+  <section id="screenshots">
+    <div class="section-container">
+      <div class="reveal">
+        <p class="section-label">Interface</p>
+        <h2 class="section-title">Veja o Metricora em ação.</h2>
+        <p class="section-subtitle">Design limpo, dados claros. Gestão de elite no bolso do seu bolso.</p>
+      </div>
+      <div class="screenshots-grid">
+        <div class="screenshot-item reveal" onclick="openModal(this.querySelector('img').src)">
+          <img src="img/print_dashboard.png" alt="Dashboard" loading="lazy" />
+        </div>
+        <div class="screenshot-item reveal" onclick="openModal(this.querySelector('img').src)">
+          <img src="img/print_dre.png" alt="DRE" loading="lazy" />
+        </div>
+        <div class="screenshot-item reveal" onclick="openModal(this.querySelector('img').src)">
+          <img src="img/print_loja.png" alt="Loja" loading="lazy" />
+        </div>
+        <div class="screenshot-item reveal" onclick="openModal(this.querySelector('img').src)">
+          <img src="img/print_confeitaria.png" alt="Confeitaria" loading="lazy" />
+        </div>
       </div>
     </div>
   </section>
@@ -845,10 +954,10 @@
           <span class="feature-tag">Manufatura</span>
         </div>
         <div class="feature-card reveal">
-          <div class="feature-icon"><i class="ph-bold ph-wifi-slash"></i></div>
-          <h3>100% Offline</h3>
-          <p>Sem internet? Sem problema. O Metricora funciona localmente e sincroniza com a nuvem quando você quiser. Seus dados, sempre seguros.</p>
-          <span class="feature-tag">Backup na Nuvem</span>
+          <div class="feature-icon"><i class="ph-bold ph-device-mobile"></i></div>
+          <h3>Offline no Android</h3>
+          <p>Sem internet no celular? Sem problema. O APK Android funciona localmente com seus dados e sincroniza com a nuvem quando você quiser.</p>
+          <span class="feature-tag">APK Android</span>
         </div>
         <div class="feature-card reveal">
           <div class="feature-icon"><i class="ph-bold ph-export"></i></div>
@@ -897,63 +1006,7 @@
     </div>
   </section>
 
-  <!-- SCREENSHOTS -->
-  <section id="screenshots" class="section-alt">
-    <div class="section-container">
-      <div class="reveal">
-        <p class="section-label">Interface</p>
-        <h2 class="section-title">Veja o Metricora em ação.</h2>
-        <p class="section-subtitle">Design limpo, dados claros. Gestão de elite no bolso do seu bolso.</p>
-      </div>
-      <div class="screenshots-grid">
-        <div class="screenshot-item reveal" onclick="openModal(this.querySelector('img').src)">
-          <img src="img/print_dashboard.png" alt="Dashboard" loading="lazy" />
-        </div>
-        <div class="screenshot-item reveal" onclick="openModal(this.querySelector('img').src)">
-          <img src="img/print_dre.png" alt="DRE" loading="lazy" />
-        </div>
-        <div class="screenshot-item reveal" onclick="openModal(this.querySelector('img').src)">
-          <img src="img/print_loja.png" alt="Loja" loading="lazy" />
-        </div>
-        <div class="screenshot-item reveal" onclick="openModal(this.querySelector('img').src)">
-          <img src="img/print_confeitaria.png" alt="Confeitaria" loading="lazy" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section id="pricing">
-    <div class="section-container" style="text-align: center;">
-      <div class="reveal">
-        <p class="section-label">Preço</p>
-        <h2 class="section-title">Simples. Justo. Sem armadilhas.</h2>
-      </div>
-      <div class="pricing-card reveal">
-        <span class="pricing-badge">Oferta de Lançamento</span>
-        <div class="pricing-price">R$0</div>
-        <p style="color: var(--text-muted); margin-bottom: 0.5rem; font-size: 0.9rem;">Versão completa · Sem mensalidade · Sem limite de uso</p>
-        <ul class="pricing-perks">
-          <li><i class="ph-fill ph-check-circle"></i> Fluxo de caixa ilimitado</li>
-          <li><i class="ph-fill ph-check-circle"></i> DRE Profissional completo</li>
-          <li><i class="ph-fill ph-check-circle"></i> Gestão de insumos e fichas técnicas</li>
-          <li><i class="ph-fill ph-check-circle"></i> Backup na nuvem incluso</li>
-          <li><i class="ph-fill ph-check-circle"></i> Exportação PDF</li>
-          <li><i class="ph-fill ph-check-circle"></i> Funciona 100% offline</li>
-          <li><i class="ph-fill ph-check-circle"></i> Atualizações gratuitas</li>
-        </ul>
-        <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk"
-           class="btn btn-primary" style="width: 100%; justify-content: center; margin-bottom: 0.75rem;" download>
-          <i class="ph-bold ph-download-simple"></i> Baixar Metricora v1.0.10 Grátis
-        </a>
-        <a href="https://vectorium.tec.br/app" class="btn btn-web" style="width: 100%; justify-content: center;" target="_blank" rel="noopener">
-          <i class="ph-bold ph-globe"></i> Prefiro acessar pelo navegador, sem baixar
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
+  <!-- TESTIMONIALS -- movido para antes do pricing -->
   <section id="depoimentos" class="section-alt">
     <div class="section-container">
       <div class="reveal">
@@ -998,6 +1051,38 @@
     </div>
   </section>
 
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="section-container" style="text-align: center;">
+      <div class="reveal">
+        <p class="section-label">Preço</p>
+        <h2 class="section-title">Simples. Justo. Sem armadilhas.</h2>
+      </div>
+      <div class="pricing-card reveal">
+        <span class="pricing-badge">Oferta de Lançamento</span>
+        <div class="pricing-price">R$0</div>
+        <p style="color: var(--text-muted); margin-bottom: 0.5rem; font-size: 0.9rem;">Versão completa · Sem mensalidade · Sem limite de uso</p>
+        <ul class="pricing-perks">
+          <li><i class="ph-fill ph-check-circle"></i> Fluxo de caixa ilimitado</li>
+          <li><i class="ph-fill ph-check-circle"></i> DRE Profissional completo</li>
+          <li><i class="ph-fill ph-check-circle"></i> Gestão de insumos e fichas técnicas</li>
+          <li><i class="ph-fill ph-check-circle"></i> Backup na nuvem incluso</li>
+          <li><i class="ph-fill ph-check-circle"></i> Exportação PDF</li>
+          <li><i class="ph-fill ph-check-circle"></i> Offline no Android via APK</li>
+          <li><i class="ph-fill ph-check-circle"></i> Versão Web no navegador</li>
+          <li><i class="ph-fill ph-check-circle"></i> Atualizações gratuitas</li>
+        </ul>
+        <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk"
+           class="btn btn-primary" style="width: 100%; justify-content: center; margin-bottom: 0.75rem;" download>
+          <i class="ph-bold ph-download-simple"></i> Baixar Metricora v1.0.10 Grátis
+        </a>
+        <a href="https://vectorium.tec.br/app" class="btn btn-web" style="width: 100%; justify-content: center;" target="_blank" rel="noopener">
+          <i class="ph-bold ph-globe"></i> Prefiro acessar pelo navegador
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section id="faq">
     <div class="section-container" style="max-width: 800px;">
@@ -1011,20 +1096,24 @@
           <div class="faq-answer">Sim. O Metricora é 100% gratuito na versão atual. Sem mensalidade, sem compra no app, sem limite de uso. Futuras versões premium podem ser lançadas, mas os usuários atuais serão avisados com antecedência.</div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">Funciona sem internet? <i class="ph-bold ph-plus"></i></button>
-          <div class="faq-answer">Sim. O Metricora é offline-first. Todos os dados ficam no seu celular. O backup na nuvem é opcional e acontece quando você conectar ao Wi-Fi.</div>
+          <button class="faq-question" onclick="toggleFaq(this)">O app funciona sem internet? <i class="ph-bold ph-plus"></i></button>
+          <div class="faq-answer">Depende de como você acessa. No <strong>Android via APK</strong>, sim: o app funciona totalmente offline, com dados armazenados localmente no dispositivo. O backup na nuvem acontece quando você conectar ao Wi-Fi. Na <strong>Versão Web</strong>, o acesso inicial ainda depende de internet para carregar o app no navegador — depois disso, os dados ficam salvos localmente no browser.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">Qual é a diferença entre a Versão Web e o APK Android? <i class="ph-bold ph-plus"></i></button>
+          <div class="faq-answer">O <strong>APK Android</strong> é instalado no celular, funciona offline de verdade e é a melhor opção para uso diário no negócio. A <strong>Versão Web</strong> roda no navegador sem instalação, requer internet para carregar, mas é prática para acesso rápido em qualquer dispositivo. Ambas compartilham os mesmos dados via sincronização na nuvem.</div>
         </div>
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">Meus dados ficam seguros? <i class="ph-bold ph-plus"></i></button>
-          <div class="faq-answer">Sim. Os dados ficam armazenados localmente no seu dispositivo. O backup na nuvem é criptografado. O app usa autenticação por e-mail e o binário é ofuscado para proteção contra engenharia reversa.</div>
+          <div class="faq-answer">Sim. No Android, os dados ficam armazenados localmente no seu dispositivo. O backup na nuvem é criptografado. O app usa autenticação por e-mail e o binário é ofuscado para proteção contra engenharia reversa.</div>
         </div>
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">Funciona em iOS (iPhone)? <i class="ph-bold ph-plus"></i></button>
-          <div class="faq-answer">Atualmente o Metricora está disponível apenas para Android (6.0 ou superior). A versão iOS está em desenvolvimento.</div>
+          <div class="faq-answer">Atualmente o Metricora está disponível para Android (6.0 ou superior) e pela Versão Web no navegador. A versão nativa para iOS está em desenvolvimento.</div>
         </div>
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">Como instalar o APK? <i class="ph-bold ph-plus"></i></button>
-          <div class="faq-answer">Baixe o arquivo APK, abra as configurações do Android > Segurança > Fontes desconhecidas (ou "Instalar apps desconhecidos") e permita a instalação. Depois abra o arquivo APK baixado e siga as instruções.</div>
+          <div class="faq-answer">Baixe o arquivo APK, abra as configurações do Android > Segurança > Fontes desconhecidas (ou "Instalar apps desconhecidos") e permita a instalação. Depois abra o arquivo APK baixado e siga as instruções. O processo leva menos de 2 minutos.</div>
         </div>
       </div>
     </div>
@@ -1040,10 +1129,10 @@
         <div style="display: flex; flex-direction: column; align-items: center; gap: 0.9rem;">
           <a href="https://github.com/brunomachado21/vectorium-landing/releases/download/v1.0.10/metricora_app_releasev1.0.10.apk"
              class="btn-cta-white" download>
-            <i class="ph-bold ph-download-simple"></i> Baixar Metricora Grátis
+            <i class="ph-bold ph-download-simple"></i> Baixar Metricora Grátis para Android
           </a>
           <a href="https://vectorium.tec.br/app" class="btn-cta-outline" target="_blank" rel="noopener">
-            <i class="ph-bold ph-globe"></i> Prefiro acessar pelo navegador, sem baixar
+            <i class="ph-bold ph-globe"></i> Acessar Versão Web no navegador
           </a>
         </div>
         <p style="font-size: 0.8rem; margin-top: 1.25rem;">🔒 Seguro · Android 6.0+ · Sem anúncios · Sem rastreamento</p>
