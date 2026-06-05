@@ -1,7 +1,7 @@
 # Documento de Requisitos — Vectorium / Metricora Web App
 
-**Versão:** 1.3  
-**Data:** 2026-06-04  
+**Versão:** 1.4  
+**Data:** 2026-06-05  
 **Responsável:** Bruno Machado  
 **Repositório de landing:** [vectorium-landing](https://github.com/brunomachado21/vectorium-landing)  
 **URL produção:** https://vectorium.tec.br/app
@@ -12,7 +12,7 @@
 
 O Metricora Web App é a versão Flutter Web do aplicativo Metricora, servida em `vectorium.tec.br/app`. Ele permite que empreendedores registrem vendas, despesas, gerem DRE e acompanhem métricas financeiras diretamente no navegador, sem instalação.
 
-A **landing page** (`vectorium.tec.br`) é um site estático HTML/CSS/JS hospedado no GitHub Pages e serve como principal canal de aquisição de usuários.
+A **landing page** (`vectorium.tec.br`) é um site estático HTML/CSS/JS hospedado no GitHub Pages e serve como principal canal de aquisição de usuários. O acesso ao produto ocorre por dois caminhos distintos: **APK Android** (offline-first, instalado no dispositivo) e **Versão Web** (no navegador, requer internet para carga inicial).
 
 ---
 
@@ -86,10 +86,31 @@ A **landing page** (`vectorium.tec.br`) é um site estático HTML/CSS/JS hospeda
 
 | ID | Requisito | Prioridade |
 |---|---|---|
-| RF-24 | Navbar com links de navegação à esquerda/centro | Alta |
+| RF-24 | Navbar com links de navegação à esquerda/centro, incluindo link "Como Acessar" apontando para `#acesso` | Alta |
 | RF-25 | Dois botões no canto direito: **"Versão Web"** (outline azul) e **"Baixar para Android"** (gradiente) | Alta |
 | RF-26 | Botão de download especifica explicitamente **Android** | Média |
 | RF-27 | Em mobile (≤ 700px): botão "Versão Web" oculto; apenas CTA de download | Média |
+
+### 3.8 Landing Page — Arquitetura de Seções
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RF-28 | Exibir bloco **"Escolha de acesso"** (`#acesso`) logo após o hero com dois cards: Android APK e Versão Web | Alta |
+| RF-29 | Seção de screenshots (`#screenshots`) deve ser exibida antes das funcionalidades completas para antecipar prova de produto | Média |
+| RF-30 | Depoimentos (`#depoimentos`) devem aparecer antes da seção de pricing para reforçar prova social | Média |
+| RF-31 | Ordem das seções: Hero → Acesso → Screenshots → Features → Segmentos → Depoimentos → Pricing → FAQ → CTA Final | Alta |
+| RF-32 | O subtexto do hero deve comunicar os dois canais de acesso: "no navegador ou no seu Android" | Média |
+| RF-33 | Trust row deve distinguir explicitamente: "Offline no Android via APK" e "Web no navegador" — sem afirmação genérica de offline | Alta |
+
+### 3.9 Landing Page — Diferenciação APK vs Web
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RF-34 | Card Android APK deve comunicar: funciona **offline de verdade**, dados locais no dispositivo | Alta |
+| RF-35 | Card Versão Web deve comunicar: sem instalação, requer internet para carga inicial, acesso em qualquer dispositivo | Alta |
+| RF-36 | Feature card de "offline" deve ser específico ao Android APK, não afirmar offline genérico para todos | Alta |
+| RF-37 | FAQ deve conter pergunta específica sobre diferença entre APK Android e Versão Web | Média |
+| RF-38 | FAQ deve conter pergunta sobre funcionamento offline com resposta diferenciada por modo de acesso | Média |
 
 ---
 
@@ -128,6 +149,9 @@ A **landing page** (`vectorium.tec.br`) é um site estático HTML/CSS/JS hospeda
 | FIX-12 | `LateInitializationError` em cascata no login (efeito do banco falhando) | ✅ 04/06/2026 |
 | FIX-13 | Ícones PWA definitivos com logo da marca | 🔴 Pendente |
 | FIX-14 | Script SQL de migration Supabase (campos V12+ ausentes no schema remoto) | 🔴 Pendente |
+| FIX-15 | Arquitetura de seções da landing reorganizada: bloco acesso, screenshots antecipadas, depoimentos antes do pricing | ✅ 05/06/2026 |
+| FIX-16 | Promessa offline corrigida: APK Android (offline real) vs Versão Web (requer internet) diferenciados em toda landing | ✅ 05/06/2026 |
+| FIX-17 | FAQ atualizado com perguntas de diferenciação APK vs Web e comportamento offline por modo | ✅ 05/06/2026 |
 
 ---
 
@@ -152,3 +176,14 @@ A **landing page** (`vectorium.tec.br`) é um site estático HTML/CSS/JS hospeda
 - [x] Ícone 512×512 válido
 - [ ] Ícones definitivos com logo da marca (pendente)
 - [ ] PWA instalável sem avisos no browser
+
+## 9. Critérios de Aceite — Landing Arquitetura (RF-28 a RF-38)
+
+- [x] Bloco "Escolha de acesso" exibido logo após o hero com cards Android e Web
+- [x] Screenshots aparecem antes das funcionalidades
+- [x] Depoimentos aparecem antes do pricing
+- [x] Trust row distingue APK offline vs Web com internet
+- [x] Feature card offline específico para APK Android
+- [x] FAQ com pergunta de diferenciação APK vs Web
+- [x] FAQ com pergunta de offline por modo de acesso
+- [x] Subtexto do hero menciona "navegador ou Android"

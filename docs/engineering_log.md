@@ -4,6 +4,59 @@ Registro cronológico de decisões técnicas, correções e melhorias.
 
 ---
 
+## 2026-06-05 — Sprint Landing / Arquitetura
+
+### [LAND1] Refactor: Reorganização de arquitetura da landing page
+
+**Commit:** `775b7d3` (squash merge PR #1, branch `refactor/landing-arquitetura`)  
+**Arquivo:** `index.html`  
+**Refs:** RF-28 a RF-38, RNF-01, RNF-02, RNF-07
+
+**Contexto:** A landing page estava com uma arquitetura de seções subótima para conversão. O principal problema era a ausência de diferenciação clara entre os dois modos de acesso ao produto (APK Android vs Versão Web), gerando expectativas erradas sobre o comportamento offline — que é exclusivo do APK, não da Versão Web.
+
+**Problemas identificados:**
+1. Nenhum bloco destacava a escolha entre APK Android e Versão Web — o usuário chegava sem clareza sobre como acessar
+2. A afirmação "100% Offline" era genérica e enganosa para quem acessasse pela Versão Web no navegador
+3. Screenshots apareciam tarde demais (após features e segmentos) — prova de produto postergada
+4. Depoimentos apareciam depois do pricing — prova social não reforçava a decisão de compra/acesso
+5. FAQ não tinha pergunta sobre diferença entre os modos de acesso
+
+**Solução — nova ordem de seções:**
+
+| Posição | Antes | Depois |
+|---|---|---|
+| 1 | Hero | Hero |
+| 2 | Features | **Escolha de acesso (novo — RF-28)** |
+| 3 | Segmentos | **Screenshots (antecipado — RF-29)** |
+| 4 | Screenshots | Features |
+| 5 | Pricing | Segmentos |
+| 6 | Depoimentos | **Depoimentos (movido — RF-30)** |
+| 7 | FAQ | Pricing |
+| 8 | CTA Final | FAQ |
+| 9 | — | CTA Final |
+
+**Mudanças implementadas:**
+
+- Novo bloco `#acesso` com dois cards diferenciados:
+  - **Android APK**: offline de verdade, dados locais, badge "Recomendado para uso offline"
+  - **Versão Web**: sem instalação, requer internet, badge "Acesso rápido sem instalação"
+- Subtexto do hero corrigido: "no navegador ou no seu Android"
+- Trust row corrigida: "Offline no Android via APK" + "Web no navegador" (sem afirmação genérica)
+- Feature card offline renomeado: "Offline no Android" com tag "APK Android"
+- Screenshots antecipadas antes de features
+- Depoimentos movidos para antes do pricing
+- Novo link "Como Acessar" na navbar apontando para `#acesso`
+- FAQ com 2 novas perguntas:
+  - "O app funciona sem internet?" → resposta diferenciada por modo
+  - "Qual é a diferença entre a Versão Web e o APK Android?" → explica trade-offs
+- Pricing: lista atualizada com "Offline no Android via APK" e "Versão Web no navegador" como itens separados
+
+**Visual:** 100% mantido — paleta, fontes, animações, grid e identidade intactos.
+
+**Resultado:** Arquitetura de conteúdo alinhada com a realidade do produto. Elimina expectativa errada de offline para Versão Web.
+
+---
+
 ## 2026-06-04 — Sprint Web (PWA / Deploy)
 
 ### [WEB1] Fix: sqlite3Uri e driftWorkerUri com path absoluto
@@ -108,9 +161,9 @@ Error: Couldn't resolve the package 'drift' in 'package:drift/wasm.dart'.
 - name: Compile drift_worker.dart.js inside project context
   run: |
     DRIFT_WORKER_SRC=$(find ~/.pub-cache -path '*/drift-*/web/drift_worker.dart' | head -1)
-    cp "$DRIFT_WORKER_SRC" web/drift_worker.dart        # copia pro projeto
-    dart compile js -O2 -o web/drift_worker.dart.js web/drift_worker.dart  # compila com pubspec.yaml
-    rm web/drift_worker.dart                            # remove .dart temporário
+    cp "$DRIFT_WORKER_SRC" web/drift_worker.dart
+    dart compile js -O2 -o web/drift_worker.dart.js web/drift_worker.dart
+    rm web/drift_worker.dart
 
 - name: Copy sqlite3.wasm to build/web
   run: |
@@ -223,6 +276,8 @@ Error: Couldn't resolve the package 'drift' in 'package:drift/wasm.dart'.
 | BW4 | 04/06 | metricora | `deploy_web.yml` | `sqlite3.wasm` e `drift_worker.dart.js` ausentes no deploy | ✅ |
 | BW5 | 04/06 | metricora | `main.dart` + Drift | `LateInitializationError` em cascata — banco local falhava silenciosamente | ✅ (via BW1+BW4) |
 | UI1 | 04/06 | metricora | 4 telas | Cores hardcoded violando `AppConfigs.*` | ✅ |
+| LP1 | 05/06 | vectorium-landing | `index.html` | Arquitetura de seções subótima — sem diferenciação APK vs Web | ✅ |
+| LP2 | 05/06 | vectorium-landing | `index.html` | Afirmação "100% Offline" genérica e incorreta para Versão Web | ✅ |
 
 ---
 
@@ -234,5 +289,6 @@ Error: Couldn't resolve the package 'drift' in 'package:drift/wasm.dart'.
 | 🔴 Alta | Ícones PWA definitivos (substituir placeholder `#0177C2` pelo logo real) |
 | 🟡 Média | Tela de recuperação de senha (ForgotPasswordScreen) |
 | 🟡 Média | Script SQL de migration Supabase (campos V12+ ausentes no schema remoto) |
+| 🟡 Média | Análise de conversão da landing após reorganização de arquitetura |
 | 🟢 Baixa | Light mode / alternância de tema |
 | 🟢 Baixa | Testes automatizados (widget tests + integration tests) |
