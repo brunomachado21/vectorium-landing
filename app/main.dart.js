@@ -45279,7 +45279,7 @@ case 1:return A.m(q,r)}})
 return A.n($async$brW,r)},
 bOX(){var s,r
 try{s=v.G.window.location.origin
-return s}catch(r){return"https://vectorium.tec.br"}},
+return s}catch(r){return"https://vectorium.tec.br/app/"}},
 aF_(a){var s=0,r=A.o(t.SK),q
 var $async$aF_=A.p(function(b,c){if(b===1)return A.l(c,r)
 for(;;)switch(s){case 0:q=A.MR(a)
