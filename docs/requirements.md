@@ -1,6 +1,6 @@
 # Documento de Requisitos — Vectorium / Metricora Web App
 
-**Versão:** 1.5  
+**Versão:** 1.6  
 **Data:** 2026-06-05  
 **Responsável:** Bruno Machado  
 **Repositório de landing:** [vectorium-landing](https://github.com/brunomachado21/vectorium-landing)  
@@ -41,6 +41,7 @@ A **landing page** (`vectorium.tec.br`) é um site estático HTML/CSS/JS hospeda
 | RF-06 | Permitir **recuperação de senha** via e-mail | Média |
 | RF-39 | No web, `null` retornado por `GoogleAuthHelper.entrar()` **não deve ser tratado como erro** — indica redirect OAuth em andamento | Alta |
 | RF-40 | `SplashRouter` deve resolver a sessão ativa (Supabase Auth ou SharedPreferences) **antes de renderizar qualquer tela**, eliminando flash da LandingScreen no F5 | Alta |
+| RF-41 | Ao fazer **logout**, todos os estados de notificação visíveis devem ser limpos antes de redirecionar para a tela inicial | Alta |
 
 ### 3.2 Painel Principal (Dashboard)
 
@@ -131,6 +132,7 @@ A **landing page** (`vectorium.tec.br`) é um site estático HTML/CSS/JS hospeda
 | RNF-09 | Os arquivos `sqlite3.wasm` e `drift_worker.dart.js` devem estar presentes em `build/web/` no deploy | Infraestrutura |
 | RNF-10 | Deploy deve ser idempotente: se não houver mudanças, nenhum commit será gerado | Infraestrutura |
 | RNF-11 | Sessão do usuário deve **persistir no reload (F5)** — `SplashRouter` resolve antes de renderizar UI | Usabilidade |
+| RNF-12 | O logout deve garantir **limpeza completa de estado de UI** — sem notificações ou badges visíveis após encerramento de sessão | Usabilidade |
 
 ---
 
@@ -152,11 +154,12 @@ A **landing page** (`vectorium.tec.br`) é um site estático HTML/CSS/JS hospeda
 | FIX-12 | `LateInitializationError` em cascata no login (efeito do banco falhando) | ✅ 04/06/2026 |
 | FIX-13 | Ícones PWA definitivos com logo da marca | 🔴 Pendente |
 | FIX-14 | Script SQL de migration Supabase (campos V12+ ausentes no schema remoto) | 🔴 Pendente |
-| FIX-15 | Arquitetura de seções da landing reorganizada: bloco acesso, screenshots antecipadas, depoimentos antes do pricing | ✅ 05/06/2026 |
-| FIX-16 | Promessa offline corrigida: APK Android (offline real) vs Versão Web (requer internet) diferenciados em toda landing | ✅ 05/06/2026 |
-| FIX-17 | FAQ atualizado com perguntas de diferenciação APK vs Web e comportamento offline por modo | ✅ 05/06/2026 |
-| FIX-18 | `null` retornado pelo Google OAuth no web tratado erroneamente como cancelamento — exibia "Login cancelado" antes da seleção de conta | ✅ 05/06/2026 |
-| FIX-19 | F5 destruía sessão ativa — app sempre renderizava LandingScreen antes de resolver sessão; `SplashRouter` adicionado | ✅ 05/06/2026 |
+| FIX-15 | Arquitetura de seções da landing reorganizada | ✅ 05/06/2026 |
+| FIX-16 | Promessa offline corrigida: APK vs Web diferenciados em toda landing | ✅ 05/06/2026 |
+| FIX-17 | FAQ atualizado com perguntas de diferenciação APK vs Web | ✅ 05/06/2026 |
+| FIX-18 | `null` do Google OAuth no web tratado erroneamente como cancelamento | ✅ 05/06/2026 |
+| FIX-19 | F5 destruía sessão ativa — `SplashRouter` adicionado | ✅ 05/06/2026 |
+| FIX-20 | Notificação persiste após logout — estado de UI não limpo no encerramento de sessão | 🔴 Pendente |
 
 ---
 
@@ -199,3 +202,9 @@ A **landing page** (`vectorium.tec.br`) é um site estático HTML/CSS/JS hospeda
 - [x] F5 em sessão ativa (Google ou e-mail) mantém usuário logado — vai direto para HomeScreen
 - [x] `SplashRouter` exibe splash visual durante resolução de sessão (sem flash branco)
 - [x] Fluxo sem sessão → `LandingScreen` (web) ou `LoginScreen` (mobile) — comportamento correto mantido
+
+## 11. Critérios de Aceite — Logout Limpo (RF-41, RNF-12)
+
+- [ ] Após logout, nenhuma notificação ou badge permanece visível na UI
+- [ ] Estado de notificação é resetado antes do redirecionamento para tela inicial
+- [ ] Relogar com outra conta não exibe notificações do usuário anterior

@@ -44,7 +44,7 @@ if (user != null) {
 }
 ```
 
-**Resultado:** Mensagem de erro eliminada. Fluxo web agora exibe o spinner → Google abre seleção de conta → usuário loga → `LandingScreen` captura a sessão.
+**Resultado:** Mensagem de erro eliminada. Fluxo web agora exibe o spinner → Google abre seleção de conta → usuário loga → `SplashRouter` captura a sessão.
 
 ---
 
@@ -181,13 +181,6 @@ driftWorkerUri: Uri.parse('/app/drift_worker.dart.js'),
 
 **Problema:** A `Content-Security-Policy` restringia `script-src` a `'self'`, `'unsafe-eval'`, `'unsafe-inline'`, `'wasm-unsafe-eval'` e `https://www.gstatic.com`. O script do Google Sign-In (`https://accounts.google.com/gsi/client`) era bloqueado, impedindo autenticação social.
 
-Erro no console:
-```
-Loading the script 'https://accounts.google.com/gsi/client' violates the following
-Content Security Policy directive: "script-src 'self' 'unsafe-eval' ..."
-The action has been blocked.
-```
-
 **Correção:** CSP expandida:
 ```html
 script-src  ... https://accounts.google.com https://*.googleapis.com;
@@ -221,19 +214,6 @@ img-src     ... https://*.googleusercontent.com;
 **Arquivo:** `.github/workflows/deploy_web.yml`
 
 **Problema:** O `flutter build web` **não inclui** automaticamente `sqlite3.wasm` nem `drift_worker.dart.js` em `build/web/`. O workflow anterior copiava apenas `build/web/` para o deploy — os dois arquivos WASM/worker chegavam ausentes em produção, causando o erro 404 persistente mesmo após WEB1.
-
-**Investigação — 3 iterações:**
-
-**Tentativa 1** (`bfc779b`): buscar ambos no pub cache via `find ~/.pub-cache`.
-- `sqlite3.wasm` encontrado em `drift-2.31.0/extension/devtools/build/` ✅
-- `drift_worker.dart.js` **não existe** no pub cache — não é distribuído pré-compilado ❌
-
-**Tentativa 2** (`202ae58`): compilar `drift_worker.dart.js` com `dart compile js` apontando para o fonte no pub cache.
-- Fonte encontrado em `drift-2.31.0/web/drift_worker.dart` ✅
-- Falha: sem contexto de projeto, `package:drift/wasm.dart` não é resolvido ❌
-```
-Error: Couldn't resolve the package 'drift' in 'package:drift/wasm.dart'.
-```
 
 **Solução final** (`cc14c9e`):
 ```yaml
@@ -270,8 +250,6 @@ Error: Couldn't resolve the package 'drift' in 'package:drift/wasm.dart'.
 5. Copia `build/web/` para `vectorium-landing/app/`
 6. Commit automático + push → GitHub Pages atualiza em ~1 min
 
-**Observação:** mudanças apenas em `.github/workflows/**` não disparam build (está no `paths-ignore`). Usar **"Run workflow"** manual em [Actions](https://github.com/brunomachado21/metricora/actions) nesses casos.
-
 ---
 
 ## 2026-06-04 — Sprint UI / Navbar
@@ -281,11 +259,7 @@ Error: Couldn't resolve the package 'drift' in 'package:drift/wasm.dart'.
 **Commits:** `180d8b2`  
 **Arquivo:** `index.html`
 
-**Problema:** Um redesign completo foi aplicado ao `index.html` divergindo do layout original aprovado. O resultado não estava alinhado com a identidade visual do projeto.
-
-**Ação:** Restauração completa do arquivo para o blob SHA `935543e` (versão anterior ao redesign). Conteúdo verificado byte-a-byte.
-
-**Resultado:** Landing page restaurada ao estado original com design limpo, fundo pontilhado, hero em grid 2 colunas, paleta verde-azul e todas as seções intactas.
+**Ação:** Restauração completa do arquivo para o blob SHA `935543e` (versão anterior ao redesign).
 
 ---
 
@@ -294,15 +268,7 @@ Error: Couldn't resolve the package 'drift' in 'package:drift/wasm.dart'.
 **Commit:** `104439a`  
 **Arquivo:** `index.html`
 
-**Problema:** O link "Versão Web" estava listado junto dos links de navegação sem destaque visual. O botão de download não especificava a plataforma.
-
-**Solução:**
-- `<div class="navbar-actions">` com dois botões:
-  - `.navbar-web` — outline azul, abre `/app` em nova aba
-  - `.navbar-cta` — gradiente verde-azul, baixa APK
-- Mobile (`max-width: 700px`): `.navbar-web { display: none }` — só CTA de download
-
-**Resultado:** Hierarquia visual clara. CTA primário (Android) destacado; acesso web como opção secundária.
+**Solução:** `<div class="navbar-actions">` com dois botões: `.navbar-web` (outline azul) e `.navbar-cta` (gradiente). Mobile: `.navbar-web { display: none }`.
 
 ---
 
@@ -311,11 +277,7 @@ Error: Couldn't resolve the package 'drift' in 'package:drift/wasm.dart'.
 **Commit:** `dd04d79` (repo: metricora)  
 **Arquivos:** `historico_tab.dart`, `backup_screen.dart`, `contabilidade_screen.dart`, `atacadistas_screen.dart`
 
-**Problema:** 4 telas usavam cores hardcoded (`Color(0xFF0D0D0D)`, `Colors.white`, etc.) em vez de `AppConfigs.*`.
-
-**Solução:** Substituição sistemática por `AppConfigs.fundoApp`, `.appBarBg`, `.fundoCard`, `.textoTitulo`, `.textoGeral`, `.textoSecundario`, `.principal`.
-
-**Resultado:** 0 hardcodes remanescentes. Sistema pronto para white-label.
+**Solução:** Substituição sistemática por `AppConfigs.*`. **Resultado:** 0 hardcodes remanescentes.
 
 ---
 
@@ -325,23 +287,17 @@ Error: Couldn't resolve the package 'drift' in 'package:drift/wasm.dart'.
 
 **Decisão:** GitHub Pages com CNAME `vectorium.tec.br`, app servido em `/app`.
 
-**Trade-off original:** Deploy manual — cada versão exigia build local + push. **Resolvido em 04/06/2026** com GitHub Actions automatizado (WEB5 acima).
-
 ---
 
 ### [INFRA] Supabase como backend
 
 **Decisão:** Supabase (PostgreSQL + Auth) como backend único para autenticação e persistência.
 
-**Razão:** Compatível com `supabase_flutter`, já em uso no mobile, Auth pronto, RLS por `user_id`.
-
 ---
 
 ### [ARCH] Centralização de design tokens em `styles.dart`
 
 **Decisão:** `lib/styles.dart` com classe `AppConfigs` contendo todas as constantes de cor.
-
-**Razão:** Suporte a white-label por vertical (Vendedores, Barber, Confeitaria) com alteração em 1 arquivo.
 
 ---
 
@@ -359,6 +315,7 @@ Error: Couldn't resolve the package 'drift' in 'package:drift/wasm.dart'.
 | UI1 | 04/06 | metricora | 4 telas | Cores hardcoded violando `AppConfigs.*` | ✅ |
 | LP1 | 05/06 | vectorium-landing | `index.html` | Arquitetura de seções subótima — sem diferenciação APK vs Web | ✅ |
 | LP2 | 05/06 | vectorium-landing | `index.html` | Afirmação "100% Offline" genérica e incorreta para Versão Web | ✅ |
+| BW8 | — | metricora | a identificar | Notificação persiste após logout — estado de UI não limpo no encerramento de sessão | 🔴 Pendente |
 
 ---
 
@@ -366,6 +323,7 @@ Error: Couldn't resolve the package 'drift' in 'package:drift/wasm.dart'.
 
 | Prioridade | Item |
 |---|---|
+| 🔴 Alta | **BW8: Notificação persiste após logout** — limpar estado de notificação no logout |
 | 🔴 Alta | FIX: RegisterScreen visual inconsistente com LoginScreen |
 | 🔴 Alta | Ícones PWA definitivos (substituir placeholder `#0177C2` pelo logo real) |
 | 🟡 Média | Tela de recuperação de senha (ForgotPasswordScreen) |
