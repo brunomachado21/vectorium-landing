@@ -36590,20 +36590,24 @@ j=A.f3(k,!0,t.a)
 i=J.bx_(j,new A.aAm(m))
 if(i){q=B.vf
 s=1
+break}if(J.aW(j)>=n){h=J.c(n,1)?"1 dispositivo":A.j(n)+" dispositivos"
+c=A.j(h)
+q=new A.Dw(B.o6,"Limite de "+c+" atingido para o plano "+a5.toUpperCase()+". Acesse Configura\xe7\xf5es \u2192 Dispositivos para desconectar um.",null)
+s=1
 break}c=j
 b=A.a2(c).h("b7<1>")
 a=A.V(new A.b7(c,new A.aAn(l),b),b.h("z.E"))
-h=a
-s=J.aW(h)!==0?9:10
+g=a
+s=J.aW(g)!==0?9:10
 break
-case 9:a0=A.bw(J.w(J.fQ(h),"device_name"))
-g=a0==null?l:a0
-c=h,b=c.length,a1=0
+case 9:a0=A.bw(J.w(J.fQ(g),"device_name"))
+f=a0==null?l:a0
+c=g,b=c.length,a1=0
 case 11:if(!(a1<c.length)){s=13
-break}f=c[a1]
+break}e=c[a1]
 p=15
 s=18
-return A.d($.Cl().d9("device_sessions").Mh(0).dF("user_id",a6).dF("device_id",A.b3(J.w(f,"device_id"))),$async$yg)
+return A.d($.Cl().d9("device_sessions").Mh(0).dF("user_id",a6).dF("device_id",A.b3(J.w(e,"device_id"))),$async$yg)
 case 18:p=4
 s=17
 break
@@ -36616,14 +36620,10 @@ break
 case 17:case 12:c.length===b||(0,A.B)(c),++a1
 s=11
 break
-case 13:q=new A.Dw(B.o5,null,g)
+case 13:q=new A.Dw(B.o5,null,f)
 s=1
 break
-case 10:if(J.aW(j)>=n){e=J.c(n,1)?"1 dispositivo":A.j(n)+" dispositivos"
-c=A.j(e)
-q=new A.Dw(B.o6,"Limite de "+c+" atingido para o plano "+a5.toUpperCase()+". Acesse Configura\xe7\xf5es \u2192 Dispositivos para desconectar um.",null)
-s=1
-break}q=B.vf
+case 10:q=B.vf
 s=1
 break
 p=2
