@@ -4,6 +4,92 @@ Registro cronológico de decisões técnicas, correções e melhorias.
 
 ---
 
+## 2026-06-05 — Sprint Auth Web
+
+### [AUTH1] Fix: initialSession não disparava após redirect OAuth Google
+
+**Commit:** `fix(auth): suprime erro falso 'Google cancelado' no web (redirect flow)` (repo: metricora)  
+**Arquivo:** `lib/screens/login_screen.dart`  
+**Refs:** FIX-18
+
+**Problema:** No web, `GoogleAuthHelper.entrar()` chama `signInWithOAuth()` e retorna `null` imediatamente — comportamento correto, pois o redirect ainda está em andamento. O método `_loginGoogle()` tratava esse `null` como falha e exibia a mensagem `"Login com Google cancelado ou falhou."` antes mesmo de o usuário ver a tela de seleção de conta Google.
+
+**Fluxo bugado:**
+```
+Clica "Entrar com Google"
+  → signInWithOAuth() dispara redirect → retorna null
+  → _loginGoogle() recebe null
+  → exibe "Login com Google cancelado" ← ERRADO
+  → Google abre seleção de conta (assíncrono)
+```
+
+**Causa raiz:** `null` no web não significa cancelamento — significa redirect em andamento. O guard condicional não diferenciava plataforma.
+
+**Correção:**
+```dart
+// ANTES — errado para web
+if (user != null) {
+  _entrarNoApp(user);
+} else {
+  _setErro('Login com Google cancelado ou falhou.'); // sempre disparava no web
+}
+
+// DEPOIS — correto
+if (user != null) {
+  _entrarNoApp(user);       // Android: entrou, vai para o app
+} else if (kIsWeb) {
+  return;                   // Web: null é esperado, redirect em andamento
+} else {
+  _setErro('Login com Google cancelado ou falhou.'); // Android: cancelamento real
+}
+```
+
+**Resultado:** Mensagem de erro eliminada. Fluxo web agora exibe o spinner → Google abre seleção de conta → usuário loga → `LandingScreen` captura a sessão.
+
+---
+
+### [AUTH2] Fix: SplashRouter — sessão some no F5 (reload)
+
+**Commit:** `fix(web): adiciona SplashRouter — resolve sessão antes de renderizar, elimina flash no F5` (repo: metricora)  
+**Arquivos:** `lib/screens/splash_router.dart` (novo), `lib/main.dart`  
+**Refs:** FIX-19, RF-39, RF-40
+
+**Problema:** No web, pressionar F5 recarregava o app e sempre exibia a `LandingScreen` por um instante antes de tentar resolver a sessão — independente de o usuário estar logado. Para sessões de e-mail/senha Supabase ou via Google OAuth, o app voltava para a tela inicial em vez de retomar a sessão ativa.
+
+**Causa raiz:** `main.dart` usava `home: kIsWeb ? const LandingScreen() : const LoginScreen()`. O `onAuthStateChange` com `initialSession` só cobria o fluxo OAuth; login por e-mail não tinha recuperação de sessão no reload.
+
+**Solução — SplashRouter:**
+
+Nova tela `SplashRouter` que resolve o estado de autenticação **antes de renderizar qualquer UI**, cobrindo 3 cenários:
+
+```
+F5 → SplashRouter.initState() → _resolver()
+        │
+        ├─ Supabase.currentUser != null?
+        │     └─ resolverSessaoAtual() → user → HomeScreen ✅
+        │        (cobre Google OAuth + email/senha Supabase)
+        │
+        ├─ SharedPreferences['saved_user'] existe? (mobile PRO)
+        │     └─ getUserByName() → user → HomeScreen ✅
+        │
+        └─ Nenhum → LandingScreen (web) / LoginScreen (mobile)
+```
+
+**Splash visual:** fundo escuro `#0A0F1E` com logo + spinner azul — sem flash branco.
+
+**Alteração em main.dart:**
+```dart
+// ANTES
+home: kIsWeb ? const LandingScreen() : const LoginScreen(),
+
+// DEPOIS
+home: const SplashRouter(),
+```
+
+**Resultado:** F5 mantém sessão para todos os tipos de login (Google OAuth + e-mail/senha). Sem flash de LandingScreen. Resolve em ~100–200ms na maioria dos casos.
+
+---
+
 ## 2026-06-05 — Sprint Landing / Arquitetura
 
 ### [LAND1] Refactor: Reorganização de arquitetura da landing page
@@ -122,13 +208,6 @@ img-src     ... https://*.googleusercontent.com;
 **Arquivos:** `web/icons/Icon-192.png`, `Icon-512.png`, `Icon-maskable-192.png`, `Icon-maskable-512.png`
 
 **Problema:** Os 4 arquivos PNG eram placeholders inválidos gerados pelo `flutter create` (80 bytes e 44 bytes). O browser os rejeitava ao instalar o PWA.
-
-Erro no console:
-```
-Error while trying to use the following icon from the Manifest:
-https://vectorium.tec.br/app/icons/Icon-192.png
-(Download error or resource isn't a valid image)
-```
 
 **Correção:** PNGs válidos gerados programaticamente (Python + struct + zlib) — 192×192 e 512×512 com cor sólida `#0177C2`. Todos os 4 arquivos substituídos com header PNG correto (`\x89PNG`).
 
@@ -275,6 +354,8 @@ Error: Couldn't resolve the package 'drift' in 'package:drift/wasm.dart'.
 | BW3 | 04/06 | metricora | `web/icons/*.png` | Ícones PWA eram stubs de 80/44 bytes — browser rejeitava | ✅ |
 | BW4 | 04/06 | metricora | `deploy_web.yml` | `sqlite3.wasm` e `drift_worker.dart.js` ausentes no deploy | ✅ |
 | BW5 | 04/06 | metricora | `main.dart` + Drift | `LateInitializationError` em cascata — banco local falhava silenciosamente | ✅ (via BW1+BW4) |
+| BW6 | 05/06 | metricora | `login_screen.dart` | `null` no web tratado como cancelamento → falsa mensagem de erro no Google OAuth | ✅ |
+| BW7 | 05/06 | metricora | `main.dart` + `splash_router.dart` | F5 destruía sessão ativa — LandingScreen sempre renderizada antes da resolução de sessão | ✅ |
 | UI1 | 04/06 | metricora | 4 telas | Cores hardcoded violando `AppConfigs.*` | ✅ |
 | LP1 | 05/06 | vectorium-landing | `index.html` | Arquitetura de seções subótima — sem diferenciação APK vs Web | ✅ |
 | LP2 | 05/06 | vectorium-landing | `index.html` | Afirmação "100% Offline" genérica e incorreta para Versão Web | ✅ |

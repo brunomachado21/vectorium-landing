@@ -1,6 +1,6 @@
 # UML — Vectorium / Metricora
 
-**Versão:** 1.3  
+**Versão:** 1.4  
 **Data:** 2026-06-05
 
 ---
@@ -131,6 +131,37 @@ vectorium.tec.br  (GitHub Pages — index.html)
 │ +revogarAtual()     │   └────────────────────────┘
 │ FREE≤1, PRO≤2       │
 └─────────────────────┘
+
+┌─────────────────────────────────────────────────────┐
+│    GoogleAuthHelper                                  │
+│                                                      │
+│ +entrar(context) : Future<UserModel?>                │
+│   ├─ kIsWeb  → _entrarWeb()  → signInWithOAuth()     │
+│   │           retorna null (redirect em andamento)   │
+│   └─ Android → _entrarAndroid() → signInWithIdToken()│
+│                retorna UserModel se sucesso          │
+│ +resolverSessaoAtual() : Future<UserModel?>          │
+│   └─ usa Supabase.currentUser → _resolverUsuario()   │
+└─────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────┐
+│    SplashRouter  ← NOVO (05/06/2026)                │
+│                                                      │
+│ initState() → _resolver()                            │
+│   ├─ Supabase.currentUser != null?                   │
+│   │   └─ GoogleAuthHelper.resolverSessaoAtual()      │
+│   │       → user != null → _irParaApp(user)          │
+│   ├─ SharedPreferences['saved_user'] existe?         │
+│   │   └─ DatabaseHelper.getUserByName()              │
+│   │       → user != null → _irParaApp(user)          │
+│   └─ Nenhum → LandingScreen (web) / LoginScreen (mobile)
+│                                                      │
+│ _irParaApp(user)                                     │
+│   ├─ niche == 'none' → SetupNichoScreen              │
+│   └─ niche preenchido → HomeScreen                   │
+│                                                      │
+│ build() → Scaffold fundo #0A0F1E + logo + spinner    │
+└─────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -142,6 +173,12 @@ Browser          main.dart      DatabaseHelper    WasmDatabase      SupabaseServ
    |                 |                |                 |                  |
    | abre /app/      |                |                 |                  |
    |---------------->|                |                 |                  |
+   |                 | SplashRouter   |                 |                  |
+   |                 | _resolver()    |                 |                  |
+   |                 |  Supabase.currentUser == null?   |                  |
+   |                 |  SharedPreferences['saved_user'] == null?           |
+   |                 |  → LandingScreen / LoginScreen   |                  |
+   |                 |                |                 |                  |
    |                 | init()         |                 |                  |
    |                 |--------------->|                 |                  |
    |                 |                | WasmDatabase    |                  |
@@ -169,7 +206,65 @@ Browser          main.dart      DatabaseHelper    WasmDatabase      SupabaseServ
 
 ---
 
-## 5. Diagrama de Sequência — CI/CD Deploy
+## 5. Diagrama de Sequência — Google OAuth Web (redirect flow)
+
+```
+Browser           LoginScreen        GoogleAuthHelper      Supabase Auth       SplashRouter
+   |                   |                    |                    |                   |
+   | clica Google      |                    |                    |                   |
+   |------------------>|                    |                    |                   |
+   |                   | _loginGoogle()     |                    |                   |
+   |                   | setState(loading)  |                    |                   |
+   |                   |------------------->|                    |                   |
+   |                   |                    | signInWithOAuth()  |                   |
+   |                   |                    |------------------->|                   |
+   |                   |                    |    retorna null ✅ |                   |
+   |                   |                    |    (redirect em andamento)             |
+   |                   |<-------------------|                    |                   |
+   |                   | kIsWeb → return    |                    |                   |
+   |                   | (sem exibir erro)  |                    |                   |
+   |                   |                    |                    |                   |
+   | browser redireciona para accounts.google.com               |                   |
+   | usuário seleciona conta                |                    |                   |
+   | Supabase redireciona de volta para /app/                    |                   |
+   |                                        |                    |                   |
+   | Flutter inicializa app                 |                    |                   |
+   |---------------------------------------------------------> SplashRouter          |
+   |                                        |    _resolver()                         |
+   |                                        |    Supabase.currentUser != null        |
+   |                                        |    → resolverSessaoAtual()             |
+   |                                        |    → _irParaApp(user) → HomeScreen ✅  |
+```
+
+---
+
+## 6. Diagrama de Sequência — F5 (reload) com sessão ativa
+
+```
+Browser           main.dart         SplashRouter      Supabase.client     HomeScreen
+   |                  |                   |                  |                  |
+   | F5 (reload)      |                   |                  |                  |
+   |----------------->|                   |                  |                  |
+   |                  | runApp()          |                  |                  |
+   |                  | home: SplashRouter|                  |                  |
+   |                  |------------------>|                  |                  |
+   |                  |                   | initState()      |                  |
+   |                  |                   | _resolver()      |                  |
+   |                  |                   |----------------->|                  |
+   |                  |                   | currentUser != null ✅              |
+   |                  |                   |<-----------------|                  |
+   |                  |                   | resolverSessaoAtual()               |
+   |                  |                   | → UserModel resolvido               |
+   |                  |                   | _irParaApp(user)                    |
+   |                  |                   |---------------------------------------->|
+   |                  |                   |                  |     HomeScreen ✅ |
+   |                  |                   |                  |                  |
+   | (sem flash de LandingScreen — direto para HomeScreen)                     |
+```
+
+---
+
+## 7. Diagrama de Sequência — CI/CD Deploy
 
 ```
 Dev (push main)    GitHub Actions       pub.dev cache       vectorium-landing
@@ -195,20 +290,21 @@ Dev (push main)    GitHub Actions       pub.dev cache       vectorium-landing
 
 ---
 
-## 6. Diagrama de Casos de Uso
+## 8. Diagrama de Casos de Uso
 
 ```
                  ┌─────────────────────────────┐
                  │         Metricora Web        │
                  │                             │
 [Empreendedor]   │  ◆ Login com e-mail/senha   │
-      ○          │  ◆ Login com Google         │
+      ○          │  ◆ Login com Google OAuth   │
       │─────────>│  ◆ Cadastro de conta        │
                  │  ◆ Lançar venda / despesa   │
                  │  ◆ Ver dashboard / DRE      │
                  │  ◆ Filtrar por período      │
                  │  ◆ Sincronizar com nuvem    │
                  │  ◆ Instalar como PWA        │
+                 │  ◆ F5 mantém sessão ativa ★ │
                  │  ◆ Logout                  │
                  └─────────────────────────────┘
 
@@ -228,7 +324,7 @@ Dev (push main)    GitHub Actions       pub.dev cache       vectorium-landing
 
 ---
 
-## 7. Diagrama de Componentes — Flutter Web Browser
+## 9. Diagrama de Componentes — Flutter Web Browser
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -238,10 +334,12 @@ Dev (push main)    GitHub Actions       pub.dev cache       vectorium-landing
 │  │  Main Thread       │  │  Web Worker            │             │
 │  │  (main.dart.js)    │  │  (drift_worker.dart.js)│             │
 │  │                    │  │                        │             │
-│  │  Flutter UI        │  │  WasmDatabase.open()   │             │
-│  │  DatabaseHelper  ──────>  loads sqlite3.wasm   │             │
-│  │  SupabaseService   │  │  executa SQL em WASM   │             │
-│  │  Session           │  │  persiste em IndexedDB │             │
+│  │  SplashRouter ★    │  │  WasmDatabase.open()   │             │
+│  │  Flutter UI        │  │  loads sqlite3.wasm    │             │
+│  │  GoogleAuthHelper ─────────────────────────── │             │
+│  │  DatabaseHelper  ──────>  executa SQL em WASM  │             │
+│  │  SupabaseService   │  │  persiste em IndexedDB │             │
+│  │  Session           │  │                        │             │
 │  └────────────────────┘  └───────────────────────┘             │
 │           │ HTTPS                      │                        │
 └─────────────────────────────────────────────────────────────────┘
@@ -255,7 +353,7 @@ Dev (push main)    GitHub Actions       pub.dev cache       vectorium-landing
 
 ---
 
-## 8. Mapa de Seções — Landing Page (ordem final)
+## 10. Mapa de Seções — Landing Page (ordem final)
 
 ```
 vectorium.tec.br

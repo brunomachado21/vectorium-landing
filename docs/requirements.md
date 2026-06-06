@@ -1,6 +1,6 @@
 # Documento de Requisitos — Vectorium / Metricora Web App
 
-**Versão:** 1.4  
+**Versão:** 1.5  
 **Data:** 2026-06-05  
 **Responsável:** Bruno Machado  
 **Repositório de landing:** [vectorium-landing](https://github.com/brunomachado21/vectorium-landing)  
@@ -39,6 +39,8 @@ A **landing page** (`vectorium.tec.br`) é um site estático HTML/CSS/JS hospeda
 | RF-04 | Após cadastro bem-sucedido, redirecionar para o painel principal | Alta |
 | RF-05 | Exibir mensagem de erro clara em caso de e-mail já cadastrado ou senha fraca | Média |
 | RF-06 | Permitir **recuperação de senha** via e-mail | Média |
+| RF-39 | No web, `null` retornado por `GoogleAuthHelper.entrar()` **não deve ser tratado como erro** — indica redirect OAuth em andamento | Alta |
+| RF-40 | `SplashRouter` deve resolver a sessão ativa (Supabase Auth ou SharedPreferences) **antes de renderizar qualquer tela**, eliminando flash da LandingScreen no F5 | Alta |
 
 ### 3.2 Painel Principal (Dashboard)
 
@@ -128,6 +130,7 @@ A **landing page** (`vectorium.tec.br`) é um site estático HTML/CSS/JS hospeda
 | RNF-08 | CI/CD automatizado: todo push em `main` deve disparar build + deploy via GitHub Actions | Infraestrutura |
 | RNF-09 | Os arquivos `sqlite3.wasm` e `drift_worker.dart.js` devem estar presentes em `build/web/` no deploy | Infraestrutura |
 | RNF-10 | Deploy deve ser idempotente: se não houver mudanças, nenhum commit será gerado | Infraestrutura |
+| RNF-11 | Sessão do usuário deve **persistir no reload (F5)** — `SplashRouter` resolve antes de renderizar UI | Usabilidade |
 
 ---
 
@@ -152,6 +155,8 @@ A **landing page** (`vectorium.tec.br`) é um site estático HTML/CSS/JS hospeda
 | FIX-15 | Arquitetura de seções da landing reorganizada: bloco acesso, screenshots antecipadas, depoimentos antes do pricing | ✅ 05/06/2026 |
 | FIX-16 | Promessa offline corrigida: APK Android (offline real) vs Versão Web (requer internet) diferenciados em toda landing | ✅ 05/06/2026 |
 | FIX-17 | FAQ atualizado com perguntas de diferenciação APK vs Web e comportamento offline por modo | ✅ 05/06/2026 |
+| FIX-18 | `null` retornado pelo Google OAuth no web tratado erroneamente como cancelamento — exibia "Login cancelado" antes da seleção de conta | ✅ 05/06/2026 |
+| FIX-19 | F5 destruía sessão ativa — app sempre renderizava LandingScreen antes de resolver sessão; `SplashRouter` adicionado | ✅ 05/06/2026 |
 
 ---
 
@@ -187,3 +192,10 @@ A **landing page** (`vectorium.tec.br`) é um site estático HTML/CSS/JS hospeda
 - [x] FAQ com pergunta de diferenciação APK vs Web
 - [x] FAQ com pergunta de offline por modo de acesso
 - [x] Subtexto do hero menciona "navegador ou Android"
+
+## 10. Critérios de Aceite — Auth Web (RF-39, RF-40, RNF-11)
+
+- [x] Google OAuth no web não exibe "Login cancelado" após iniciar o redirect
+- [x] F5 em sessão ativa (Google ou e-mail) mantém usuário logado — vai direto para HomeScreen
+- [x] `SplashRouter` exibe splash visual durante resolução de sessão (sem flash branco)
+- [x] Fluxo sem sessão → `LandingScreen` (web) ou `LoginScreen` (mobile) — comportamento correto mantido
