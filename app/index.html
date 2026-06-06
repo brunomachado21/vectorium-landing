@@ -47,7 +47,7 @@
   <link rel="manifest" href="manifest.json">
 
   <style>
-    /* ── Banner PWA base ─────────────────────────────────────── */
+    /* ── Banner PWA base ──────────────────────────────── */
     #pwa-banner {
       display: none;
       position: fixed;
@@ -105,7 +105,7 @@
     }
     #pwa-dismiss-btn:hover { color: #64748b; }
 
-    /* ── Seta iOS apontando para o botão de compartilhar ──────── */
+    /* ── Seta iOS apontando para o botão de compartilhar ───────── */
     #pwa-ios-arrow {
       display: none;
       position: fixed;
@@ -124,6 +124,59 @@
       0%, 100% { transform: translateY(0); }
       50%       { transform: translateY(8px); }
     }
+
+    /* ── Banner de atualização disponível ──────────────────── */
+    #update-banner {
+      display: none;
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100000;
+      background: #0f172a;
+      border: 1.5px solid #2563eb;
+      border-radius: 14px;
+      box-shadow: 0 8px 32px rgba(37,99,235,0.25), 0 2px 8px rgba(0,0,0,0.20);
+      padding: 12px 18px;
+      min-width: 280px;
+      max-width: 92vw;
+      align-items: center;
+      gap: 12px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      animation: slideDown 0.35s cubic-bezier(.22,.68,0,1.2) both;
+    }
+    #update-banner.visible { display: flex; }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateX(-50%) translateY(-24px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+    #update-banner-icon {
+      font-size: 22px; flex-shrink: 0;
+    }
+    #update-banner-text { flex: 1; }
+    #update-banner-text strong {
+      display: block; color: #f1f5f9;
+      font-size: 13px; font-weight: 700;
+    }
+    #update-banner-text span {
+      display: block; color: #94a3b8;
+      font-size: 11px; margin-top: 2px;
+    }
+    #update-reload-btn {
+      background: linear-gradient(135deg, #2563eb, #0ea5e9);
+      color: #fff; border: none; border-radius: 8px;
+      padding: 8px 16px; font-size: 12px; font-weight: 700;
+      cursor: pointer; white-space: nowrap; flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(37,99,235,0.35);
+      transition: opacity 0.15s;
+    }
+    #update-reload-btn:hover { opacity: 0.88; }
+    #update-dismiss-btn {
+      background: transparent; color: #475569;
+      border: none; font-size: 18px; line-height: 1;
+      cursor: pointer; flex-shrink: 0; padding: 2px 4px;
+    }
+    #update-dismiss-btn:hover { color: #94a3b8; }
   </style>
 </head>
 <body>
@@ -149,24 +202,91 @@
     </svg>
   </div>
 
+  <!-- Banner de atualização disponível -->
+  <div id="update-banner">
+    <span id="update-banner-icon">✨</span>
+    <div id="update-banner-text">
+      <strong>Atualização disponível</strong>
+      <span>Nova versão do Metricora está pronta. Atualize agora.</span>
+    </div>
+    <button id="update-reload-btn">↻ Atualizar</button>
+    <button id="update-dismiss-btn" title="Dispensar">&times;</button>
+  </div>
+
   <script>
+    // ────────────────────────────────────────────────────────────
+    // BANNER DE ATUALIZAÇÃO
+    // Detecta quando o Flutter service worker novo está em estado
+    // "waiting" (i.e., versão nova baixada, aguardando ativação).
+    // Ao clicar em Atualizar: envia SKIP_WAITING ao SW e recarrega.
+    // ────────────────────────────────────────────────────────────
+    const updateBanner     = document.getElementById('update-banner');
+    const updateReloadBtn  = document.getElementById('update-reload-btn');
+    const updateDismissBtn = document.getElementById('update-dismiss-btn');
+    let _waitingSW = null;
+
+    function mostrarBannerUpdate(sw) {
+      _waitingSW = sw;
+      updateBanner.classList.add('visible');
+    }
+
+    updateReloadBtn.addEventListener('click', () => {
+      updateBanner.classList.remove('visible');
+      if (_waitingSW) {
+        // Diz ao SW em espera para ativar imediatamente
+        _waitingSW.postMessage({ type: 'SKIP_WAITING' });
+      }
+      // Recarrega todas as abas abertas do mesmo origin
+      window.location.reload();
+    });
+
+    updateDismissBtn.addEventListener('click', () => {
+      updateBanner.classList.remove('visible');
+    });
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        // SW trocou de versão: recarrega para garantir assets novos
+        window.location.reload();
+      });
+
+      navigator.serviceWorker.ready.then((reg) => {
+        // Já há um SW em waiting no momento do carregamento
+        if (reg.waiting) {
+          mostrarBannerUpdate(reg.waiting);
+        }
+
+        // Ouve atualizações futuras durante a sessão
+        reg.addEventListener('updatefound', () => {
+          const newSW = reg.installing;
+          if (!newSW) return;
+          newSW.addEventListener('statechange', () => {
+            if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
+              // Novo SW instalado, versão anterior ainda ativa → exibe banner
+              mostrarBannerUpdate(newSW);
+            }
+          });
+        });
+      });
+    }
+
+    // ────────────────────────────────────────────────────────────
+    // BANNER PWA (instalação)
+    // ────────────────────────────────────────────────────────────
     const banner     = document.getElementById('pwa-banner');
     const installBtn = document.getElementById('pwa-install-btn');
     const dismissBtn = document.getElementById('pwa-dismiss-btn');
     const bannerDesc = document.getElementById('pwa-banner-desc');
     const iosArrow   = document.getElementById('pwa-ios-arrow');
 
-    // Não exibe se já foi dispensado nos últimos 7 dias
     const dismissed = localStorage.getItem('pwa_banner_dismissed');
     const dismissedRecently = dismissed && (Date.now() - parseInt(dismissed)) < 7 * 24 * 60 * 60 * 1000;
 
-    // ── Detecção iOS/Safari ────────────────────────────────────
     const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
     const isInStandaloneMode = ('standalone' in window.navigator) && window.navigator.standalone;
     const isIosSafari = isIos && isSafari;
 
-    // ── Chrome / Android / Desktop ───────────────────────────────
     let _deferredPrompt = null;
 
     window.addEventListener('beforeinstallprompt', (e) => {
@@ -179,7 +299,6 @@
 
     installBtn.addEventListener('click', async () => {
       if (isIosSafari) {
-        // iOS: não tem prompt nativo, esconde banner e mostra seta
         banner.classList.remove('visible');
         iosArrow.classList.add('visible');
         setTimeout(() => iosArrow.classList.remove('visible'), 8000);
@@ -199,15 +318,13 @@
       localStorage.setItem('pwa_banner_dismissed', Date.now().toString());
     });
 
-    // Já instalado como PWA: nunca exibe o banner
     window.addEventListener('appinstalled', () => {
       banner.classList.remove('visible');
       _deferredPrompt = null;
     });
 
-    // ── iOS Safari: exibe banner com instruções específicas ──────
     if (isIosSafari && !isInStandaloneMode && !dismissedRecently) {
-      bannerDesc.textContent = 'Toque em \u2191 Compartilhar e depois em "Adicionar à Tela de Início".';
+      bannerDesc.textContent = 'Toque em \u2191 Compartilhar e depois em "Adicionar \u00e0 Tela de In\u00edcio".';
       installBtn.textContent = '\u2139\ufe0f Ver como instalar';
       setTimeout(() => banner.classList.add('visible'), 3000);
     }
