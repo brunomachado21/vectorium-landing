@@ -1,372 +1,293 @@
 # UML — Vectorium / Metricora
 
-**Versão:** 1.4  
-**Data:** 2026-06-05
+**Versão:** 1.7  
+**Data:** 2026-06-06
 
 ---
 
-## 1. Diagrama de Arquitetura de Deploy
+## 1. Diagrama de Classes — Arquitetura Central
 
-```
-┌───────────────────────────────────────────────┐
-│       brunomachado21/metricora (Flutter)       │
-│  push em main → GitHub Actions [deploy_web.yml]│
-│                                                │
-│  1. flutter pub get                            │
-│  2. cp drift_worker.dart → web/ (do pub cache) │
-│  3. dart compile js → web/drift_worker.dart.js │
-│  4. flutter build web --release --base-href /app/│
-│  5. cp sqlite3.wasm (pub cache) → build/web/   │
-│  6. cp drift_worker.dart.js    → build/web/    │
-└───────────────────────────────────────────────┘
-                        │
-                        │ cp -r build/web → app/
-                        ▼
-┌───────────────────────────────────────────────┐
-│    brunomachado21/vectorium-landing            │
-│    branch: main                                │
-│                                                │
-│    index.html          ← landing page estática │
-│    docs/               ← documentação técnica  │
-│    app/                ← Flutter Web build     │
-│    ├── index.html       (com CSP + manifest)   │
-│    ├── main.dart.js     (app compilado)        │
-│    ├── sqlite3.wasm     (← copiado pub cache)  │
-│    ├── drift_worker.dart.js (← compilado CI)   │
-│    ├── flutter_bootstrap.js                    │
-│    └── icons/           (PNGs válidos 192+512) │
-└───────────────────────────────────────────────┘
-                        │
-                        │ GitHub Pages serve
-                        ▼
-              vectorium.tec.br
-              ├── /           (landing page)
-              └── /app/        (Flutter Web App)
-                   ├── /app/sqlite3.wasm
-                   └── /app/drift_worker.dart.js
-```
+```mermaid
+classDiagram
+    class UserModel {
+        +int id
+        +String username
+        +String niche
+        +String licenseType
+        +bool isPro
+    }
+    class RegistroModel {
+        +int id
+        +int userId
+        +double receita
+        +double despesas
+        +String produto
+        +DateTime data
+        +copyWithUserId(int) RegistroModel
+        +fromSupabase(Map) RegistroModel$
+    }
+    class Session {
+        +UserModel currentUser$
+    }
+    class DatabaseHelper {
+        +instance$
+        +registerUser(UserModel) Future~int~
+        +getUserByName(String) Future~UserModel?~
+        +getUserEmail(String) Future~String?~
+        +setUserEmail(String, String) Future~void~
+        +readRegistrosDoUsuario(userId) Future
+        +getRegistrosPorPeriodo(userId, inicio, fim) Future
+        +getEvolucaoMensal(userId, meses) Future
+        +getMeta(userId, ano, mes) Future
+        +saveMeta(userId, ano, mes) Future
+        +create(RegistroModel) Future
+    }
+    class SupabaseService {
+        +upsertProfile(username, licenseType, niche, email)$
+        +registrarEmailAuth(email, senha, username, licenseType, niche)$
+        +loginEmailAuth(email, senha)$
+        +getUserProfile()$
+    }
+    class SyncService {
+        +pullPerfil()$ Future~void~
+        +listenRealtime(userId)$
+        +stopRealtime()$
+    }
+    class GoogleAuthHelper {
+        +disponivel$ bool
+        +entrar(BuildContext) Future~UserModel?~
+        +sair() Future~void~
+    }
+    class SupabaseBackupService {
+        +fazerBackup()$ Future~BackupResult~
+        +fazerRestore()$ Future~RestoreResult~
+        +getInfoBackup()$ Future~BackupInfo~
+    }
+    class DeviceService {
+        +verificarLimite(userId, licenseType)$ Future~DeviceCheckResult~
+        +registrarDispositivo(userId)$ Future~void~
+        +listarDispositivos()$ Future~List~
+        +revogarDispositivo(deviceId)$ Future~void~
+        +revogarDispositivoAtual()$ Future~void~
+        +iniciarEscutaRevogacao(userId, onRevogado)$
+        +pararEscutaRevogacao()$
+        +deviceIdAtual()$ Future~String~
+    }
+    class DeviceCheckResult {
+        +DeviceCheckStatus status
+        +String errorMessage
+        +String replacedDeviceName
+        +bool bloqueado
+    }
+    class DeviceCheckStatus {
+        <<enumeration>>
+        ok
+        replacedSamePlatform
+        limitReached
+    }
+    class LoginScreen {
+        -_fazerLogin()
+        -_loginEmail()
+        -_loginGoogle()
+    }
+    class HomeScreen {
+        +initState()
+        -_verificarOnboarding()
+        -_verificarBannerEmail()
+    }
+    class DispositivosScreen {
+        -_buildUsoCard()
+        -_buildDeviceCard()
+        -_revogar(deviceId)
+    }
+    class SplashRouter {
+        -_resolver()
+    }
+    class LicenseManager {
+        +bool isPro$
+    }
+    class GeminiService {
+        +gerarAnaliseFinanceira(registros, nicho)$ Future
+        +gerarCoachVendas(registros, nicho)$ Future
+    }
 
----
+    Session --> UserModel
+    LoginScreen ..> DeviceService : verificarLimite
+    LoginScreen ..> DeviceService : registrarDispositivo
+    LoginScreen ..> SyncService : pullPerfil
+    LoginScreen ..> SupabaseService : loginEmailAuth
+    GoogleAuthHelper ..> DeviceService : verificarLimite
+    GoogleAuthHelper ..> DeviceService : registrarDispositivo
+    GoogleAuthHelper ..> DatabaseHelper : getUserByName / registerUser / setUserEmail
+    GoogleAuthHelper ..> SyncService : pullPerfil
+    HomeScreen ..> SyncService : listenRealtime / stopRealtime
+    HomeScreen ..> DatabaseHelper : getUserEmail
+    HomeScreen ..> DeviceService : iniciarEscutaRevogacao
+    DispositivosScreen ..> DeviceService : listarDispositivos / revogarDispositivo
+    SplashRouter ..> SupabaseService
+    SplashRouter ..> DatabaseHelper
+    SupabaseBackupService ..> DatabaseHelper
+    SupabaseBackupService ..> RegistroModel
+    DeviceService ..> DeviceCheckResult
+    DeviceCheckResult --> DeviceCheckStatus
+    LicenseManager --> UserModel
 
-## 2. Diagrama de Arquitetura — Landing Page
-
-```
-vectorium.tec.br  (GitHub Pages — index.html)
-│
-├── Navbar
-│   ├── Links: Como Acessar | Funcionalidades | Segmentos | Preço | FAQ
-│   ├── [Versão Web] → vectorium.tec.br/app   (outline azul)
-│   └── [Baixar para Android] → /releases/.../metricora_app_releasev1.0.10.apk
-│
-├── #hero
-│   ├── Headline + subtítulo ("no navegador ou no seu Android")
-│   ├── Price section (R$0)
-│   ├── CTA: [Baixar Grátis para Android] + [Versão Web]
-│   └── Trust row: Android 6.0+ | Offline no Android via APK | Web no navegador
-│
-├── #acesso  ← NOVO (RF-28)
-│   ├── Card Android APK
-│   │   ├── Offline de verdade (dados locais no dispositivo)
-│   │   └── Badge: "Recomendado para uso offline"
-│   └── Card Versão Web
-│       ├── Sem instalação, requer internet para carga inicial
-│       └── Badge: "Acesso rápido sem instalação"
-│
-├── #screenshots  ← antecipado (RF-29)
-│   └── print_dashboard | print_dre | print_loja | print_confeitaria
-│
-├── #features
-│   └── 6 cards: Lucro Real | DRE | Insumos | Offline Android | PDF | Segurança
-│
-├── #modos
-│   └── Salão | Confeitaria | Loja
-│
-├── #depoimentos  ← movido antes do pricing (RF-30)
-│   └── 3 depoimentos reais
-│
-├── #pricing
-│   └── R$0 · APK Android + Versão Web como itens separados na lista
-│
-├── #faq
-│   ├── É gratuito?
-│   ├── Funciona sem internet? (resposta diferenciada APK vs Web)
-│   ├── Diferença APK vs Web? ← NOVA (RF-37)
-│   ├── Dados seguros?
-│   ├── iOS?
-│   └── Como instalar APK?
-│
-└── CTA Final → [Baixar para Android] + [Versão Web]
-```
-
----
-
-## 3. Diagrama de Classes — Core (Metricora)
-
-```
-┌─────────────────────┐   ┌────────────────────────┐
-│    DatabaseHelper   │   │      SyncService        │
-│    (Singleton)      │   │                         │
-│  +instance: static  │   │ +syncPendentes()        │
-│  +init()            │   │ +pullFromSupabase()     │
-│  +openDefaultConn() │◄──│ +listenRealtime(uid)    │
-│  [Web: WasmDatabase]│   │ +stopRealtime()         │
-│  [Mobile: sqflite]  │   └────────────────────────┘
-└─────────────────────┘
-         │ usa
-         ▼
-┌─────────────────────┐   ┌────────────────────────┐
-│    SupabaseService  │   │  BackgroundSyncService  │
-│                     │   │                         │
-│ +loginComEmail()    │   │ +iniciar(userId)        │
-│ +registrarEmailAuth()   │ +parar()                │
-│ +logout()           │   │ Timer: 15min            │
-│ +sincronizarPerfil()│   │ AppLifecycleObserver    │
-└─────────────────────┘   └────────────────────────┘
-
-┌─────────────────────┐   ┌────────────────────────┐
-│    DeviceService    │   │     Session             │
-│                     │   │                         │
-│ +registrarDispositivo() │ +currentUser: UserModel?│
-│ +verificarLimite()  │   │ (static, global)        │
-│ +revogarAtual()     │   └────────────────────────┘
-│ FREE≤1, PRO≤2       │
-└─────────────────────┘
-
-┌─────────────────────────────────────────────────────┐
-│    GoogleAuthHelper                                  │
-│                                                      │
-│ +entrar(context) : Future<UserModel?>                │
-│   ├─ kIsWeb  → _entrarWeb()  → signInWithOAuth()     │
-│   │           retorna null (redirect em andamento)   │
-│   └─ Android → _entrarAndroid() → signInWithIdToken()│
-│                retorna UserModel se sucesso          │
-│ +resolverSessaoAtual() : Future<UserModel?>          │
-│   └─ usa Supabase.currentUser → _resolverUsuario()   │
-└─────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────┐
-│    SplashRouter  ← NOVO (05/06/2026)                │
-│                                                      │
-│ initState() → _resolver()                            │
-│   ├─ Supabase.currentUser != null?                   │
-│   │   └─ GoogleAuthHelper.resolverSessaoAtual()      │
-│   │       → user != null → _irParaApp(user)          │
-│   ├─ SharedPreferences['saved_user'] existe?         │
-│   │   └─ DatabaseHelper.getUserByName()              │
-│   │       → user != null → _irParaApp(user)          │
-│   └─ Nenhum → LandingScreen (web) / LoginScreen (mobile)
-│                                                      │
-│ _irParaApp(user)                                     │
-│   ├─ niche == 'none' → SetupNichoScreen              │
-│   └─ niche preenchido → HomeScreen                   │
-│                                                      │
-│ build() → Scaffold fundo #0A0F1E + logo + spinner    │
-└─────────────────────────────────────────────────────┘
+    note for DeviceService "kDeviceLimits: FREE=1, PRO=2, PRO+=999\nverificarLimite: limite total ANTES de substituição de plataforma"
+    note for LoginScreen "Todo caminho de login chama\nverificarLimite antes de registrarDispositivo"
+    note for SplashRouter "Resolve sessão (Supabase ou SharedPrefs)\nantes de renderizar qualquer tela"
 ```
 
 ---
 
-## 4. Diagrama de Sequência — Login Web (com WASM)
+## 2. Fluxo de Autenticação + Controle de Dispositivos
 
-```
-Browser          main.dart      DatabaseHelper    WasmDatabase      SupabaseService
-   |                 |                |                 |                  |
-   | abre /app/      |                |                 |                  |
-   |---------------->|                |                 |                  |
-   |                 | SplashRouter   |                 |                  |
-   |                 | _resolver()    |                 |                  |
-   |                 |  Supabase.currentUser == null?   |                  |
-   |                 |  SharedPreferences['saved_user'] == null?           |
-   |                 |  → LandingScreen / LoginScreen   |                  |
-   |                 |                |                 |                  |
-   |                 | init()         |                 |                  |
-   |                 |--------------->|                 |                  |
-   |                 |                | WasmDatabase    |                  |
-   |                 |                | .open()         |                  |
-   |                 |                |---------------->|                  |
-   |                 |                |  GET /app/sqlite3.wasm (200 ✅)    |
-   |                 |                |  GET /app/drift_worker.dart.js (200✅)|
-   |                 |                |<----------------|                  |
-   |                 |<---------------|                 |                  |
-   |                 | Supabase.initialize()            |                  |
-   |                 |-------------------------------------------------------->|
-   |                 |                                  |                  |
-   | digita login    |                                  |                  |
-   |---------------->|                                  |                  |
-   |                 | loginComEmail()                  |                  |
-   |                 |-------------------------------------------------------->|
-   |                 |  signInWithPassword() → Supabase Auth               |
-   |                 |  ✔ setUserEmail() → DatabaseHelper.instance          |
-   |                 |  ✔ SyncService.syncPendentes()                       |
-   |                 |  ✔ SyncService.pullFromSupabase()                    |
-   |                 |<--------------------------------------------------------|
-   | tela inicial    |                                  |                  |
-   |<----------------|                                  |                  |
-```
+```mermaid
+flowchart TD
+    A([Usuário abre o app]) --> SR[SplashRouter]
+    SR --> SR1{Supabase.currentUser?}
+    SR1 -- Sim --> HOME
+    SR1 -- Não --> SR2{SharedPrefs saved_user?}
+    SR2 -- Sim --> HOME
+    SR2 -- Não --> ENTRADA
 
----
+    ENTRADA --> C{Método de login}
 
-## 5. Diagrama de Sequência — Google OAuth Web (redirect flow)
+    C -- Local --> D[_fazerLogin]
+    D --> D1[authenticateUser SQLite]
+    D1 --> D2[verificarLimite DeviceService]
+    D2 --> D3{Dentro do limite?}
+    D3 -- Não --> ERR[Exibe erro de limite]
+    D3 -- Sim --> D4[pullPerfil + registrarDispositivo]
+    D4 --> D5[Session.currentUser]
+    D5 --> HOME
 
-```
-Browser           LoginScreen        GoogleAuthHelper      Supabase Auth       SplashRouter
-   |                   |                    |                    |                   |
-   | clica Google      |                    |                    |                   |
-   |------------------>|                    |                    |                   |
-   |                   | _loginGoogle()     |                    |                   |
-   |                   | setState(loading)  |                    |                   |
-   |                   |------------------->|                    |                   |
-   |                   |                    | signInWithOAuth()  |                   |
-   |                   |                    |------------------->|                   |
-   |                   |                    |    retorna null ✅ |                   |
-   |                   |                    |    (redirect em andamento)             |
-   |                   |<-------------------|                    |                   |
-   |                   | kIsWeb → return    |                    |                   |
-   |                   | (sem exibir erro)  |                    |                   |
-   |                   |                    |                    |                   |
-   | browser redireciona para accounts.google.com               |                   |
-   | usuário seleciona conta                |                    |                   |
-   | Supabase redireciona de volta para /app/                    |                   |
-   |                                        |                    |                   |
-   | Flutter inicializa app                 |                    |                   |
-   |---------------------------------------------------------> SplashRouter          |
-   |                                        |    _resolver()                         |
-   |                                        |    Supabase.currentUser != null        |
-   |                                        |    → resolverSessaoAtual()             |
-   |                                        |    → _irParaApp(user) → HomeScreen ✅  |
+    C -- Email --> E[_loginEmail]
+    E --> E1[loginEmailAuth Supabase]
+    E1 --> E2[verificarLimite DeviceService]
+    E2 --> E3{Dentro do limite?}
+    E3 -- Não --> ERR
+    E3 -- Sim --> E4[registrarDispositivo]
+    E4 --> E5[Session.currentUser]
+    E5 --> HOME
+
+    C -- Google --> F[GoogleAuthHelper.entrar]
+    F --> F1{kIsWeb?}
+    F1 -- Sim --> F2[return null — redirect em andamento]
+    F1 -- Não --> F3{getUserByName?}
+    F3 -- novo --> F4[registerUser + setUserEmail]
+    F4 --> F5[verificarLimite DeviceService]
+    F3 -- retornante --> F6[pullPerfil]
+    F6 --> F5
+    F5 --> F7{Dentro do limite?}
+    F7 -- Não --> ERR
+    F7 -- Sim --> F8[registrarDispositivo]
+    F8 --> F9[Session.currentUser]
+    F9 --> HOME
+
+    HOME([HomeScreen])
+    HOME --> H1[iniciarEscutaRevogacao]
+    HOME --> H2[_verificarBannerEmail]
+    H1 --> H3{device_sessions DELETE?}
+    H3 -- Sim --> LOGOUT[Logout forçado]
 ```
 
 ---
 
-## 6. Diagrama de Sequência — F5 (reload) com sessão ativa
+## 3. Fluxo de Controle de Dispositivos
 
-```
-Browser           main.dart         SplashRouter      Supabase.client     HomeScreen
-   |                  |                   |                  |                  |
-   | F5 (reload)      |                   |                  |                  |
-   |----------------->|                   |                  |                  |
-   |                  | runApp()          |                  |                  |
-   |                  | home: SplashRouter|                  |                  |
-   |                  |------------------>|                  |                  |
-   |                  |                   | initState()      |                  |
-   |                  |                   | _resolver()      |                  |
-   |                  |                   |----------------->|                  |
-   |                  |                   | currentUser != null ✅              |
-   |                  |                   |<-----------------|                  |
-   |                  |                   | resolverSessaoAtual()               |
-   |                  |                   | → UserModel resolvido               |
-   |                  |                   | _irParaApp(user)                    |
-   |                  |                   |---------------------------------------->|
-   |                  |                   |                  |     HomeScreen ✅ |
-   |                  |                   |                  |                  |
-   | (sem flash de LandingScreen — direto para HomeScreen)                     |
-```
+```mermaid
+flowchart TD
+    A[Login bem-sucedido] --> B[DeviceService.verificarLimite]
+    B --> C[Busca device_sessions do user_id]
+    C --> D{device_id já registrado?}
+    D -- Sim --> OK[DeviceCheckStatus.ok]
+    D -- Não --> E{lista.length >= limite?}
+    E -- Sim --> BLOCK[DeviceCheckStatus.limitReached]
+    BLOCK --> MSG[Exibe mensagem + link para DispositivosScreen]
+    E -- Não --> F{Mesma plataforma existe?}
+    F -- Sim --> G[Deleta dispositivo antigo da plataforma]
+    G --> REP[DeviceCheckStatus.replacedSamePlatform]
+    REP --> REG[registrarDispositivo]
+    F -- Não --> REG
+    OK --> REG
+    REG --> SESS[Sessão ativa registrada em device_sessions]
 
----
-
-## 7. Diagrama de Sequência — CI/CD Deploy
-
-```
-Dev (push main)    GitHub Actions       pub.dev cache       vectorium-landing
-       |                  |                   |                     |
-  git push main           |                   |                     |
-       |----------------->|                   |                     |
-       |            flutter pub get           |                     |
-       |                  |------------------>|                     |
-       |            find drift_worker.dart    |                     |
-       |                  |<------------------|                     |
-       |            dart compile js           |                     |
-       |            (dentro do projeto)       |                     |
-       |            flutter build web         |                     |
-       |            cp sqlite3.wasm → build/  |                     |
-       |            cp drift_worker.js → build/                     |
-       |            cp -r build/web → app/    |                     |
-       |                  |-------------------------------------------->|
-       |                  |          git commit + push [auto]           |
-       |                  |<--------------------------------------------|  
-       |            GitHub Pages atualiza                               |
-       |            vectorium.tec.br/app ✅                              |
+    note1[FREE: limite=1\nPRO: limite=2\nPRO+: limite=999]
+    SESS --> REAL[iniciarEscutaRevogacao]
+    REAL --> W{DELETE no device_sessions?}
+    W -- Sim --> FORCE[Logout forçado\n+ navega para LoginScreen]
+    W -- Não --> ATIVO[Sessão continua ativa]
 ```
 
 ---
 
-## 8. Diagrama de Casos de Uso
+## 4. Diagrama de Sequência — Login Local com Verificação de Dispositivo
 
-```
-                 ┌─────────────────────────────┐
-                 │         Metricora Web        │
-                 │                             │
-[Empreendedor]   │  ◆ Login com e-mail/senha   │
-      ○          │  ◆ Login com Google OAuth   │
-      │─────────>│  ◆ Cadastro de conta        │
-                 │  ◆ Lançar venda / despesa   │
-                 │  ◆ Ver dashboard / DRE      │
-                 │  ◆ Filtrar por período      │
-                 │  ◆ Sincronizar com nuvem    │
-                 │  ◆ Instalar como PWA        │
-                 │  ◆ F5 mantém sessão ativa ★ │
-                 │  ◆ Logout                  │
-                 └─────────────────────────────┘
+```mermaid
+sequenceDiagram
+    actor U as Usuário
+    participant LS as LoginScreen
+    participant DB as DatabaseHelper
+    participant DS as DeviceService
+    participant SS as SyncService
+    participant SB as Supabase
 
-[Visitante Landing]
-      ○
-      │─────────> ◆ Escolher modo de acesso (APK Android vs Web)
-                  ◆ Baixar APK Android
-                  ◆ Acessar Versão Web no navegador
-                  ◆ Ver screenshots do produto
-                  ◆ Consultar FAQ (diferença APK vs Web)
-
-[CI/CD Bot]      ◆ Build automático após push
-      ○          ◆ Deploy para vectorium-landing
-      │─────────> ◆ Compilar drift_worker.dart.js
-                  ◆ Copiar sqlite3.wasm
-```
-
----
-
-## 9. Diagrama de Componentes — Flutter Web Browser
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                      Browser (Tab)                              │
-│                                                                  │
-│  ┌────────────────────┐  ┌───────────────────────┐             │
-│  │  Main Thread       │  │  Web Worker            │             │
-│  │  (main.dart.js)    │  │  (drift_worker.dart.js)│             │
-│  │                    │  │                        │             │
-│  │  SplashRouter ★    │  │  WasmDatabase.open()   │             │
-│  │  Flutter UI        │  │  loads sqlite3.wasm    │             │
-│  │  GoogleAuthHelper ─────────────────────────── │             │
-│  │  DatabaseHelper  ──────>  executa SQL em WASM  │             │
-│  │  SupabaseService   │  │  persiste em IndexedDB │             │
-│  │  Session           │  │                        │             │
-│  └────────────────────┘  └───────────────────────┘             │
-│           │ HTTPS                      │                        │
-└─────────────────────────────────────────────────────────────────┘
-              │
-              ▼
-   hxwjseeuwetmfodpjbhc.supabase.co
-   ├── /auth/v1/token  (login)
-   ├── /rest/v1/       (dados)
-   └── /realtime/v1/   (websocket)
+    U->>LS: Insere usuário + senha
+    LS->>DB: authenticateUser(username, senha)
+    DB-->>LS: UserModel
+    LS->>DS: verificarLimite(userId, licenseType)
+    DS->>SB: SELECT device_sessions WHERE user_id
+    SB-->>DS: lista de sessões
+    alt lista.length >= limite
+        DS-->>LS: limitReached
+        LS-->>U: Erro: limite atingido
+    else dentro do limite
+        DS-->>LS: ok / replacedSamePlatform
+        LS->>SS: pullPerfil()
+        SS->>SB: SELECT profiles WHERE id
+        SB-->>SS: dados atualizados
+        SS->>DB: UPDATE users SET license/niche/email
+        LS->>DS: registrarDispositivo(userId)
+        DS->>SB: UPSERT device_sessions
+        LS->>LS: Session.currentUser = user
+        LS-->>U: Navega para HomeScreen
+    end
 ```
 
 ---
 
-## 10. Mapa de Seções — Landing Page (ordem final)
+## 5. Diagrama de Componentes — Infraestrutura
 
-```
-vectorium.tec.br
-│
-├── [navbar]      Links + Versão Web + Baixar Android
-├── [hero]        Headline, preço, CTA duplo, trust row
-├── [#acesso]     Cards: APK Android (offline) | Versão Web (navegador)  ← RF-28
-├── [#screenshots] Dashboard | DRE | Loja | Confeitaria               ← RF-29
-├── [#features]   6 cards de funcionalidades
-├── [#modos]      Salão | Confeitaria | Loja
-├── [#depoimentos] 3 depoimentos reais                                ← RF-30
-├── [#pricing]    R$0 · lista APK + Web separados
-├── [#faq]        6 perguntas (incl. APK vs Web)
-├── [cta-final]   CTA Android + CTA Web
-└── [footer]      Links + copyright
+```mermaid
+flowchart LR
+    subgraph GitHub
+        REPO_APP[metricora]
+        REPO_LAND[vectorium-landing]
+        ACTIONS[GitHub Actions]
+    end
+
+    subgraph CDN
+        PAGES[GitHub Pages]
+    end
+
+    subgraph Produção
+        DOMAIN[vectorium.tec.br]
+        APP[vectorium.tec.br/app]
+    end
+
+    subgraph Backend
+        SB_AUTH[Supabase Auth]
+        SB_DB[Supabase PostgreSQL]
+        SB_RT[Supabase Realtime]
+    end
+
+    REPO_APP -->|push main| ACTIONS
+    ACTIONS -->|flutter build web| REPO_LAND
+    REPO_LAND --> PAGES
+    PAGES --> DOMAIN
+    PAGES --> APP
+    APP --> SB_AUTH
+    APP --> SB_DB
+    APP --> SB_RT
+    SB_RT -->|DELETE device_sessions| APP
 ```
