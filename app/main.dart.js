@@ -138703,11 +138703,14 @@ break
 case 1:return A.l(q,r)}})
 return A.m($async$oL,r)},
 zI(a,b){return this.aY0(0,b)},
-aY0(a,b){var s=0,r=A.n(t.H),q=this
+aY0(a,b){var s=0,r=A.n(t.S),q,p=this
 var $async$zI=A.o(function(c,d){if(c===1)return A.k(d,r)
-for(;;)switch(s){case 0:s=2
-return A.c(q.iE("registros","id = ?",[b]),$async$zI)
-case 2:return A.l(null,r)}})
+for(;;)switch(s){case 0:s=3
+return A.c(p.iE("registros","id = ?",[b]),$async$zI)
+case 3:q=d
+s=1
+break
+case 1:return A.l(q,r)}})
 return A.m($async$zI,r)},
 dv(a,b){return this.b7B(0,b)},
 b7B(a,b){var s=0,r=A.n(t.S),q,p=this,o
