@@ -145378,7 +145378,7 @@ $1(a){var s=null,r=A.K('Tem certeza que deseja excluir a ficha t\xe9cnica "'+thi
 return A.fB(A.b([A.cV(B.e3,new A.bgT(a),s),A.cV(B.a2C,new A.bgU(a),A.jN(s,s,s,s,s,s,s,s,s,B.b2,s,s,s,s,s,s,s,s,s,s))],t.p),s,r,s,B.buM)},
 $S:21}
 A.bgT.prototype={
-$0(){return A.b8(this.a,!1).c7(!0)},
+$0(){return A.b8(this.a,!1).c7(!1)},
 $S:0}
 A.bgU.prototype={
 $0(){return A.b8(this.a,!1).c7(!0)},
