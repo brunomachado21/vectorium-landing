@@ -142600,13 +142600,23 @@ break}o.a8(t.J).f.eY(B.bmp)
 p.aak()
 case 1:return A.l(q,r)}})
 return A.m($async$IW,r)},
-I(a){var s,r=this,q=null,p=$.kN,o=A.ip(q,$.nR,q,q,1,$.fe,q,q,B.bug),n=$.iq,m=A.ai(q,q,$.js,q,q,q,q,q,q,q,q,q,q,q,q,q,q,!0,q,q,q,q,q,q,q,q),l=A.ai(q,q,$.cj,q,q,q,q,q,q,q,q,q,q,q,q,q,q,!0,q,q,q,q,q,q,q,q),k=$.cj,j=A.c7(B.ahR,q,q,k,q,q,q,q,q,q,q,q,q,q),i=$.kN,h=A.a6(30)
-k=r.x.length!==0?A.dH(q,q,q,A.c7(B.F2,q,q,k,q,q,q,q,q,q,q,q,q,q),q,q,new A.baf(r),q,q,q,q):q
-s=t.p
-n=A.at(q,A.an(A.b([A.cO(q,B.aB,!1,q,!0,B.Q,q,A.cS(),r.w,q,q,q,q,q,2,A.f5(q,new A.dp(4,h,B.R),q,q,q,q,q,q,!0,q,q,q,q,q,q,i,!0,q,q,q,q,q,q,q,q,q,q,q,q,q,l,"Buscar produto, nota, valor...",q,q,q,q,q,q,q,q,q,!0,!0,!1,q,j,q,q,q,q,q,q,k,q,q,q,q,q),B.Y,!0,q,!0,q,!1,q,B.ay,q,q,q,q,q,q,q,q,1,q,q,!1,"\u2022",q,new A.bag(r,a),q,q,q,!1,q,q,!1,q,!0,q,B.al,q,q,q,q,q,q,q,q,q,q,q,m,!0,B.ab,q,B.aN,q,q,q,q),B.at,A.am(A.b([r.U2("Hoje",B.m.n(r.r,"Di\xe1rio"),r.gaC9()),r.U2("M\xeas",r.r==="Mensal",r.gaCa()),r.U2("Tudo",r.r==="Geral",r.gaCb())],s),B.z,B.ru,B.x,0,q,q)],s),B.z,B.v,B.x,0,B.J),B.F,n,q,q,q,q,q,q,B.f7,q,q,q)
-m=r.d
-m===$&&A.a()
-return A.fu(o,p,A.an(A.b([n,A.aT(new A.E8(m,new A.bah(r),q,t.v7),1)],s),B.z,B.v,B.x,0,B.J),q,!1,q)},
+I(a){var s,r,q,p,o,n,m,l,k,j,i=this,h=null
+A.e8("*** BUILD HistoricoTab ***")
+s=$.kN
+r=A.ip(h,$.nR,h,h,1,$.fe,h,h,B.bug)
+q=$.iq
+p=A.ai(h,h,$.js,h,h,h,h,h,h,h,h,h,h,h,h,h,h,!0,h,h,h,h,h,h,h,h)
+o=A.ai(h,h,$.cj,h,h,h,h,h,h,h,h,h,h,h,h,h,h,!0,h,h,h,h,h,h,h,h)
+n=$.cj
+m=A.c7(B.ahR,h,h,n,h,h,h,h,h,h,h,h,h,h)
+l=$.kN
+k=A.a6(30)
+n=i.x.length!==0?A.dH(h,h,h,A.c7(B.F2,h,h,n,h,h,h,h,h,h,h,h,h,h),h,h,new A.baf(i),h,h,h,h):h
+j=t.p
+q=A.at(h,A.an(A.b([A.cO(h,B.aB,!1,h,!0,B.Q,h,A.cS(),i.w,h,h,h,h,h,2,A.f5(h,new A.dp(4,k,B.R),h,h,h,h,h,h,!0,h,h,h,h,h,h,l,!0,h,h,h,h,h,h,h,h,h,h,h,h,h,o,"Buscar produto, nota, valor...",h,h,h,h,h,h,h,h,h,!0,!0,!1,h,m,h,h,h,h,h,h,n,h,h,h,h,h),B.Y,!0,h,!0,h,!1,h,B.ay,h,h,h,h,h,h,h,h,1,h,h,!1,"\u2022",h,new A.bag(i,a),h,h,h,!1,h,h,!1,h,!0,h,B.al,h,h,h,h,h,h,h,h,h,h,h,p,!0,B.ab,h,B.aN,h,h,h,h),B.at,A.am(A.b([i.U2("Hoje",B.m.n(i.r,"Di\xe1rio"),i.gaC9()),i.U2("M\xeas",i.r==="Mensal",i.gaCa()),i.U2("Tudo",i.r==="Geral",i.gaCb())],j),B.z,B.ru,B.x,0,h,h)],j),B.z,B.v,B.x,0,B.J),B.F,q,h,h,h,h,h,h,B.f7,h,h,h)
+p=i.d
+p===$&&A.a()
+return A.fu(r,s,A.an(A.b([q,A.aT(new A.E8(p,new A.bah(i),h,t.v7),1)],j),B.z,B.v,B.x,0,B.J),h,!1,h)},
 U2(a,b,c){var s=null,r=b?$.iQ:$.kN,q=b?$.fe:$.js,p=b?2:0,o=$.cj.ap(0.3)
 o=A.du(s,s,r,s,s,s,p,s,s,q,s,s,s,s,new A.cb(A.a6(20),B.R),new A.b_(o,1,B.a1,-1),s,s,s,s)
 return A.f_(A.K(a,s,s,s,s,s,s,s,s),c,o)}}
@@ -142678,8 +142688,7 @@ m=J.cA(i)
 m.ez(i,0,new A.ba8())
 n.push(new A.a6S(j.a,m.ez(i,0,new A.ba9()),m.gv(i),h))
 for(m=m.gau(i);m.t();){l=m.gN(m)
-n.push(new A.afn(l,new A.baa(r,a,l),new A.bab(r,l),h))}n.push(new A.v2(1,0.5,16,16,h,$.cj.ap(0.2),h))}A.e8("*** BUILD HistoricoTab ***")
-return A.zr(n,B.afj,h,B.ax,!1)},
+n.push(new A.afn(l,new A.baa(r,a,l),new A.bab(r,l),h))}n.push(new A.v2(1,0.5,16,16,h,$.cj.ap(0.2),h))}return A.zr(n,B.afj,h,B.ax,!1)},
 $S:813}
 A.ba5.prototype={
 $1(a){var s=this.a.x
