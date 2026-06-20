@@ -36602,7 +36602,7 @@ axd:function axd(){},
 aiC:function aiC(){},
 azY(a){var s,r
 if(a==null||a.length===0)return""
-try{s=B.m.V(A.ro(a).a0f().cZ(),0,10)
+try{s=B.m.V(A.ro(a).a0h().cZ(),0,10)
 return s}catch(r){s=a.length>=10?B.m.V(a,0,10):a
 return s}},
 azX:function azX(){this.a=null},
@@ -36760,7 +36760,7 @@ case 6:o=c
 n=A.bPK()
 m=t.N
 s=7
-return A.c($.CC().bD("device_sessions").nO(A.N(["user_id",a,"device_id",o,"device_name",n,"platform",A.bAl(),"last_seen_at",new A.aG(Date.now(),0,!1).alk().cZ()],m,m),"user_id,device_id"),$async$rr)
+return A.c($.CC().bD("device_sessions").nO(A.N(["user_id",a,"device_id",o,"device_name",n,"platform",A.bAl(),"last_seen_at",new A.aG(Date.now(),0,!1).a0h().cZ()],m,m),"user_id,device_id"),$async$rr)
 case 7:q=1
 s=5
 break
@@ -44066,7 +44066,7 @@ bRe(a){return A.a5D(a,new A.aEK(a))},
 a5E(a){if(B.m.n(a,$.bJd()))return A.dl(a,0,null)
 else if(B.m.n(a,$.bJe()))return A.bFS(a,!0)
 else if(B.m.cb(a,"/"))return A.bFS(a,!1)
-if(B.m.n(a,"\\"))return $.bN3().alj(a)
+if(B.m.n(a,"\\"))return $.bN3().alk(a)
 return A.dl(a,0,null)},
 a5D(a,b){var s,r,q=null
 try{s=b.$0()
@@ -44086,14 +44086,14 @@ aEK:function aEK(a){this.a=a},
 a79:function a79(a){this.a=a
 this.b=$},
 bEo(a){if(t.f3.b(a))return a
-if(a instanceof A.ph)return a.ali()
+if(a instanceof A.ph)return a.alj()
 return new A.a79(new A.aZn(a))},
 bEp(a){var s,r,q
 try{if(a.length===0){r=A.bEl(A.b([],t.EN),null)
 return r}if(B.m.n(a,$.bMB())){r=A.bX3(a)
 return r}if(B.m.n(a,"\tat ")){r=A.bX2(a)
 return r}if(B.m.n(a,$.bLu())||B.m.n(a,$.bLs())){r=A.bX1(a)
-return r}if(B.m.n(a,u.C)){r=A.bOr(a).ali()
+return r}if(B.m.n(a,u.C)){r=A.bOr(a).alj()
 return r}if(B.m.n(a,$.bLy())){r=A.bEm(a)
 return r}r=A.bEn(a)
 return r}catch(q){r=A.a9(q)
@@ -47826,11 +47826,11 @@ s.delete()},
 Fh(a,b,c){var s=c.fj()
 this.a.drawDRRect(A.qZ(a),A.qZ(b),s)
 s.delete()},
-agP(a,b,c,d){var s=d.Q,r=d.a0h(B.cg),q=this.a,p=c.a,o=c.b
+agP(a,b,c,d){var s=d.Q,r=d.a0g(B.cg),q=this.a,p=c.a,o=c.b
 if(s===B.lN)A.f4(q,"drawImageCubic",[b.gapd(),p,o,0.3333333333333333,0.3333333333333333,r])
 else A.f4(q,"drawImageOptions",[b.gapd(),p,o,A.bxF(s),A.bxI(s),r])
 r.delete()},
-u_(a,b,c,d){var s=d.Q,r=d.a0h(B.cg),q=this.a,p=a.b
+u_(a,b,c,d){var s=d.Q,r=d.a0g(B.cg),q=this.a,p=a.b
 if(s===B.lN){p===$&&A.a()
 p=p.a
 p===$&&A.a()
@@ -47901,7 +47901,7 @@ s.delete()},
 fH(a,b){var s=b.fj()
 this.a.drawRRect(A.qZ(a),s)
 s.delete()},
-Ym(a,b){var s,r,q,p,o,n=b.fj(),m=a.alf(),l=m.a,k=null,j=m.b
+Ym(a,b){var s,r,q,p,o,n=b.fj(),m=a.alg(),l=m.a,k=null,j=m.b
 k=j
 s=l
 r=k.a
@@ -48368,7 +48368,7 @@ A.ayF.prototype={
 $1(a){if(!a.isDeleted())a.delete()},
 $S(){return this.a.i("~(0)")}}
 A.uV.prototype={
-a0h(a){var s,r,q,p,o,n,m=this,l=new v.G.window.flutterCanvasKit.Paint()
+a0g(a){var s,r,q,p,o,n,m=this,l=new v.G.window.flutterCanvasKit.Paint()
 l.setAntiAlias(m.f)
 s=m.a
 l.setBlendMode($.byB()[s.a])
@@ -48396,7 +48396,7 @@ s.toString
 l.setMaskFilter(s)}}n=m.ay
 if(n!=null)n.q9(new A.ayI(l),a)
 return l},
-fj(){return this.a0h(B.tE)},
+fj(){return this.a0g(B.tE)},
 sZr(a){var s,r=this
 if(a===r.w)return
 if(!a){r.at=r.x
@@ -50945,7 +50945,7 @@ s.toString
 s.addRRect(A.qZ(this.a),!1)},
 $ifl:1}
 A.CL.prototype={
-eU(a){var s,r=this.a.alf(),q=r.a,p=null,o=r.b
+eU(a){var s,r=this.a.alg(),q=r.a,p=null,o=r.b
 p=o
 s=q
 a.aU2(0,t.gN.a(s).giZ(),p)},
@@ -62918,10 +62918,10 @@ return s},
 cc(a,b){var s=B.p.cc(this.a,b.gjw())
 if(s!==0)return s
 return B.p.cc(this.b,b.gpO())},
-a0f(){var s=this
+ale(){var s=this
 if(s.c)return new A.aG(s.a,s.b,!1)
 return s},
-alk(){var s=this
+a0h(){var s=this
 if(s.c)return s
 return new A.aG(s.a,s.b,!0)},
 j(a){var s=this,r=A.bAi(A.cr(s)),q=A.rn(A.cy(s)),p=A.rn(A.ii(s)),o=A.rn(A.PM(s)),n=A.rn(A.PN(s)),m=A.rn(A.aPr(s)),l=A.aAg(A.bv4(s)),k=s.b,j=k===0?"":A.aAg(k)
@@ -65253,7 +65253,7 @@ return!0},
 j(a){return this.acZ("RRect")}}
 A.Aq.prototype={
 yq(a,b,c,d,e,f,g,h,i,j,k,l,m){return A.bUb(a,b,c,d,e,f,g,h,i,j,k,l,m)},
-alf(){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c=this
+alg(){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c=this
 if(c.as){s=c.a
 r=c.c-s
 q=c.b
@@ -92875,7 +92875,7 @@ A.SO.prototype={
 Z(){return new A.SP(new A.c_(null,t.cF),null,null)}}
 A.SP.prototype={
 gacK(){var s=this.a.c
-return s==null?null.alg():s},
+return s==null?null.alh():s},
 cm(){var s,r=this
 r.dP()
 r.c.a8(t.tH)
@@ -94661,7 +94661,7 @@ uz(a){var s,r=new A.dk("")
 this.EL(r,!0,a)
 s=r.a
 return s.charCodeAt(0)==0?s:s},
-alg(){return this.uz(!0)},
+alh(){return this.uz(!0)},
 qX(a,b){var s={}
 if(b<0)return null
 s.a=null
@@ -111388,7 +111388,7 @@ if(p.a&&r.gMl())s.push(new A.fK(new A.aCg(r),B.oj,q))
 if(p.c&&r.gAM())s.push(new A.fK(new A.aCh(r),B.ok,q))
 if(p.d&&r.ga1F())s.push(new A.fK(new A.aCi(r),B.ol,q))
 return s},
-a13(){var s,r,q,p,o,n,m=this.a.c.a.b,l=this.gb6(),k=l.af,j=k.e.alg(),i=this.a.c.a.a
+a13(){var s,r,q,p,o,n,m=this.a.c.a.b,l=this.gb6(),k=l.af,j=k.e.alh(),i=this.a.c.a.a
 if(j!==i||!m.gdI()||m.a===m.b){l=k.ey()
 l=l.gc1(l)
 k=k.ey()
@@ -136328,7 +136328,7 @@ ga6n(){var s,r,q,p,o,n=this
 if(n.ga87())s=n.a
 else{A.bHk()
 r=A.bxC()
-if(n.y)r=r.alk()
+if(n.y)r=r.a0h()
 q=n.a9f(r,-80)
 p=n.a9f(r,20)
 o=B.p.cD(q.gdJ(),100)
@@ -142959,7 +142959,7 @@ case 6:case 3:return A.l(null,r)}})
 return A.m($async$yX,r)},
 aCI(a){var s,r,q,p,o,n
 if(a==null||a.length===0)return"\u2014"
-try{s=A.ro(a).a0f()
+try{s=A.ro(a).ale()
 r=B.m.du(B.p.j(A.ii(s)),2,"0")
 q=B.m.du(B.p.j(A.cy(s)),2,"0")
 p=B.m.du(B.p.j(A.PM(s)),2,"0")
@@ -143390,7 +143390,7 @@ azB(a){if(a>=30)return B.bq
 if(a>=15)return B.dw
 return B.b0},
 aIY(a){var s,r,q
-try{s=A.ro(a).a0f()
+try{s=A.ro(a).ale()
 r=A.iA("dd/MM/yyyy '\xe0s' HH:mm","pt_BR").bq(s)
 return r}catch(q){return a}},
 ax2(a){var s,r,q,p,o,n,m,l,k,j,i,h=this,g=null,f="nome_produto",e=J.a3(a),d=A.d6(e.h(a,"margem")),c=A.b4(e.h(a,"tipo")),b=A.bw(e.h(a,f))
@@ -147973,7 +147973,7 @@ q=n+1}if(p<0)return B.AW
 if(p===0)return B.AV
 if(o)return B.bEu
 return B.AU},
-alj(a){var s,r=this.a
+alk(a){var s,r=this.a
 if(r.iN(a)<=0)return r.akD(a)
 else{s=this.b
 return r.WA(this.b2d(0,s==null?A.br0():s,a))}},
@@ -154327,7 +154327,7 @@ this.b.m(0,s,b)
 return s}}
 A.abo.prototype={}
 A.ph.prototype={
-ali(){var s=this.a
+alj(){var s=this.a
 return A.bEl(new A.h0(s,new A.ayt(),A.a4(s).i("h0<1,eE>")),null)},
 j(a){var s=this.a,r=A.a4(s)
 return new A.Y(s,new A.ayr(new A.Y(s,new A.ays(),r.i("Y<1,q>")).eB(0,0,B.nC)),r.i("Y<1,f>")).ci(0,u.C)},
@@ -154493,7 +154493,7 @@ if(s==="data:...")r=A.bEv("")
 else{s=s
 s.toString
 r=A.dl(s,0,o)}if(r.geQ()===""){s=$.CF()
-r=s.alj(s.aem(0,s.a.OO(A.bwS(r)),o,o,o,o,o,o,o,o,o,o,o,o,o,o))}s=n[2]
+r=s.alk(s.aem(0,s.a.OO(A.bwS(r)),o,o,o,o,o,o,o,o,o,o,o,o,o,o))}s=n[2]
 if(s==null)q=o
 else{s=s
 s.toString
@@ -155352,19 +155352,19 @@ s=A.bAZ(n,B.a80,r,A.Db(r,null),p.b,p.c,p.d,p.e)
 n=p.f
 q=B.jp.XW(0,n,s)
 o.a=q
-if(q.a)return new A.d5(s.a0g(),t.AH)
+if(q.a)return new A.d5(s.a0f(),t.AH)
 return A.iB(s.at,t.H).cj(0,new A.br6(o,n,s),t.YA)},
 $S:949}
 A.br6.prototype={
 $1(a){var s=this.c,r=this.a
 r.a=B.jp.agn(0,this.b,s,r.a)
-return s.a0g()},
+return s.a0f()},
 $S:950}
 A.bfM.prototype={}
 A.ao7.prototype={}
 A.b6V.prototype={}
 A.aDV.prototype={
-a0g(){var s,r,q,p,o,n,m=this
+a0f(){var s,r,q,p,o,n,m=this
 m.Tf()
 try{q=m.f.py()
 p=m.CW
@@ -155920,7 +155920,7 @@ b8=A.bAZ(0,g,b6,b7,f,e,i,d9)
 b7=c.b
 b6=c.c
 b8.CW=new A.D(b7,b6)
-b9=b8.a0g()
+b9=b8.a0f()
 e3.go=null
 c0=b9.a.Bc(B.o.aA(b7),B.o.aA(b6))
 c=c.d
@@ -156381,12 +156381,12 @@ o.push(new A.iF(r,j,B.dY))
 o.push(new A.ia(r,h,l,p,q,p,B.dL))
 o.push(B.nM)
 return this},
-ale(a){var s,r=this.a,q=this.b
+alf(a){var s,r=this.a,q=this.b
 q===$&&A.a()
 s=A.aap(r,q)
 if(a)B.h.a3(r)
 return s},
-xo(){return this.ale(!0)}}
+xo(){return this.alf(!0)}}
 A.jc.prototype={
 b8b(a){if(a===this.b)return this
 return A.aap(this.a,a)},
@@ -156763,7 +156763,7 @@ hF(a,b){var s=this
 return new A.Oi(s.b,s.c.hF(a,b),s.d,s.e,s.a)},
 mk(a){return this.hF(a,!1)}}
 A.Fi.prototype={
-Xv(a,b){var s,r=this.b,q=r.e,p=q==null?null:q.alh(a,b)
+Xv(a,b){var s,r=this.b,q=r.e,p=q==null?null:q.ali(a,b)
 q=r.f
 s=q==null?null:q.a0d(a,b,B.hg)
 if(s==null&&p==null)return null
@@ -156787,7 +156787,7 @@ return this.ek(0,b,c,s,s)}}
 A.aeT.prototype={
 Xv(a,b){var s,r=this.b,q=r.f,p=q==null?null:q.a0d(a,b,B.hg)
 q=r.e
-s=q==null?null:q.alh(a,b)
+s=q==null?null:q.ali(a,b)
 if(p==null&&s==null)return null
 r=r.z
 return new A.q0(r==null?B.nz:r,s,p)},
@@ -157155,7 +157155,7 @@ r=p.a.a
 r.toString
 s.push(r)}else{s=p.a.a
 s.toString
-B.h.E(s.a,q.ale(!1).a)}}else if(a instanceof A.DI){p.b.d=p.b.d+1
+B.h.E(s.a,q.alf(!1).a)}}else if(a instanceof A.DI){p.b.d=p.b.d+1
 if(p.b.d>1000)throw A.e(A.a7(u.z))
 s=p.d
 r=a.d
@@ -157265,7 +157265,7 @@ gA(a){return A.X(this.a,this.b,B.b,B.b,B.b,B.b,B.b,B.b,B.b,B.b,B.b,B.b,B.b,B.b,B
 k(a,b){if(b==null)return!1
 return b instanceof A.Md&&b.b===this.b&&b.a===this.a}}
 A.RZ.prototype={
-alh(a,b){var s,r,q=this,p=null,o=q.b
+ali(a,b){var s,r,q=this,p=null,o=q.b
 if(!o.a)s=o.b==null&&q.y==null&&q.c==null||q.r===0
 else s=!0
 if(s)return p
