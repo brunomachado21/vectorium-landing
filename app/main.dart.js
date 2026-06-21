@@ -140491,9 +140491,8 @@ q=s.at
 if(q!=null)r.m(0,"updated_at",q)
 return r}}
 A.fb.prototype={
-oM(){var s=this,r=A.N(["id",s.a,"userId",s.b,"data",s.c,"produto",s.d,"notas",s.e,"receita",s.f,"cpv",s.r,"frete",s.w,"marketing",s.x,"despesas",s.y,"lucro",s.z,"margem",s.Q,"roi",s.as,"pro_labore",s.at,"fornecedor",s.ax,"forma_pagamento",s.ay,"tipo",s.ch,"categoria",s.CW,"descricao",s.cx,"valor",s.cy,"created_at",s.db,"is_synced",s.dx,"is_deleted",s.dy],t.N,t.z),q=s.fr
-if(q!=null)r.m(0,"updated_at",q)
-return r}}
+oM(){var s=this
+return A.N(["id",s.a,"userId",s.b,"data",s.c,"produto",s.d,"notas",s.e,"receita",s.f,"cpv",s.r,"frete",s.w,"marketing",s.x,"despesas",s.y,"lucro",s.z,"margem",s.Q,"roi",s.as,"pro_labore",s.at,"fornecedor",s.ax,"forma_pagamento",s.ay,"is_synced",s.dx,"is_deleted",s.dy,"updated_at",s.fr],t.N,t.z)}}
 A.mo.prototype={}
 A.bsk.prototype={
 $1(a){var s=null,r=this.a,q=this.b,p=t.p,o=A.ak(A.b([B.bvv,B.cR,A.cK(s,B.aA,!1,s,!0,B.P,s,A.cP(),r,s,s,s,s,s,2,B.akS,B.W,!0,s,!0,s,!1,s,B.ax,s,s,s,s,s,s,s,s,1,s,s,!1,"\u2022",s,s,s,s,s,!1,s,s,!1,s,!0,s,B.al,s,s,s,s,s,s,s,s,s,s,s,s,!0,B.aa,s,B.aN,s,s,s,s),B.at,A.cK(s,B.aA,!1,s,!0,B.P,s,A.cP(),q,s,s,s,s,s,2,B.akM,B.W,!0,s,!0,s,!1,s,B.ax,s,s,s,s,s,s,s,s,1,s,s,!1,"\u2022",s,s,s,s,s,!1,s,s,!1,s,!0,s,B.al,s,s,s,s,s,s,s,s,s,s,s,s,!0,B.aa,s,B.ts,s,s,s,s)],p),B.z,B.v,B.ap,0,B.I)
