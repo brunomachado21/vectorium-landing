@@ -138982,7 +138982,7 @@ return A.c(q.dq("      CREATE TABLE IF NOT EXISTS insumos (\n        id INTEGER 
 case 4:s=5
 return A.c(q.dq("      CREATE TABLE IF NOT EXISTS receitas (\n        id INTEGER PRIMARY KEY AUTOINCREMENT,\n        userId INTEGER NOT NULL DEFAULT 0,\n        nome TEXT NOT NULL,\n        custo_total REAL NOT NULL,\n        rendimento INTEGER DEFAULT 1,\n        is_synced INTEGER NOT NULL DEFAULT 0,\n        is_deleted INTEGER NOT NULL DEFAULT 0,\n        updated_at TEXT NOT NULL DEFAULT (datetime('now')),\n        supabase_id TEXT DEFAULT ''\n      )\n    "),$async$kk)
 case 5:s=6
-return A.c(q.dq("      CREATE TABLE IF NOT EXISTS receita_ingredientes (\n        id INTEGER PRIMARY KEY AUTOINCREMENT,\n        receita_id INTEGER NOT NULL,\n        insumo_id INTEGER NOT NULL,\n        quantidade_utilizada REAL NOT NULL,\n        is_synced INTEGER NOT NULL DEFAULT 0,\n        is_deleted INTEGER NOT NULL DEFAULT 0,\n        updated_at TEXT NOT NULL DEFAULT (datetime('now')),\n        supabase_id TEXT DEFAULT '',\n        FOREIGN KEY (receita_id) REFERENCES receitas (id) ON DELETE CASCADE,\n        FOREIGN KEY (insumo_id) REFERENCES insumos (id) ON DELETE CASCADE\n      )\n    "),$async$kk)
+return A.c(q.dq("  CREATE TABLE IF NOT EXISTS receita_ingredientes (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    receita_id INTEGER NOT NULL,\n    insumo_id INTEGER NOT NULL,\n    quantidade_utilizada REAL NOT NULL,\n    is_synced INTEGER NOT NULL DEFAULT 0,\n    is_deleted INTEGER NOT NULL DEFAULT 0,\n    updated_at TEXT NOT NULL DEFAULT (datetime('now')),\n    supabase_id TEXT DEFAULT '',\n    FOREIGN KEY (receita_id) REFERENCES receitas (id) ON DELETE CASCADE,\n    FOREIGN KEY (insumo_id) REFERENCES insumos (id) ON DELETE CASCADE\n  )\n"),$async$kk)
 case 6:s=7
 return A.c(q.dq("      CREATE TABLE IF NOT EXISTS estoque_movimentos (\n        id INTEGER PRIMARY KEY AUTOINCREMENT,\n        userId INTEGER NOT NULL,\n        insumo_id INTEGER NOT NULL,\n        tipo TEXT NOT NULL,\n        quantidade REAL NOT NULL,\n        unidade_medida TEXT NOT NULL,\n        origem TEXT NULL,\n        referencia_id INTEGER NULL,\n        created_at TEXT NOT NULL,\n        is_synced INTEGER NOT NULL DEFAULT 0,\n        is_deleted INTEGER NOT NULL DEFAULT 0,\n        updated_at TEXT NOT NULL DEFAULT (datetime('now')),\n        supabase_id TEXT DEFAULT '',\n        FOREIGN KEY (insumo_id) REFERENCES insumos (id) ON DELETE CASCADE\n      )\n    "),$async$kk)
 case 7:s=8
@@ -139051,7 +139051,7 @@ return A.c(o.dq("        CREATE TABLE IF NOT EXISTS insumos (\n          id INTE
 case 23:s=24
 return A.c(o.dq("        CREATE TABLE IF NOT EXISTS receitas (\n          id INTEGER PRIMARY KEY AUTOINCREMENT,\n          nome TEXT NOT NULL, custo_total REAL NOT NULL, rendimento INTEGER DEFAULT 1\n        )\n      "),$async$e5)
 case 24:s=25
-return A.c(o.dq("        CREATE TABLE IF NOT EXISTS receita_ingredientes (\n          id INTEGER PRIMARY KEY AUTOINCREMENT,\n          receita_id INTEGER NOT NULL, insumo_id INTEGER NOT NULL,\n          quantidade_utilizada REAL NOT NULL,\n          FOREIGN KEY (receita_id) REFERENCES receitas (id) ON DELETE CASCADE,\n          FOREIGN KEY (insumo_id) REFERENCES insumos (id) ON DELETE CASCADE\n        )\n      "),$async$e5)
+return A.c(o.dq("        CREATE TABLE IF NOT EXISTS receita_ingredientes (\n          id INTEGER PRIMARY KEY AUTOINCREMENT,\n          receita_id INTEGER NOT NULL,\n          insumo_id INTEGER NOT NULL,\n          quantidade_utilizada REAL NOT NULL,\n          FOREIGN KEY (receita_id) REFERENCES receitas (id) ON DELETE CASCADE,\n          FOREIGN KEY (insumo_id) REFERENCES insumos (id) ON DELETE CASCADE\n        )\n      "),$async$e5)
 case 25:q=27
 s=30
 return A.c(o.dq("ALTER TABLE receitas ADD COLUMN rendimento INTEGER DEFAULT 1"),$async$e5)
@@ -139402,19 +139402,21 @@ break
 case 191:case 186:++g
 s=185
 break
-case 187:q=194
-s=197
+case 187:case 184:s=c1<21?193:194
+break
+case 193:q=196
+s=199
 return A.c(o.dq("ALTER TABLE registros ADD COLUMN supabase_id TEXT DEFAULT ''"),$async$e5)
-case 197:q=1
-s=196
+case 199:q=1
+s=198
 break
-case 194:q=193
+case 196:q=195
 c0=p.pop()
-s=196
+s=198
 break
-case 193:s=1
+case 195:s=1
 break
-case 196:case 184:return A.l(null,r)
+case 198:case 194:return A.l(null,r)
 case 1:return A.k(p.at(-1),r)}})
 return A.m($async$e5,r)},
 ut(a){return this.b6b(a)},
