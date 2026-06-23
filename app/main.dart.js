@@ -138960,15 +138960,15 @@ break
 case 4:s=7
 return A.c(q.kk(),$async$qt)
 case 7:s=8
-return A.c(q.wx("INSERT INTO _db_version (version) VALUES (21)",[]),$async$qt)
+return A.c(q.wx("INSERT INTO _db_version (version) VALUES (22)",[]),$async$qt)
 case 8:s=5
 break
-case 6:s=n<21?9:10
+case 6:s=n<22?9:10
 break
 case 9:s=11
 return A.c(q.dZ(n),$async$qt)
 case 11:s=12
-return A.c(q.wx("UPDATE _db_version SET version = 21",[]),$async$qt)
+return A.c(q.wx("UPDATE _db_version SET version = 22",[]),$async$qt)
 case 12:case 10:case 5:return A.l(null,r)}})
 return A.m($async$qt,r)},
 kk(){var s=0,r=A.n(t.H),q=this
@@ -138982,7 +138982,7 @@ return A.c(q.dj("      CREATE TABLE IF NOT EXISTS insumos (\n        id INTEGER 
 case 4:s=5
 return A.c(q.dj("      CREATE TABLE IF NOT EXISTS receitas (\n        id INTEGER PRIMARY KEY AUTOINCREMENT,\n        userId INTEGER NOT NULL DEFAULT 0,\n        nome TEXT NOT NULL,\n        custo_total REAL NOT NULL,\n        rendimento INTEGER DEFAULT 1,\n        is_synced INTEGER NOT NULL DEFAULT 0,\n        is_deleted INTEGER NOT NULL DEFAULT 0,\n        updated_at TEXT NOT NULL DEFAULT (datetime('now')),\n        supabase_id TEXT DEFAULT ''\n      )\n    "),$async$kk)
 case 5:s=6
-return A.c(q.dj("  CREATE TABLE IF NOT EXISTS receita_ingredientes (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    receita_id INTEGER NOT NULL,\n    insumo_id INTEGER NOT NULL,\n    quantidade_utilizada REAL NOT NULL,\n    is_synced INTEGER NOT NULL DEFAULT 0,\n    is_deleted INTEGER NOT NULL DEFAULT 0,\n    updated_at TEXT NOT NULL DEFAULT (datetime('now')),\n    supabase_id TEXT DEFAULT '',\n    FOREIGN KEY (receita_id) REFERENCES receitas (id) ON DELETE CASCADE,\n    FOREIGN KEY (insumo_id) REFERENCES insumos (id) ON DELETE CASCADE\n  )\n"),$async$kk)
+return A.c(q.dj("  CREATE TABLE IF NOT EXISTS receita_ingredientes (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    receita_id INTEGER NOT NULL,\n    insumo_id INTEGER NOT NULL,\n    quantidade_utilizada REAL NOT NULL,\n    is_synced INTEGER NOT NULL DEFAULT 0,\n    is_deleted INTEGER NOT NULL DEFAULT 0,\n    userId INTEGER NOT NULL DEFAULT 0,\n    updated_at TEXT NOT NULL DEFAULT (datetime('now')),\n    supabase_id TEXT DEFAULT '',\n    FOREIGN KEY (receita_id) REFERENCES receitas (id) ON DELETE CASCADE,\n    FOREIGN KEY (insumo_id) REFERENCES insumos (id) ON DELETE CASCADE\n  )\n"),$async$kk)
 case 6:s=7
 return A.c(q.dj("      CREATE TABLE IF NOT EXISTS estoque_movimentos (\n        id INTEGER PRIMARY KEY AUTOINCREMENT,\n        userId INTEGER NOT NULL,\n        insumo_id INTEGER NOT NULL,\n        tipo TEXT NOT NULL,\n        quantidade REAL NOT NULL,\n        unidade_medida TEXT NOT NULL,\n        origem TEXT NULL,\n        referencia_id INTEGER NULL,\n        created_at TEXT NOT NULL,\n        is_synced INTEGER NOT NULL DEFAULT 0,\n        is_deleted INTEGER NOT NULL DEFAULT 0,\n        updated_at TEXT NOT NULL DEFAULT (datetime('now')),\n        supabase_id TEXT DEFAULT '',\n        FOREIGN KEY (insumo_id) REFERENCES insumos (id) ON DELETE CASCADE\n      )\n    "),$async$kk)
 case 7:s=8
