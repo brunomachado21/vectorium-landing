@@ -38546,7 +38546,7 @@ p=m==null?null:m.a
 if(p==null){s=1
 break}o=$.aH()
 s=3
-return A.c(A.iE(A.b([o.fS("registros",u.U,[l]),o.fS("fornecedores",u.U,[l]),o.fS("metas",u.U,[l]),o.fS("configjoias",u.U,[l]),o.fS("checklistanual",u.U,[l]),o.fS("precificacoesjoias",u.U,[l]),o.fS("receitaingredientes",u.U,[l]),o.fS("estoquemovimentos",u.U,[l]),o.fS("producaoreceita",u.U,[l]),o.fS("receitas",u.U,[l]),o.fS("insumos",u.U,[l])],t.J4),t.S),$async$qp)
+return A.c(A.iE(A.b([o.fS("registros",u.U,[l]),o.fS("fornecedores",u.U,[l]),o.fS("metas",u.U,[l]),o.fS("config_joias",u.U,[l]),o.fS("checklist_anual",u.U,[l]),o.fS("precificacoes_joias",u.U,[l]),o.fS("receita_ingredientes",u.U,[l]),o.fS("estoque_movimentos",u.U,[l]),o.fS("producao_receita",u.U,[l]),o.fS("receitas",u.U,[l]),o.fS("insumos",u.U,[l])],t.J4),t.S),$async$qp)
 case 3:m=t.mo
 n=t.H
 s=4
