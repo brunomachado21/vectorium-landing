@@ -38746,7 +38746,7 @@ a1=J.p(m,"supabase_id")
 a1=a1==null?null:J.bb(a1)
 if(a1==null)a1=""
 s=15
-return A.c(n.is("receita_ingredientes",A.N(["receita_id",h,"insumo_id",g,"quantidade_utilizada",c,"is_synced",1,"is_deleted",0,"updated_at",a0,"supabase_id",a1],e,d)),$async$GN)
+return A.c(n.is("receita_ingredientes",A.N(["userId",a5,"receita_id",h,"insumo_id",g,"quantidade_utilizada",c,"is_synced",1,"is_deleted",0,"updated_at",a0,"supabase_id",a1],e,d)),$async$GN)
 case 15:q=3
 s=12
 break
