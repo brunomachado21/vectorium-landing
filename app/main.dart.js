@@ -39572,7 +39572,7 @@ break
 case 15:s=J.aG(l)===0?19:21
 break
 case 19:s=22
-return A.c(g.bD("insumos").j3(0,A.N(["user_id",m,"nome",J.p(n,"nome"),"preco_compra",J.p(n,"preco_compra"),"quantidade_compra",J.p(n,"quantidade_compra"),"unidade_medida",J.p(n,"unidade_medida"),"quantidade_estoque",J.p(n,"quantidade_estoque"),"estoque_minimo",J.p(n,"estoque_minimo"),"categoria",J.p(n,"categoria"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],h,i)).ll(0,"supabase_id").v4(0),$async$wM)
+return A.c(g.bD("insumos").j3(0,A.N(["id_local",J.p(n,"id"),"insumo_id_local",J.p(n,"id"),"user_id",m,"nome",J.p(n,"nome"),"preco_compra",J.p(n,"preco_compra"),"quantidade_compra",J.p(n,"quantidade_compra"),"unidade_medida",J.p(n,"unidade_medida"),"quantidade_estoque",J.p(n,"quantidade_estoque"),"estoque_minimo",J.p(n,"estoque_minimo"),"categoria",J.p(n,"categoria"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],h,i)).ll(0,"supabase_id").v4(0),$async$wM)
 case 22:k=a1
 s=23
 return A.c($.aH().tE("insumos",A.b5(J.p(n,"id")),J.bb(J.p(k,"supabase_id"))),$async$wM)
@@ -39634,7 +39634,7 @@ break
 case 15:s=J.aG(l)===0?19:21
 break
 case 19:s=22
-return A.c(g.bD("receitas").j3(0,A.N(["user_id",m,"nome",J.p(n,"nome"),"custo_total",J.p(n,"custo_total"),"rendimento",J.p(n,"rendimento"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],h,i)).ll(0,"supabase_id").v4(0),$async$wO)
+return A.c(g.bD("receitas").j3(0,A.N(["id_local",J.p(n,"id"),"user_id",m,"nome",J.p(n,"nome"),"custo_total",J.p(n,"custo_total"),"rendimento",J.p(n,"rendimento"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],h,i)).ll(0,"supabase_id").v4(0),$async$wO)
 case 22:k=a1
 s=23
 return A.c($.aH().tE("receitas",A.b5(J.p(n,"id")),J.bb(J.p(k,"supabase_id"))),$async$wO)
@@ -39711,7 +39711,7 @@ a2=a0==null?null:J.bb(a0)
 h=a2==null?"":a2
 if(J.aG(i)===0||J.aG(h)===0){s=7
 break}s=23
-return A.c(c.bD("receita_ingredientes").j3(0,A.N(["user_id",m,"receita_supabase_id",i,"insumo_supabase_id",h,"quantidade_utilizada",J.p(n,"quantidade_utilizada"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],e,d)).ll(0,"supabase_id").v4(0),$async$tM)
+return A.c(c.bD("receita_ingredientes").j3(0,A.N(["id_local",J.p(n,"id"),"user_id",m,"receita_supabase_id",i,"insumo_supabase_id",h,"quantidade_utilizada",J.p(n,"quantidade_utilizada"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],e,d)).ll(0,"supabase_id").v4(0),$async$tM)
 case 23:g=a8
 s=24
 return A.c(b.tE("receita_ingredientes",A.b5(J.p(n,"id")),J.bb(J.p(g,"supabase_id"))),$async$tM)
@@ -39778,7 +39778,7 @@ a=b==null?null:J.bb(b)
 j=a==null?"":a
 if(J.aG(j)===0){s=7
 break}s=22
-return A.c(e.bD("estoque_movimentos").j3(0,A.N(["user_id",m,"insumo_supabase_id",j,"tipo",J.p(n,"tipo"),"quantidade",J.p(n,"quantidade"),"unidade_medida",J.p(n,"unidade_medida"),"origem",J.p(n,"origem"),"referencia_id",J.p(n,"referencia_id"),"created_at",J.p(n,"created_at"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],g,f)).ll(0,"supabase_id").v4(0),$async$wK)
+return A.c(e.bD("estoque_movimentos").j3(0,A.N(["id_local",J.p(n,"id"),"insumo_id_local",J.p(n,"insumo_id"),"user_id",m,"insumo_supabase_id",j,"tipo",J.p(n,"tipo"),"quantidade",J.p(n,"quantidade"),"unidade_medida",J.p(n,"unidade_medida"),"origem",J.p(n,"origem"),"referencia_id",J.p(n,"referencia_id"),"created_at",J.p(n,"created_at"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],g,f)).ll(0,"supabase_id").v4(0),$async$wK)
 case 22:i=a5
 s=23
 return A.c(d.tE("estoque_movimentos",A.b5(J.p(n,"id")),J.bb(J.p(i,"supabase_id"))),$async$wK)
@@ -39845,7 +39845,7 @@ a=b==null?null:J.bb(b)
 j=a==null?"":a
 if(J.aG(j)===0){s=7
 break}s=22
-return A.c(e.bD("producao_receita").j3(0,A.N(["user_id",m,"receita_supabase_id",j,"quantidade_bateladas",J.p(n,"quantidade_bateladas"),"rendimento_total",J.p(n,"rendimento_total"),"data",J.p(n,"data"),"obs",J.p(n,"obs"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],g,f)).ll(0,"supabase_id").v4(0),$async$wN)
+return A.c(e.bD("producao_receita").j3(0,A.N(["id_local",J.p(n,"id"),"user_id",m,"receita_supabase_id",j,"quantidade_bateladas",J.p(n,"quantidade_bateladas"),"rendimento_total",J.p(n,"rendimento_total"),"data",J.p(n,"data"),"obs",J.p(n,"obs"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],g,f)).ll(0,"supabase_id").v4(0),$async$wN)
 case 22:i=a5
 s=23
 return A.c(d.tE("producao_receita",A.b5(J.p(n,"id")),J.bb(J.p(i,"supabase_id"))),$async$wN)
