@@ -37946,8 +37946,8 @@ r=p.toLowerCase()
 p=s.b
 if(r.length!==0&&r!==p.toLowerCase())return q
 return o.z},
-qn(a,b,c,d,e){return A.bWd(a,b,c,d,e)},
-bWd(a3,a4,a5,a6,a7){var s=0,r=A.n(t.u),q,p=2,o=[],n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2
+qn(a,b,c,d,e){return A.bWc(a,b,c,d,e)},
+bWc(a3,a4,a5,a6,a7){var s=0,r=A.n(t.u),q,p=2,o=[],n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2
 var $async$qn=A.o(function(a8,a9){if(a8===1){o.push(a9)
 s=p}for(;;)switch(s){case 0:p=4
 c=$.iY()
@@ -38080,12 +38080,12 @@ break
 case 1:return A.l(q,r)
 case 2:return A.k(o.at(-1),r)}})
 return A.m($async$S1,r)},
-aXK(a){return A.bWc(a)},
-bWc(a){var s=0,r=A.n(t.u),q,p=2,o=[],n,m,l,k,j
-var $async$aXK=A.o(function(b,c){if(b===1){o.push(c)
+aXJ(a){return A.bWb(a)},
+bWb(a){var s=0,r=A.n(t.u),q,p=2,o=[],n,m,l,k,j
+var $async$aXJ=A.o(function(b,c){if(b===1){o.push(c)
 s=p}for(;;)switch(s){case 0:p=4
 s=7
-return A.c($.iY().gd5().Py(a,B.bh9),$async$aXK)
+return A.c($.iY().gd5().Py(a,B.bh9),$async$aXJ)
 case 7:q=null
 s=1
 break
@@ -38109,9 +38109,9 @@ case 3:s=2
 break
 case 6:case 1:return A.l(q,r)
 case 2:return A.k(o.at(-1),r)}})
-return A.m($async$aXK,r)},
-jm(a,b){return A.bWb(a,b)},
-bWb(b6,b7){var s=0,r=A.n(t.FZ),q,p=2,o=[],n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,b0,b1,b2,b3,b4,b5
+return A.m($async$aXJ,r)},
+jm(a,b){return A.bWa(a,b)},
+bWa(b6,b7){var s=0,r=A.n(t.FZ),q,p=2,o=[],n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,b0,b1,b2,b3,b4,b5
 var $async$jm=A.o(function(b8,b9){if(b8===1){o.push(b9)
 s=p}for(;;)switch(s){case 0:b1=null
 p=4
@@ -38402,31 +38402,31 @@ break
 case 6:case 1:return A.l(q,r)
 case 2:return A.k(o.at(-1),r)}})
 return A.m($async$aep,r)},
-aXJ(a){return A.bWa(a)},
-bWa(a){var s=0,r=A.n(t.H),q,p=2,o=[],n,m,l,k,j,i
-var $async$aXJ=A.o(function(b,c){if(b===1){o.push(c)
+aXK(a){return A.bWd(a)},
+bWd(a){var s=0,r=A.n(t.H),q,p=2,o=[],n,m,l,k,j,i
+var $async$aXK=A.o(function(b,c){if(b===1){o.push(c)
 s=p}for(;;)switch(s){case 0:j=A.tM()
 if(j==null){s=1
 break}p=4
 l=a.e
-n=A.N(["user_id",j,"data",a.d,"produto",l,"notas",a.f,"receita",a.r,"cpv",a.w,"frete",a.x,"marketing",a.y,"despesas",a.z,"lucro",a.Q,"margem",a.as,"roi",a.at,"pro_labore",a.ax,"fornecedor",a.ay,"forma_pagamento",a.ch,"id_local",a.a],t.N,t.z)
+n=A.N(["user_id",j,"id_local",a.a,"data",a.d,"produto",l,"notas",a.f,"receita",a.r,"cpv",a.w,"frete",a.x,"marketing",a.y,"despesas",a.z,"lucro",a.Q,"margem",a.as,"roi",a.at,"pro_labore",a.ax,"fornecedor",a.ay,"forma_pagamento",a.ch],t.N,t.X)
 s=7
-return A.c($.iY().bC("lancamentos").alQ(n),$async$aXJ)
-case 7:A.hS().$1("[Supabase] Lancamento sincronizado com sucesso: "+l)
+return A.c($.iY().bC("lancamentos").alQ(n),$async$aXK)
+case 7:A.hS().$1("[Supabase] Sync realizado com sucesso: "+l)
 p=2
 s=6
 break
 case 4:p=3
 i=o.pop()
 m=A.a7(i)
-A.dK("[SupabaseService] inserirLancamento falhou: "+A.j(m))
+A.dK("[SupabaseService] sincronizarLancamento falhou: "+A.j(m))
 s=6
 break
 case 3:s=2
 break
 case 6:case 1:return A.l(q,r)
 case 2:return A.k(o.at(-1),r)}})
-return A.m($async$aXJ,r)},
+return A.m($async$aXK,r)},
 aXG(a){return A.bW6(a)},
 bW6(a){var s=0,r=A.n(t.H),q,p=2,o=[],n,m,l,k,j,i,h
 var $async$aXG=A.o(function(b,c){if(b===1){o.push(c)
@@ -142756,7 +142756,7 @@ d=p.ax?"Sa\xedda":"Entrada"
 c=A.aby("",n,"",a0,"",i,"","",m,null,0,0,a.c,a.b,l,d,j,e,h,a.a,null,"",null,f,0)
 s=3
 return A.c($.aI().wf(0,c),$async$CE)
-case 3:A.aXJ(c)
+case 3:A.aXK(c)
 p.a8R()
 s=4
 return A.c(p.vj(),$async$CE)
@@ -145334,7 +145334,7 @@ n=p
 m=A
 l=o
 s=2
-return A.c(A.aXK(q.c),$async$$0)
+return A.c(A.aXJ(q.c),$async$$0)
 case 2:n.$1(new m.bel(l,b))
 return A.l(null,r)}})
 return A.m($async$$0,r)},
