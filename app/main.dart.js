@@ -38609,7 +38609,7 @@ bW3(a3,a4){var s=0,r=A.n(t.H),q=1,p=[],o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2
 var $async$aer=A.o(function(a5,a6){if(a5===1){p.push(a6)
 s=q}for(;;)switch(s){case 0:q=3
 s=6
-return A.c($.f5().bD("insumos").fw(0).bA("user_id",a4).bA("is_deleted",!1),$async$aer)
+return A.c($.f5().bD("insumos").fw(0).bA("user_id",a4).bA("is_deleted",0),$async$aer)
 case 6:o=a6
 n=$.aH()
 l=J.aJ(o),k=t.N,j=t.X
@@ -38667,7 +38667,7 @@ bW6(a,a0){var s=0,r=A.n(t.H),q=1,p=[],o,n,m,l,k,j,i,h,g,f,e,d,c,b
 var $async$aes=A.o(function(a1,a2){if(a1===1){p.push(a2)
 s=q}for(;;)switch(s){case 0:q=3
 s=6
-return A.c($.f5().bD("receitas").fw(0).bA("user_id",a0).bA("is_deleted",!1),$async$aes)
+return A.c($.f5().bD("receitas").fw(0).bA("user_id",a0).bA("is_deleted",0),$async$aes)
 case 6:o=a2
 n=$.aH()
 l=J.aJ(o),k=t.N,j=t.X
@@ -38715,7 +38715,7 @@ bW5(a5,a6){var s=0,r=A.n(t.H),q=1,p=[],o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3
 var $async$GN=A.o(function(a7,a8){if(a7===1){p.push(a8)
 s=q}for(;;)switch(s){case 0:q=3
 s=6
-return A.c($.f5().bD("receita_ingredientes").fw(0).bA("user_id",a6).bA("is_deleted",!1),$async$GN)
+return A.c($.f5().bD("receita_ingredientes").fw(0).bA("user_id",a6).bA("is_deleted",0),$async$GN)
 case 6:o=a8
 n=$.aH()
 f=J.aJ(o),e=t.N,d=t.X
@@ -38775,7 +38775,7 @@ bW2(a6,a7){var s=0,r=A.n(t.H),q=1,p=[],o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3
 var $async$S4=A.o(function(a8,a9){if(a8===1){p.push(a9)
 s=q}for(;;)switch(s){case 0:q=3
 s=6
-return A.c($.f5().bD("estoque_movimentos").fw(0).bA("user_id",a7).bA("is_deleted",!1),$async$S4)
+return A.c($.f5().bD("estoque_movimentos").fw(0).bA("user_id",a7).bA("is_deleted",0),$async$S4)
 case 6:o=a9
 n=$.aH()
 i=J.aJ(o),h=t.N,g=t.X
@@ -38836,7 +38836,7 @@ bW4(a4,a5){var s=0,r=A.n(t.H),q=1,p=[],o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3
 var $async$S5=A.o(function(a6,a7){if(a6===1){p.push(a7)
 s=q}for(;;)switch(s){case 0:q=3
 s=6
-return A.c($.f5().bD("producao_receita").fw(0).bA("user_id",a5).bA("is_deleted",!1),$async$S5)
+return A.c($.f5().bD("producao_receita").fw(0).bA("user_id",a5).bA("is_deleted",0),$async$S5)
 case 6:o=a7
 n=$.aH()
 i=J.aJ(o),h=t.N,g=t.X
@@ -38959,7 +38959,7 @@ bWk(a4,a5){var s=0,r=A.n(t.H),q=1,p=[],o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3
 var $async$aev=A.o(function(a6,a7){if(a6===1){p.push(a7)
 s=q}for(;;)switch(s){case 0:q=3
 s=6
-return A.c($.f5().bD("fornecedores").fw(0).bA("user_id",a5).bA("is_deleted",!1),$async$aev)
+return A.c($.f5().bD("fornecedores").fw(0).bA("user_id",a5).bA("is_deleted",0),$async$aev)
 case 6:o=a7
 n=$.aH()
 l=J.aJ(o),k=t.N,j=t.X
@@ -39017,7 +39017,7 @@ bWm(a1,a2){var s=0,r=A.n(t.H),q=1,p=[],o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0
 var $async$aew=A.o(function(a3,a4){if(a3===1){p.push(a4)
 s=q}for(;;)switch(s){case 0:q=3
 s=6
-return A.c($.f5().bD("metas").fw(0).bA("user_id",a2).bA("is_deleted",!1),$async$aew)
+return A.c($.f5().bD("metas").fw(0).bA("user_id",a2).bA("is_deleted",0),$async$aew)
 case 6:o=a4
 n=$.aH()
 l=J.aJ(o),k=t.N,j=t.X
@@ -39070,7 +39070,7 @@ bWj(a3,a4){var s=0,r=A.n(t.H),q=1,p=[],o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2
 var $async$aeu=A.o(function(a5,a6){if(a5===1){p.push(a6)
 s=q}for(;;)switch(s){case 0:q=3
 s=6
-return A.c($.f5().bD("config_joias").fw(0).bA("user_id",a4).bA("is_deleted",!1),$async$aeu)
+return A.c($.f5().bD("config_joias").fw(0).bA("user_id",a4).bA("is_deleted",0),$async$aeu)
 case 6:o=a6
 n=$.aH()
 l=J.aJ(o),k=t.N,j=t.X
@@ -39132,7 +39132,7 @@ bWi(a0,a1){var s=0,r=A.n(t.H),q=1,p=[],o,n,m,l,k,j,i,h,g,f,e,d,c,b,a
 var $async$aet=A.o(function(a2,a3){if(a2===1){p.push(a3)
 s=q}for(;;)switch(s){case 0:q=3
 s=6
-return A.c($.f5().bD("checklist_anual").fw(0).bA("user_id",a1).bA("is_deleted",!1),$async$aet)
+return A.c($.f5().bD("checklist_anual").fw(0).bA("user_id",a1).bA("is_deleted",0),$async$aet)
 case 6:o=a3
 n=$.aH()
 l=J.aJ(o),k=t.N,j=t.X
@@ -39180,7 +39180,7 @@ bWn(a2,a3){var s=0,r=A.n(t.H),q=1,p=[],o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1
 var $async$aex=A.o(function(a4,a5){if(a4===1){p.push(a5)
 s=q}for(;;)switch(s){case 0:q=3
 s=6
-return A.c($.f5().bD("precificacoes_joias").fw(0).bA("user_id",a3).bA("is_deleted",!1),$async$aex)
+return A.c($.f5().bD("precificacoes_joias").fw(0).bA("user_id",a3).bA("is_deleted",0),$async$aex)
 case 6:o=a5
 n=$.aH()
 l=J.aJ(o),k=t.N,j=t.X
@@ -39313,7 +39313,7 @@ l=d==null?"":d
 s=J.aG(l)!==0?16:17
 break
 case 16:s=18
-return A.c(f.bD("fornecedores").cY(0,A.N(["is_deleted",!0,"updated_at",J.p(n,"updated_at")],h,h)).bA("supabase_id",l),$async$wL)
+return A.c(f.bD("fornecedores").cY(0,A.N(["is_deleted",1,"updated_at",J.p(n,"updated_at")],h,h)).bA("supabase_id",l),$async$wL)
 case 18:case 17:s=14
 break
 case 15:e=J.p(n,"supabase_id")
@@ -39322,14 +39322,14 @@ k=d==null?"":d
 s=J.aG(k)===0?19:21
 break
 case 19:s=22
-return A.c(f.bD("fornecedores").j3(0,A.N(["user_id",m,"nome",J.p(n,"nome"),"site",J.p(n,"site"),"whatsapp",J.p(n,"whatsapp"),"especialidade",J.p(n,"especialidade"),"pedido_minimo",J.p(n,"pedido_minimo"),"frete_ba",J.p(n,"frete_ba"),"avaliacao",J.p(n,"avaliacao"),"observacao",J.p(n,"observacao"),"is_deleted",!1,"updated_at",J.p(n,"updated_at")],g,h)).ll(0,"supabase_id").v4(0),$async$wL)
+return A.c(f.bD("fornecedores").j3(0,A.N(["user_id",m,"nome",J.p(n,"nome"),"site",J.p(n,"site"),"whatsapp",J.p(n,"whatsapp"),"especialidade",J.p(n,"especialidade"),"pedido_minimo",J.p(n,"pedido_minimo"),"frete_ba",J.p(n,"frete_ba"),"avaliacao",J.p(n,"avaliacao"),"observacao",J.p(n,"observacao"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],g,h)).ll(0,"supabase_id").v4(0),$async$wL)
 case 22:j=a2
 s=23
 return A.c($.aH().Hc(A.b5(J.p(n,"id")),J.bb(J.p(j,"supabase_id"))),$async$wL)
 case 23:s=20
 break
 case 21:s=24
-return A.c(f.bD("fornecedores").cY(0,A.N(["nome",J.p(n,"nome"),"site",J.p(n,"site"),"whatsapp",J.p(n,"whatsapp"),"especialidade",J.p(n,"especialidade"),"pedido_minimo",J.p(n,"pedido_minimo"),"frete_ba",J.p(n,"frete_ba"),"avaliacao",J.p(n,"avaliacao"),"observacao",J.p(n,"observacao"),"is_deleted",!1,"updated_at",J.p(n,"updated_at")],h,h)).bA("supabase_id",k),$async$wL)
+return A.c(f.bD("fornecedores").cY(0,A.N(["nome",J.p(n,"nome"),"site",J.p(n,"site"),"whatsapp",J.p(n,"whatsapp"),"especialidade",J.p(n,"especialidade"),"pedido_minimo",J.p(n,"pedido_minimo"),"frete_ba",J.p(n,"frete_ba"),"avaliacao",J.p(n,"avaliacao"),"observacao",J.p(n,"observacao"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],h,h)).bA("supabase_id",k),$async$wL)
 case 24:case 20:case 14:s=25
 return A.c($.aH().mE("fornecedores",A.b5(J.p(n,"id"))),$async$wL)
 case 25:q=3
@@ -39373,11 +39373,11 @@ h=A.e9(J.p(n,"is_deleted"))
 s=(h==null?0:h)===1?13:15
 break
 case 13:s=16
-return A.c(i.bD("metas").cY(0,A.N(["is_deleted",!0,"updated_at",J.p(n,"updated_at")],j,j)).bA("user_id",m).bA("ano",J.p(n,"ano")).bA("mes",J.p(n,"mes")),$async$GQ)
+return A.c(i.bD("metas").cY(0,A.N(["is_deleted",1,"updated_at",J.p(n,"updated_at")],j,j)).bA("user_id",m).bA("ano",J.p(n,"ano")).bA("mes",J.p(n,"mes")),$async$GQ)
 case 16:s=14
 break
 case 15:s=17
-return A.c(i.bD("metas").nN(A.N(["user_id",m,"ano",J.p(n,"ano"),"mes",J.p(n,"mes"),"meta_receita",J.p(n,"meta_receita"),"meta_lucro",J.p(n,"meta_lucro"),"meta_transacoes",J.p(n,"meta_transacoes"),"aliquota",J.p(n,"aliquota"),"is_deleted",!1,"updated_at",J.p(n,"updated_at")],k,j),"user_id, ano, mes"),$async$GQ)
+return A.c(i.bD("metas").nN(A.N(["user_id",m,"ano",J.p(n,"ano"),"mes",J.p(n,"mes"),"meta_receita",J.p(n,"meta_receita"),"meta_lucro",J.p(n,"meta_lucro"),"meta_transacoes",J.p(n,"meta_transacoes"),"aliquota",J.p(n,"aliquota"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],k,j),"user_id, ano, mes"),$async$GQ)
 case 17:case 14:s=18
 return A.c($.aH().mE("metas",A.b5(J.p(n,"id"))),$async$GQ)
 case 18:q=3
@@ -39421,11 +39421,11 @@ h=A.e9(J.p(n,"is_deleted"))
 s=(h==null?0:h)===1?13:15
 break
 case 13:s=16
-return A.c(i.bD("config_joias").cY(0,A.N(["is_deleted",!0,"updated_at",J.p(n,"updated_at")],j,j)).bA("user_id",m),$async$GP)
+return A.c(i.bD("config_joias").cY(0,A.N(["is_deleted",1,"updated_at",J.p(n,"updated_at")],j,j)).bA("user_id",m),$async$GP)
 case 16:s=14
 break
 case 15:s=17
-return A.c(i.bD("config_joias").nN(A.N(["user_id",m,"embalagem",J.p(n,"embalagem"),"frete_diluido",J.p(n,"frete_diluido"),"taxa_fixa",J.p(n,"taxa_fixa"),"taxa_variavel",J.p(n,"taxa_variavel"),"margem_minima",J.p(n,"margem_minima"),"custo_fixo",J.p(n,"custo_fixo"),"prolabore",J.p(n,"prolabore"),"reserva_fiscal",J.p(n,"reserva_fiscal"),"is_deleted",!1,"updated_at",J.p(n,"updated_at")],k,j),"user_id"),$async$GP)
+return A.c(i.bD("config_joias").nN(A.N(["user_id",m,"embalagem",J.p(n,"embalagem"),"frete_diluido",J.p(n,"frete_diluido"),"taxa_fixa",J.p(n,"taxa_fixa"),"taxa_variavel",J.p(n,"taxa_variavel"),"margem_minima",J.p(n,"margem_minima"),"custo_fixo",J.p(n,"custo_fixo"),"prolabore",J.p(n,"prolabore"),"reserva_fiscal",J.p(n,"reserva_fiscal"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],k,j),"user_id"),$async$GP)
 case 17:case 14:s=18
 return A.c($.aH().mE("config_joias",A.b5(J.p(n,"id"))),$async$GP)
 case 18:q=3
@@ -39469,11 +39469,11 @@ h=A.e9(J.p(n,"is_deleted"))
 s=(h==null?0:h)===1?13:15
 break
 case 13:s=16
-return A.c(i.bD("checklist_anual").cY(0,A.N(["is_deleted",!0,"updated_at",J.p(n,"updated_at")],j,j)).bA("user_id",m).bA("item",J.p(n,"item")),$async$GO)
+return A.c(i.bD("checklist_anual").cY(0,A.N(["is_deleted",1,"updated_at",J.p(n,"updated_at")],j,j)).bA("user_id",m).bA("item",J.p(n,"item")),$async$GO)
 case 16:s=14
 break
 case 15:s=17
-return A.c(i.bD("checklist_anual").nN(A.N(["user_id",m,"item",J.p(n,"item"),"frequencia",J.p(n,"frequencia"),"responsavel",J.p(n,"responsavel"),"status",J.p(n,"status"),"ultima_execucao",J.p(n,"ultima_execucao"),"is_deleted",!1,"updated_at",J.p(n,"updated_at")],k,j),"user_id, item"),$async$GO)
+return A.c(i.bD("checklist_anual").nN(A.N(["user_id",m,"item",J.p(n,"item"),"frequencia",J.p(n,"frequencia"),"responsavel",J.p(n,"responsavel"),"status",J.p(n,"status"),"ultima_execucao",J.p(n,"ultima_execucao"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],k,j),"user_id, item"),$async$GO)
 case 17:case 14:s=18
 return A.c($.aH().mE("checklist_anual",A.b5(J.p(n,"id"))),$async$GO)
 case 18:q=3
@@ -39517,7 +39517,7 @@ h=A.e9(J.p(n,"is_deleted"))
 s=(h==null?0:h)!==1?13:14
 break
 case 13:s=15
-return A.c(i.bD("precificacoes_joias").j3(0,A.N(["user_id",m,"criado_em",J.p(n,"criado_em"),"nome_produto",J.p(n,"nome_produto"),"tipo",J.p(n,"tipo"),"custo_total",J.p(n,"custo_total"),"preco_venda",J.p(n,"preco_venda"),"lucro",J.p(n,"lucro"),"margem",J.p(n,"margem"),"is_deleted",!1,"updated_at",J.p(n,"updated_at")],k,j)),$async$S6)
+return A.c(i.bD("precificacoes_joias").j3(0,A.N(["user_id",m,"criado_em",J.p(n,"criado_em"),"nome_produto",J.p(n,"nome_produto"),"tipo",J.p(n,"tipo"),"custo_total",J.p(n,"custo_total"),"preco_venda",J.p(n,"preco_venda"),"lucro",J.p(n,"lucro"),"margem",J.p(n,"margem"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],k,j)),$async$S6)
 case 15:case 14:s=16
 return A.c($.aH().mE("precificacoes_joias",A.b5(J.p(n,"id"))),$async$S6)
 case 16:q=3
@@ -39566,20 +39566,20 @@ break
 case 13:s=J.aG(l)!==0?16:17
 break
 case 16:s=18
-return A.c(g.bD("insumos").cY(0,A.N(["is_deleted",!0,"updated_at",J.p(n,"updated_at")],i,i)).bA("supabase_id",l),$async$wM)
+return A.c(g.bD("insumos").cY(0,A.N(["is_deleted",1,"updated_at",J.p(n,"updated_at")],i,i)).bA("supabase_id",l),$async$wM)
 case 18:case 17:s=14
 break
 case 15:s=J.aG(l)===0?19:21
 break
 case 19:s=22
-return A.c(g.bD("insumos").j3(0,A.N(["user_id",m,"nome",J.p(n,"nome"),"preco_compra",J.p(n,"preco_compra"),"quantidade_compra",J.p(n,"quantidade_compra"),"unidade_medida",J.p(n,"unidade_medida"),"quantidade_estoque",J.p(n,"quantidade_estoque"),"estoque_minimo",J.p(n,"estoque_minimo"),"categoria",J.p(n,"categoria"),"is_deleted",!1,"updated_at",J.p(n,"updated_at")],h,i)).ll(0,"supabase_id").v4(0),$async$wM)
+return A.c(g.bD("insumos").j3(0,A.N(["user_id",m,"nome",J.p(n,"nome"),"preco_compra",J.p(n,"preco_compra"),"quantidade_compra",J.p(n,"quantidade_compra"),"unidade_medida",J.p(n,"unidade_medida"),"quantidade_estoque",J.p(n,"quantidade_estoque"),"estoque_minimo",J.p(n,"estoque_minimo"),"categoria",J.p(n,"categoria"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],h,i)).ll(0,"supabase_id").v4(0),$async$wM)
 case 22:k=a1
 s=23
 return A.c($.aH().tE("insumos",A.b5(J.p(n,"id")),J.bb(J.p(k,"supabase_id"))),$async$wM)
 case 23:s=20
 break
 case 21:s=24
-return A.c(g.bD("insumos").cY(0,A.N(["nome",J.p(n,"nome"),"preco_compra",J.p(n,"preco_compra"),"quantidade_compra",J.p(n,"quantidade_compra"),"unidade_medida",J.p(n,"unidade_medida"),"quantidade_estoque",J.p(n,"quantidade_estoque"),"estoque_minimo",J.p(n,"estoque_minimo"),"categoria",J.p(n,"categoria"),"is_deleted",!1,"updated_at",J.p(n,"updated_at")],i,i)).bA("supabase_id",l),$async$wM)
+return A.c(g.bD("insumos").cY(0,A.N(["nome",J.p(n,"nome"),"preco_compra",J.p(n,"preco_compra"),"quantidade_compra",J.p(n,"quantidade_compra"),"unidade_medida",J.p(n,"unidade_medida"),"quantidade_estoque",J.p(n,"quantidade_estoque"),"estoque_minimo",J.p(n,"estoque_minimo"),"categoria",J.p(n,"categoria"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],i,i)).bA("supabase_id",l),$async$wM)
 case 24:case 20:case 14:s=25
 return A.c($.aH().mE("insumos",A.b5(J.p(n,"id"))),$async$wM)
 case 25:q=3
@@ -39628,20 +39628,20 @@ break
 case 13:s=J.aG(l)!==0?16:17
 break
 case 16:s=18
-return A.c(g.bD("receitas").cY(0,A.N(["is_deleted",!0,"updated_at",J.p(n,"updated_at")],i,i)).bA("supabase_id",l),$async$wO)
+return A.c(g.bD("receitas").cY(0,A.N(["is_deleted",1,"updated_at",J.p(n,"updated_at")],i,i)).bA("supabase_id",l),$async$wO)
 case 18:case 17:s=14
 break
 case 15:s=J.aG(l)===0?19:21
 break
 case 19:s=22
-return A.c(g.bD("receitas").j3(0,A.N(["user_id",m,"nome",J.p(n,"nome"),"custo_total",J.p(n,"custo_total"),"rendimento",J.p(n,"rendimento"),"is_deleted",!1,"updated_at",J.p(n,"updated_at")],h,i)).ll(0,"supabase_id").v4(0),$async$wO)
+return A.c(g.bD("receitas").j3(0,A.N(["user_id",m,"nome",J.p(n,"nome"),"custo_total",J.p(n,"custo_total"),"rendimento",J.p(n,"rendimento"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],h,i)).ll(0,"supabase_id").v4(0),$async$wO)
 case 22:k=a1
 s=23
 return A.c($.aH().tE("receitas",A.b5(J.p(n,"id")),J.bb(J.p(k,"supabase_id"))),$async$wO)
 case 23:s=20
 break
 case 21:s=24
-return A.c(g.bD("receitas").cY(0,A.N(["nome",J.p(n,"nome"),"custo_total",J.p(n,"custo_total"),"rendimento",J.p(n,"rendimento"),"is_deleted",!1,"updated_at",J.p(n,"updated_at")],i,i)).bA("supabase_id",l),$async$wO)
+return A.c(g.bD("receitas").cY(0,A.N(["nome",J.p(n,"nome"),"custo_total",J.p(n,"custo_total"),"rendimento",J.p(n,"rendimento"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],i,i)).bA("supabase_id",l),$async$wO)
 case 24:case 20:case 14:s=25
 return A.c($.aH().mE("receitas",A.b5(J.p(n,"id"))),$async$wO)
 case 25:q=3
@@ -39690,7 +39690,7 @@ break
 case 13:s=J.aG(l)!==0?16:17
 break
 case 16:s=18
-return A.c(c.bD("receita_ingredientes").cY(0,A.N(["is_deleted",!0,"updated_at",J.p(n,"updated_at")],d,d)).bA("supabase_id",l),$async$tM)
+return A.c(c.bD("receita_ingredientes").cY(0,A.N(["is_deleted",1,"updated_at",J.p(n,"updated_at")],d,d)).bA("supabase_id",l),$async$tM)
 case 18:case 17:s=14
 break
 case 15:s=J.aG(l)===0?19:20
@@ -39711,7 +39711,7 @@ a2=a0==null?null:J.bb(a0)
 h=a2==null?"":a2
 if(J.aG(i)===0||J.aG(h)===0){s=7
 break}s=23
-return A.c(c.bD("receita_ingredientes").j3(0,A.N(["user_id",m,"receita_supabase_id",i,"insumo_supabase_id",h,"quantidade_utilizada",J.p(n,"quantidade_utilizada"),"is_deleted",!1,"updated_at",J.p(n,"updated_at")],e,d)).ll(0,"supabase_id").v4(0),$async$tM)
+return A.c(c.bD("receita_ingredientes").j3(0,A.N(["user_id",m,"receita_supabase_id",i,"insumo_supabase_id",h,"quantidade_utilizada",J.p(n,"quantidade_utilizada"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],e,d)).ll(0,"supabase_id").v4(0),$async$tM)
 case 23:g=a8
 s=24
 return A.c(b.tE("receita_ingredientes",A.b5(J.p(n,"id")),J.bb(J.p(g,"supabase_id"))),$async$tM)
@@ -39763,7 +39763,7 @@ break
 case 13:s=J.aG(l)!==0?16:17
 break
 case 16:s=18
-return A.c(e.bD("estoque_movimentos").cY(0,A.N(["is_deleted",!0,"updated_at",J.p(n,"updated_at")],f,f)).bA("supabase_id",l),$async$wK)
+return A.c(e.bD("estoque_movimentos").cY(0,A.N(["is_deleted",1,"updated_at",J.p(n,"updated_at")],f,f)).bA("supabase_id",l),$async$wK)
 case 18:case 17:s=14
 break
 case 15:s=J.aG(l)===0?19:20
@@ -39778,7 +39778,7 @@ a=b==null?null:J.bb(b)
 j=a==null?"":a
 if(J.aG(j)===0){s=7
 break}s=22
-return A.c(e.bD("estoque_movimentos").j3(0,A.N(["user_id",m,"insumo_supabase_id",j,"tipo",J.p(n,"tipo"),"quantidade",J.p(n,"quantidade"),"unidade_medida",J.p(n,"unidade_medida"),"origem",J.p(n,"origem"),"referencia_id",J.p(n,"referencia_id"),"created_at",J.p(n,"created_at"),"is_deleted",!1,"updated_at",J.p(n,"updated_at")],g,f)).ll(0,"supabase_id").v4(0),$async$wK)
+return A.c(e.bD("estoque_movimentos").j3(0,A.N(["user_id",m,"insumo_supabase_id",j,"tipo",J.p(n,"tipo"),"quantidade",J.p(n,"quantidade"),"unidade_medida",J.p(n,"unidade_medida"),"origem",J.p(n,"origem"),"referencia_id",J.p(n,"referencia_id"),"created_at",J.p(n,"created_at"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],g,f)).ll(0,"supabase_id").v4(0),$async$wK)
 case 22:i=a5
 s=23
 return A.c(d.tE("estoque_movimentos",A.b5(J.p(n,"id")),J.bb(J.p(i,"supabase_id"))),$async$wK)
@@ -39830,7 +39830,7 @@ break
 case 13:s=J.aG(l)!==0?16:17
 break
 case 16:s=18
-return A.c(e.bD("producao_receita").cY(0,A.N(["is_deleted",!0,"updated_at",J.p(n,"updated_at")],f,f)).bA("supabase_id",l),$async$wN)
+return A.c(e.bD("producao_receita").cY(0,A.N(["is_deleted",1,"updated_at",J.p(n,"updated_at")],f,f)).bA("supabase_id",l),$async$wN)
 case 18:case 17:s=14
 break
 case 15:s=J.aG(l)===0?19:20
@@ -39845,7 +39845,7 @@ a=b==null?null:J.bb(b)
 j=a==null?"":a
 if(J.aG(j)===0){s=7
 break}s=22
-return A.c(e.bD("producao_receita").j3(0,A.N(["user_id",m,"receita_supabase_id",j,"quantidade_bateladas",J.p(n,"quantidade_bateladas"),"rendimento_total",J.p(n,"rendimento_total"),"data",J.p(n,"data"),"obs",J.p(n,"obs"),"is_deleted",!1,"updated_at",J.p(n,"updated_at")],g,f)).ll(0,"supabase_id").v4(0),$async$wN)
+return A.c(e.bD("producao_receita").j3(0,A.N(["user_id",m,"receita_supabase_id",j,"quantidade_bateladas",J.p(n,"quantidade_bateladas"),"rendimento_total",J.p(n,"rendimento_total"),"data",J.p(n,"data"),"obs",J.p(n,"obs"),"is_deleted",0,"updated_at",J.p(n,"updated_at")],g,f)).ll(0,"supabase_id").v4(0),$async$wN)
 case 22:i=a5
 s=23
 return A.c(d.tE("producao_receita",A.b5(J.p(n,"id")),J.bb(J.p(i,"supabase_id"))),$async$wN)
