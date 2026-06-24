@@ -139708,52 +139708,52 @@ return A.c(q.eZ(a,A.N(["supabase_id",c],t.N,t.X),"id = ?",[b]),$async$tE)
 case 2:return A.l(null,r)}})
 return A.m($async$tE,r)},
 uE(a,b){return this.b80(a,b)},
-b80(a,b){var s=0,r=A.n(t.H),q,p=this,o,n,m,l,k,j,i,h,g,f,e
-var $async$uE=A.o(function(c,d){if(c===1)return A.k(d,r)
-for(;;)switch(s){case 0:e=A.hl(a,t.N,t.X)
-e.J(0,"user_id")
-e.m(0,"userId",b)
-e.J(0,"id")
-o=e.h(0,"id")
-o=o==null?null:J.bb(o)
-e.m(0,"supabase_id",o==null?"":o)
-e.m(0,"is_synced",1)
-e.ig(e,new A.aA7())
-for(o=B.a0Y.gau(B.a0Y);o.t();){n=o.gM(0)
-m=e.h(0,n)
-if(m==null)e.m(0,n,0)
-else if(typeof m=="string"){l=A.dy(m)
-e.m(0,n,l==null?0:l)}else if(A.hQ(m))e.m(0,n,m)}for(o=B.a1_.gau(B.a1_);o.t();){n=o.gM(0)
-m=e.h(0,n)
-if(m==null)e.m(0,n,0)
-else if(A.k0(m))e.m(0,n,m?1:0)
-else if(typeof m=="string"){l=A.iK(m,null)
-e.m(0,n,l==null?0:l)}}for(o=B.a0Z.gau(B.a0Z);o.t();){n=o.gM(0)
-if(e.av(0,n)&&e.h(0,n)==null)e.m(0,n,"")}o=e.h(0,"data")
-k=A.aA0(o==null?null:J.bb(o))
-e.m(0,"data",k)
-j=A.bw(e.h(0,"produto"))
-i=A.bw(e.h(0,"updated_at"))
+b80(a,b){var s=0,r=A.n(t.H),q,p=this,o,n,m,l,k,j,i,h,g,f,e,d
+var $async$uE=A.o(function(c,a0){if(c===1)return A.k(a0,r)
+for(;;)switch(s){case 0:d=A.hl(a,t.N,t.X)
+d.J(0,"user_id")
+d.m(0,"userId",b)
+o=d.J(0,"id")
+n=o==null?null:J.bb(o)
+d.m(0,"supabase_id",n==null?"":n)
+d.m(0,"id_local",o)
+d.m(0,"is_synced",1)
+d.ig(d,new A.aA7())
+for(n=B.a0Y.gau(B.a0Y);n.t();){m=n.gM(0)
+l=d.h(0,m)
+if(l==null)d.m(0,m,0)
+else if(typeof l=="string"){k=A.dy(l)
+d.m(0,m,k==null?0:k)}else if(A.hQ(l))d.m(0,m,l)}for(n=B.a1_.gau(B.a1_);n.t();){m=n.gM(0)
+l=d.h(0,m)
+if(l==null)d.m(0,m,0)
+else if(A.k0(l))d.m(0,m,l?1:0)
+else if(typeof l=="string"){k=A.iK(l,null)
+d.m(0,m,k==null?0:k)}}for(n=B.a0Z.gau(B.a0Z);n.t();){m=n.gM(0)
+if(d.av(0,m)&&d.h(0,m)==null)d.m(0,m,"")}n=d.h(0,"data")
+j=A.aA0(n==null?null:J.bb(n))
+d.m(0,"data",j)
+i=A.bw(d.h(0,"produto"))
+h=A.bw(d.h(0,"updated_at"))
 s=3
-return A.c(p.dM("SELECT updated_at, is_deleted, is_synced FROM registros WHERE userId = ? AND data = ? AND produto = ? LIMIT 1",[b,k,j]),$async$uE)
-case 3:h=d
-o=J.a3(h)
-s=o.gam(h)?4:5
+return A.c(p.dM("SELECT updated_at, is_deleted, is_synced FROM registros WHERE userId = ? AND data = ? AND produto = ? LIMIT 1",[b,j,i]),$async$uE)
+case 3:g=a0
+n=J.a3(g)
+s=n.gam(g)?4:5
 break
 case 4:s=6
-return A.c(p.is("registros",e),$async$uE)
+return A.c(p.is("registros",d),$async$uE)
 case 6:s=1
 break
-case 5:n=A.e9(J.p(o.gU(h),"is_deleted"))
-l=A.e9(J.p(o.gU(h),"is_synced"))
-if(n===1&&l!==1){s=1
-break}o=A.bw(J.p(o.gU(h),"updated_at"))
-g=A.LU(o==null?"":o)
-f=A.LU(i==null?"":i)
-s=f!=null&&g!=null&&f.rf(g)?7:8
+case 5:m=A.e9(J.p(n.gU(g),"is_deleted"))
+k=A.e9(J.p(n.gU(g),"is_synced"))
+if(m===1&&k!==1){s=1
+break}n=A.bw(J.p(n.gU(g),"updated_at"))
+f=A.LU(n==null?"":n)
+e=A.LU(h==null?"":h)
+s=e!=null&&f!=null&&e.rf(f)?7:8
 break
 case 7:s=9
-return A.c(p.eZ("registros",e,"userId = ? AND data = ? AND produto = ?",[b,k,j]),$async$uE)
+return A.c(p.eZ("registros",d,"userId = ? AND data = ? AND produto = ?",[b,j,i]),$async$uE)
 case 9:case 8:case 1:return A.l(q,r)}})
 return A.m($async$uE,r)},
 Hy(a,b){return this.amQ(a,b)},
