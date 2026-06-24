@@ -331,5 +331,84 @@
   </script>
 
   <script src="flutter_bootstrap.js" async></script>
+<style>
+    #pwa-update-toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #1F2937; /* Cor escura neutra */
+      color: #F9FAFB;
+      padding: 16px 24px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      display: none; /* Escondido por padrão */
+      z-index: 999999; /* Fica acima de TUDO no Flutter */
+      font-family: system-ui, -apple-system, sans-serif;
+      align-items: center;
+      gap: 20px;
+      border: 1px solid #374151;
+    }
+    #pwa-update-toast p {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    #pwa-update-toast button {
+      background-color: #10B981; /* Verde conversivo */
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+      transition: background-color 0.2s;
+    }
+    #pwa-update-toast button:hover {
+      background-color: #059669;
+    }
+  </style>
+
+  <div id="pwa-update-toast">
+    <p>Nova versão disponível!</p>
+    <button onclick="forcarAtualizacaoPWA()">Atualizar Agora</button>
+  </div>
+
+  <script>
+    let workerEmEspera;
+
+    // Detecta quando o Service Worker do Flutter encontra uma atualização
+    navigator.serviceWorker.ready.then((registration) => {
+      registration.addEventListener('updatefound', () => {
+        const novoWorker = registration.installing;
+        novoWorker.addEventListener('statechange', () => {
+          // Se o novo worker foi instalado e já existe um worker controlando a página...
+          if (novoWorker.state === 'installed' && navigator.serviceWorker.controller) {
+            // Guarda a referência e mostra o Toast HTML na tela
+            workerEmEspera = novoWorker;
+            document.getElementById('pwa-update-toast').style.display = 'flex';
+          }
+        });
+      });
+    });
+
+    // Função engatilhada pelo botão verde
+    function forcarAtualizacaoPWA() {
+      if (workerEmEspera) {
+        // Envia o comando universal para o Service Worker matar o cache antigo e assumir
+        workerEmEspera.postMessage({ type: 'SKIP_WAITING' });
+      }
+    }
+
+    // Quando o Service Worker antigo for morto e o novo assumir, a página se recarrega sozinha
+    let recarregando = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (recarregando) return;
+      recarregando = true;
+      window.location.reload();
+    });
+  </script>
 </body>
+
 </html>
