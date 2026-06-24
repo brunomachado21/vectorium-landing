@@ -38409,10 +38409,10 @@ s=p}for(;;)switch(s){case 0:j=A.tM()
 if(j==null){s=1
 break}p=4
 l=a.e
-n=A.N(["user_id",j,"data",a.d,"produto",l,"notas",a.f,"receita",a.r,"cpv",a.w,"frete",a.x,"marketing",a.y,"despesas",a.z,"lucro",a.Q,"margem",a.as,"roi",a.at,"pro_labore",a.ax,"fornecedor",a.ay,"forma_pagamento",a.ch],t.N,t.K)
+n=A.N(["user_id",j,"id_local",a.a,"data",a.d,"produto",l,"notas",a.f,"receita",a.r,"cpv",a.w,"frete",a.x,"marketing",a.y,"despesas",a.z,"lucro",a.Q,"margem",a.as,"roi",a.at,"pro_labore",a.ax,"fornecedor",a.ay,"forma_pagamento",a.ch],t.N,t.X)
 s=7
-return A.c($.iY().bC("lancamentos").lX(n,"user_id, data, produto"),$async$aXK)
-case 7:A.hS().$1("[Supabase] Sync realizado com sucesso: "+l)
+return A.c($.iY().bC("lancamentos").lX(n,"user_id,data,produto"),$async$aXK)
+case 7:A.hS().$1("[Supabase] Sync sucesso: "+l)
 p=2
 s=6
 break
