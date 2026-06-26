@@ -38413,7 +38413,7 @@ if(l==null){A.fX().$1("[Supabase] Bloqueado: Tentativa de sync de lan\xe7amento 
 s=1
 break}p=4
 k=a.e
-n=A.N(["user_id",i,"id_local",l,"data",a.d,"produto",k,"notas",a.f,"receita",a.r,"cpv",a.w,"frete",a.x,"marketing",a.y,"despesas",a.z,"lucro",a.Q,"margem",a.as,"roi",a.at,"pro_labore",a.ax,"fornecedor",a.ay,"forma_pagamento",a.ch],t.N,t.X)
+n=A.N(["user_id",i,"id_local",l,"data",a.d,"produto",k,"notas",a.f,"receita",a.r,"cpv",a.w,"frete",a.x,"marketing",a.y,"despesas",a.z,"lucro",a.Q,"margem",a.as,"roi",a.at,"pro_labore",a.ax,"fornecedor",a.ay,"forma_pagamento",a.ch,"is_deleted",a.fr],t.N,t.X)
 s=7
 return A.c($.iY().bC("lancamentos").lX(n,"user_id,id_local"),$async$aep)
 case 7:A.fX().$1("[Supabase] Sync sucesso: "+k+" (ID: "+A.j(l)+")")
