@@ -37020,7 +37020,7 @@ s=q}for(;;)switch(s){case 0:if($.as==null)A.aWs()
 $.as.toString
 q=3
 s=6
-return A.j(A.aTH("",""),$async$blW)
+return A.j(A.aTH("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh4d2pzZWV1d2V0bWZvZHBqYmhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcwMjA2NjAsImV4cCI6MjA4MjU5NjY2MH0.1AUP5m85C8B-ILP1ACIkSCH_IM9lGlxMD8S5wXLmxmM","https://hxwjseeuwetmfodpjbhc.supabase.co"),$async$blW)
 case 6:A.id().$1("\u2705 Supabase conectado!")
 q=1
 s=5
