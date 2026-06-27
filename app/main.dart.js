@@ -37020,7 +37020,7 @@ s=q}for(;;)switch(s){case 0:if($.as==null)A.aWs()
 $.as.toString
 q=3
 s=6
-return A.j(A.aTH("...","..."),$async$blW)
+return A.j(A.aTH("",""),$async$blW)
 case 6:A.id().$1("\u2705 Supabase conectado!")
 q=1
 s=5
