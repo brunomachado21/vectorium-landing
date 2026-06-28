@@ -36813,7 +36813,7 @@ s=p}for(;;)switch(s){case 0:h=null
 g=!0
 f=A.rP()
 p=4
-n=$.eU().c6("checklist_anual").i5(0).ci("user_id",f).qH(0,"mes",!0).qH(0,"ordem",!0).qH(0,"created_at",!0)
+n=$.eU().c6("checklist_anual").i5(0).ci("user_id",f).qH(0,"mes",!0).qH(0,"ordem",!0).qH(0,"updated_at",!0)
 if(h!=null){j=B.m.az(h)
 j=j.gde(j)}else j=!1
 if(j)n=n.ci("categoria",B.m.az(h))
