@@ -38783,9 +38783,9 @@ awb:function awb(a){this.a=a},
 awc:function awc(a){this.a=a},
 awa:function awa(){},
 fw(a,b){return new A.hd(a)},
-by_(a){switch(a.a){case 0:return"entrada_compra"
-case 1:return"ajuste_manual"
-case 2:return"producao_baixa"}},
+by_(a){switch(a.a){case 0:return"entrada"
+case 1:return"ajuste"
+case 2:return"saida_producao"}},
 bKn(a){var s,r,q,p,o,n,m,l,k="estoque_minimo",j=J.ae(a),i=j.i(a,"supabase_id")
 if(i==null)i=j.i(a,"id")
 i=J.bp(i==null?"":i)
