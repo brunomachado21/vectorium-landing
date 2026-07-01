@@ -138842,7 +138842,7 @@ ST(a){var s=J.bm(a).toLowerCase()
 if(B.m.m(s,"email not confirmed")||B.m.m(s,"email_not_confirmed"))return"Seu e-mail ainda n\xe3o foi confirmado."
 if(B.m.m(s,"invalid login credentials")||B.m.m(s,"invalid_credentials"))return"E-mail ou senha inv\xe1lidos."
 if(B.m.m(s,"perfil n\xe3o encontrado"))return"Conta autenticada, mas o perfil ainda n\xe3o foi provisionado."
-if(B.m.m(s,"limite de dispositivos"))return"Limite de dispositivos atingido para seu plano."
+if(B.m.m(s,"limite de")&&B.m.m(s,"dispositiv"))return"Limite de dispositivos atingido para seu plano. Acesse Configura\xe7\xf5es \u2192 Dispositivos para gerenciar."
 if(B.m.m(s,"perfil incompleto"))return"Seu perfil est\xe1 incompleto. Fa\xe7a login novamente ou contate o suporte."
 return"N\xe3o foi poss\xedvel entrar agora. Verifique sua conex\xe3o e tente novamente."},
 D3(a){if(this.c==null)return
