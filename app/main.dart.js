@@ -141802,7 +141802,7 @@ return this.ae0(a,s,s,s,s)},
 aUu(a,b,c,d){return this.ae0(null,a,b,c,d)}}
 A.fa.prototype={
 dQ(){var s=this
-return A.a4(["supabase_id",s.a,"receita_id",s.b,"insumo_id",s.c,"quantidade_usada",s.d,"custo_fracionado",s.e],t.N,t.z)}}
+return A.a4(["supabase_id",s.a,"receita_id",s.b,"insumo_id",s.c,"quantidade_utilizada",s.d,"custo_fracionado",s.e],t.N,t.z)}}
 A.is.prototype={
 dQ(){var s=this
 return A.a4(["supabase_id",s.a,"user_id",s.b,"company_id",s.c,"nome",s.d,"rendimento",s.e,"custo_total",s.f],t.N,t.z)}}
@@ -141882,9 +141882,9 @@ m=B.f6.ps()
 l=new A.i1(m,m,n.gy6(),n.gnv(),g,b,c,d.toUpperCase(),0,null,null,null)
 p=4
 s=7
-return A.j(n.a.c5("insumos").iy(0,l.dQ()).px(0,"id").H5(0),$async$Ll)
+return A.j(n.a.c5("insumos").iy(0,l.dQ()).px(0,"supabase_id").H5(0),$async$Ll)
 case 7:k=a0
-g=J.a8(k,"id")
+g=J.a8(k,"supabase_id")
 j=J.bm(g==null?"":g)
 g=J.br(j)!==0?j:m
 g=l.aTu(g)
