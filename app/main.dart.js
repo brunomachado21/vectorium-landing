@@ -142139,7 +142139,7 @@ s=4
 break
 case 5:n=e
 q=7
-f=J.bj(a2.r),e=t.z,d="Baixa por produ\xe7\xe3o da receita "+a2.d
+f=J.bj(a2.r),e=t.z,d=a2.d,c="Baixa por produ\xe7\xe3o da receita "+d
 case 10:if(!f.B()){s=11
 break}m=f.gS(f)
 l=J.a8(n,m.c)
@@ -142149,11 +142149,12 @@ j=l.x-k
 s=12
 return A.j(h.c5("insumos").dk(0,A.a4(["quantidade_estoque",j,"updated_at",new A.b0(Date.now(),0,!1).eH()],e,e)).cj("supabase_id",l.b),$async$tI)
 case 12:s=13
-return A.j(o.ya(l.a,d,B.bwv,J.bsP(k),l.w),$async$tI)
+return A.j(o.ya(l.a,c,B.bwv,J.bsP(k),l.w),$async$tI)
 case 13:s=10
 break
-case 11:s=14
-return A.j(h.c5("producao_receita").iy(0,A.a4(["user_id",o.gy6(),"company_id",o.gnv(),"receita_id",a2.a,"quantidade_bateladas",a1,"rendimento_total",a1*a2.e],g,t.K)),$async$tI)
+case 11:f=a2.e
+s=14
+return A.j(h.c5("producao_receita").iy(0,A.a4(["user_id",o.gy6(),"company_id",o.gnv(),"receita_id",a2.a,"nome_receita",d,"quantidade_bateladas",a1,"rendimento_ficha",f,"quantidade_produzida",a1*f,"custo_total_ficha",a2.f*a1],g,t.K)),$async$tI)
 case 14:q=1
 s=9
 break
