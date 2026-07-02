@@ -38825,8 +38825,8 @@ s=o.i(a,"receita_id")
 s=J.bm(s==null?"":s)
 r=o.i(a,"insumo_id")
 r=J.bm(r==null?"":r)
-q=A.eV(o.i(a,"quantidade_usada"))
-if(q==null)q=A.eV(o.i(a,"quantidade_utilizada"))
+q=A.eV(o.i(a,"quantidade_utilizada"))
+if(q==null)q=A.eV(o.i(a,"quantidade_usada"))
 if(q==null)q=0
 p=A.eV(o.i(a,"custo_fracionado"))
 o=p==null?A.eV(o.i(a,"custo_estimado")):p
