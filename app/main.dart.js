@@ -37855,11 +37855,11 @@ _.db=null
 _.dx=l
 _.fr=_.dy=!1
 _.fy=_.fx=!0
-_.go=!1
-_.id=null
-_.k1=m
-_.k2=n
-_.k3=o
+_.id=_.go=!1
+_.k1=null
+_.k2=m
+_.k3=n
+_.k4=o
 _.c=_.a=null},
 awn:function awn(){},
 awo:function awo(a,b){this.a=a
@@ -136596,7 +136596,7 @@ s.f.hr(0,B.e4)
 s.r.hr(0,B.e4)
 s.w.hr(0,B.e4)
 s.x.hr(0,B.e4)
-B.h.a5(s.k3)},
+B.h.a5(s.k4)},
 b4q(a,b){this.E(new A.ax7(this,a,b))},
 DO(){var s=0,r=A.p(t.H),q,p=2,o=[],n=this,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3
 var $async$DO=A.q(function(a4,a5){if(a4===1){o.push(a5)
@@ -136656,7 +136656,7 @@ s=$.ah()
 r=this.c
 r.toString
 A.eW(q,q,!0,q,new A.ax0(this,new A.b5(new A.bY(p,B.aT,B.ay),s)),r,q,!0,t.z)},
-akf(a){var s,r,q=null,p=J.a6(this.k1,a),o=J.ae(p),n=o.i(p,"nome")
+akf(a){var s,r,q=null,p=J.a6(this.k2,a),o=J.ae(p),n=o.i(p,"nome")
 n=n==null?q:J.ba(n)
 if(n==null)n=""
 s=$.ah()
@@ -136669,20 +136669,20 @@ A.eW(q,q,!0,q,new A.ax5(this,p,new A.b5(new A.bY(n,B.aT,B.ay),s),new A.b5(new A.
 aUW(){var s=null,r=$.ah(),q=this.c
 q.toString
 A.eW(s,s,!0,s,new A.awX(this,new A.b5(B.af,r),new A.b5(B.af,r)),q,s,!0,t.z)},
-aQy(){var s,r=this,q={},p=A.e7(r.k3,!0,t.a)
+aQy(){var s,r=this,q={},p=A.e7(r.k4,!0,t.a)
 q.a=r.fx
 s=r.c
 s.toString
 A.nf(B.X,new A.awB(q,r,p),s,!0,null,t.z)},
 I(a){var s,r,q,p,o,n,m,l=this,k=null
-if(l.fy||l.id==null){s=l.ax
+if(l.fy||l.k1==null){s=l.ax
 s===$&&A.a()
 return A.am(k,B.jv,B.F,s,k,k,k,k,k,k,k,k,k,k)}s=l.ax
 s===$&&A.a()
 r=t.p
 q=A.b([],r)
 if(!l.dy){p=l.a2D()
-o=l.id
+o=l.k1
 o=o==null?k:o.a
 B.h.F(q,A.b([new A.iZ(l.aS_(p,o==null?3000:o),k),B.b1],r))}p=J.e3(l.cy)?J.oy(l.cy):k
 q.push(new A.iZ(l.aS2(l.Qm(),l.auW(),l.auY(),J.e3(l.cy),p),k))
@@ -136812,7 +136812,7 @@ r=A.b([A.aq(A.b([A.aq(A.b([q,B.mX,A.D("Data "+p+"/"+o,g,g,g,g,A.ac(g,g,n,g,g,g,g
 if(!h.dy){q=$.ck
 q=q==null?g:q.e
 if(q==null)q="RETAIL"
-q=q.toUpperCase()!=="JEWELRY"&&J.e3(h.k1)}else q=!1
+q=q.toUpperCase()!=="JEWELRY"&&J.e3(h.k2)}else q=!1
 if(q)B.h.F(r,A.b([h.aS5(),B.b1],m))
 q=h.dy
 p=q?"Descri\xe7\xe3o da conta":"Descri\xe7\xe3o opcional"
@@ -136848,7 +136848,7 @@ s=k.toUpperCase()
 if(s==="CONFECTIONER"||s==="CAKE"||B.m.m(s,"DOCES")){k=n.cx
 k===$&&A.a()
 k=A.eR(m,new A.d2(4,A.a1(10),B.R),m,B.aeR,m,m,m,m,!0,m,m,m,m,m,m,k,!0,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,!0,m,m,"Composi\xe7\xe3o / Fichas T\xe9cnicas",!0,!0,!1,m,m,m,m,m,m,m,m,m,m,m,m,m,m)
-r=n.k3.length
+r=n.k4.length
 q=r===0
 r=q?"Tocar para montar produto...":""+r+" item(ns) selecionados"
 if(q)q=$.Yx
@@ -136856,7 +136856,7 @@ else{q=n.ch
 q===$&&A.a()}p=t.VS
 o=t.p
 o=A.b([A.aq(A.b([A.aB(A.f7(!1,m,!0,A.boV(m,A.D(r,m,m,m,m,A.ac(m,m,q,m,m,m,m,m,m,m,m,13,m,m,B.Y,m,m,!0,m,m,m,m,m,m,m,m),m,m,m),k,!1,!1,!1,!1,m,m),m,!0,m,m,m,m,m,m,m,m,m,m,m,n.gaQx(),m,m,m,m,m,m,m),5),B.bh,A.aB(n.zA("Rateio Extra",n.r,B.agp,B.d4,A.b([new A.iV()],p)),4)],o),B.ac,B.v,B.x,0,m,m)],o)
-if(n.k3.length!==0)o.push(new A.ag(B.afs,A.D("Custo Autom\xe1tico: "+n.z.av(n.tE(n.f.a.a)),m,m,m,m,B.bq8,m,m,m),m))
+if(n.k4.length!==0)o.push(new A.ag(B.afs,A.D("Custo Autom\xe1tico: "+n.z.av(n.tE(n.f.a.a)),m,m,m,m,B.bq8,m,m,m),m))
 o.push(B.as)
 o.push(n.zA(l,n.w,B.F5,B.d4,A.b([new A.iV()],p)))
 return A.al(o,B.ac,B.v,B.x,0,B.I)}k=t.VS
@@ -136865,7 +136865,7 @@ return A.al(A.b([A.aq(A.b([A.aB(n.zA("CPV / Custo",n.f,B.ahL,B.d4,A.b([new A.iV(
 aS5(){var s,r,q=this,p=null,o=q.CW
 o===$&&A.a()
 o=A.D("Atalhos R\xe1pidos \u2022 Segure para editar",p,p,p,p,A.ac(p,p,o,p,p,p,p,p,p,p,p,10,p,p,B.bs,p,p,!0,p,p,p,p,p,p,p,p),p,p,p)
-s=J.bnC(q.k1)
+s=J.bnC(q.k2)
 r=t.l7
 s=A.R(s.gkB(s).ew(0,new A.awK(q),r),r)
 r=t.p
@@ -136902,9 +136902,9 @@ A.awR.prototype={
 $0(){return this.a.fy=!0},
 $S:0}
 A.awS.prototype={
-$0(){var s=this.a,r=s.id=this.b
-s.k1=r.f
-s.k2=r.e
+$0(){var s=this.a,r=s.k1=this.b
+if(!s.id)s.k2=r.f
+s.k3=r.e
 s.fy=!1},
 $S:0}
 A.awT.prototype={
@@ -136963,9 +136963,9 @@ case 2:return A.m(o.at(-1),r)}})
 return A.o($async$$0,r)},
 $S:2}
 A.awY.prototype={
-$0(){var s=this.a,r=s.id
+$0(){var s=this.a,r=s.k1
 if(r==null)r=B.adv
-s.id=new A.Cb(this.b,r.b,r.c,r.d,r.e,r.f)},
+s.k1=new A.Cb(this.b,r.b,r.c,r.d,r.e,r.f)},
 $S:0}
 A.ax5.prototype={
 $1(a){var s=this,r=null,q=A.D("Editar "+A.j(J.a6(s.b,"nome")),r,r,r,r,r,r,r,r),p=s.c,o=s.d,n=t.p,m=A.al(A.b([A.cJ(r,B.aE,!1,r,!0,B.Q,r,A.cM(),p,r,r,r,r,r,2,B.Fp,B.V,!0,r,!0,r,!1,r,B.az,r,r,r,r,r,r,r,r,1,r,r,!1,"\u2022",r,r,r,r,r,!1,r,r,!1,r,!0,r,B.aq,r,r,r,r,r,r,r,r,r,r,r,r,!0,B.ab,r,B.aS,r,r,r,r),B.as,A.cJ(r,B.aE,!1,r,!0,B.Q,r,A.cM(),o,r,r,r,r,r,2,B.Fr,B.V,!0,r,!0,r,!1,r,B.az,r,r,A.b([new A.CB(A.aV("[0-9,\\.]",!0,!1,!1),!0,"")],t.VS),r,B.cU,r,r,r,1,r,r,!1,"\u2022",r,r,r,r,r,!1,r,r,!1,r,!0,r,B.aq,r,r,r,r,r,r,r,r,r,r,r,r,!0,B.ab,r,B.aS,r,r,r,r)],n),B.z,B.v,B.at,0,B.I),l=s.a,k=s.e
@@ -136980,12 +136980,14 @@ A.bb(q.c,!1).cc(null)
 p=$.wA()
 o=$.ck.a
 s=2
-return A.i(p.ua(n.k1,o),$async$$0)
+return A.i(p.ua(n.k2,o),$async$$0)
 case 2:return A.n(null,r)}})
 return A.o($async$$0,r)},
 $S:2}
 A.ax2.prototype={
-$0(){return J.btt(this.a.k1,this.b)},
+$0(){var s=this.a
+J.btt(s.k2,this.b)
+s.id=!0},
 $S:0}
 A.ax4.prototype={
 $0(){var s=0,r=A.p(t.H),q=this,p,o,n,m
@@ -136999,14 +137001,15 @@ A.bb(q.e,!1).cc(null)
 p=$.wA()
 o=$.ck.a
 s=2
-return A.i(p.ua(n.k1,o),$async$$0)
+return A.i(p.ua(n.k2,o),$async$$0)
 case 2:return A.n(null,r)}})
 return A.o($async$$0,r)},
 $S:2}
 A.ax1.prototype={
-$0(){var s=this,r=s.a.k1,q=B.m.ap(s.c.a.a)
-if(q.length===0)q="Item"
-J.dI(r,s.b,A.a3(["nome",q,"valor",s.d],t.N,t.z))},
+$0(){var s=this,r=s.a,q=r.k2,p=B.m.ap(s.c.a.a)
+if(p.length===0)p="Item"
+J.dI(q,s.b,A.a3(["nome",p,"valor",s.d],t.N,t.z))
+r.id=!0},
 $S:0}
 A.awX.prototype={
 $1(a){var s=null,r=this.b,q=this.c,p=t.p,o=A.al(A.b([A.cJ(s,B.aE,!1,s,!0,B.Q,s,A.cM(),r,s,s,s,s,s,2,B.Fp,B.V,!0,s,!0,s,!1,s,B.az,s,s,s,s,s,s,s,s,1,s,s,!1,"\u2022",s,s,s,s,s,!1,s,s,!1,s,!0,s,B.aq,s,s,s,s,s,s,s,s,s,s,s,s,!0,B.ab,s,B.aS,s,s,s,s),B.as,A.cJ(s,B.aE,!1,s,!0,B.Q,s,A.cM(),q,s,s,s,s,s,2,B.Fr,B.V,!0,s,!0,s,!1,s,B.az,s,s,A.b([new A.iV()],t.VS),s,B.d4,s,s,s,1,s,s,!1,"\u2022",s,s,s,s,s,!1,s,s,!1,s,!0,s,B.aq,s,s,s,s,s,s,s,s,s,s,s,s,!0,B.ab,s,B.aS,s,s,s,s)],p),B.z,B.v,B.at,0,B.I)
@@ -137029,12 +137032,14 @@ l.E(new A.awU(l,m,k))
 o=$.wA()
 n=$.ck.a
 s=3
-return A.i(o.ua(l.k1,n),$async$$0)
+return A.i(o.ua(l.k2,n),$async$$0)
 case 3:case 1:return A.n(q,r)}})
 return A.o($async$$0,r)},
 $S:2}
 A.awU.prototype={
-$0(){J.ep(this.a.k1,A.a3(["nome",this.b,"valor",this.c],t.N,t.z))},
+$0(){var s=this.a
+J.ep(s.k2,A.a3(["nome",this.b,"valor",this.c],t.N,t.z))
+s.id=!0},
 $S:0}
 A.awB.prototype={
 $1(a){return new A.kR(new A.awA(this.a,this.b,this.c,a),null)},
@@ -137049,7 +137054,7 @@ q=A.a1(8)
 p=s.ao(0.05)
 o=j.a?"Usando o custo dividido pelo rendimento.":"Usando o custo do lote inteiro."
 n=t.p
-return A.am(l,A.al(A.b([B.bu9,B.btT,B.eZ,A.am(l,A.by2(s,l,new A.awx(j,b),A.D(o,l,l,l,l,A.ac(l,l,B.cY,l,l,l,l,l,l,l,l,11,l,l,l,l,l,!0,l,l,l,l,l,l,l,l),l,l,l),B.bvg,j.a),B.F,l,l,new A.ai(p,l,r,q,l,l,B.P),l,l,l,l,l,l,l,l),B.as,A.aB(A.a4O(l,new A.awy(g,k,b),J.bq(g.k2),l,!1),1),B.ed,A.aq(A.b([B.bui,A.D(g.z.av(i),l,l,l,l,B.bs1,l,l,l)],n),B.z,B.bW,B.x,0,l,l),B.eZ,A.c5(A.ft(B.bt7,new A.awz(j,g,k,i,m.d),A.dP(l,l,s,l,l,l,l,l,l,B.E,l,l,l,l,l,l,l,l,l,l)),50,1/0)],n),B.ac,B.v,B.x,0,B.I),B.F,l,l,new A.ai(f,l,l,B.Bk,l,l,B.P),l,h.a.b*0.75,l,l,B.aq,l,l,l)},
+return A.am(l,A.al(A.b([B.bu9,B.btT,B.eZ,A.am(l,A.by2(s,l,new A.awx(j,b),A.D(o,l,l,l,l,A.ac(l,l,B.cY,l,l,l,l,l,l,l,l,11,l,l,l,l,l,!0,l,l,l,l,l,l,l,l),l,l,l),B.bvg,j.a),B.F,l,l,new A.ai(p,l,r,q,l,l,B.P),l,l,l,l,l,l,l,l),B.as,A.aB(A.a4O(l,new A.awy(g,k,b),J.bq(g.k3),l,!1),1),B.ed,A.aq(A.b([B.bui,A.D(g.z.av(i),l,l,l,l,B.bs1,l,l,l)],n),B.z,B.bW,B.x,0,l,l),B.eZ,A.c5(A.ft(B.bt7,new A.awz(j,g,k,i,m.d),A.dP(l,l,s,l,l,l,l,l,l,B.E,l,l,l,l,l,l,l,l,l,l)),50,1/0)],n),B.ac,B.v,B.x,0,B.I),B.F,l,l,new A.ai(f,l,l,B.Bk,l,l,B.P),l,h.a.b*0.75,l,l,B.aq,l,l,l)},
 $S:86}
 A.aww.prototype={
 $2(a,b){var s,r,q=J.ae(b),p=A.eE(q.i(b,"custo_fracionado")),o=p==null?null:p
@@ -137067,7 +137072,7 @@ A.awv.prototype={
 $0(){return this.a.a=this.b},
 $S:0}
 A.awy.prototype={
-$2(a,b){var s,r,q,p,o=null,n=this.a,m=J.a6(n.k2,b),l=this.b,k=B.h.eX(l,new A.awt(m)),j=J.ae(m),i=A.eE(j.i(m,"custo_fracionado")),h=i==null?o:i
+$2(a,b){var s,r,q,p,o=null,n=this.a,m=J.a6(n.k3,b),l=this.b,k=B.h.eX(l,new A.awt(m)),j=J.ae(m),i=A.eE(j.i(m,"custo_fracionado")),h=i==null?o:i
 if(h==null)h=0
 i=A.eE(j.i(m,"rendimento"))
 s=i==null?o:B.o.dl(i)
@@ -137106,12 +137111,12 @@ A.bb(s.e,!1).cc(null)},
 $S:0}
 A.aws.prototype={
 $0(){var s,r=this,q=r.b
-q.k3=A.e7(r.c,!0,t.a)
+q.k4=A.e7(r.c,!0,t.a)
 q.fx=r.a.a
 s=r.d
 q.f.sdk(0,q.X8(s))
 q.d.sdk(0,q.X8(s))
-s=q.k3
+s=q.k4
 q.e.sdk(0,new A.S(s,new A.awq(),A.W(s).h("S<1,@>")).cb(0,", "))},
 $S:0}
 A.awq.prototype={
