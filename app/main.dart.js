@@ -39057,7 +39057,8 @@ awo:function awo(a){this.a=a},
 aws:function aws(a){this.a=a},
 awt:function awt(a){this.a=a},
 awp:function awp(){},
-awr:function awr(a){this.a=a},
+awr:function awr(a,b){this.a=a
+this.b=b},
 awq:function awq(){},
 fy(a,b){return new A.fT(a)},
 byM(a){switch(a.a){case 0:return"entrada"
@@ -137227,30 +137228,32 @@ $0(){A.bb(this.a,!1).cd(null)
 return null},
 $S:0}
 A.ax4.prototype={
-$0(){var s=0,r=A.p(t.H),q,p=2,o=[],n=this,m,l,k,j,i,h,g
+$0(){var s=0,r=A.p(t.H),q,p=2,o=[],n=this,m,l,k,j,i,h,g,f,e
 var $async$$0=A.q(function(a,b){if(a===1){o.push(b)
-s=p}for(;;)switch(s){case 0:j=B.m.ap(n.b.a.a)
-i=n.a
-h=i.tE(n.c.a.a)
-if(J.bp(j)===0){n.d.el(B.bly)
+s=p}for(;;)switch(s){case 0:h=B.m.ap(n.b.a.a)
+g=n.a
+f=g.tE(n.c.a.a)
+if(J.bp(h)===0){n.d.el(B.bly)
 s=1
 break}A.bb(n.e,!1).cd(null)
-i.E(new A.ax0(i,j,h))
+g.E(new A.ax0(g,h,f))
 p=4
+k=$.wE()
+j=$.cm
 s=7
-return A.i($.wE().Ea($.cm.b,j,h),$async$$0)
+return A.i(k.Ea(j.b,h,j.a,f),$async$$0)
 case 7:m=b
-if(i.c==null){s=1
-break}i.E(new A.ax1(i,j,m))
+if(g.c==null){s=1
+break}g.E(new A.ax1(g,h,m))
 p=2
 s=6
 break
 case 4:p=3
-g=o.pop()
-l=A.X(g)
+e=o.pop()
+l=A.X(e)
 A.eM().$1("[criarAtalho] ERRO: "+A.j(l))
-if(i.c==null){s=1
-break}i.E(new A.ax2(i,j))
+if(g.c==null){s=1
+break}g.E(new A.ax2(g,h))
 n.d.el(A.hh(null,null,null,B.aV,null,B.Q,null,A.D("Erro ao criar atalho: "+A.j(l),null,null,null,null,null,null,null,null),null,B.bj,null,null,null,null,null,null,null,null,null,null))
 s=6
 break
@@ -142333,7 +142336,7 @@ h=p.L3(a,b,c)
 g=p.AT(a,c,a0)
 f=i===B.Di?p.HH(b):A.ev(A.b([],t.c),t.b5)
 s=3
-return A.i(A.mn(A.b([h,g,f,p.DR(b,i)],t.Y_),t.X),$async$L6)
+return A.i(A.mn(A.b([h,g,f,p.DR(b,i,a0)],t.Y_),t.X),$async$L6)
 case 3:e=a2
 f=J.ab(e)
 o=t.zY.a(f.i(e,0))
@@ -142451,45 +142454,45 @@ s=1
 break
 case 1:return A.n(q,r)}})
 return A.o($async$HH,r)},
-DR(a,b){return this.aSA(a,b)},
-aSA(a,b){var s=0,r=A.p(t.b5),q,p=this,o,n,m,l,k,j,i
-var $async$DR=A.q(function(c,d){if(c===1)return A.m(d,r)
+DR(a,b,c){return this.aSA(a,b,c)},
+aSA(a,b,c){var s=0,r=A.p(t.b5),q,p=this,o,n,m,l,k,j,i
+var $async$DR=A.q(function(d,e){if(d===1)return A.m(e,r)
 for(;;)switch(s){case 0:l=p.a
 k=t.a
 i=A
 s=3
-return A.i(l.bK("atalhos").jN(0,"id, nome, valor, ordem").c6("company_id",a).o9(0,"ordem",!0),$async$DR)
-case 3:j=i.dQ(d,!0,k)
+return A.i(l.bK("atalhos").jN(0,"id, nome, valor, ordem").c6("company_id",a).c6("user_id",c).o9(0,"ordem",!0),$async$DR)
+case 3:j=i.dQ(e,!0,k)
 if(j.length!==0){q=p.a78(j)
 s=1
 break}o=p.aNl(b)
 if(o.length===0){q=A.b([],t.c)
 s=1
 break}n=new A.r7(o,A.W(o).h("r7<1>"))
-m=n.gkg(n).eq(0,new A.awr(a),t.nf).fB(0)
+m=n.gkg(n).eq(0,new A.awr(a,c),t.nf).fB(0)
 i=A
 s=4
 return A.i(l.bK("atalhos").i1(0,m).jN(0,"id, nome, valor, ordem"),$async$DR)
-case 4:q=p.a78(i.dQ(d,!0,k))
+case 4:q=p.a78(i.dQ(e,!0,k))
 s=1
 break
 case 1:return A.n(q,r)}})
 return A.o($async$DR,r)},
-Ea(a,b,c){return this.aVe(a,b,c)},
-aVe(a,b,c){var s=0,r=A.p(t.a),q,p=this,o,n,m,l,k,j,i
-var $async$Ea=A.q(function(d,e){if(d===1)return A.m(e,r)
+Ea(a,b,c,d){return this.aVe(a,b,c,d)},
+aVe(a,b,c,d){var s=0,r=A.p(t.a),q,p=this,o,n,m,l,k,j,i
+var $async$Ea=A.q(function(e,f){if(e===1)return A.m(f,r)
 for(;;)switch(s){case 0:k=p.a
 s=3
-return A.i(k.bK("atalhos").jN(0,"ordem").c6("company_id",a).o9(0,"ordem",!1).ahg(1),$async$Ea)
-case 3:j=e
+return A.i(k.bK("atalhos").jN(0,"ordem").c6("company_id",a).c6("user_id",c).o9(0,"ordem",!1).ahg(1),$async$Ea)
+case 3:j=f
 i=J.ab(j)
 if(i.gdh(j)){i=A.ee(J.a6(i.gY(j),"ordem"))
 i=i==null?null:B.o.di(i)
 o=i==null?0:i}else o=-1
 i=t.N
 s=4
-return A.i(k.bK("atalhos").i1(0,A.a2(["company_id",a,"nome",b,"valor",c,"ordem",o+1],i,t.K)).jN(0,"id, nome, valor, ordem").Bd(0),$async$Ea)
-case 4:n=e
+return A.i(k.bK("atalhos").i1(0,A.a2(["company_id",a,"user_id",c,"nome",b,"valor",d,"ordem",o+1],i,t.K)).jN(0,"id, nome, valor, ordem").Bd(0),$async$Ea)
+case 4:n=f
 k=J.ab(n)
 m=J.b7(k.i(n,"id"))
 l=k.i(n,"nome")
@@ -142545,7 +142548,7 @@ return A.a2(["id",p,"nome",s,"rendimento",r,"custo_fracionado",q==null?0:q],t.N,
 $S:324}
 A.awr.prototype={
 $1(a){var s=a.b,r=J.ab(s)
-return A.a2(["company_id",this.a,"nome",A.bo(r.i(s,"nome")),"valor",A.d0(r.i(s,"valor")),"ordem",a.a],t.N,t.K)},
+return A.a2(["company_id",this.a,"user_id",this.b,"nome",A.bo(r.i(s,"nome")),"valor",A.d0(r.i(s,"valor")),"ordem",a.a],t.N,t.K)},
 $S:839}
 A.awq.prototype={
 $1(a){var s=J.ab(a),r=J.b7(s.i(a,"id")),q=s.i(a,"nome")
