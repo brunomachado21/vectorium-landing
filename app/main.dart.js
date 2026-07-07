@@ -37454,7 +37454,7 @@ a0=a2.i(a4,"pro_labore")
 a0=A.rz(a0==null?a2.i(a4,"prolabore"):a0)
 a1=A.hS(a2.i(a4,"receita_id"))
 return A.bq1(l,r,g,A.bq2(a2.i(a4,"created_at")),q,k,d,m,n,f,a3,c,b,e,o,a0,p,h,a1,a,j,A.bq2(a2.i(a4,"updated_at")),s,i)},
-aOm(a,b,c,d,e,f,g,h,i,j,k,l,m,n){return A.bq1("",a,b,null,c==null?new A.b0(Date.now(),0,!1):c,d,e,"",f,g,"",0,0,h,i,j,k,l,null,0,m,null,n,0)},
+aOm(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q){return A.bq1("",a,b,null,c==null?new A.b0(Date.now(),0,!1):c,d,e,"",f,g,"",h,i,j,k,l,m,n,null,o,p,null,q,0)},
 rz(a){var s
 if(a==null)return 0
 if(typeof a=="number")return a
@@ -135512,7 +135512,7 @@ c=a2.a
 b=a2.b
 a=m.as.eH()
 a0=J.bp(j)!==0?" | "+A.j(j):""
-h=A.aOm(b,0,m.as,"",i,k,0,0,"Conta a pagar | vencimento:"+a+a0,0,l,0,B.n8,c)
+h=A.aOm(b,0,m.as,"",i,k,0,0,0,0,"Conta a pagar | vencimento:"+a+a0,0,l,0,0,B.n8,c)
 s=7
 return A.i(A.vF(h),$async$D5)
 case 7:g.hs(0,B.e4)
@@ -136779,17 +136779,17 @@ s.w.hs(0,B.e4)
 s.x.hs(0,B.e4)
 B.h.a4(s.k3)},
 b4K(a,b){this.E(new A.axg(this,a,b))},
-DS(){var s=0,r=A.p(t.H),q,p=2,o=[],n=this,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3
-var $async$DS=A.q(function(a4,a5){if(a4===1){o.push(a5)
-s=p}for(;;)switch(s){case 0:a0=n.c.a6(t.J).f
-a1=n.dy
-a2=n.c
-a2.toString
-A.jk(a2).fT()
-a2=$.cm
-a2.toString
+DS(){var s=0,r=A.p(t.H),q,p=2,o=[],n=this,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4,a5,a6,a7
+var $async$DS=A.q(function(a8,a9){if(a8===1){o.push(a9)
+s=p}for(;;)switch(s){case 0:a4=n.c.a6(t.J).f
+a5=n.dy
+a6=n.c
+a6.toString
+A.jk(a6).fT()
+a6=$.cm
+a6.toString
 k=n.tD(n.d.a.a)
-if(k<=0){a0.el(B.blu)
+if(k<=0){a4.el(B.blu)
 s=1
 break}j=n.tD(n.f.a.a)
 i=n.tD(n.r.a.a)
@@ -136797,13 +136797,17 @@ h=n.tD(n.w.a.a)
 g=n.tD(n.x.a.a)
 f=0
 e=0
-if(a1){if(n.fr){e=k
+if(a5){if(n.fr){e=k
 d=B.A8}else{f=k
 d=B.n8}c=0}else{c=k
 d=B.h9}b=B.m.ap(n.e.a.a)
-if(b.length===0)if(a1)b=n.fr?"Retirada de S\xf3cio":"Despesa Operacional"
+if(b.length===0)if(a5)b=n.fr?"Retirada de S\xf3cio":"Despesa Operacional"
 else b="Venda"
-m=A.aOm(a2.b,j,null,"",f+g,"",i,h,"",e,b,c,d,a2.a).W5(n.dx)
+a=j+i+h+g+e
+a0=c-a
+a1=c>0?a0/c*100:0
+a2=a>0?a0/a*100:0
+m=A.aOm(a6.b,j,null,"",f+g,"",i,a0,a1,h,"",e,b,c,a2,d,a6.a).W5(n.dx)
 p=4
 s=7
 return A.i($.wE().B1(m),$async$DS)
@@ -136811,16 +136815,16 @@ case 7:n.ahh()
 s=8
 return A.i(n.vj(),$async$DS)
 case 8:if(n.c==null){s=1
-break}a2=A.D(a1?"Sa\xedda registrada!":"Venda registrada!",null,null,null,null,null,null,null,null)
-a0.el(A.hh(null,null,null,a1?B.aV:B.bE,null,B.Q,null,a2,null,B.bj,null,null,null,null,null,null,null,null,null,null))
+break}a6=A.D(a5?"Sa\xedda registrada!":"Venda registrada!",null,null,null,null,null,null,null,null)
+a4.el(A.hh(null,null,null,a5?B.aV:B.bE,null,B.Q,null,a6,null,B.bj,null,null,null,null,null,null,null,null,null,null))
 p=2
 s=6
 break
 case 4:p=3
-a3=o.pop()
-l=A.X(a3)
+a7=o.pop()
+l=A.X(a7)
 if(n.c==null){s=1
-break}a0.el(A.hh(null,null,null,B.aV,null,B.Q,null,A.D("Falha ao registrar: "+A.j(l),null,null,null,null,null,null,null,null),null,B.bj,null,null,null,null,null,null,null,null,null,null))
+break}a4.el(A.hh(null,null,null,B.aV,null,B.Q,null,A.D("Falha ao registrar: "+A.j(l),null,null,null,null,null,null,null,null),null,B.bj,null,null,null,null,null,null,null,null,null,null))
 s=6
 break
 case 3:s=2
@@ -142987,7 +142991,7 @@ if(n.length===0)A.a0(A.fy("Nome do produto \xe9 obrigat\xf3rio.",null))
 p=q.gyc()
 o=q.gnw()
 s=2
-return A.i(A.abF(A.aOm(o,c.b,null,"Gerado pelo Precificador de Confeitaria",0,"",0,0,"",0,n,c.c,B.h9,p).W5(a)),$async$MY)
+return A.i(A.abF(A.aOm(o,c.b,null,"Gerado pelo Precificador de Confeitaria",0,"",0,0,0,0,"",0,n,c.c,0,B.h9,p).W5(a)),$async$MY)
 case 2:return A.n(null,r)}})
 return A.o($async$MY,r)},
 yh(a,b,c,d,e){return this.aLR(a,b,c,d,e)},
@@ -143254,7 +143258,7 @@ for(;;)switch(s){case 0:p=$.cm
 if(p==null)throw A.d(B.bjf)
 q=p.a
 s=2
-return A.i(A.abF(A.aOm(p.b,a,null,"Gerado pelo Precificador de Joias",0,"",0,0,"",0,d,e,B.h9,q).W5(b)),$async$MZ)
+return A.i(A.abF(A.aOm(p.b,a,null,"Gerado pelo Precificador de Joias",0,"",0,0,0,0,"",0,d,e,0,B.h9,q).W5(b)),$async$MZ)
 case 2:return A.n(null,r)}})
 return A.o($async$MZ,r)}}
 A.aCF.prototype={}
