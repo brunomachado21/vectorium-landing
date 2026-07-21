@@ -36778,7 +36778,6 @@ b8.r+=a3
 b8.f+=a4
 b8.e+=a5
 b8.d+=a6
-b8.c+=a7
 g.push(A.a1(["conta",b4,"valor",a3],f,c))
 b5=a4+a5+a6+a7
 if(b5>0){a1=e.i(0,"DESPESAS OPERACIONAIS (Vari\xe1veis)")
@@ -36830,7 +36829,6 @@ if(a3>0){b8.r+=a3
 b8.f+=a4
 b8.e+=a5
 b8.d+=a6
-b8.c+=a7
 g.push(A.a1(["conta",b4,"valor",a3],f,c))
 b5=a4+a5+a6+a7
 if(b5>0){a1=e.i(0,"DESPESAS OPERACIONAIS (Vari\xe1veis)")
@@ -36903,7 +36901,7 @@ case"aluguel":case"energia_eletrica":case"agua":case"internet":case"telefone":ca
 case"impostos":case"das":case"mei":case"simples_nacional":case"irpj":case"csll":return o
 case"salario_funcionario":case"comissao":case"epi_uniforme":case"vale_transporte":case"vale_refeicao":case"ferias":case"13_salario":return n
 case"trafego_pago":case"influencer":case"material_grafico":case"embalagem_marketing":return m
-case"insumos":case"embalagem":case"frete_envio":case"plataforma_marketplace":case"taxa_cartao":return m
+case"compra_insumos":case"compra_materiais":case"insumos":case"embalagem":case"embalagem_produto":case"descartavel":case"utensilio":case"ferramenta":case"frete_envio":case"taxa_entrega":case"taxa_marketplace":case"taxa_cartao":case"plataforma_marketplace":return m
 case"juros_banco":case"taxa_bancaria":case"emprestimo":case"anuidade_cartao":return o}s=A.aS((b+" "+c).toUpperCase(),"\xc1","A")
 s=A.aS(s,"\xc3","A")
 s=A.aS(s,"\xc2","A")
@@ -36919,7 +36917,7 @@ if(B.m.m(r,"RETIRADA")||B.m.m(r,"PRO LABORE")||B.m.m(r,"PROLABORE")||B.m.m(r,"SO
 if(B.m.m(r,"LUZ")||B.m.m(r,"ENERGIA")||B.m.m(r,"AGUA")||B.m.m(r,"ALUGUEL")||B.m.m(r,"INTERNET")||B.m.m(r,"WIFI")||B.m.m(r,"TELEFONE")||B.m.m(r,"CELULAR")||B.m.m(r,"SISTEMA")||B.m.m(r,"SOFTWARE")||B.m.m(r,"LIMPEZA")||B.m.m(r,"MEI")||B.m.m(r,"DAS")||B.m.m(r,"CONTADOR")||B.m.m(r,"SIMPLES")||B.m.m(r,"IPTU")||B.m.m(r,"CONDOMINIO"))return p
 if(B.m.m(r,"IMPOSTO")||B.m.m(r,"TAXA")||B.m.m(r,"JUROS")||B.m.m(r,"BANCO")||B.m.m(r,"CARTAO")||B.m.m(r,"EMPRESTIMO")||B.m.m(r,"FINANCIAMENTO")||B.m.m(r,"ANUIDADE")||B.m.m(r,"TED")||B.m.m(r,"DOC")||B.m.m(r,"PIX"))return o
 if(B.m.m(r,"SALARIO")||B.m.m(r,"COMISSAO")||B.m.m(r,"FUNCIONARIO")||B.m.m(r,"COLABORADOR")||B.m.m(r,"AJUDANTE")||B.m.m(r,"DIARIA")||B.m.m(r,"ALMOCO")||B.m.m(r,"REFEICAO")||B.m.m(r,"LANCHE")||B.m.m(r,"TRANSPORTE")||B.m.m(r,"UBER")||B.m.m(r,"GASOLINA")||B.m.m(r,"COMBUSTIVEL"))return n
-if(B.m.m(r,"INSUMO")||B.m.m(r,"COMPRA")||B.m.m(r,"ATACADO")||B.m.m(r,"PRODUTO")||B.m.m(r,"FORNECEDOR")||B.m.m(r,"MERCADORIA")||B.m.m(r,"EMBALAGEM")||B.m.m(r,"MATERIA")||B.m.m(r,"ESTOQUE")||B.m.m(r,"REPOSICAO")||B.m.m(r,"MANUTENCAO")||B.m.m(r,"CONSERTO")||B.m.m(r,"REFORMA"))return m
+if(B.m.m(r,"INSUMO")||B.m.m(r,"COMPRA")||B.m.m(r,"ATACADO")||B.m.m(r,"PRODUTO")||B.m.m(r,"FORNECEDOR")||B.m.m(r,"MERCADORIA")||B.m.m(r,"EMBALAGEM")||B.m.m(r,"MATERIA")||B.m.m(r,"ESTOQUE")||B.m.m(r,"REPOSICAO")||B.m.m(r,"MANUTENCAO")||B.m.m(r,"CONSERTO")||B.m.m(r,"REFORMA")||B.m.m(r,"DESCARTAVEL")||B.m.m(r,"UTENSILIO")||B.m.m(r,"FERRAMENTA"))return m
 return"OUTRAS DESPESAS"},
 bBq(a,b){var s,r=null,q=new A.p4(B.kO,1,B.jK)
 q=A.Jo(new A.ui(q,q,q,q),A.byg(5),B.XK)
